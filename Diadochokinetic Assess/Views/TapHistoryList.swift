@@ -36,9 +36,9 @@ struct TapHistoryList : View {
                     self.presentSettingsModal.toggle()
                 }) {
                     Image("gear")
-                        .padding(0.0)
-                        .imageScale(.large)
-        
+//                        .padding(0.0)
+                        .font(.title)
+                        .imageScale(.medium)
                 },
                 trailing: Button(action: {
                     self.showDeleteConf = true
@@ -80,21 +80,19 @@ struct RecordRow : View {
     func dateToString(date : Date) -> String {
         let interval = Date().timeIntervalSince(date)
         var str = 0
-        print(interval < 0 ? "negative" : "posative")
-        print("\(interval)")
         var unit : Units = .seconds
+        
         if interval / 60.0 > 1 {
             str = Int(interval / 60.0)
-            print("\(str) = Str")
             unit = .minutes
         } else {
             str = Int(interval)
         }
-        print("\(str) = Str")
+
         if unit == .minutes {
-            return "\(str) \(str == 1 ? "min Ago" : "mins Ago")"
+            return "\(str) \(str == 1 ? "min Ago" : "mins ago")"
         } else {
-            return "\(str) \(str == 1 ? "sec Ago" : "secs Ago")"
+            return "\(str) \(str == 1 ? "sec Ago" : "secs ago")"
         }
     }
     enum Units {

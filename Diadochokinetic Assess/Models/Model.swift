@@ -15,3 +15,11 @@ struct Record : Identifiable, Hashable {
     var timed: Bool
     var duration: Int
 }
+
+enum PossibleCountingStates {
+    case ready
+    case countdown
+    case counting
+    case paused
+    case finished
+}

@@ -27,10 +27,10 @@
       "color" : {
         "color-space" : "srgb",
         "components" : {
-          "red" : "0.177",
+          "red" : "0.176",
           "alpha" : "1.000",
-          "blue" : "0.500",
-          "green" : "0.398"
+          "blue" : "0.498",
+          "green" : "0.396"
         }
       }
     }

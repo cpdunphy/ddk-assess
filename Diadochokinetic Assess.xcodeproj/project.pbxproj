@@ -20,7 +20,6 @@
 		F0D1827E23938D0B0022998E /* TapHistoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1827823938D0A0022998E /* TapHistoryList.swift */; };
 		F0D1827F23938D0B0022998E /* TimerRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1827923938D0A0022998E /* TimerRing.swift */; };
 		F0D1828023938D0B0022998E /* TimedTapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1827A23938D0A0022998E /* TimedTapView.swift */; };
-		F0D18284239441C50022998E /* TapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D18283239441C50022998E /* TapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +38,6 @@
 		F0D1827823938D0A0022998E /* TapHistoryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapHistoryList.swift; sourceTree = "<group>"; };
 		F0D1827923938D0A0022998E /* TimerRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerRing.swift; sourceTree = "<group>"; };
 		F0D1827A23938D0A0022998E /* TimedTapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimedTapView.swift; sourceTree = "<group>"; };
-		F0D18283239441C50022998E /* TapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				F0D1826523938C2B0022998E /* TabBarViewController.swift */,
-				F0D18283239441C50022998E /* TapViewController.swift */,
 				F0D1827A23938D0A0022998E /* TimedTapView.swift */,
 				F0C0FCE12394BD0600CBF025 /* UntimedTapView.swift */,
 				F0D1827823938D0A0022998E /* TapHistoryList.swift */,
@@ -188,7 +185,6 @@
 			files = (
 				F0D1827D23938D0B0022998E /* Settings.swift in Sources */,
 				F0D1827C23938D0B0022998E /* TimerSession.swift in Sources */,
-				F0D18284239441C50022998E /* TapViewController.swift in Sources */,
 				F0D1826223938C2B0022998E /* AppDelegate.swift in Sources */,
 				F0D1827F23938D0B0022998E /* TimerRing.swift in Sources */,
 				F0D1827E23938D0B0022998E /* TapHistoryList.swift in Sources */,

@@ -11,10 +11,9 @@ import SwiftUI
 
 let defaults = UserDefaults.standard
 var countdownKey = "CountdownTime"
-var timedModeKey = "TimedVersion"
 var setDefaultsKey = "UserDefaultsSet"
 var showOnboardingKey = "showOnboardingScreen"
-
+var secondsKey = "secondsFromLast"
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -26,9 +25,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         if defaults.bool(forKey: setDefaultsKey) == false {
             defaults.set(3, forKey: countdownKey)
-            defaults.set(true, forKey: timedModeKey)
-            defaults.set(true, forKey: setDefaultsKey)
             defaults.set(true, forKey: showOnboardingKey)
+            defaults.set(5, forKey: secondsKey)
+            
+            defaults.set(true, forKey: setDefaultsKey)
         }
         
         

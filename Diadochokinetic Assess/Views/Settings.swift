@@ -10,7 +10,6 @@ import SwiftUI
 
 struct Settings: View {
     @State private var countdownCount = defaults.integer(forKey: countdownKey)
-    @State private var timedMode = defaults.bool(forKey: timedModeKey)
     @EnvironmentObject var timerSession : TimerSession
     var resetAlert: Alert {
         Alert(
@@ -21,8 +20,7 @@ struct Settings: View {
                 self.resetOnClose = false
                 self.presentSettingsModal = false
                 defaults.set(3, forKey: countdownKey)
-                defaults.set(true, forKey: timedModeKey)
-                self.timerSession.timedModeActive = defaults.bool(forKey: timedModeKey)
+                defaults.set(true, forKey: secondsKey)
             })
         )
     }
@@ -48,17 +46,6 @@ struct Settings: View {
                     }) {
                         Text("Countdown Time: \(self.countdownCount) \(self.countdownCount == 1 ? "second" : "seconds")")
                     }
-                    Toggle(isOn: $timedMode) {
-                        Text("Timed Mode")
-                    }.onDisappear(perform: {
-                        if self.resetOnClose {
-                            if self.timedMode != self.timerSession.timedModeActive {
-                                self.timerSession.reset()
-                            }
-                            defaults.set(self.timedMode, forKey: timedModeKey)
-                            self.timerSession.timedModeActive = defaults.bool(forKey: timedModeKey)
-                        }
-                    })
                 }
                 Section {
                     Button(action: {

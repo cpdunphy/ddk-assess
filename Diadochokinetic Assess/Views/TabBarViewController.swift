@@ -18,15 +18,26 @@ struct TabBarViewController: View {
                 OnboardingScreen(showOnboardingScreen: $showOnboardingScreen)
             } else {
                 TabView(selection: $selection) {
-                    TapViewController().environmentObject(timerSession)
+                
+                TimedTapView().environmentObject(timerSession)
                         .tabItem {
                             VStack {
                                 Image(systemName: "timer")
                                     .imageScale(.large)
-                                Text("New Recording")
+                                Text("Timer")
                             }
                     }
                     .tag(0)
+                    
+                    UntimedTapView().environmentObject(timerSession)
+                        .tabItem {
+                            VStack {
+                                Image(systemName: "stopwatch.fill")
+                                    .imageScale(.large)
+                                Text("Count")
+                            }
+                    }
+                    .tag(1)
                     
                     TapHistoryList().environmentObject(timerSession)
                         .tabItem {
@@ -36,10 +47,10 @@ struct TabBarViewController: View {
                                 Text("History")
                             }
                     }
-                    .tag(1)
+                    .tag(2)
                 }
                 .edgesIgnoringSafeArea(.top)
-                .accentColor(Color(#colorLiteral(red: 0.4672634006, green: 0.7216928601, blue: 0.7848936915, alpha: 1)))
+                .accentColor(Color("AccentColor"))
                 //.accentColor(Color(#colorLiteral(red: 0.3339039057, green: 0.7535954078, blue: 0.711665441, alpha: 1)))
             }
         }

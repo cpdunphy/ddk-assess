@@ -15,28 +15,37 @@ struct UntimedTapView: View {
             ZStack {
 
                 Rectangle()
-                    .frame(width: UIScreen.main.bounds.width * 0.8, height: 175)
-                .foregroundColor(Color(#colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)))
+                    .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.3)
+                .foregroundColor(Color("RectangleBackground"))
                     .cornerRadius(15)
-                Text("\(timerSession.taps) \(timerSession.taps == 1 ? "tap" : "taps")")
-                    .font(.system(size: 60))
-            }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.4)
-            Button(action: {
-                let send = Record(date: Date(), taps: self.timerSession.taps, timed: false, duration: 0)
-                self.timerSession.recordingsArr.insert(send, at: 0)
-                self.timerSession.taps = 0
-            }) {
-                Text("Log Taps")
-                    .font(.title)
-                    .padding()
-                    .background(Color(#colorLiteral(red: 0.897414914, green: 0.6241459817, blue: 0.1333333403, alpha: 1)))
-                    .cornerRadius(8)
-                    .frame(height: 85)
+                VStack {
+                    Text("\(timerSession.unTimedTaps) \(timerSession.unTimedTaps == 1 ? "tap" : "taps")")
+                        .font(.system(size: 60))
+                        .padding(.bottom)
+                    Text(timerSession.getUntimedTimeString())
+                        .font(.system(size: 20))
+                }.frame(width: UIScreen.main.bounds.width * 0.8, height: 175)
+                Handle().offset(CGSize(width: 0, height: 22))
+            }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.3)
+            
+            HStack {
+            
+                Button(action: {
+                    self.timerSession.stopUntimed()
+                }) {
+                    stopButton
+                }
+                
+                Button(action: {
+                    self.timerSession.finishAndLogUntimed()
+                }) {
+                    logButton
+                }
             }
-            TapButton().environmentObject(timerSession)
-        }.onAppear(perform: {
-            self.timerSession.countingState = .counting
-        })
+            
+            
+            TapButton(timed: false).environmentObject(timerSession)
+        }
     }
 }
 
