@@ -8,9 +8,12 @@
 
 import SwiftUI
 
+
+
 struct TabBarViewController: View {
-    @State var selection: Int = 0
+    @State var selection: Int = 2
     @EnvironmentObject var timerSession: TimerSession
+    @ObservedObject var productsStore : ProductsStore
     @State var showOnboardingScreen = defaults.bool(forKey: showOnboardingKey)
     var body: some View {
         ZStack {
@@ -55,15 +58,16 @@ struct TabBarViewController: View {
             }
         }
     }
+    
 }
 
-struct ContentView_Previews: PreviewProvider {
+/*struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         TabBarViewController()
     }
-}
+}*/
 
-struct OnboardingScreen : View {
+/*struct OnboardingScreen : View {
     @Binding var showOnboardingScreen : Bool
     var body : some View {
         Button(action: {
@@ -74,3 +78,4 @@ struct OnboardingScreen : View {
         }
     }
 }
+*/

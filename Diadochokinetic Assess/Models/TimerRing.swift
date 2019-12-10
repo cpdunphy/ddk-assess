@@ -1,8 +1,8 @@
 //
 //  TimerRing.swift
-//  Count-My-Taps
+//  Diadochokinetic Assess
 //
-//  Created by Collin on 11/30/19.
+//  Created by Collin on 12/1/19.
 //  Copyright © 2019 Ballygorey Apps. All rights reserved.
 //
 

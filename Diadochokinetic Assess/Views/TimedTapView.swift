@@ -1,8 +1,8 @@
 //
 //  TapHomeView.swift
-//  Count-My-Taps
+//  Diadochokinetic Assess
 //
-//  Created by Collin on 11/29/19.
+//  Created by Collin on 12/1/19.
 //  Copyright © 2019 Ballygorey Apps. All rights reserved.
 //
 
@@ -21,60 +21,67 @@ struct TimedTapView : View {
                     if timerSession.countingState == .ready {
                         ZStack(alignment: .top) {
                             Text("Seconds")
+                                .font(.custom("Nunito-SemiBold", size: 22))
+                                .padding(.bottom, 7)
                             VStack {
                                 Picker(selection: $seconds, label: Text("")) {
                                     ForEach(1...60, id: \.self) { time in
-                                        Text("\(time)").tag(time <= 60 && time > 0 ? time : 3)
+                                        Text("\(time)").font(.custom("Nunito-SemiBold", size: 20)).tag(time <= 60 && time > 0 ? time : 3)
                                     }
                                 }.frame(width: 290, height: 235)
                             }.offset(CGSize(width: -5, height: 0))
-                         }
-                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.45)
-//                        .background(Color.orange)
+                        }
+                        .frame(width: Screen.width, height: Screen.height * 0.45)
+                        //                        .background(Color.orange)
                     } else {
                         ZStack {
                             ZStack {
-                            ZStack {
-                                Circle()
-                                    .stroke(Color(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)), lineWidth: 10)
-                                Circle()
-                                    .trim(from: 0, to: CGFloat(timerSession.percent))
-                                    .stroke(AngularGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.3803921569, green: 0.6431372549, blue: 0.7098039216, alpha: 1)), Color(#colorLiteral(red: 0.2784313725, green: 0.8274509804, blue: 0.7764705882, alpha: 1))]), center: .center), style: StrokeStyle(lineWidth: 10,  lineCap: timerSession.countingState == .finished ? .butt : .round))
-                                    .rotationEffect(.degrees(-90))
+                                ZStack {
+                                    Circle()
+                                        .foregroundColor(Color("RectangleBackground"))
+                                    Circle()
+                                        .stroke(Color(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)), lineWidth: 10)
+                                    Circle()
+                                        .trim(from: -1, to: CGFloat(timerSession.percent))
+                                        .stroke(AngularGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.214261921, green: 0.3599105657, blue: 0.5557389428, alpha: 1)), Color(#colorLiteral(red: 0.2784313725, green: 0.8274509804, blue: 0.7764705882, alpha: 1))]), center: .center), style: StrokeStyle(lineWidth: 10,  lineCap: timerSession.countingState == .finished ? .butt : .round, lineJoin: .miter))
+                                        .rotationEffect(.degrees(-90))
                                     //.stroke(Color("AccentColor"), style: StrokeStyle(lineWidth: 10,  lineCap: timerSession.countingState == .finished ? .butt : .round))
-                                //.foregroundColor(Color.red)
-                            }//.frame(width: 295, height: 295)
-                            .frame(
-                             minWidth: 210,
-                             idealWidth: 250,
-                             maxWidth: 295,
-                             minHeight: 210,
-                             idealHeight: 250,
-                             maxHeight: 295,
-                             alignment: .center
-                             )
-                            CenterCircleText().environmentObject(timerSession)
-                            }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.3).padding(.bottom, 40) //TODO: Adjust with the UIScreen
-                        }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.45)//.padding(.bottom, UIScreen.main.bounds.width*0.15)
+                                    //.foregroundColor(Color.red)
+                                }//.frame(width: 295, height: 295)
+                                    .frame(
+                                        minWidth: 210,
+                                        idealWidth: 240,
+                                        maxWidth: 295,
+                                        minHeight: 210,
+                                        idealHeight: 240,
+                                        maxHeight: 295,
+                                        alignment: .center
+                                )
+                                CenterCircleText().environmentObject(timerSession)
+                            }.frame(width: Screen.width, height: Screen.height * 0.3).padding(.bottom, 40) //TODO: Adjust with the UIScreen
+                        }.frame(width: Screen.width, height: Screen.height * 0.45)//.padding(.bottom, Screen.width*0.15)
                         
                     }
-
+                    
                     //End of If-Statement, now in the bottom of ZStack
                     HStack {
                         LeftButton().environmentObject(timerSession)
                         Spacer()
+
+                        
+                        Spacer()
                         RightButton(seconds: $seconds).environmentObject(timerSession)
-                    }.padding([.leading, .trailing], UIScreen.main.bounds.width * 0.09)//.padding()
+                    }.padding([.leading, .trailing], Screen.width * 0.09)//.padding()
                     
-                }.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.45)//.padding(.bottom)
+                }.frame(width: Screen.width, height: Screen.height * 0.45)//.padding(.bottom)
                 
                 TapButton(timed: true).environmentObject(timerSession)
-                   
+                
             }
         }
-    .onDisappear(perform: {
-        defaults.set(self.seconds, forKey: secondsKey)
-    })
+        .onDisappear(perform: {
+            defaults.set(self.seconds, forKey: secondsKey)
+        })
     }
 }
 
@@ -93,15 +100,16 @@ struct TapButton : View {
             }
         }) {
             Text(getText())
-                .font(.largeTitle)
-                .fontWeight(.bold)
+                //                .font(.largeTitle)
+                //                .fontWeight(.bold)
+                .font(.custom("Nunito-Bold", size: 50))
                 .foregroundColor(timerSession.countingState == .counting ? Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)) : Color(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)))
-                .frame(width: UIScreen.main.bounds.width * 0.85, height: UIScreen.main.bounds.height * 0.35)
+                .frame(width: Screen.width * 0.85, height: Screen.height * 0.35)
                 .background(getBackgroundColor())
                 .cornerRadius(20)
             //                .padding(.horizontal)
-        }.disabled(timerSession.countingState != .counting && timed)
-         //.padding(.bottom)
+        }.disabled(timerSession.countingState != .counting && timed).shadow(radius: timerSession.countingState != .counting && timed ? 2 : 0)
+        //.padding(.bottom)
     }
     
     func getBackgroundColor() -> Color {
@@ -146,6 +154,9 @@ struct RightButton : View {
                 self.timerSession.startCountdown(time: self.seconds)
             } else if self.timerSession.countingState == .counting || self.timerSession.countingState == .countdown {
                 self.timerSession.pause()
+            } else if self.timerSession.countingState == .finished {
+                self.timerSession.showHeartRate.toggle()
+                defaults.set(self.timerSession.showHeartRate, forKey: heartRateKey)
             } else {
                 self.timerSession.resume()
             }
@@ -154,36 +165,73 @@ struct RightButton : View {
                 startButton
             } else if timerSession.countingState == .counting || timerSession.countingState == .countdown {
                 pauseButton
+            } else if timerSession.countingState == .finished {
+                HeartButton().environmentObject(timerSession)
             } else {
                 resumeButton
             }
-        }.disabled(timerSession.countingState == .finished)
+        }//.disabled(timerSession.countingState == .finished)
     }
 }
-
+struct HeartButton : View {
+    var color = Color("heart")
+    var background = Color("grayAccent")
+    @EnvironmentObject var timerSession : TimerSession
+    var body : some View {
+        ZStack {
+            Circle()
+                .foregroundColor(timerSession.showHeartRate ? color : background)
+                //.shadow(radius: 2)
+            VStack {
+                Image("heart.fill")
+                    .foregroundColor(timerSession.showHeartRate ? grayPrim : color)
+                    .font(.largeTitle)
+                    .offset(CGSize(width: 0, height: 7))
+                Text("BPM")
+                    .font(.custom("Nunito-Regular", size: regularTextSize-3))
+                    .foregroundColor(timerSession.showHeartRate ? grayPrim : color)
+//                    .foregroundColor(timerSession.showHeartRate ? background : color)
+            }
+        }.frame(width: Screen.width*0.22, height: Screen.width*0.22).shadow(radius: 2)
+    }
+}
 struct CenterCircleText : View {
     @EnvironmentObject var timerSession : TimerSession
     var body : some View {
-        VStack {
-            Text(getLabelText(finished: timerSession.countingState == .finished, taps: timerSession.timedTaps, countdownCount: timerSession.countdownCount))
-                .font(.system(size: 62))
-            Text(getTaps())
+        ZStack {
+            if timerSession.countingState != .finished { // || timerSession.showHeartRate
+                Handle().offset(CGSize(width: 0, height: 22))
+            }
+            VStack(spacing: 10) {
+                Text(getLabelText(finished: timerSession.countingState == .finished, taps: timerSession.timedTaps, countdownCount: timerSession.countdownCount, showHeartRate: timerSession.showHeartRate))
+                    .font(.custom("Nunito-Bold", size: timerSession.countingState == .finished ? 50 : 60))
+                    .kerning(-2.0)
+                
+                
+                Text(getTaps())
+                    .font(.custom("Nunito-SemiBold", size: 20))
+            }
         }
     }
     func getTaps() -> String {
         if timerSession.countingState == .finished {
+            /*if timerSession.showHeartRate {
+                return "\(timerSession.timedTaps) \(timerSession.timedTaps == 1 ? "tap" : "taps")"
+            }*/ ///shows taps under heartrate when heartrate enabled
             return ""
         } else {
             return "\(timerSession.timedTaps) \(timerSession.timedTaps == 1 ? "tap" : "taps")"
         }
     }
-    func getLabelText(finished: Bool, taps: Int, countdownCount: Double) -> String {
-        ///timerSession.countingState == .finished ? "\(timerSession.taps) \(timerSession.taps == 1 ? "tap" : "taps")" : timerSession.countdownCount > 0.15 ? "\(Int(timerSession.countdownCount))..." : getTime()
-        ///Does that^    Lol
+    func getLabelText(finished: Bool, taps: Int, countdownCount: Double, showHeartRate: Bool) -> String {
         if finished {
-            return "\(taps) \(taps == 1 ? "tap" : "taps")"
+            if showHeartRate {
+                return timerSession.getBPM()
+            } else {
+                return "\(taps) \(taps == 1 ? "tap" : "taps")"
+            }
         } else {
-            if countdownCount > 1.15 {
+            if countdownCount > 1 {
                 return "\(Int(countdownCount))..."
             } else {
                 return timerSession.getTimeRemaining()
@@ -191,68 +239,11 @@ struct CenterCircleText : View {
         }
     }
     
-}
-
-var startButton2 = coloredButton(primaryColor: greenPrim, secondaryColor: greenSec, imageName: "play.fill")
-var resumeButton2 = coloredButton(primaryColor: greenPrim, secondaryColor: greenSec, imageName: "playpause.fill")
-var pauseButton2 = coloredButton(primaryColor: Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)), secondaryColor: Color(#colorLiteral(red: 0.3098039329, green: 0.2039215714, blue: 0.03921568766, alpha: 1)), imageName: "pause.fill")
-var stopButton2 = coloredButton(primaryColor: Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), secondaryColor: Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)), imageName: "stop.fill")
-var resetButton2 = coloredButton(primaryColor: Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), secondaryColor: Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)), imageName: "arrow.2.circlepath")
-
-var startButton = coloredButton2(primaryColor: greenPrim, secondaryColor: greenSec, title: "Start")
-var resumeButton = coloredButton2(primaryColor: greenPrim, secondaryColor: greenSec, title: "Resume")
-var pauseButton = coloredButton2(primaryColor: Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)), secondaryColor: Color(#colorLiteral(red: 0.3098039329, green: 0.2039215714, blue: 0.03921568766, alpha: 1)), title: "Pause")
-var stopButton = coloredButton2(primaryColor: Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), secondaryColor: Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)), title: "Stop")
-var resetButton = coloredButton2(primaryColor: Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)), secondaryColor: Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)), title: "Reset")
-var logButton = coloredButton2(primaryColor: Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)), secondaryColor: Color(#colorLiteral(red: 0.3098039329, green: 0.2039215714, blue: 0.03921568766, alpha: 1)), title: "Log")
-
-var greenPrim = Color("green")
-var greenSec = Color("greenAccent")
-var orangePrim = Color("orange")
-var orangeSec = Color("orangeAccent")
-var grayPrim = Color("gray")
-var graySec = Color("grayAccent")
-
-
-struct coloredButtonApple : View {
-    var primaryColor : Color
-    var secondaryColor : Color
-    var text : String
     
-    var body : some View {
-        ZStack {
-            Circle()
-                .stroke(secondaryColor, lineWidth: 2)
-            Circle()
-                .foregroundColor(secondaryColor)
-                .frame(width: 79, height: 79)
-            Text(text)
-                .foregroundColor(primaryColor)
-        }.frame(width: 85, height: 85)
-    }
-}
-
-
-struct coloredButton : View {
-    var primaryColor : Color
-    var secondaryColor : Color
-    var imageName: String
     
-    var body : some View {
-        ZStack {
-//            Circle()
-//                .stroke(secondaryColor, lineWidth: 2)
-            Circle()
-                .foregroundColor(secondaryColor)
-                .frame(width: 79, height: 79)
-            Image(systemName: imageName)
-                .resizable()
-                .aspectRatio(1, contentMode: .fit)
-                .frame(width: 30, height: 30)
-                .foregroundColor(primaryColor)
-        }.frame(width: 85, height: 85)//.background(Color.purple)
-    }
 }
+
+
 
 
 struct coloredButton2 : View {
@@ -265,10 +256,10 @@ struct coloredButton2 : View {
             Circle()
                 .foregroundColor(secondaryColor)
             Text(title)
-                .font(.headline)
-
+                .font(.custom("Nunito-SemiBold", size: 19))
                 .foregroundColor(primaryColor)
-        }.frame(width: UIScreen.main.bounds.width*0.21, height: UIScreen.main.bounds.width*0.21)//.background(Color.purple)
+        }.frame(width: Screen.width*0.22, height: Screen.width*0.22).shadow(radius: 2)
+        //.background(Color.purple)
         /*.frame(
          minWidth: 50,
          idealWidth: 60,
@@ -280,3 +271,65 @@ struct coloredButton2 : View {
          )*/
     }
 }
+
+
+var greenPrim = Color("green")
+var greenSec = Color("greenAccent")
+var orangePrim = Color("orange")
+var orangeSec = Color("orangeAccent")
+var grayPrim = Color("gray")
+var graySec = Color("grayAccent")
+
+
+var startButton = coloredButton2(primaryColor: greenPrim, secondaryColor: greenSec, title: "Start")
+var resumeButton = coloredButton2(primaryColor: greenPrim, secondaryColor: greenSec, title: "Resume")
+var pauseButton = coloredButton2(primaryColor: orangePrim, secondaryColor: orangeSec , title: "Pause")
+var stopButton = coloredButton2(primaryColor: grayPrim, secondaryColor: graySec, title: "Stop")
+var resetButton = coloredButton2(primaryColor: grayPrim, secondaryColor: graySec, title: "Reset")
+var logButton = coloredButton2(primaryColor: orangePrim, secondaryColor: orangeSec, title: "Log")
+
+
+/*var startButton2 = coloredButton(primaryColor: greenPrim, secondaryColor: greenSec, imageName: "play.fill")
+ var resumeButton2 = coloredButton(primaryColor: greenPrim, secondaryColor: greenSec, imageName: "playpause.fill")
+ var pauseButton2 = coloredButton(primaryColor: orangePrim, secondaryColor: orangeSec, imageName: "pause.fill")
+ var stopButton2 = coloredButton(primaryColor: grayPrim, secondaryColor: graySec, imageName: "stop.fill")
+ var resetButton2 = coloredButton(primaryColor: grayPrim, secondaryColor: graySec, imageName: "arrow.2.circlepath")*/
+
+/*struct coloredButtonApple : View {
+ var primaryColor : Color
+ var secondaryColor : Color
+ var text : String
+ 
+ var body : some View {
+ ZStack {
+ Circle()
+ .stroke(secondaryColor, lineWidth: 2)
+ Circle()
+ .foregroundColor(secondaryColor)
+ .frame(width: 79, height: 79)
+ Text(text)
+ .foregroundColor(primaryColor)
+ }.frame(width: 85, height: 85)
+ }
+ }
+ 
+ 
+ struct coloredButton : View {
+ var primaryColor : Color
+ var secondaryColor : Color
+ var imageName: String
+ 
+ var body : some View {
+ ZStack {
+ Circle()
+ .foregroundColor(secondaryColor)
+ .frame(width: 79, height: 79)
+ Image(systemName: imageName)
+ .resizable()
+ .aspectRatio(1, contentMode: .fit)
+ .frame(width: 30, height: 30)
+ .foregroundColor(primaryColor)
+ }.frame(width: 85, height: 85)//.background(Color.purple)
+ }
+ }*/
+

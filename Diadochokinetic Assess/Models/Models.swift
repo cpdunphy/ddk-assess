@@ -1,8 +1,8 @@
 //
 //  Model.swift
-//  Count-My-Taps
+//  Diadochokinetic Assess
 //
-//  Created by Collin on 11/29/19.
+//  Created by Collin on 12/1/19.
 //  Copyright © 2019 Ballygorey Apps. All rights reserved.
 //
 
@@ -18,8 +18,8 @@ struct Record : Identifiable, Hashable {
 
 enum PossibleCountingStates {
     case ready
-    case countdown
     case counting
     case paused
     case finished
+    case countdown
 }

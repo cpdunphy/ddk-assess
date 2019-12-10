@@ -10,10 +10,16 @@ import UIKit
 import SwiftUI
 
 let defaults = UserDefaults.standard
-var countdownKey = "CountdownTime"
-var setDefaultsKey = "UserDefaultsSet"
-var showOnboardingKey = "showOnboardingScreen"
-var secondsKey = "secondsFromLast"
+let countdownKey = "CountdownTime"
+let setDefaultsKey = "UserDefaultsSet"
+let showOnboardingKey = "showOnboardingScreen"
+let secondsKey = "secondsFromLast"
+let heartRateKey = "showHeartRate"
+
+let Screen = UIScreen.main.bounds
+
+public var regularTextSize: CGFloat = 17
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -25,16 +31,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         if defaults.bool(forKey: setDefaultsKey) == false {
             defaults.set(3, forKey: countdownKey)
-            defaults.set(true, forKey: showOnboardingKey)
+            defaults.set(false, forKey: showOnboardingKey)
             defaults.set(5, forKey: secondsKey)
-            
+            defaults.set(false, forKey: heartRateKey)
             defaults.set(true, forKey: setDefaultsKey)
         }
         
+        //Initialize IAPs
+        ProductsStore.shared.initializeProducts()
         
         // Create the SwiftUI view that provides the window contents.
-        let contentView = TabBarViewController().environmentObject(TimerSession())
-
+        let contentView = TabBarViewController(productsStore: ProductsStore.shared).environmentObject(TimerSession())
+//        let contentView = IAPTestingView(productsStore: ProductsStore.shared)
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)

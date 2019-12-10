@@ -1,8 +1,8 @@
 //
 //  Settings.swift
-//  Count-My-Taps
+//  Diadochokinetic Assess
 //
-//  Created by Collin on 11/30/19.
+//  Created by Collin on 12/1/19.
 //  Copyright © 2019 Ballygorey Apps. All rights reserved.
 //
 
@@ -20,7 +20,11 @@ struct Settings: View {
                 self.resetOnClose = false
                 self.presentSettingsModal = false
                 defaults.set(3, forKey: countdownKey)
-                defaults.set(true, forKey: secondsKey)
+                defaults.set(5, forKey: secondsKey)
+                defaults.set(false, forKey: heartRateKey)
+                self.timerSession.reset()
+                self.timerSession.stopUntimed()
+                defaults.set(false, forKey: showOnboardingKey)
             })
         )
     }
@@ -30,7 +34,7 @@ struct Settings: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("User Preferences")) {
+                Section(header: Text("User Preferences").font(.custom("Nunito-Regular", size: regularTextSize-3))) {
                     Stepper(
                         onIncrement: {
                             if self.countdownCount < 60 {
@@ -45,6 +49,7 @@ struct Settings: View {
                             }
                     }) {
                         Text("Countdown Time: \(self.countdownCount) \(self.countdownCount == 1 ? "second" : "seconds")")
+                        .font(.custom("Nunito-Regular", size: regularTextSize))
                     }
                 }
                 Section {
@@ -52,14 +57,23 @@ struct Settings: View {
                         self.showResetConf = true
                     }) {
                         Text("Reset Preferences")
+                            .font(.custom("Nunito-Regular", size: regularTextSize))
                             .foregroundColor(.red)
                     }
                 }
+                Section(header: Text("Donate to the Developer").font(.custom("Nunito-Regular", size: regularTextSize-3))) {
+                    ForEach(ProductsStore.shared.products, id: \.self) { prod in
+                        NavigationLink(destination: IAPView(product: prod)) {
+                            IAPLabel(product: prod)
+                        }
+                    }
+                }
+                
             }
             .alert(isPresented: $showResetConf) {
                 resetAlert
             }
-            .navigationBarTitle(Text("Settings"))
+            .navigationBarTitle(Text("Settings").font(.custom("Nunito-Regular", size: regularTextSize)))
         }
     }
 }

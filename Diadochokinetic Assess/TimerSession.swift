@@ -1,8 +1,8 @@
 //
 //  TimerSession.swift
-//  Count-My-Taps
+//  Diadochokinetic Assess
 //
-//  Created by Collin on 11/29/19.
+//  Created by Collin on 12/1/19.
 //  Copyright © 2019 Ballygorey Apps. All rights reserved.
 //
 
@@ -23,7 +23,7 @@ class TimerSession: ObservableObject {
     
     ///Time left on the Timer + Countdown
     @Published var currentTimedCount: Double = 10.0
-    @Published var countdownCount = UserDefaults.standard.double(forKey: countdownKey)
+    @Published var countdownCount = UserDefaults.standard.double(forKey: countdownKey) + 0.9
     @Published var currentUntimedCount = 0
 
     
@@ -34,27 +34,26 @@ class TimerSession: ObservableObject {
     @Published var percent: Double = 1.0
     private var totalTimerDuration: Double = 10.0
 
-    
-
+    @Published var showHeartRate: Bool = defaults.bool(forKey: heartRateKey)
     
     
     //MARK: Both Categories
-
     private var timeInterval = 1.0/3.0
+    
     @objc func timerDidFireDown() {
         if currentTimedCount > 0.0 && countingState == .counting {
             currentTimedCount -= timeInterval
-            if currentTimedCount < 0.1 {
+            if currentTimedCount <= 1.0 {
                 finishTimed()
             }
         } else if countdownCount > 0.0 && countingState == .countdown {
             countdownCount -= timeInterval
-            if countdownCount < 1.1 {
+            if countdownCount < 1.0 {
                 countingState = .counting
             }
         }
         withAnimation(.easeIn) {
-            percent = currentTimedCount/Double(totalTimerDuration)
+            percent = (currentTimedCount-0.9)/Double(totalTimerDuration)
         }
         print("\(countingState)")
     }
@@ -66,9 +65,9 @@ class TimerSession: ObservableObject {
     //MARK: Timed Functions
     func startCountdown(time: Int) {
         timerCountingDown = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(timerDidFireDown), userInfo: nil, repeats: true)
-        currentTimedCount = Double(time)
+        currentTimedCount = Double(time) + 0.9
         totalTimerDuration = Double(time)
-        countdownCount = UserDefaults.standard.double(forKey: countdownKey)
+        countdownCount = UserDefaults.standard.double(forKey: countdownKey) + 0.9
         if countdownCount > 0 {
             countingState = .countdown
         } else {
@@ -114,6 +113,14 @@ class TimerSession: ObservableObject {
         }
     }
     
+    func getBPM() -> String {
+        let numToComplete = 60/totalTimerDuration
+        
+        let bpm = Double(timedTaps) * numToComplete
+        
+        return "\(Int(bpm)) bpm"
+    }
+    
     //MARK: Untimed Functions
     
     func finishAndLogUntimed() {
@@ -121,13 +128,8 @@ class TimerSession: ObservableObject {
         stopUntimed()
     }
     
-    /*private func resetUntimed() {
-        timerCountingDown.invalidate()
-        unTimedTaps = 0
-        currentUntimedCount = 0
-    }*/
     func stopUntimed() {
-        timerCountingDown.invalidate()
+        timerCountingUp.invalidate()
         unTimedTaps = 0
         currentUntimedCount = 0
 

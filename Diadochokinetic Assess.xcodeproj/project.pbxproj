@@ -7,23 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0B574B8239EFF8800194412 /* ProductsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B574B7239EFF8800194412 /* ProductsStore.swift */; };
 		F0C0FCE22394BD0700CBF025 /* UntimedTapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C0FCE12394BD0600CBF025 /* UntimedTapView.swift */; };
+		F0C0FCEC2399C55400CBF025 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0C0FCE92399C55300CBF025 /* Nunito-SemiBold.ttf */; };
+		F0C0FCEE2399C55400CBF025 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0C0FCEB2399C55400CBF025 /* Nunito-Bold.ttf */; };
+		F0C0FCF1239A8E8D00CBF025 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C0FCF0239A8E8D00CBF025 /* StoreKit.framework */; };
+		F0C0FCF4239ADAAF00CBF025 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C0FCF3239ADAAF00CBF025 /* OnboardingScreen.swift */; };
 		F0D1826223938C2B0022998E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1826123938C2B0022998E /* AppDelegate.swift */; };
 		F0D1826423938C2B0022998E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1826323938C2B0022998E /* SceneDelegate.swift */; };
 		F0D1826623938C2B0022998E /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1826523938C2B0022998E /* TabBarViewController.swift */; };
 		F0D1826823938C380022998E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0D1826723938C380022998E /* Assets.xcassets */; };
 		F0D1826B23938C380022998E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0D1826A23938C380022998E /* Preview Assets.xcassets */; };
 		F0D1826E23938C380022998E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0D1826C23938C380022998E /* LaunchScreen.storyboard */; };
-		F0D1827B23938D0B0022998E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1827523938D0A0022998E /* Model.swift */; };
+		F0D1827B23938D0B0022998E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1827523938D0A0022998E /* Models.swift */; };
 		F0D1827C23938D0B0022998E /* TimerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1827623938D0A0022998E /* TimerSession.swift */; };
 		F0D1827D23938D0B0022998E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1827723938D0A0022998E /* Settings.swift */; };
 		F0D1827E23938D0B0022998E /* TapHistoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1827823938D0A0022998E /* TapHistoryList.swift */; };
 		F0D1827F23938D0B0022998E /* TimerRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1827923938D0A0022998E /* TimerRing.swift */; };
 		F0D1828023938D0B0022998E /* TimedTapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1827A23938D0A0022998E /* TimedTapView.swift */; };
+		F0E44E09239FD4E3000D2DC7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E44E08239FD4E2000D2DC7 /* Constants.swift */; };
+		F0E44E0B239FD566000D2DC7 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E44E0A239FD566000D2DC7 /* IAPManager.swift */; };
+		F0E44E0F239FE11A000D2DC7 /* IAPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E44E0E239FE11A000D2DC7 /* IAPView.swift */; };
+		F0E44E1123A01BF8000D2DC7 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0E44E1023A01BF8000D2DC7 /* Nunito-Regular.ttf */; };
+		F0E44E1523A0481D000D2DC7 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0E44E1423A0481C000D2DC7 /* Nunito-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F0B574B7239EFF8800194412 /* ProductsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsStore.swift; sourceTree = "<group>"; };
 		F0C0FCE12394BD0600CBF025 /* UntimedTapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UntimedTapView.swift; sourceTree = "<group>"; };
+		F0C0FCE92399C55300CBF025 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
+		F0C0FCEB2399C55400CBF025 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
+		F0C0FCF0239A8E8D00CBF025 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		F0C0FCF2239A8EF100CBF025 /* DDK.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DDK.entitlements; sourceTree = "<group>"; };
+		F0C0FCF3239ADAAF00CBF025 /* OnboardingScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
 		F0D1825E23938C2B0022998E /* DDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0D1826123938C2B0022998E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0D1826323938C2B0022998E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,12 +48,17 @@
 		F0D1826A23938C380022998E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F0D1826D23938C380022998E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F0D1826F23938C380022998E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F0D1827523938D0A0022998E /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		F0D1827523938D0A0022998E /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		F0D1827623938D0A0022998E /* TimerSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerSession.swift; sourceTree = "<group>"; };
 		F0D1827723938D0A0022998E /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F0D1827823938D0A0022998E /* TapHistoryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapHistoryList.swift; sourceTree = "<group>"; };
 		F0D1827923938D0A0022998E /* TimerRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerRing.swift; sourceTree = "<group>"; };
 		F0D1827A23938D0A0022998E /* TimedTapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimedTapView.swift; sourceTree = "<group>"; };
+		F0E44E08239FD4E2000D2DC7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "Diadochokinetic Assess/Constants.swift"; sourceTree = SOURCE_ROOT; };
+		F0E44E0A239FD566000D2DC7 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
+		F0E44E0E239FE11A000D2DC7 /* IAPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPView.swift; sourceTree = "<group>"; };
+		F0E44E1023A01BF8000D2DC7 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
+		F0E44E1423A0481C000D2DC7 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,17 +66,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0C0FCF1239A8E8D00CBF025 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F0C0FCE82399C44E00CBF025 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F0E44E1423A0481C000D2DC7 /* Nunito-Light.ttf */,
+				F0C0FCEB2399C55400CBF025 /* Nunito-Bold.ttf */,
+				F0E44E1023A01BF8000D2DC7 /* Nunito-Regular.ttf */,
+				F0C0FCE92399C55300CBF025 /* Nunito-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F0C0FCEF239A8E8D00CBF025 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F0C0FCF0239A8E8D00CBF025 /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F0D1825523938C2B0022998E = {
 			isa = PBXGroup;
 			children = (
 				F0D1826023938C2B0022998E /* Diadochokinetic Assess */,
 				F0D1825F23938C2B0022998E /* Products */,
+				F0C0FCEF239A8E8D00CBF025 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,13 +112,17 @@
 		F0D1826023938C2B0022998E /* Diadochokinetic Assess */ = {
 			isa = PBXGroup;
 			children = (
+				F0C0FCF2239A8EF100CBF025 /* DDK.entitlements */,
 				F0D1826123938C2B0022998E /* AppDelegate.swift */,
 				F0D1826323938C2B0022998E /* SceneDelegate.swift */,
 				F0D1826723938C380022998E /* Assets.xcassets */,
+				F0E44E08239FD4E2000D2DC7 /* Constants.swift */,
+				F0E44E07239F013E000D2DC7 /* IAP Setup */,
 				F0D1827623938D0A0022998E /* TimerSession.swift */,
 				F0D1828123938D460022998E /* Models */,
 				F0D1828223938D550022998E /* Views */,
 				F0D1826C23938C380022998E /* LaunchScreen.storyboard */,
+				F0C0FCE82399C44E00CBF025 /* Fonts */,
 				F0D1826F23938C380022998E /* Info.plist */,
 				F0D1826923938C380022998E /* Preview Content */,
 			);
@@ -94,7 +140,7 @@
 		F0D1828123938D460022998E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F0D1827523938D0A0022998E /* Model.swift */,
+				F0D1827523938D0A0022998E /* Models.swift */,
 				F0D1827923938D0A0022998E /* TimerRing.swift */,
 			);
 			path = Models;
@@ -103,13 +149,24 @@
 		F0D1828223938D550022998E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F0C0FCF3239ADAAF00CBF025 /* OnboardingScreen.swift */,
 				F0D1826523938C2B0022998E /* TabBarViewController.swift */,
 				F0D1827A23938D0A0022998E /* TimedTapView.swift */,
 				F0C0FCE12394BD0600CBF025 /* UntimedTapView.swift */,
 				F0D1827823938D0A0022998E /* TapHistoryList.swift */,
 				F0D1827723938D0A0022998E /* Settings.swift */,
+				F0E44E0E239FE11A000D2DC7 /* IAPView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F0E44E07239F013E000D2DC7 /* IAP Setup */ = {
+			isa = PBXGroup;
+			children = (
+				F0B574B7239EFF8800194412 /* ProductsStore.swift */,
+				F0E44E0A239FD566000D2DC7 /* IAPManager.swift */,
+			);
+			path = "IAP Setup";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,8 +227,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0E44E1123A01BF8000D2DC7 /* Nunito-Regular.ttf in Resources */,
+				F0E44E1523A0481D000D2DC7 /* Nunito-Light.ttf in Resources */,
+				F0C0FCEC2399C55400CBF025 /* Nunito-SemiBold.ttf in Resources */,
 				F0D1826E23938C380022998E /* LaunchScreen.storyboard in Resources */,
 				F0D1826B23938C380022998E /* Preview Assets.xcassets in Resources */,
+				F0C0FCEE2399C55400CBF025 /* Nunito-Bold.ttf in Resources */,
 				F0D1826823938C380022998E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,16 +244,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0E44E0B239FD566000D2DC7 /* IAPManager.swift in Sources */,
 				F0D1827D23938D0B0022998E /* Settings.swift in Sources */,
+				F0C0FCF4239ADAAF00CBF025 /* OnboardingScreen.swift in Sources */,
 				F0D1827C23938D0B0022998E /* TimerSession.swift in Sources */,
 				F0D1826223938C2B0022998E /* AppDelegate.swift in Sources */,
 				F0D1827F23938D0B0022998E /* TimerRing.swift in Sources */,
 				F0D1827E23938D0B0022998E /* TapHistoryList.swift in Sources */,
 				F0C0FCE22394BD0700CBF025 /* UntimedTapView.swift in Sources */,
+				F0E44E09239FD4E3000D2DC7 /* Constants.swift in Sources */,
 				F0D1826423938C2B0022998E /* SceneDelegate.swift in Sources */,
 				F0D1828023938D0B0022998E /* TimedTapView.swift in Sources */,
 				F0D1826623938C2B0022998E /* TabBarViewController.swift in Sources */,
-				F0D1827B23938D0B0022998E /* Model.swift in Sources */,
+				F0D1827B23938D0B0022998E /* Models.swift in Sources */,
+				F0E44E0F239FE11A000D2DC7 /* IAPView.swift in Sources */,
+				F0B574B8239EFF8800194412 /* ProductsStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,8 +394,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = DDK_Logo_1;
+				CODE_SIGN_ENTITLEMENTS = "Diadochokinetic Assess/DDK.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Diadochokinetic Assess/Preview Content\"";
 				DEVELOPMENT_TEAM = 896Q68CL7P;
 				ENABLE_PREVIEWS = YES;
@@ -350,8 +417,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = DDK_Logo_1;
+				CODE_SIGN_ENTITLEMENTS = "Diadochokinetic Assess/DDK.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Diadochokinetic Assess/Preview Content\"";
 				DEVELOPMENT_TEAM = 896Q68CL7P;
 				ENABLE_PREVIEWS = YES;
