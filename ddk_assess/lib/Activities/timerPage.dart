@@ -33,7 +33,6 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
     _controller.addStatusListener((status) {
         if(_controller.value == 1) {
           MyApp.entries.add(new TapEntry(_taps, _controller.duration, DateTime.now()));
-          _taps = 0;
           _controller.value = 0;
           setState(() {
             _running = false;
@@ -62,7 +61,6 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
   } 
 
   void startTimer() {
-    print(_counter);
     const oneSec = const Duration(seconds: 1);
     _countDown = new Timer.periodic(
       oneSec,
@@ -90,7 +88,6 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
     return new AnimatedBuilder(
       animation: _controller,
       builder: (BuildContext context, Widget child) {
-        print(_controller.value);
         return child;
       },
       child: CupertinoButton(
@@ -107,7 +104,9 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
         disabledColor: Colors.grey,
         color: Colors.lightBlue[600],
         onPressed: _running ? () {
-          _taps+=1;
+          setState(() {
+            _taps+=1;
+          });
         } : null, //enabled setter :)
       )
     );
@@ -115,47 +114,72 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
 
   Widget get controlButtons {
     return new Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        new FloatingActionButton(
-          elevation: 0, //Flat
-          backgroundColor: Colors.grey,
-          child: !_running ? Text("Reset") : Text("Stop"),
-          onPressed: () {
-            _controller.stop();
-            _controller.value = 0;
-            _taps = 0;
-          },
+        new Container(
+          width: MediaQuery.of(context).size.width*.22,
+          height: MediaQuery.of(context).size.width*.22,
+          child: new RawMaterialButton(
+            fillColor: Colors.grey,
+            elevation: 3, //Flat
+            shape: new CircleBorder(),
+            child: new Text(
+              _running ? "Reset" : "Stop",
+              style: new TextStyle(
+                fontSize: MediaQuery.of(context).size.height*.022,
+                color: Colors.white,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            onPressed: () {
+              _controller.stop();
+              _controller.value = 0;
+              _taps = 0;
+            },
+          ),
         ),
         new AnimatedBuilder(
           animation: _controller,
           builder: (BuildContext context, Widget child) {
-            return new FloatingActionButton(
-              elevation: 0, //Flat
-              backgroundColor: _controller.isAnimating ? Colors.orange[600] : Colors.green[800],
-              child: !_controller.isAnimating ? new Text("Start") : new Text("Pause"),
-              onPressed: () {
-                if(!_controller.isAnimating && _controller.value == 0) { //Run countdown if starting a new run
-                  _counter = 3;
-                  startTimer();
-                  
-                } else if(_controller.isAnimating) { //Stop animation (pause)
-                  _controller.stop();
-                  setState(() {
-                    _running = false;
-                  });
-                } else { //If start is pressed but not a new run, continue.
-                  _controller.animateTo(1).whenCompleteOrCancel(() {
+            return new Container(
+              width: MediaQuery.of(context).size.width*.22,
+              height: MediaQuery.of(context).size.width*.22,
+              child: new RawMaterialButton(
+                shape: CircleBorder(),
+                elevation: 3,
+                fillColor: _controller.isAnimating ? Colors.orange[600] : Colors.green[800],
+                child: new Text(
+                  _controller.isAnimating ? "Pause" : "Start",
+                  style: new TextStyle(
+                    fontSize: MediaQuery.of(context).size.height*.022,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold    
+                  ),
+                ),
+                onPressed: () {
+                  if(!_controller.isAnimating && _controller.value == 0) { //Run countdown if starting a new run
+                    _counter = 3;
+                    _taps = 0;
+                    startTimer();
+                    
+                  } else if(_controller.isAnimating) { //Stop animation (pause)
+                    _controller.stop();
                     setState(() {
                       _running = false;
                     });
-                  });
-                  setState(() {
-                    _running = true;
-                  });
-                }
-              },
+                  } else { //If start is pressed but not a new run, continue.
+                    _controller.animateTo(1).whenCompleteOrCancel(() {
+                      setState(() {
+                        _running = false;
+                      });
+                    });
+                    setState(() {
+                      _running = true;
+                    });
+                  }
+                },
+              )
             ); 
           }
         ),
@@ -168,23 +192,40 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
     builder: (BuildContext context, Widget child) {
       return new CircularPercentIndicator(
         startAngle: 0,
-        radius: MediaQuery.of(context).size.width*.4,
+        radius: MediaQuery.of(context).size.width*.45,
         lineWidth: 10,
+        backgroundColor: Colors.blueGrey,
         percent: _controller.value,
-        center: new Text(
-          _countDown.isActive ? _counter.toString() : ((1-_controller.value)*_controller.duration.inSeconds).round().toString() +"\n Taps: $_taps",
-          style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-          textAlign: TextAlign.center,
-        ),
+        center: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Text(
+                _countDown.isActive ? "$_counter..." : ((1-_controller.value)*_controller.duration.inSeconds).round().toString(),
+                style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                textAlign: TextAlign.center,
+              ),
+              new Divider(
+                thickness: 2, 
+                height: 10,
+                indent: MediaQuery.of(context).size.width*.45*.2,
+                endIndent: MediaQuery.of(context).size.width*.45*.2,
+              ),
+              new Text(
+                "$_taps taps",
+                style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                textAlign: TextAlign.center,
+              )
+            ],
+          ),
         circularStrokeCap: CircularStrokeCap.round,
         linearGradient: new LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.topLeft,
+          begin: Alignment.topRight,
+          end: Alignment.topCenter,
           colors: <Color> [
             Colors.blue[700],
             Colors.blue[600],
-            Colors.blue[500],
-            Colors.blue[300]
+            Colors.blue[400],
+            Colors.blue[100]
           ]
         ),        
       );
@@ -195,6 +236,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: new Container(
+        color: Color.fromRGBO(85, 85, 85, 0),
         padding: EdgeInsets.fromLTRB(10, 15, 10, 0),
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

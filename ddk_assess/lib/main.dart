@@ -1,6 +1,7 @@
 import 'package:ddk_assess/Activities/dataPage.dart';
 import 'package:ddk_assess/Activities/timerPage.dart';
 import 'package:ddk_assess/Data-Mngr/tapEntry.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -28,38 +29,52 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _currentIndex = 0;
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   List<Widget> displays = [TimerPage(), null, null]; //Need activities
+  TabController controller; 
 
+  @override
+  void initState() {
+    super.initState();
+    controller = new TabController(vsync: this, length: 3, initialIndex: 0); 
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
   
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       bottomNavigationBar: new BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (int selected) => () {
+        currentIndex: controller.index,
+        onTap: (int index) {
           setState(() {
-            _currentIndex = selected;
-            print(_currentIndex);
+            controller.index = index;
           });
         },
         items: <BottomNavigationBarItem> [
           new BottomNavigationBarItem(
-            icon: new Icon(Icons.av_timer),
+            icon: Icon(Icons.av_timer),
             title: new Text("Timer")
           ),
           new BottomNavigationBarItem(
-            icon: new Icon(Icons.timer),
-            title: new Text("Count")
+            icon: Icon(Icons.timer),
+            title: new Text("Counter")
           ),
           new BottomNavigationBarItem(
-            icon: new Icon(Icons.history),
+            icon: Icon(Icons.history),
             title: new Text("History")
           )
         ],
       ),
-      body: displays[_currentIndex],
+      body: TabBarView(
+        physics: NeverScrollableScrollPhysics(),
+        controller: controller,
+        children: <Widget>[TimerPage(), new Container(), new Container()],
+      )
     );
   }
 }
