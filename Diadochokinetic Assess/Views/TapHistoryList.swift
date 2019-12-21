@@ -21,14 +21,18 @@ struct TapHistoryList : View {
                 self.timerSession.reset()
             })
         )
-    }
-    @State var presentSettingsModal = false
+    } 
+    @Binding var presentSettingsModal : Bool
     var body : some View {
         NavigationView {
             List {
+                //Text("You have done \(timerSession.logCount) logs!")
+                //Text("You have done \(userTotalCount) logs in total!")
+
                 ForEach(timerSession.recordingsArr, id: \.self) { record in
                     RecordRow(record: record)
                 }
+                .onDelete(perform: delete)
             }
             .navigationBarTitle(Text("History").font(.custom("Nunito-Regular", size: regularTextSize)), displayMode: .inline)
             .navigationBarItems(
@@ -42,8 +46,9 @@ struct TapHistoryList : View {
                 trailing: Button(action: {
                     self.showDeleteConf = true
                 }) {
-                    Image(systemName: "trash.fill")
-                        .imageScale(.large)
+                    Image("trash.fill")
+                        .font(.title)
+                        .imageScale(.small)
                 }.alert(isPresented: $showDeleteConf) {
                     deleteAlert
                 }
@@ -53,6 +58,11 @@ struct TapHistoryList : View {
             }
         }
     }
+    
+    func delete(at offsets: IndexSet) {
+        timerSession.recordingsArr.remove(atOffsets: offsets)
+    }
+    
     struct RecordRow : View {
         var record : Record
         var body : some View {
@@ -61,45 +71,70 @@ struct TapHistoryList : View {
                     Text("\(record.taps) \(record.taps == 1 ? "tap" : "taps")")
                         .font(.custom("Nunito-Regular", size: regularTextSize))
                     Spacer()
-                    Text("\(record.duration) \(record.duration == 1 ? "second" : "seconds")")
+                    Text(getSecondsLength(time: record.duration))
                         .font(.custom("Nunito-Regular", size: regularTextSize))
                 }
                 HStack {
-                    Text("\(dateToString(date: record.date))")
-//                    .font(.subheadline)
+                    HStack {
+                        Text(dateDescription(date: record.date))
+                            .font(.custom("Nunito-Regular", size: regularTextSize-3))
+                            .foregroundColor(Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)))
+                        Text("[\(dateToString(date: record.date))]")
                         .font(.custom("Nunito-Regular", size: regularTextSize-3))
-                    .foregroundColor(Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)))
+                        .foregroundColor(Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)))
+                    }
                     Spacer()
-                    Text("\(record.timed ? "Timed" : "Untimed")")
+                    Text("\(record.timed ? "Timer" : "Count")")
 //                        .font(.subheadline)
                         .font(.custom("Nunito-Regular", size: regularTextSize-3))
                         .foregroundColor(Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)))
                 }
             }
         }
+        func getSecondsLength(time: Int) -> String {
+            if time / 60 >= 1 {
+                return "\(time / 60) \(time / 60 == 1 ? "minute" : "minutes")"
+            } else {
+                return "\(time) \(time == 1 ? "second" : "seconds")"
+            }
+        }
+        
+        func dateDescription(date: Date) -> String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM/dd/yy 'at' HH:mm"
+            return formatter.string(from: date)
+        }
+        
         func dateToString(date : Date) -> String {
             let interval = Date().timeIntervalSince(date)
             var str = 0
-            var unit : Units = .seconds
+            var unit : TimeUnits = .seconds
             
-            if interval / 60.0 > 1 {
+            if interval / 60.0 / 60.0 / 60.0 > 1 {
+                str = Int(interval / 60.0 / 60.0 / 60.0)
+                unit = .days
+            } else if interval / 60.0 / 60.0 > 1 {
+                str = Int(interval / 60.0 / 60.0)
+                unit = .hours
+            } else if interval / 60.0 > 1 {
                 str = Int(interval / 60.0)
                 unit = .minutes
             } else {
                 str = Int(interval)
             }
-
-            if unit == .minutes {
-                return "\(str) \(str == 1 ? "min Ago" : "mins ago")"
-            } else {
-                return "\(str) \(str == 1 ? "sec Ago" : "secs ago")"
-            }
+            
+            return "\(str) \(str == 1 ? "\(unit.rawValue) ago" : "\(unit.rawValue)s ago")"
+            
+            /*switch unit {
+            case .days:
+                return "str"
+                case .hours:
+                    return "\(str) \(str == 1 ? "hour ago" : "hours ago")"
+                case .minutes:
+                    return "\(str) \(str == 1 ? "min ago" : "mins ago")"
+                case .seconds:
+                    return "\(str) \(str == 1 ? "sec ago" : "secs ago")"
+            }*/
         }
-
     }
-    enum Units {
-        case seconds
-        case minutes
-    }
-
 }

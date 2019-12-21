@@ -23,3 +23,10 @@ enum PossibleCountingStates {
     case finished
     case countdown
 }
+
+enum TimeUnits : String {
+    case seconds = "sec"
+    case minutes = "min"
+    case hours = "hour"
+    case days = "day"
+}

@@ -29,48 +29,44 @@ struct OnboardingScreen: View {
                             .fontWeight(.black)
                             .foregroundColor(accentColor)
                     }
-                }.padding(.bottom, 20)
+                }.padding([.top, .bottom])
+                Spacer()
+                
+                VStack(alignment: .leading) {
+                    OnboardingRow(
+                        title: "Time and Tap",
+                        imageName: "timer",
+                        description: "Set a custom countdown timer and track \"Puh-Tuh-Kuhs\" with taps."
+                    ).padding(.bottom)
+                    OnboardingRow(
+                        title: "Count your taps",
+                        imageName: "stopwatch.fill",
+                        description: "Count the number of \"Puh-Tuh-Kuhs\" with taps over time."
+                    ).padding(.bottom)
+                    OnboardingRow(
+                        title: "History",
+                        imageName: "book.fill",
+                        description: "View recent history."
+                    ).padding(.bottom)
 
-                
-                
-                OnboardingRow(
-                    title: "More Personalized",
-                    imageName: "timer",
-                    description: "Top Stories picked for you and recommendations from Siri."
-                )
-                OnboardingRow(
-                    title: "More Personalized",
-                    imageName: "hand.draw.fill",
-                    description: "Top Stories picked for you and recommendations from Siri."
-                )
-                OnboardingRow(
-                    title: "More Personalized",
-                    imageName: "rectangle.stack.person.crop.fill",
-                    description: "Top Stories picked for you and recommendations from Siri."
-                )
+                }
                 
                 Spacer()
-                
-                VStack(alignment: .center, spacing: 7) {
-                    Text("Ballygorey Apps does not collect nor store any patient data that may be generated while using the app.")
-                        .font(.subheadline)
-                        .multilineTextAlignment(.center)
-                    Button(action: {
-                        //TODO: Send to privacy page.
-                    }) {
-                        Text("DDK and Privacy")
-                        .foregroundColor(accentColor)
-                    }.disabled(true)
-                }//.frame(width: UIScreen.main.bounds.width * 0.75)
-                
+                Text("Ballygorey Apps does not collect nor store any PHI and PII that may be generated while using the app.")
+                    .font(.subheadline)
+                    .multilineTextAlignment(.center)
                 Spacer()
+                
                 Button(action: {
-                    self.showOnboardingScreen = false
-                    defaults.set(true, forKey: showOnboardingKey)
+                    withAnimation(.default) {
+                        self.showOnboardingScreen = false
+                        defaults.set(false, forKey: showOnboardingKey)
+                    }
+                    print("onboarding complete")
                 }) {
                     Text("Start Assessing DKK Now")
                         .font(.headline)
-                        .frame(width: UIScreen.main.bounds.width * 0.82, height: UIScreen.main.bounds.height * 0.07)
+                        .frame(width: UIScreen.main.bounds.width * 0.82, height: UIScreen.main.bounds.height * 0.08)
                         .background(accentColor)
                         .foregroundColor(.white)
                         .cornerRadius(7)
@@ -87,20 +83,23 @@ struct OnboardingRow : View {
     var accentColor = Color("AccentColor")
 
     var body : some View {
+        ZStack {
         HStack {
             Image(systemName: imageName)
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(accentColor)
                 .frame(width: UIScreen.main.bounds.width * 0.1)
-
-            Spacer()
+                .padding(.trailing)
+//            Spacer()
             VStack(alignment: .leading) {
                 Text(title)
                     .bold()
                     
                 Text(description)
             }
-        }.frame(width: UIScreen.main.bounds.width * 0.82, height: UIScreen.main.bounds.height*0.1)
+            Spacer()
+        }
+        }.frame(width: UIScreen.main.bounds.width * 0.82)//, height: UIScreen.main.bounds.height*0.15)
     }
 }

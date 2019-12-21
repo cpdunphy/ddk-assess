@@ -15,10 +15,17 @@ let setDefaultsKey = "UserDefaultsSet"
 let showOnboardingKey = "showOnboardingScreen"
 let secondsKey = "secondsFromLast"
 let heartRateKey = "showHeartRate"
-
+let userLogCountKey = "userLogCount"
+let userLogCountLifetimeKey = "userLogCountTOTAL"
+let pushNewOnboardingKey = "CurrentBuildVersion"
+let buildNum = "Beta2"
 let Screen = UIScreen.main.bounds
 
+var userTotalCount = 0
+
 public var regularTextSize: CGFloat = 17
+
+let advertisingGap = 75
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -29,12 +36,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+//        defaults.set(true, forKey: showOnboardingKey)
+        if buildNum != defaults.string(forKey: pushNewOnboardingKey) {
+            defaults.set(buildNum, forKey: pushNewOnboardingKey)
+            defaults.set(true, forKey: showOnboardingKey)
+            print("StartingOnboarding")
+        } else {
+            print("no need to onboard")
+        }
+        
+//        defaults.set(true, forKey: showOnboardingKey)
         if defaults.bool(forKey: setDefaultsKey) == false {
+            print("firstTimeLoading")
             defaults.set(3, forKey: countdownKey)
-            defaults.set(false, forKey: showOnboardingKey)
+            defaults.set(true, forKey: showOnboardingKey)
             defaults.set(5, forKey: secondsKey)
             defaults.set(false, forKey: heartRateKey)
+            defaults.set(0, forKey: userLogCountKey)
             defaults.set(true, forKey: setDefaultsKey)
+        } else {
+            print("no need to set User defaults")
         }
         
         //Initialize IAPs

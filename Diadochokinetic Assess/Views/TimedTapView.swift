@@ -12,7 +12,6 @@ struct TimedTapView : View {
     
     @State var seconds = defaults.integer(forKey: secondsKey)
     @EnvironmentObject var timerSession: TimerSession
-    
     var body : some View {
         ZStack {
             Color("background").edgesIgnoringSafeArea(.top)
@@ -20,7 +19,7 @@ struct TimedTapView : View {
                 ZStack(alignment: .bottom) {
                     if timerSession.countingState == .ready {
                         ZStack(alignment: .top) {
-                            Text("Seconds")
+                            Text("Set the Seconds")
                                 .font(.custom("Nunito-SemiBold", size: 22))
                                 .padding(.bottom, 7)
                             VStack {
@@ -67,9 +66,6 @@ struct TimedTapView : View {
                     HStack {
                         LeftButton().environmentObject(timerSession)
                         Spacer()
-
-                        
-                        Spacer()
                         RightButton(seconds: $seconds).environmentObject(timerSession)
                     }.padding([.leading, .trailing], Screen.width * 0.09)//.padding()
                     
@@ -103,12 +99,12 @@ struct TapButton : View {
                 //                .font(.largeTitle)
                 //                .fontWeight(.bold)
                 .font(.custom("Nunito-Bold", size: 50))
-                .foregroundColor(timerSession.countingState == .counting ? Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)) : Color(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)))
+                .foregroundColor(timerSession.countingState != .counting && timed ? Color(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)) : Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)))
                 .frame(width: Screen.width * 0.85, height: Screen.height * 0.35)
                 .background(getBackgroundColor())
                 .cornerRadius(20)
             //                .padding(.horizontal)
-        }.disabled(timerSession.countingState != .counting && timed).shadow(radius: timerSession.countingState != .counting && timed ? 2 : 0)
+        }.disabled(timerSession.countingState != .counting && timed).shadow(radius: timerSession.countingState != .counting && timed ? 0 : 2)
         //.padding(.bottom)
     }
     

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import MessageUI
 
 struct Settings: View {
     @State private var countdownCount = defaults.integer(forKey: countdownKey)
@@ -31,7 +32,10 @@ struct Settings: View {
     @State var resetOnClose = true
     @State var showResetConf: Bool = false
     @Binding var presentSettingsModal : Bool
+    @State var result: Result<MFMailComposeResult, Error>? = nil
+    @State var isShowingMailView = false
     var body: some View {
+        
         NavigationView {
             Form {
                 Section(header: Text("User Preferences").font(.custom("Nunito-Regular", size: regularTextSize-3))) {
@@ -61,21 +65,55 @@ struct Settings: View {
                             .foregroundColor(.red)
                     }
                 }
-                Section(header: Text("Donate to the Developer").font(.custom("Nunito-Regular", size: regularTextSize-3))) {
+                Section {//(header: Text("Donate to the Developer").font(.custom("Nunito-Regular", size: regularTextSize-3))) {
                     ForEach(ProductsStore.shared.products, id: \.self) { prod in
-                        NavigationLink(destination: IAPView(product: prod)) {
+                        NavigationLink(destination: IAPView(product: prod)) { //Can add the 'isActive and link to a state var'
                             IAPLabel(product: prod)
                         }
                     }
+                }
+                Section {
+                    Button(action: {
+                        self.isShowingMailView.toggle()
+                    }) {
+                        FeedbackText()
+                    }.disabled(!MFMailComposeViewController.canSendMail())
+                    /*NavigationLink(destination: MailView(result: self.$result)) {
+                        Text("Send Feedback")
+                    }.disabled(!MFMailComposeViewController.canSendMail())*/
+                    ///TODO-V2: Can put output in ZStack to take up whole screen, would also get rid of dark mode bug in modal view
                 }
                 
             }
             .alert(isPresented: $showResetConf) {
                 resetAlert
             }
+            .sheet(isPresented: $isShowingMailView) {
+                MailView(result: self.$result)
+            }
             .navigationBarTitle(Text("Settings").font(.custom("Nunito-Regular", size: regularTextSize)))
         }
     }
+    struct FeedbackText :View {
+        var disabled = !MFMailComposeViewController.canSendMail()
+        var body : some View {
+            HStack {
+                Image(systemName: "paperplane.fill")
+                    .imageScale(.large)
+                    .foregroundColor(disabled ?
+                        .gray : .blue)
+                
+                VStack(alignment: .leading) {
+                    Text("Submit Feedback")
+                    Text("Help us improve the app.")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                }.padding(.leading)
+                
+            }.padding()
+        }
+    }
+    
 }
 
 //struct Settings_Previews: PreviewProvider {

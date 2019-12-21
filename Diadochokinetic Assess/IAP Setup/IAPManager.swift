@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import StoreKit
+import SwiftUI
 
 public typealias SuccessBlock = () -> Void
 public typealias FailureBlock = (Error?) -> Void
@@ -210,6 +211,9 @@ extension IAPManager: SKPaymentTransactionObserver {
             case .purchased:
                 SKPaymentQueue.default().finishTransaction(transaction)
                 notifyIsPurchased(transaction: transaction)
+//                defaults.set(750, forKey: userLogCountKey)
+                print("User defaults set to 750 because they purchased something :)")
+                defaults.set(-10, forKey: userLogCountKey)
                 break
             case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)

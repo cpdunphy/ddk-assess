@@ -12,30 +12,40 @@ import Foundation
 
 struct IAPView: View {
     var product : SKProduct!
-    
     var body: some View {
         ZStack {
-            Color("background")
+            Color("background").edgesIgnoringSafeArea(.bottom)
             VStack {
+                /*Spacer()
+
                 Spacer()
                 VStack(spacing: 10) {
-                    Text(donationEmoji(str: product.localizedTitle))
-                        .font(.system(size: 100))
+
                     Text(product.localizedTitle)
                         .font(.custom("Nunito-Bold", size: 25))
-                    Text(product.localizedDescription)
-                        .font(.custom("Nunito-SemiBold", size: regularTextSize))
+                    /*Text(product.localizedDescription)
+                        .font(.custom("Nunito-SemiBold", size: regularTextSize))*/
                 }
                 Spacer()
-                Text(termsIAPText)
-                    .font(.custom("Nunito-Light", size: 13))
-                    .foregroundColor(Color(UIColor.secondaryLabel))
- 
+
+                    .foregroundColor(Color(UIColor.secondaryLabel))*/
+                Spacer()
+                Text(termsIAPText())
+                    .font(.custom("Nunito-SemiBold", size: 22))
+                    .truncationMode(.middle)
+                    .minimumScaleFactor(.leastNonzeroMagnitude)
+                    .multilineTextAlignment(.center)
+                Spacer()
+                Text(donationEmoji(str: product.localizedTitle))
+                    .font(.system(size: 125))
+                    .minimumScaleFactor(.leastNonzeroMagnitude)
+                Spacer()
                 PurchaseButton(
                     block: {self.purchaseProduct(skproduct: self.product)},
                     product: product
                 )
-                    .padding([.bottom, .top])
+                    .padding(.top)
+                    .padding(.bottom, 15)
             }.frame(width: Screen.width * 0.85)
                 .navigationBarTitle(Text("Donation"), displayMode: .inline)
         }
@@ -52,6 +62,10 @@ struct IAPView: View {
 //            self.isDisabled = false
             ProductsStore.shared.handleUpdateStore()
         }
+    }
+    
+    func termsIAPText() -> String {
+        return "I built this app after talking with my aunt, who is a speech pathologist. This is my first app I have published, and plan to go to college next year to study engineering or computer science (and hopefully publish more apps). If you like this app and find it useful, please buy me a \(product.localizedTitle)."
     }
 }
 
@@ -107,10 +121,10 @@ func donationEmoji(str: String) -> String {
         return "🍩"
     case "Smoothie":
         return "🍹"
-    case "Meal":
+    case "Lunch":
         return "🍔"
     default:
         break
     }
-    return "❤️"
+    return "🍿"
 }
