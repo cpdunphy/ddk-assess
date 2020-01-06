@@ -27,7 +27,6 @@ class TimerSession: ObservableObject {
     @Published var countdownCount = UserDefaults.standard.double(forKey: countdownKey) + 0.9
     @Published var currentUntimedCount = 0
 
-    
     ///Timer CountingState
     @Published var countingState: PossibleCountingStates = .ready
     
@@ -65,7 +64,7 @@ class TimerSession: ObservableObject {
     }
     
     func increaseLogCount() {
-            let num = logCount + 1
+            let num = defaults.integer(forKey: userLogCountKey) + 1
             let total = defaults.integer(forKey: userLogCountLifetimeKey) + 1
             defaults.set(num, forKey: userLogCountKey)
             defaults.set(total, forKey: userLogCountLifetimeKey)

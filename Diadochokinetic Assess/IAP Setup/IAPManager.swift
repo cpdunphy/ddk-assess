@@ -18,6 +18,14 @@ public typealias ProductsBlock = ([SKProduct]) -> Void
 let IAP_PRODUCTS_DID_LOAD_NOTIFICATION = Notification.Name("IAP_PRODUCTS_DID_LOAD_NOTIFICATION")
 
 class IAPManager : NSObject{
+    internal init(didLoadsProducts: ProductsBlock?, successBlock: SuccessBlock?, failureBlock: FailureBlock?, refreshSubscriptionSuccessBlock: SuccessBlock?, refreshSubscriptionFailureBlock: FailureBlock?) {
+        self.didLoadsProducts = didLoadsProducts
+        self.successBlock = successBlock
+        self.failureBlock = failureBlock
+        self.refreshSubscriptionSuccessBlock = refreshSubscriptionSuccessBlock
+        self.refreshSubscriptionFailureBlock = refreshSubscriptionFailureBlock
+    }
+    //IDK This addition?
     
     private var sharedSecret = ""
     @objc static let shared = IAPManager()
@@ -211,9 +219,9 @@ extension IAPManager: SKPaymentTransactionObserver {
             case .purchased:
                 SKPaymentQueue.default().finishTransaction(transaction)
                 notifyIsPurchased(transaction: transaction)
-//                defaults.set(750, forKey: userLogCountKey)
-                print("User defaults set to 750 because they purchased something :)")
-                defaults.set(-10, forKey: userLogCountKey)
+                print("User defaults set to -750 because they purchased something :)")
+                let pulledNum = defaults.integer(forKey: userLogCountKey) - 750
+                defaults.set(pulledNum, forKey: userLogCountKey)
                 break
             case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)

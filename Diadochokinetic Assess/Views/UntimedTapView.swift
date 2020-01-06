@@ -15,18 +15,10 @@ struct UntimedTapView: View {
           Color("background").edgesIgnoringSafeArea(.top)
         VStack {
             ZStack {
-
-                Rectangle()
+                BackgroundRect()
                     .frame(width: Screen.width * 0.8, height: Screen.height * 0.3)
-                .foregroundColor(Color("RectangleBackground"))
-                    .cornerRadius(15)
-                VStack {
-                    Text("\(timerSession.unTimedTaps) \(timerSession.unTimedTaps == 1 ? "tap" : "taps")")
-                        .font(.custom("Nunito-Bold", size: 50))
-                        .padding(.bottom)
-                    Text(timerSession.getUntimedTimeString())
-                        .font(.custom("Nunito-SemiBold", size: 22))
-                }.frame(width: Screen.width * 0.8, height: 175)
+                UntimedCenterText()
+                    .frame(width: Screen.width * 0.8, height: min(Screen.height * 0.3, 175))
                 Handle().offset(CGSize(width: 0, height: 15))
             }.frame(width: Screen.width, height: Screen.height*0.3)//.padding(.bottom)
             
@@ -46,8 +38,23 @@ struct UntimedTapView: View {
             }.frame(height: Screen.width*0.25).padding([.leading, .trailing], Screen.width * 0.09) 
             
             
-            TapButton(timed: false).environmentObject(timerSession).padding(.top, -10)
+            TapButton(timed: false).environmentObject(timerSession)//.padding(.top, -10)
             }
+        }
+    }
+    func BackgroundRect() -> some View {
+        Rectangle()
+        .foregroundColor(Color("RectangleBackground"))
+            .cornerRadius(15)
+    }
+    
+    func UntimedCenterText() -> some View {
+        VStack {
+            Text("\(timerSession.unTimedTaps) \(timerSession.unTimedTaps == 1 ? "tap" : "taps")")
+                .font(.custom("Nunito-Bold", size: 50))
+                .padding(.bottom)
+            Text(timerSession.getUntimedTimeString())
+                .font(.custom("Nunito-SemiBold", size: 22))
         }
     }
 }

@@ -52,7 +52,7 @@ struct OnboardingScreen: View {
                 }
                 
                 Spacer()
-                Text("Ballygorey Apps does not collect nor store any PHI and PII that may be generated while using the app.")
+                Text("Ballygorey Apps do not collect nor store any PHI and PII that may be generated while using the app.")
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
                 Spacer()
@@ -74,32 +74,34 @@ struct OnboardingScreen: View {
             }.frame(width: UIScreen.main.bounds.width * 0.82, height: UIScreen.main.bounds.height * 0.9)
         }
     }
-}
+    
+    struct OnboardingRow : View {
+        var title : String
+        var imageName : String
+        var description: String
+        var accentColor = Color("AccentColor")
 
-struct OnboardingRow : View {
-    var title : String
-    var imageName : String
-    var description: String
-    var accentColor = Color("AccentColor")
-
-    var body : some View {
-        ZStack {
-        HStack {
-            Image(systemName: imageName)
-                .resizable()
-                .scaledToFit()
-                .foregroundColor(accentColor)
-                .frame(width: UIScreen.main.bounds.width * 0.1)
-                .padding(.trailing)
-//            Spacer()
-            VStack(alignment: .leading) {
-                Text(title)
-                    .bold()
-                    
-                Text(description)
-            }
-            Spacer()
+        var body : some View {
+            ZStack {
+                HStack {
+                    Image(systemName: imageName)
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(accentColor)
+                        .frame(width: UIScreen.main.bounds.width * 0.1)
+                        .padding(.trailing)
+        //            Spacer()
+                    VStack(alignment: .leading) {
+                        Text(title)
+                            .bold()
+                            
+                        Text(description)
+                    }
+                    Spacer()
+                }
+            }.frame(width: UIScreen.main.bounds.width * 0.82)//, height: UIScreen.main.bounds.height*0.15)
         }
-        }.frame(width: UIScreen.main.bounds.width * 0.82)//, height: UIScreen.main.bounds.height*0.15)
     }
 }
+
+

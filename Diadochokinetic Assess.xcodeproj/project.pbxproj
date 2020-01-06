@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F09213FB23AC401200054132 /* Email Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09213FA23AC401200054132 /* Email Coordinator.swift */; };
+		F0AAD97C23B7EB9A0095687C /* UserPrefereneces.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AAD97B23B7EB9A0095687C /* UserPrefereneces.swift */; };
 		F0B574B8239EFF8800194412 /* ProductsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B574B7239EFF8800194412 /* ProductsStore.swift */; };
 		F0C0FCE22394BD0700CBF025 /* UntimedTapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C0FCE12394BD0600CBF025 /* UntimedTapView.swift */; };
 		F0C0FCEC2399C55400CBF025 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0C0FCE92399C55300CBF025 /* Nunito-SemiBold.ttf */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		F09213FA23AC401200054132 /* Email Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Email Coordinator.swift"; sourceTree = "<group>"; };
+		F0AAD97B23B7EB9A0095687C /* UserPrefereneces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrefereneces.swift; sourceTree = "<group>"; };
 		F0B574B7239EFF8800194412 /* ProductsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsStore.swift; sourceTree = "<group>"; };
 		F0C0FCE12394BD0600CBF025 /* UntimedTapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UntimedTapView.swift; sourceTree = "<group>"; };
 		F0C0FCE92399C55300CBF025 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				F0B574B7239EFF8800194412 /* ProductsStore.swift */,
 				F0E44E0A239FD566000D2DC7 /* IAPManager.swift */,
+				F0AAD97B23B7EB9A0095687C /* UserPrefereneces.swift */,
 				F09213FA23AC401200054132 /* Email Coordinator.swift */,
 			);
 			path = "IAP Setup";
@@ -261,6 +264,7 @@
 				F0D1826623938C2B0022998E /* TabBarViewController.swift in Sources */,
 				F0D1827B23938D0B0022998E /* Models.swift in Sources */,
 				F0E44E0F239FE11A000D2DC7 /* IAPView.swift in Sources */,
+				F0AAD97C23B7EB9A0095687C /* UserPrefereneces.swift in Sources */,
 				F09213FB23AC401200054132 /* Email Coordinator.swift in Sources */,
 				F0B574B8239EFF8800194412 /* ProductsStore.swift in Sources */,
 			);
@@ -400,7 +404,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = DDK_Logo_1;
 				CODE_SIGN_ENTITLEMENTS = "Diadochokinetic Assess/DDK.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Diadochokinetic Assess/Preview Content\"";
 				DEVELOPMENT_TEAM = 896Q68CL7P;
 				ENABLE_PREVIEWS = YES;
@@ -410,6 +414,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Diadochokinetic-Assess";
 				PRODUCT_NAME = DDK;
 				SWIFT_VERSION = 5.0;
@@ -423,7 +428,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = DDK_Logo_1;
 				CODE_SIGN_ENTITLEMENTS = "Diadochokinetic Assess/DDK.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Diadochokinetic Assess/Preview Content\"";
 				DEVELOPMENT_TEAM = 896Q68CL7P;
 				ENABLE_PREVIEWS = YES;
@@ -433,6 +438,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Diadochokinetic-Assess";
 				PRODUCT_NAME = DDK;
 				SWIFT_VERSION = 5.0;

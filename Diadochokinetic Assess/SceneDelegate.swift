@@ -18,7 +18,7 @@ let heartRateKey = "showHeartRate"
 let userLogCountKey = "userLogCount"
 let userLogCountLifetimeKey = "userLogCountTOTAL"
 let pushNewOnboardingKey = "CurrentBuildVersion"
-let buildNum = "Beta2"
+let buildNum = "Beta3"
 let Screen = UIScreen.main.bounds
 
 var userTotalCount = 0
@@ -40,14 +40,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if buildNum != defaults.string(forKey: pushNewOnboardingKey) {
             defaults.set(buildNum, forKey: pushNewOnboardingKey)
             defaults.set(true, forKey: showOnboardingKey)
-            print("StartingOnboarding")
+            print("Starting Onboarding")
         } else {
             print("no need to onboard")
         }
         
 //        defaults.set(true, forKey: showOnboardingKey)
         if defaults.bool(forKey: setDefaultsKey) == false {
-            print("firstTimeLoading")
+            print("first Time Loading")
             defaults.set(3, forKey: countdownKey)
             defaults.set(true, forKey: showOnboardingKey)
             defaults.set(5, forKey: secondsKey)

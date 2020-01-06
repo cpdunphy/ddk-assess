@@ -26,8 +26,8 @@ struct TapHistoryList : View {
     var body : some View {
         NavigationView {
             List {
-                //Text("You have done \(timerSession.logCount) logs!")
-                //Text("You have done \(userTotalCount) logs in total!")
+//                Text("You have done \(timerSession.logCount) logs!")
+//                Text("You have done \(userTotalCount) logs in total!")
 
                 ForEach(timerSession.recordingsArr, id: \.self) { record in
                     RecordRow(record: record)
