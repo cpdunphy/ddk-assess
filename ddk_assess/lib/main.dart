@@ -1,9 +1,6 @@
-import 'package:ddk_assess/Activities/dataPage.dart';
 import 'package:ddk_assess/Activities/timerPage.dart';
 import 'package:ddk_assess/Data-Mngr/tapEntry.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
