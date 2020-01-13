@@ -3,6 +3,7 @@ import 'package:ddk_assess/Activities/timerPage.dart';
 import 'package:ddk_assess/Data-Mngr/tapEntry.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,6 +19,17 @@ class MyApp extends StatelessWidget {
     );
   }
   static List<TapEntry> entries = new List();
+
+  static const PickerData = '''
+    [
+        [
+            1,
+            2,
+            3,
+            4
+        ],
+    ]
+      ''';
 }
 
 class MyHomePage extends StatefulWidget {

@@ -1,12 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:ddk_assess/Data-Mngr/tapEntry.dart';
+import 'package:ddk_assess/UI/countDownPainter.dart';
 import 'package:ddk_assess/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rounded_date_picker/cupertino_rounded_duration_picker.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'dart:math';
+import 'package:flutter_picker/Picker.dart';
+
 
 class TimerPage extends StatefulWidget {
   @override
@@ -15,255 +16,365 @@ class TimerPage extends StatefulWidget {
 
 class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
 
-  AnimationController _controller; //Animation controller for timer and circle loading bar
-  int _taps = 0; //Taps variable
-  Timer _countDown;
-  int _counter = 3;
-  bool _running = false;
+  AnimationController controller;
+  AnimationController timer;
+
+  bool isFinished = false;
+
+  final GlobalKey _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  int taps = 0;
+
+  int counter = 3;
+
+  bool sheetPresent = false;
+
+  String get timerString {
+    Duration duration = controller.duration - (controller.duration * controller.value);
+    return "${(duration.inMinutes).toString().padLeft(2, "0")}:${(duration.inSeconds%60).toString().padLeft(2, "0")}";
+  }
 
   @override
   void initState() {
     super.initState();
-
-    _controller = new AnimationController( //Default controller set
+    controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 5),
-    );
-
-    _controller.addStatusListener((status) {
-        if(_controller.value == 1) {
-          MyApp.entries.add(new TapEntry(_taps, _controller.duration, DateTime.now()));
-          _controller.value = 0;
-          setState(() {
-            _running = false;
-          });
-        } 
+      duration: Duration(seconds: 5)
+    )..addStatusListener((AnimationStatus status) {
+      if(status == AnimationStatus.completed) {
+        setState(() {
+          controller.reset();
+          isFinished = true;
+          timer.reset();
+          MyApp.entries.add(new TapEntry(taps, controller.duration, DateTime.now()));
+        });
       }
-    );
+    });
 
-    _countDown = Timer.periodic(Duration(seconds: 0), (timer) {
-      setState(() {
-        timer.cancel();
-      });
+    timer = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 3),
+      lowerBound: 0,
+      upperBound: 1
+    )
+    ..addStatusListener((AnimationStatus status) {
+      if(status == AnimationStatus.completed && status != AnimationStatus.dismissed) {
+        Timer timer = new Timer(new Duration(milliseconds: 150), () {
+          setState(() {
+            
+          });
+        });   
+      }
     });
   }
 
   @override
   void dispose() {
-    _controller.stop();
-    _countDown.cancel();
     super.dispose();
+    timer.dispose();
+    controller.dispose();
   }
 
-  String get timerString {
-    Duration duration = _controller.duration * _controller.value;
-    return '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
-  } 
+  void showCountDownTimeSelector(Size screen) {
+    setState(() {
+      sheetPresent = true;
+    });
+    new Picker(
+      height: screen.height*.3,
+      adapter: NumberPickerAdapter(data: [
+        NumberPickerColumn(begin: 0, end: 60),
+      ]),
+      hideHeader: false,
+      title: new Text("Select Duration"),
+      
+      onConfirm: (Picker picker, List value) {
+        setState(() {
+          sheetPresent = false;
+          controller.duration = new Duration(seconds: value[0]);
+        });
+      },
+      onCancel: () {
+        setState(() {
+          sheetPresent = false;
+        });
+      }
+    ).show(_scaffoldKey.currentState);
+  }
+  
 
-  void startTimer() {
-    const oneSec = const Duration(seconds: 1);
-    _countDown = new Timer.periodic(
-      oneSec,
-      (Timer timer) => setState(
-        () {
-          if (_counter < 1) {
-            timer.cancel();
-            _controller.animateTo(1).whenCompleteOrCancel(() {
-              setState(() {
-                _running = false;
-              });
-            });
-            setState(() {
-              _running = true;
-            });            
-          } else {
-            _counter = _counter - 1;
+  void showTimerTimeSelector(Size screen) {
+    setState(() {
+      sheetPresent = true;
+    });
+    new Picker(
+      height: screen.height*.3,
+      adapter: NumberPickerAdapter(data: [
+        NumberPickerColumn(begin: 0, end: 60),
+      ]),
+      hideHeader: false,
+      title: new Text("Select Delay"),
+      onConfirm: (Picker picker, List value) {
+        setState(() {
+          sheetPresent = false;
+          timer.duration = new Duration(seconds: value[0]);
+        });
+      },
+      onCancel: () {
+        setState(() {
+          sheetPresent = false;
+        });
+      }
+    ).show(_scaffoldKey.currentState);
+  }
+
+  Widget animatedTimer(Size screen) {
+    return Align(
+      alignment: FractionalOffset.topCenter,
+      child: SizedBox(
+        height: screen.height*.35,
+        width: screen.height*.35,
+        child: AspectRatio(
+          aspectRatio: 1,
+          child: new Stack(
+            children: <Widget>[
+              new Positioned.fill(
+                child: new AnimatedBuilder(
+                  animation: controller,
+                  builder: (BuildContext context, Widget child) {
+                    return new CustomPaint(
+                      painter: CountDownPainter(
+                        animation: controller,
+                        backgroundColor: Colors.grey,
+                        color: Colors.blue,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              new Positioned.fill(
+                child: new GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onDoubleTap: () {
+                    if(isFinished) {
+                      showCountDownTimeSelector(screen);
+                    } else if(timer.value == 0) {
+                      showTimerTimeSelector(screen);
+                    }
+                  },
+                  child: new Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      isFinished ? new Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          new Text(
+                            timerString,
+                            style: new TextStyle(
+                              fontSize: screen.height*.35*.2
+                            ),
+                          ),
+                          new Padding(
+                            padding: EdgeInsets.only(left: screen.width*.35*.6, right: screen.width*.35*.6),
+                            child: new Divider(
+                              thickness: 4,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                          new Text(
+                            "$taps taps",
+                            style: new TextStyle(
+                              fontSize: screen.height*.35*.1
+                            ),
+                          ),
+                        ],
+                      ):
+                      timer.value == 1 ?
+                      new AnimatedBuilder(
+                        animation: controller,
+                        builder: (BuildContext context, Widget child) {
+                          return new Text(
+                            timerString,
+                            style: new TextStyle(
+                              fontSize: screen.height*.1
+                            ),
+                          );
+                        },
+                      ) :
+                      new AnimatedBuilder(
+                        animation: timer,
+                        builder: (BuildContext context, Widget child) {
+                          return new Text(
+                            "${(timer.duration.inSeconds - (timer.duration.inSeconds * timer.value)).ceil().toString()}",
+                            style: new TextStyle(
+                              fontSize: screen.height*.1
+                            ),
+                          );
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget controlButtons(Size screen) {
+    return new Padding(
+      padding: EdgeInsets.all(20),
+      child: new Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          new Container(
+            width: MediaQuery.of(context).size.width*.22,
+            height: MediaQuery.of(context).size.width*.22,
+            child: new RawMaterialButton(
+              fillColor: Colors.grey[800],
+              elevation: 5, //Flat
+              shape: new CircleBorder(),
+              child: new Text(
+                "Stop",
+                style: new TextStyle(
+                  fontSize: MediaQuery.of(context).size.height*.022,
+                  color: Colors.grey[400],
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+              onPressed: () {
+                if(sheetPresent)
+                  return null;
+                controller.reset();
+                timer.reset();
+                taps = 0;
+                setState(() {
+                  isFinished = false;
+                });
+              },
+            ),
+          ),
+          new Container(
+            width: MediaQuery.of(context).size.width*.22,
+            height: MediaQuery.of(context).size.width*.22,
+            child: new AnimatedBuilder(
+              animation: timer,
+              builder: (BuildContext context, Widget child) {
+                return new AnimatedBuilder(
+                  animation: controller,
+                  builder: (BuildContext context, Widget child) {
+                    return new RawMaterialButton(
+                      fillColor: controller.isAnimating || timer.isAnimating ? Color.fromRGBO(186, 99, 24, 1) : Color.fromRGBO(52, 161, 40, 1),
+                      elevation: 5, //Flat
+                      shape: new CircleBorder(),
+                      child:  Text(
+                        controller.isAnimating || timer.isAnimating ? "Pause" : "Start",
+                        style: new TextStyle(
+                          fontSize: MediaQuery.of(context).size.height*.022,
+                          color: controller.isAnimating || timer.isAnimating ? Color.fromRGBO(255, 176, 107, 1) : Color.fromRGBO(111, 247, 96, 1),
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      onPressed: () {
+                        if(sheetPresent)
+                          return null;
+                        
+                        if(isFinished)
+                          setState(() {
+                            isFinished = false;
+                            taps = 0;
+                          });
+
+                        if(controller.isAnimating || timer.isAnimating) {
+                          if(timer.isAnimating) {
+                            timer.stop();
+                          } else {
+                            controller.stop();
+                          }
+                          controller.notifyListeners();
+                          timer.notifyListeners();
+                        } else {
+                          if(timer.isCompleted) {
+                            controller.animateTo(1);
+                          } else
+                            timer.animateTo(1).whenComplete(
+                              () => controller.animateTo(1)
+                            );
+                        }
+                      },
+                    ); 
+                  }
+                ); 
+              },
+            )
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget tapButton(Size screen) {
+    return new SizedBox(
+      width: screen.width*.85,
+      height: screen.width*.75,
+      child: new RaisedButton(
+        shape: new RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(20)
+        ),
+        color: controller.isAnimating && !sheetPresent ? Color.fromRGBO(3, 198, 252, 1) : Color.fromRGBO(4, 157, 199, 1),
+        splashColor: Color.fromRGBO(2, 168, 214, .5),
+        child: new Container(
+          alignment: Alignment.center,
+          child: new Text(
+            "Tap!",
+            style: new TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: screen.height*.05
+            ),
+          ),
+        ),
+        onPressed: () {
+          if(sheetPresent || !controller.isAnimating) {
+            return null;
           }
+          taps += 1;
         },
       ),
     );
   }
 
-  Widget get tapButton {
-    return new AnimatedBuilder(
-      animation: _controller,
-      builder: (BuildContext context, Widget child) {
-        return child;
-      },
-      child: CupertinoButton(
-        minSize: MediaQuery.of(context).size.width*.85,
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        pressedOpacity: 0.8,
-        child: new Text(
-          _running ? "TAP" : "Disabled",
-          style: new TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: MediaQuery.of(context).size.height*.03
-          ),
-        ),
-        disabledColor: Colors.grey,
-        color: Colors.lightBlue[600],
-        onPressed: _running ? () {
-          setState(() {
-            _taps+=1;
-          });
-        } : null, //enabled setter :)
-      )
-    );
-  }
 
-  Widget get controlButtons {
-    return new Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        new Container(
-          width: MediaQuery.of(context).size.width*.22,
-          height: MediaQuery.of(context).size.width*.22,
-          child: new RawMaterialButton(
-            fillColor: Colors.grey,
-            elevation: 3, //Flat
-            shape: new CircleBorder(),
-            child: new Text(
-              _running ? "Reset" : "Stop",
-              style: new TextStyle(
-                fontSize: MediaQuery.of(context).size.height*.022,
-                color: Colors.white,
-                fontWeight: FontWeight.bold
-              ),
-            ),
-            onPressed: () {
-              _controller.stop();
-              _controller.value = 0;
-              _taps = 0;
-            },
-          ),
-        ),
-        new AnimatedBuilder(
-          animation: _controller,
-          builder: (BuildContext context, Widget child) {
-            return new Container(
-              width: MediaQuery.of(context).size.width*.22,
-              height: MediaQuery.of(context).size.width*.22,
-              child: new RawMaterialButton(
-                shape: CircleBorder(),
-                elevation: 3,
-                fillColor: _controller.isAnimating ? Colors.orange[600] : Colors.green[800],
-                child: new Text(
-                  _controller.isAnimating ? "Pause" : "Start",
-                  style: new TextStyle(
-                    fontSize: MediaQuery.of(context).size.height*.022,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold    
-                  ),
-                ),
-                onPressed: () {
-                  if(!_controller.isAnimating && _controller.value == 0) { //Run countdown if starting a new run
-                    _counter = 3;
-                    _taps = 0;
-                    startTimer();
-                    
-                  } else if(_controller.isAnimating) { //Stop animation (pause)
-                    _controller.stop();
-                    setState(() {
-                      _running = false;
-                    });
-                  } else { //If start is pressed but not a new run, continue.
-                    _controller.animateTo(1).whenCompleteOrCancel(() {
-                      setState(() {
-                        _running = false;
-                      });
-                    });
-                    setState(() {
-                      _running = true;
-                    });
-                  }
-                },
-              )
-            ); 
-          }
-        ),
-      ],
-    );
-  }
 
-  Widget get timer => new AnimatedBuilder(
-    animation: _controller,
-    builder: (BuildContext context, Widget child) {
-      return new CircularPercentIndicator(
-        startAngle: 0,
-        radius: MediaQuery.of(context).size.width*.45,
-        lineWidth: 10,
-        backgroundColor: Colors.blueGrey,
-        percent: _controller.value,
-        center: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+  @override 
+  Widget build(BuildContext context) {
+    Size screen = MediaQuery.of(context).size;
+    return new SafeArea(
+      child: Scaffold(
+        key: _scaffoldKey,
+        body: new Padding(
+          padding: EdgeInsets.all(10),
+          child: new Stack(
             children: <Widget>[
-              new Text(
-                _countDown.isActive ? "$_counter..." : ((1-_controller.value)*_controller.duration.inSeconds).round().toString(),
-                style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-                textAlign: TextAlign.center,
+              animatedTimer(screen),
+              new Align(
+                alignment: FractionalOffset.bottomCenter,
+                child: new Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget> [
+                    controlButtons(screen),
+                    tapButton(screen)
+                  ],    
+                ),
               ),
-              new Divider(
-                thickness: 2, 
-                height: 10,
-                indent: MediaQuery.of(context).size.width*.45*.2,
-                endIndent: MediaQuery.of(context).size.width*.45*.2,
-              ),
-              new Text(
-                "$_taps taps",
-                style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-                textAlign: TextAlign.center,
-              )
             ],
           ),
-        circularStrokeCap: CircularStrokeCap.round,
-        linearGradient: new LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.topCenter,
-          colors: <Color> [
-            Colors.blue[700],
-            Colors.blue[600],
-            Colors.blue[400],
-            Colors.blue[100]
-          ]
-        ),        
-      );
-    },
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new Container(
-        color: Color.fromRGBO(85, 85, 85, 0),
-        padding: EdgeInsets.fromLTRB(10, 15, 10, 0),
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            new GestureDetector(
-              onTap: () => CupertinoRoundedDurationPicker.show(context, 
-                initialTimerDuration: _controller.duration, 
-                initialDurationPickerMode: CupertinoTimerPickerMode.ms, 
-                onDurationChanged: (newDuration) {
-                  setState(() {
-                    _controller.duration = newDuration.inSeconds > 0 ? newDuration : _controller.duration;
-                  });
-                }
-              ),
-              child: timer,
-            ), 
-            new Padding(
-              padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-              child: controlButtons
-            ),
-            new Container(
-              alignment: Alignment.bottomCenter,
-              child: tapButton,
-            ),
-          ],
         ),
-      ),
-    );   
+      )
+    );
   }
 }
