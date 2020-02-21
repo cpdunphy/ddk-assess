@@ -33,7 +33,7 @@ struct Settings: View {
     @State var showResetConf: Bool = false
     @Binding var presentSettingsModal : Bool
     @State var result: Result<MFMailComposeResult, Error>? = nil
-    @State var isShowingMailView = false
+    @Binding var isShowingMailView : Bool
     var body: some View {
         
         NavigationView {
@@ -65,10 +65,17 @@ struct Settings: View {
                             .foregroundColor(.red)
                     }
                 }
-                Section {//(header: Text("Donate to the Developer").font(.custom("Nunito-Regular", size: regularTextSize-3))) {
-                    ForEach(ProductsStore.shared.products, id: \.self) { prod in
-                        NavigationLink(destination: IAPView(product: prod)) { //Can add the 'isActive and link to a state var'
-                            IAPLabel(product: prod)
+                Section {
+                    
+                    if ProductsStore.shared.products == [] {
+                        Text("No Products Avaiable for Purchase")
+                            .font(.custom("Nunito-Regular", size: regularTextSize))
+                    } else {
+                    
+                        ForEach(ProductsStore.shared.products, id: \.self) { prod in
+                            NavigationLink(destination: IAPView(product: prod)) { //Can add the 'isActive and link to a state var'
+                                IAPRow(product: prod)
+                            }
                         }
                     }
                 }
@@ -92,8 +99,18 @@ struct Settings: View {
                 MailView(result: self.$result)
             }
             .navigationBarTitle(Text("Settings").font(.custom("Nunito-Regular", size: regularTextSize)))
+        .navigationBarItems(trailing: CloseButton())
+        }
+        
+    }
+    func CloseButton() -> some View {
+        Button(action: {
+            self.presentSettingsModal = false
+        }) {
+            Text("Close")
         }
     }
+    
     struct FeedbackText :View {
         var disabled = !MFMailComposeViewController.canSendMail()
         var body : some View {

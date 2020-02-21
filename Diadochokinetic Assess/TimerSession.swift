@@ -37,6 +37,10 @@ class TimerSession: ObservableObject {
     @Published var showHeartRate: Bool = defaults.bool(forKey: heartRateKey)
     
     @Published var showSupportAd : Bool = false
+    @Published var showReviewAd: Bool = false
+    @Published var showCentralAlert: Bool = false
+    @Published var activeAlert: ActiveAlert = .none
+
     
     //MARK: Both Categories
     private var timeInterval = 1.0/3.0
@@ -79,7 +83,9 @@ class TimerSession: ObservableObject {
     }
     
     func checkShowSupport() {
-        showSupportAd = defaults.integer(forKey: userLogCountKey) >= 169
+        let num = defaults.integer(forKey: userLogCountKey)
+        activeAlert = .review
+        showCentralAlert = num >= 10
     }
     
     

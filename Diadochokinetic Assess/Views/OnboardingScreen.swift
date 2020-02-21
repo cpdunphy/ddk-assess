@@ -11,7 +11,6 @@ struct OnboardingScreen: View {
     var accentColor = Color("AccentColor")
     @Binding var showOnboardingScreen: Bool
     var body: some View {
-        
         ZStack {
             Color("background").edgesIgnoringSafeArea([.top, .bottom])
             VStack(alignment: .leading) {
@@ -58,19 +57,20 @@ struct OnboardingScreen: View {
                 Spacer()
                 
                 Button(action: {
+                    print("onboarding complete")
                     withAnimation(.default) {
                         self.showOnboardingScreen = false
                         defaults.set(false, forKey: showOnboardingKey)
                     }
-                    print("onboarding complete")
                 }) {
-                    Text("Start Assessing DKK Now")
+                    Text("Start Assessing Now")
                         .font(.headline)
                         .frame(width: UIScreen.main.bounds.width * 0.82, height: UIScreen.main.bounds.height * 0.08)
                         .background(accentColor)
                         .foregroundColor(.white)
                         .cornerRadius(7)
                 }
+                
             }.frame(width: UIScreen.main.bounds.width * 0.82, height: UIScreen.main.bounds.height * 0.9)
         }
     }

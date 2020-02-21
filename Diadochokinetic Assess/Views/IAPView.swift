@@ -16,19 +16,6 @@ struct IAPView: View {
         ZStack {
             Color("background").edgesIgnoringSafeArea(.bottom)
             VStack {
-                /*Spacer()
-
-                Spacer()
-                VStack(spacing: 10) {
-
-                    Text(product.localizedTitle)
-                        .font(.custom("Nunito-Bold", size: 25))
-                    /*Text(product.localizedDescription)
-                        .font(.custom("Nunito-SemiBold", size: regularTextSize))*/
-                }
-                Spacer()
-
-                    .foregroundColor(Color(UIColor.secondaryLabel))*/
                 Spacer()
                 Text(termsIAPText())
                     .font(.custom("Nunito-SemiBold", size: 22))
@@ -53,13 +40,9 @@ struct IAPView: View {
     }
     func purchaseProduct(skproduct: SKProduct) {
         print("did tap purchase product: \(skproduct.productIdentifier)")
-//        isDisabled = true
         IAPManager.shared.purchaseProduct(product: skproduct, success: {
-//            self.isDisabled = false
             ProductsStore.shared.handleUpdateStore()
-//            self.dismiss()
         }) { (error) in
-//            self.isDisabled = false
             ProductsStore.shared.handleUpdateStore()
         }
     }
@@ -69,11 +52,6 @@ struct IAPView: View {
     }
 }
 
-/*struct IAPView_Previews: PreviewProvider {
-    static var previews: some View {
-        IAPView()
-    }
-}*/
 
 struct PurchaseButton : View {
     
@@ -102,13 +80,12 @@ struct PurchaseButton : View {
     }
 }
 
-struct IAPLabel : View {
+struct IAPRow : View {
     var product : SKProduct!
     
     var body : some View {
         Text("Buy the developer a \(product.localizedTitle) \(donationEmoji(str: product.localizedTitle))")
             .font(.custom("Nunito-Regular", size: regularTextSize))
-//            .foregroundColor(Color("AccentColor"))
             .foregroundColor(.blue)
     }
 }

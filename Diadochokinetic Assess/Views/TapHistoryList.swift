@@ -23,16 +23,40 @@ struct TapHistoryList : View {
         )
     } 
     @Binding var presentSettingsModal : Bool
+    @Binding var isShowingMailView : Bool
     var body : some View {
         NavigationView {
             List {
-//                Text("You have done \(timerSession.logCount) logs!")
-//                Text("You have done \(userTotalCount) logs in total!")
-
+                Text("You have done \(timerSession.logCount) logs!")
+                Button(action: {
+                    defaults.set(0, forKey: userLogCountKey)
+                }) {
+                    Text("Set to 0")
+                }
+                
                 ForEach(timerSession.recordingsArr, id: \.self) { record in
                     RecordRow(record: record)
-                }
-                .onDelete(perform: delete)
+                    .contextMenu {
+                        Button(action: {
+                            // change country setting
+                        }) {
+                            Text("Pin to Device")
+                            Image(systemName: "pin")
+                        }
+                        Button(action: {
+//                            self.delete
+                        }) {
+                            Text("Delete")
+                            Image(systemName: "trash")
+                        }
+                    }
+                }.onDelete(perform: delete)
+                
+                    
+                Text("You have done \(userTotalCount) logs in total!")
+                    .font(.custom("Nunito-SemiBold", size: regularTextSize))
+                
+                
             }
             .navigationBarTitle(Text("History").font(.custom("Nunito-Regular", size: regularTextSize)), displayMode: .inline)
             .navigationBarItems(
@@ -54,7 +78,7 @@ struct TapHistoryList : View {
                 }
             )
                 .sheet(isPresented: $presentSettingsModal) {
-                    Settings(presentSettingsModal: self.$presentSettingsModal).environmentObject(self.timerSession)
+                    Settings(presentSettingsModal: self.$presentSettingsModal, isShowingMailView: self.$isShowingMailView).environmentObject(self.timerSession)
             }
         }
     }
@@ -85,7 +109,6 @@ struct TapHistoryList : View {
                     }
                     Spacer()
                     Text("\(record.timed ? "Timer" : "Count")")
-//                        .font(.subheadline)
                         .font(.custom("Nunito-Regular", size: regularTextSize-3))
                         .foregroundColor(Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)))
                 }

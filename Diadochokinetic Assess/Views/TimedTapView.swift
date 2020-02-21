@@ -260,9 +260,12 @@ struct ColoredButton : View {
                         .foregroundColor(secondaryColor)
                     VStack {
                         Image("heart.fill")
+                            .resizable()
                             .foregroundColor(primaryColor)
-                            .font(.largeTitle)
+//                            .font(.largeTitle)
+                            .aspectRatio(contentMode: .fit)
                             .offset(CGSize(width: 0, height: 7))
+                            .frame(width: Screen.width * 0.1)
                         Text(TSLink ? "BPM" : "Count")
                             .font(.custom("Nunito-Regular", size: regularTextSize-3))
                                 .foregroundColor(primaryColor)

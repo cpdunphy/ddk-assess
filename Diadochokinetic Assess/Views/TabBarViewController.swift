@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct TabBarViewController: View {
     @State var selection: Int = 0
@@ -14,6 +15,9 @@ struct TabBarViewController: View {
     @ObservedObject var productsStore : ProductsStore
     @State var showOnboardingScreen = defaults.bool(forKey: showOnboardingKey)
     @State var presentSettingsModal: Bool = false
+    @State var isShowingMailView = false
+    @State var showMailAlert = false
+        
     var helpAlert: Alert {
         Alert(
             title: Text(promotionalTextTitle),
@@ -29,16 +33,59 @@ struct TabBarViewController: View {
             })
         )
     }
-
+    
+    var reviewAlert: Alert {
+        Alert(
+            title: Text("Have you been enjoying DDK"),
+            message: Text("Have you felt DDK Useful."),
+            primaryButton: .default(Text("Yes"), action: {
+                self.timerSession.setLogCount(num: 0)
+                SKStoreReviewController.requestReview()
+            }),
+            secondaryButton: .default(Text("No"), action: {
+                self.timerSession.setLogCount(num: 0)
+                self.timerSession.activeAlert = .email
+            })
+        )
+    }
+    
+    var sendEmailAlert: Alert {
+        Alert(
+            title: Text("Send a feedback Report"),
+            message: Text("Send an email?"),
+            primaryButton: .default(Text("Yes"), action: {
+                self.selection = 2
+                self.presentSettingsModal = true
+                self.isShowingMailView = true
+                    
+            }),
+            secondaryButton: .default(Text("No"))
+        )
+    }
+    
+    
+//    var SendEmailAlert: Alert {
+//        Alert(title: Text("Send a feedback Report"), message: Text("Send an email?"),
+//              primaryButton: .default(Text("No"), action: {
+//            print("no")
+//              self.timerSession.setLogCount(num: 0)
+//              }),
+//              secondaryButton: .default(Text("Yes"), action: {
+//                self.selection = 2
+//                self.presentSettingsModal = true
+//                self.isShowingMailView = true
+//                self.showMailAlert = true
+//                self.timerSession.setLogCount(num: 0)
+//              }))
+//    }
+    
     var body: some View {
         ZStack {
             if showOnboardingScreen {
                 OnboardingScreen(showOnboardingScreen: $showOnboardingScreen)
             } else {
                 ZStack {
-
                     TabView(selection: $selection) {
-                        
                         TimedTapView().environmentObject(timerSession)
                             .tabItem {
                                 VStack {
@@ -59,7 +106,7 @@ struct TabBarViewController: View {
                         }
                         .tag(1)
                         
-                        TapHistoryList(presentSettingsModal: $presentSettingsModal).environmentObject(timerSession)
+                        TapHistoryList(presentSettingsModal: $presentSettingsModal, isShowingMailView: $isShowingMailView).environmentObject(timerSession)
                             .tabItem {
                                 VStack {
                                     Image(systemName: "book.fill")
@@ -68,87 +115,54 @@ struct TabBarViewController: View {
                                 }
                         }
                         .tag(2)
+                        
                     }
                     .edgesIgnoringSafeArea(.top)
                     .accentColor(Color("AccentColor"))
                     
-                    /*if timerSession.logCount >= 3 {//75 {
-                       
-                        SupportTheDevScreen(presentSettingsModal: $presentSettingsModal, selection: $selection)
-                    }*/
-                    //.accentColor(Color(#colorLiteral(red: 0.3339039057, green: 0.7535954078, blue: 0.711665441, alpha: 1)))
-                }.alert(isPresented: $timerSession.showSupportAd) {
-                    helpAlert
+                }.alert(isPresented: $timerSession.showCentralAlert) {
+                    switch timerSession.activeAlert {
+                        case .buying:
+                            return helpAlert
+                        case .review:
+                            return reviewAlert
+                        case .email:
+                            return sendEmailAlert
+                        case .none:
+                            return Alert(title: Text("Uhhh idk why this popped up. Ignore and report to developer."))
+                    }
                 }
-
             }
         }
     }
     
-}
-
-/*struct ContentView_Previews: PreviewProvider {
- static var previews: some View {
- TabBarViewController()
- }
- }*/
-
-/*struct OnboardingScreen : View {
- @Binding var showOnboardingScreen : Bool
- var body : some View {
- Button(action: {
- self.showOnboardingScreen = false
- //Set User Preference
- }) {
- Image(systemName: showOnboardingScreen ? "star.fill" : "star")
- }
- }
- }
- */
-
-struct SupportTheDevScreen : View {
-    @EnvironmentObject var timerSession: TimerSession
-    @Binding var presentSettingsModal : Bool
-    @Binding var selection: Int
-    var body : some View {
+    let ExposePromptColor = Color(#colorLiteral(red: 1, green: 0.08433114744, blue: 0, alpha: 0))
+    
+    func showMailPrompt() -> some View {
         ZStack {
-            Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 0.33)).edgesIgnoringSafeArea(.all)
-            ZStack {
-                ZStack(alignment: .topTrailing) {
-                    Rectangle()
-                        .cornerRadius(10)
-                        .foregroundColor(Color("ddkColor"))
-                        .shadow(radius: 3)
-                    Button(action: {
-                        self.timerSession.setLogCount(num: 0)
-                    }) {
-                        XButton()
-                    }
-                    .frame(width: 40, height: 40)
-                    .offset(CGSize(width: 15, height: -15))
-                }
-                VStack {
-                    Button(action: {
-                        print("Helping")
-                        self.timerSession.setLogCount(num: 0)
-                        self.selection = 2
-                        self.presentSettingsModal = true
-                    }) {
-                        Text("Help Me")
-                    }
-                }
-            }.frame(width: Screen.width * 0.7, height: Screen.height * 0.4)
+            ExposePromptColor
+        }
+        .alert(isPresented: $showMailAlert) {
+            sendEmailAlert
+        }
+    }
+    func supportDevPrompt() -> some View {
+        ZStack {
+            ExposePromptColor
+        }
+        .alert(isPresented: $timerSession.showSupportAd) {
+            helpAlert
+        }
+    }
+    func reviewTheAppPrompt() -> some View {
+        ZStack {
+            ExposePromptColor
+        }
+        .alert(isPresented: $timerSession.showReviewAd) {
+            reviewAlert
         }
     }
     
-    struct XButton : View {
-        var body : some View {
-            ZStack {
-                Circle()
-                    .foregroundColor(.red)
-                Text("X")
-                    .foregroundColor(.white)
-            }
-        }
-    }
 }
+
+//.accentColor(Color(#colorLiteral(red: 0.3339039057, green: 0.7535954078, blue: 0.711665441, alpha: 1)))
