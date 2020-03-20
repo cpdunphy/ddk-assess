@@ -18,7 +18,7 @@ struct TapHistoryList : View {
             primaryButton: .cancel(Text("Cancel")),
             secondaryButton: .destructive(Text("Delete"), action: {
                 self.timerSession.recordingsArr = []
-                self.timerSession.reset()
+                self.timerSession.ResetTimedMode()
             })
         )
     } 
@@ -27,12 +27,7 @@ struct TapHistoryList : View {
     var body : some View {
         NavigationView {
             List {
-                Text("You have done \(timerSession.logCount) logs!")
-                Button(action: {
-                    defaults.set(0, forKey: userLogCountKey)
-                }) {
-                    Text("Set to 0")
-                }
+//                Text("\(timerSession.logCount)/60")
                 
                 ForEach(timerSession.recordingsArr, id: \.self) { record in
                     RecordRow(record: record)
@@ -53,7 +48,7 @@ struct TapHistoryList : View {
                 }.onDelete(perform: delete)
                 
                     
-                Text("You have done \(userTotalCount) logs in total!")
+                Text(timerSession.totalLogCount != 0 ? "You have done \(timerSession.totalLogCount) DDK Assessments in total!\nPlease consider supporting the developer." : "")
                     .font(.custom("Nunito-SemiBold", size: regularTextSize))
                 
                 

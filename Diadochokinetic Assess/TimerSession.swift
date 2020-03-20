@@ -9,6 +9,7 @@
 import Combine
 import Foundation
 import SwiftUI
+import CoreHaptics
 
 class TimerSession: ObservableObject {
     
@@ -21,7 +22,7 @@ class TimerSession: ObservableObject {
     @Published var timedTaps: Int = 0
     @Published var unTimedTaps: Int = 0
     @Published var logCount = defaults.integer(forKey: userLogCountKey)
-    
+    @Published var totalLogCount = defaults.integer(forKey: userLogCountLifetimeKey)
     ///Time left on the Timer + Countdown
     @Published var currentTimedCount: Double = 10.0
     @Published var countdownCount = UserDefaults.standard.double(forKey: countdownKey) + 0.9
@@ -32,24 +33,23 @@ class TimerSession: ObservableObject {
     
     ///Used to calculate percent of the ring to be filled
     @Published var percent: Double = 1.0
-    private var totalTimerDuration: Double = 10.0
+    var totalTimerDuration: TimeInterval = 10
 
     @Published var showHeartRate: Bool = defaults.bool(forKey: heartRateKey)
     
-    @Published var showSupportAd : Bool = false
-    @Published var showReviewAd: Bool = false
+//    @Published var showSupportAd : Bool = false
+//    @Published var showReviewAd: Bool = false
     @Published var showCentralAlert: Bool = false
     @Published var activeAlert: ActiveAlert = .none
-
     
     //MARK: Both Categories
-    private var timeInterval = 1.0/3.0
+    private var timeInterval = 1.0/3.0 ///Time between each timer "TimerDidFire"
     
     @objc func timerDidFireDown() {
         if currentTimedCount > 0.0 && countingState == .counting {
             currentTimedCount -= timeInterval
             if currentTimedCount <= 1.0 {
-                finishTimed()
+                FinishTimedMode()
             }
         } else if countdownCount > 0.0 && countingState == .countdown {
             countdownCount -= timeInterval
@@ -57,9 +57,9 @@ class TimerSession: ObservableObject {
                 countingState = .counting
             }
         }
-        withAnimation(.easeIn) {
+//        withAnimation(.easeIn) {
             percent = (currentTimedCount-0.9)/Double(totalTimerDuration)
-        }
+//        }
         print("\(countingState)")
     }
     
@@ -68,34 +68,46 @@ class TimerSession: ObservableObject {
     }
     
     func increaseLogCount() {
-            let num = defaults.integer(forKey: userLogCountKey) + 1
-            let total = defaults.integer(forKey: userLogCountLifetimeKey) + 1
-            defaults.set(num, forKey: userLogCountKey)
-            defaults.set(total, forKey: userLogCountLifetimeKey)
-            userTotalCount = total
-            logCount = defaults.integer(forKey: userLogCountKey)
-            checkShowSupport()
+        logCount += 1 + addNumberToLogFromIAP
+        if addNumberToLogFromIAP != 0 {
+            addNumberToLogFromIAP = 0
+        }
+        totalLogCount += 1
+        saveLogs()
+        checkShowSupport()
     }
     
+    ///@ 30 logs, asks for review, @ 60 asks for donation
+    ///Testing @5 logs, asks for review, @ 10 asks for donation
     func setLogCount(num: Int) {
-            defaults.set(num, forKey: userLogCountKey)
-            logCount = defaults.integer(forKey: userLogCountKey)
+        defaults.set(num, forKey: userLogCountKey)
+        logCount = defaults.integer(forKey: userLogCountKey)
     }
-    
+    func saveLogs() {
+        defaults.set(logCount, forKey: userLogCountKey)
+        defaults.set(totalLogCount, forKey: userLogCountLifetimeKey)
+    }
     func checkShowSupport() {
-        let num = defaults.integer(forKey: userLogCountKey)
-        activeAlert = .review
-        showCentralAlert = num >= 10
+        let showReview: Bool = logCount == 30
+        let showDonation: Bool = logCount == 60
+        
+        if showReview {
+            activeAlert = .review
+            showCentralAlert = true
+        } else if showDonation {
+            activeAlert = .buying
+            showCentralAlert = true
+        } else {
+            activeAlert = .none
+        }
     }
-    
-    
     
     //MARK: Timed Functions
     func startCountdown(time: Int) {
         timerCountingDown = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(timerDidFireDown), userInfo: nil, repeats: true)
         currentTimedCount = Double(time) + 0.9
         totalTimerDuration = Double(time)
-        countdownCount = UserDefaults.standard.double(forKey: countdownKey) + 0.9
+        countdownCount = defaults.double(forKey: countdownKey) + 0.9
         if countdownCount > 1.0 {
             countingState = .countdown
         } else {
@@ -104,17 +116,17 @@ class TimerSession: ObservableObject {
         print("Timer started!")
     }
     
-    func pause() {
+    func PauseTimedMode() {
         countingState = .paused
         print("Timer paused!")
     }
     
-    func resume() {
+    func ResumeTimedMode() {
         countingState = countdownCount > 0.0 ? .countdown : .counting
         print("Timer resumed!")
     }
     
-    func reset() {
+    func ResetTimedMode() {
         countingState = .ready
         timerCountingDown.invalidate()
         currentTimedCount = 10.0
@@ -123,12 +135,14 @@ class TimerSession: ObservableObject {
         print("Timer reset!")
     }
     
-    func finishTimed() {
+
+    private func FinishTimedMode() {
         timerCountingDown.invalidate()
         let send = Record(date: Date(), taps: timedTaps, timed: true, duration: Int(totalTimerDuration))
         increaseLogCount()
         self.recordingsArr.insert(send, at: 0)
         countingState = .finished
+        hapticFeedback.notificationOccurred(.success)
     }
     
     func getTimeRemaining() -> String {
@@ -142,12 +156,14 @@ class TimerSession: ObservableObject {
         }
     }
     
-    func getBPM() -> String {
-        let numToComplete = 60/totalTimerDuration
-        
-        let bpm = Double(timedTaps) * numToComplete
-        
-        return "\(Int(bpm)) bpm"
+    /// Calculates and returns the beats per minute in timed mode.
+    ///
+    /// - Parameter value: Duration = how long we are looking to average. Taps = how many occurances.
+    /// - Returns: Beats per minute (Int)
+    func CalculateBPM(taps: Int, duration: TimeInterval) -> Int {
+        let numToComplete = 60/duration
+        let bpm = Double(taps) * numToComplete
+        return Int(bpm)
     }
     
     //MARK: Untimed Functions
@@ -167,6 +183,7 @@ class TimerSession: ObservableObject {
         let send = Record(date: Date(), taps: unTimedTaps, timed: false, duration: Int(currentUntimedCount))
         increaseLogCount()
         self.recordingsArr.insert(send, at: 0)
+        hapticFeedback.notificationOccurred(.success)
     }
     
     func addUntimedTaps() {
@@ -181,26 +198,42 @@ class TimerSession: ObservableObject {
         currentUntimedCount += 1
     }
     
-    func getUntimedTimeString() -> String {
-        if currentUntimedCount < 10 {
-            return "00:0\(currentUntimedCount)"
-        } else if currentUntimedCount >= 10 && currentUntimedCount < 60 {
-            return "00:\(currentUntimedCount)"
-        } else if currentUntimedCount >= 60 && currentUntimedCount < 600 {
-            if currentUntimedCount%60 < 10 {
-                return "0\(currentUntimedCount/60):0\(currentUntimedCount%60)"
+    /// Time (String) in "00:00 format"
+    ///
+    /// - Parameter value: seconds (Int)
+    /// - Returns: String to be displayed for standard "00:00 Display"
+    func getStandardTimeDisplayString(seconds: Int) -> String {
+        if seconds < 10 {
+            return "00:0\(seconds)"
+        } else if seconds >= 10 && seconds < 60 {
+            return "00:\(seconds)"
+        } else if seconds >= 60 && seconds < 600 {
+            if seconds%60 < 10 {
+                return "0\(seconds/60):0\(seconds%60)"
             }
-            return "0\(currentUntimedCount/60):\(currentUntimedCount%60)"
+            return "0\(seconds/60):\(seconds%60)"
         } else {
-            if currentUntimedCount%60 < 10 {
-                return "\(currentUntimedCount/60):0\(currentUntimedCount%60)"
+            if seconds%60 < 10 {
+                return "\(seconds/60):0\(seconds%60)"
             }
-            return "\(currentUntimedCount/60):\(currentUntimedCount%60)"
+            return "\(seconds/60):\(seconds%60)"
         }
     }
     
+    /// Fires at first tap of Untimed Mode
+    ///
+    /// - Parameter value: None
+    /// - Returns: Void
+    
     func firstTap() {
+        print("First Tap of Count Mode")
         startUntimed()
     }
 }
 //100000000000/60/60/24/365
+
+extension TimerSession {
+    func grabUserData() {
+        logCount = defaults.integer(forKey: userLogCountKey)
+    }
+}

@@ -23,7 +23,7 @@ struct Settings: View {
                 defaults.set(3, forKey: countdownKey)
                 defaults.set(5, forKey: secondsKey)
                 defaults.set(false, forKey: heartRateKey)
-                self.timerSession.reset()
+                self.timerSession.ResetTimedMode()
                 self.timerSession.stopUntimed()
                 defaults.set(false, forKey: showOnboardingKey)
             })

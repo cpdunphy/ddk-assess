@@ -9,13 +9,13 @@
 import SwiftUI
 //MARK: MAIN VIEW
 struct TimedTapView : View {
-    @State private var seconds = defaults.integer(forKey: secondsKey)
+    @State private var seconds: Int = defaults.integer(forKey: secondsKey) { didSet { defaults.set(seconds, forKey: secondsKey) } }
     @EnvironmentObject var timerSession: TimerSession
     
     let gColors = [Color(#colorLiteral(red: 0.214261921, green: 0.3599105657, blue: 0.5557389428, alpha: 1)), Color(#colorLiteral(red: 0.2784313725, green: 0.8274509804, blue: 0.7764705882, alpha: 1))]
     var body : some View {
         ZStack {
-            Color("background").edgesIgnoringSafeArea(.top)
+            Color("background").edgesIgnoringSafeArea([.top, .bottom])
             VStack(spacing: 0) {
                 ZStack {
                 if timerSession.countingState == .ready {
@@ -25,10 +25,8 @@ struct TimedTapView : View {
                 } else {
                     ZStack {
                         Circles()
-                        
                         CenterCircleText().environmentObject(timerSession)
                             .frame(width: Screen.height * 0.25, height: Screen.height * 0.25)
-                        
                     }
                 }
                 }.frame(width: Screen.width, height: Screen.height * 0.35).padding(.bottom, 0)
@@ -61,11 +59,13 @@ struct TimedTapView : View {
                 .stroke(gColors[0], style: StrokeStyle(lineWidth: 10, lineCap: .round))
                 .rotationEffect(.degrees(-90))
         }
+        .transition(.slide)
+        .animation(.linear)
     }
     
     func LeftButton() -> some View {
         Button(action: {
-            self.timerSession.reset()
+            self.timerSession.ResetTimedMode()
         }) {
             if timerSession.countingState == .ready || timerSession.countingState == .finished {
                 resetButton
@@ -83,8 +83,10 @@ struct TimedTapView : View {
 //                .padding(.bottom, -7)
             Picker(selection: $seconds, label: Text("")) {
                 ForEach(1...60, id: \.self) { time in
-                    Text("\(time)").font(.custom("Nunito-SemiBold", size: 20)).tag(time <= 60 && time > 0 ? time : 3)
-                }
+                    Text("\(time)")
+                        .font(.custom("Nunito-SemiBold", size: 20))
+                        .tag(time <= 60 && time > 0 ? time : 3)
+                }.id(0)
             }.frame(width: 290, height: 235)
                 .offset(CGSize(width: -5, height: 0))
         }
@@ -97,12 +99,12 @@ struct TimedTapView : View {
             if self.timerSession.countingState == .ready {
                 self.timerSession.startCountdown(time: self.seconds)
             } else if self.timerSession.countingState == .counting || self.timerSession.countingState == .countdown {
-                self.timerSession.pause()
+                self.timerSession.PauseTimedMode()
             } else if self.timerSession.countingState == .finished {
                 self.timerSession.showHeartRate.toggle()
                 defaults.set(self.timerSession.showHeartRate, forKey: heartRateKey)
             } else {
-                self.timerSession.resume()
+                self.timerSession.ResumeTimedMode()
             }
         }) {
             if timerSession.countingState == .ready {
@@ -117,11 +119,14 @@ struct TimedTapView : View {
         }
     }
 }
+let hapticFeedback = UINotificationFeedbackGenerator()
+
 
 //MARK: TapButton
 struct TapButton : View {
     @EnvironmentObject var timerSession: TimerSession
     var timed : Bool
+    let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
     var body : some View {
         ZStack {
             if timerSession.countingState == .counting || !timed {
@@ -135,6 +140,8 @@ struct TapButton : View {
                         }
                         self.timerSession.addUntimedTaps()
                     }
+                    self.impactFeedbackgenerator.prepare()
+                    self.impactFeedbackgenerator.impactOccurred()
                 }) {
                     getButtonImage()
                 }
@@ -202,7 +209,7 @@ struct CenterCircleText : View {
     func getLabelText(finished: Bool, taps: Int, countdownCount: Double, showHeartRate: Bool) -> String {
         if finished {
             if showHeartRate {
-                return timerSession.getBPM()
+                return "\(timerSession.CalculateBPM(taps: timerSession.timedTaps, duration: timerSession.totalTimerDuration)) bpm"
             } else {
                 return "\(taps) \(taps == 1 ? "tap" : "taps")"
             }
@@ -221,11 +228,11 @@ struct CenterCircleText : View {
 //MARK: ColoredButton
 
 struct ColoredButton : View {
-    var primaryColor : Color
-    var secondaryColor : Color
-    var title: String
-    var heartMode: Bool
-    var TSLink: Bool
+    var primaryColor : Color ///Text Color
+    var secondaryColor : Color ///BackgroundColor
+    var title: String /// Text Label
+    var heartMode: Bool ///Determines whether to show a standard button or heartModeCapable
+    var TSLink: Bool ///Determines if should show BPM or Count
     
     init(primaryColor: Color, secondaryColor: Color, title: String) {
         self.primaryColor = primaryColor
@@ -250,7 +257,7 @@ struct ColoredButton : View {
                     Circle()
                         .foregroundColor(secondaryColor)
                     Text(title)
-                        .font(.custom("Nunito-SemiBold", size: 19))
+                        .font(.bodyNunitoRegular)
                         .foregroundColor(primaryColor)
                         .minimumScaleFactor(.leastNonzeroMagnitude)
                 }
@@ -259,7 +266,7 @@ struct ColoredButton : View {
                     Circle()
                         .foregroundColor(secondaryColor)
                     VStack {
-                        Image("heart.fill")
+                        Image(systemName: "heart.fill")
                             .resizable()
                             .foregroundColor(primaryColor)
 //                            .font(.largeTitle)
@@ -267,12 +274,46 @@ struct ColoredButton : View {
                             .offset(CGSize(width: 0, height: 7))
                             .frame(width: Screen.width * 0.1)
                         Text(TSLink ? "BPM" : "Count")
-                            .font(.custom("Nunito-Regular", size: regularTextSize-3))
-                                .foregroundColor(primaryColor)
+                            .font(.subheadlineNunitoRegular)
+                            .foregroundColor(primaryColor)
                     }
                 }
             }
-        }.frame(width: Screen.width*0.22, height: Screen.width*0.22).shadow(radius: 2)
+        }.frame(width: Screen.width*0.22, height: Screen.width*0.22).shadow(radius: 3)
+    }
+}
+
+struct TimedTapView_Previews: PreviewProvider {
+    static var previews: some View {
+        TimedTapView()
+        .environmentObject(TimerSession())
+    }
+}
+
+//struct ScaledFont: ViewModifier {
+//    @Environment(\.sizeCategory) var sizeCategory
+//    var name: String
+//    var size: CGFloat
+//
+//    func body(content: Content) -> some View {
+//       let scaledSize = UIFontMetrics.default.scaledValue(for: size)
+//        return content.font(.custom(name, size: scaledSize))
+//    }
+//}
+//
+//@available(iOS 13, macCatalyst 13, tvOS 13, watchOS 6, *)
+//extension View {
+//    func scaledFont(name: String, size: CGFloat) -> some View {
+//        return self.modifier(ScaledFont(name: name, size: size))
+//    }
+//}
+
+extension Font {
+    static var bodyNunitoRegular: Font {
+        return Font.custom("Nunito-Regular", size: 18)
+    }
+    static var subheadlineNunitoRegular: Font {
+        return Font.custom("Nunito-Regular", size: 15)
     }
 }
 

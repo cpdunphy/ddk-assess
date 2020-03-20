@@ -12,7 +12,7 @@ struct UntimedTapView: View {
     @EnvironmentObject var timerSession : TimerSession
     var body: some View {
         ZStack {
-          Color("background").edgesIgnoringSafeArea(.top)
+            Color("background").edgesIgnoringSafeArea([.top, .bottom])
         VStack {
             ZStack {
                 BackgroundRect()
@@ -20,7 +20,7 @@ struct UntimedTapView: View {
                 UntimedCenterText()
                     .frame(width: Screen.width * 0.8, height: min(Screen.height * 0.3, 175))
                 Handle().offset(CGSize(width: 0, height: 15))
-            }.frame(width: Screen.width, height: Screen.height*0.3)//.padding(.bottom)
+            }.frame(width: Screen.width, height: Screen.height * 0.3)//.padding(.bottom)
             
             HStack {
             
@@ -35,7 +35,10 @@ struct UntimedTapView: View {
                 }) {
                     logButton
                 }
-            }.frame(height: Screen.width*0.25).padding([.leading, .trailing], Screen.width * 0.09) 
+                
+            }
+            .frame(height: Screen.width*0.25)
+            .padding([.leading, .trailing], Screen.width * 0.09)
             
             
             TapButton(timed: false).environmentObject(timerSession)//.padding(.top, -10)
@@ -53,7 +56,7 @@ struct UntimedTapView: View {
             Text("\(timerSession.unTimedTaps) \(timerSession.unTimedTaps == 1 ? "tap" : "taps")")
                 .font(.custom("Nunito-Bold", size: 50))
                 .padding(.bottom)
-            Text(timerSession.getUntimedTimeString())
+            Text(timerSession.getStandardTimeDisplayString(seconds: timerSession.currentUntimedCount))
                 .font(.custom("Nunito-SemiBold", size: 22))
         }
     }
@@ -62,5 +65,6 @@ struct UntimedTapView: View {
 struct UntimedTapView_Previews: PreviewProvider {
     static var previews: some View {
         UntimedTapView()
+        .environmentObject(TimerSession())
     }
 }

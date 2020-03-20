@@ -209,6 +209,7 @@ extension IAPManager: SKProductsRequestDelegate {
 }
 
 // MARK:- SKPayment Transaction Observer
+var addNumberToLogFromIAP = 0
 
 extension IAPManager: SKPaymentTransactionObserver {
     
@@ -220,8 +221,9 @@ extension IAPManager: SKPaymentTransactionObserver {
                 SKPaymentQueue.default().finishTransaction(transaction)
                 notifyIsPurchased(transaction: transaction)
                 print("User defaults set to -750 because they purchased something :)")
-                let pulledNum = defaults.integer(forKey: userLogCountKey) - 750
-                defaults.set(pulledNum, forKey: userLogCountKey)
+//                let pulledNum = defaults.integer(forKey: userLogCountKey) - 750
+//                defaults.set(pulledNum, forKey: userLogCountKey)
+                addNumberToLogFromIAP = -750
                 break
             case .failed:
                 SKPaymentQueue.default().finishTransaction(transaction)

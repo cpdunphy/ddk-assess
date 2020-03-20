@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import MessageUI
 import StoreKit
 
 struct TabBarViewController: View {
@@ -21,7 +22,7 @@ struct TabBarViewController: View {
     var helpAlert: Alert {
         Alert(
             title: Text(promotionalTextTitle),
-            message: Text("You have assesed a patient's Diadochokinetic Rate \(userTotalCount) times. If you like the app, please consider supporting the developer."),
+            message: Text("You have assesed a patient's Diadochokinetic Rate \(timerSession.totalLogCount) times. If you like the app, please consider supporting the developer."),
             primaryButton: .cancel(Text("Yeah I'll Support! 🥰"), action: {
                 print("Helping")
                 self.timerSession.setLogCount(num: 0)
@@ -39,12 +40,16 @@ struct TabBarViewController: View {
             title: Text("Have you been enjoying DDK"),
             message: Text("Have you felt DDK Useful."),
             primaryButton: .default(Text("Yes"), action: {
-                self.timerSession.setLogCount(num: 0)
                 SKStoreReviewController.requestReview()
             }),
             secondaryButton: .default(Text("No"), action: {
-                self.timerSession.setLogCount(num: 0)
-                self.timerSession.activeAlert = .email
+                if MFMailComposeViewController.canSendMail() {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        print("This message is delayed")
+                        self.timerSession.activeAlert = .email
+                        self.timerSession.showCentralAlert = true
+                    }
+                }
             })
         )
     }
@@ -57,7 +62,6 @@ struct TabBarViewController: View {
                 self.selection = 2
                 self.presentSettingsModal = true
                 self.isShowingMailView = true
-                    
             }),
             secondaryButton: .default(Text("No"))
         )
@@ -78,6 +82,10 @@ struct TabBarViewController: View {
 //                self.timerSession.setLogCount(num: 0)
 //              }))
 //    }
+    
+    fileprivate func extractedFunc() -> Alert {
+        return Alert(title: Text("Uhhh idk why this popped up. Ignore and report to developer."))
+    }
     
     var body: some View {
         ZStack {
@@ -129,39 +137,39 @@ struct TabBarViewController: View {
                         case .email:
                             return sendEmailAlert
                         case .none:
-                            return Alert(title: Text("Uhhh idk why this popped up. Ignore and report to developer."))
+                            return extractedFunc()
                     }
                 }
             }
         }
     }
     
-    let ExposePromptColor = Color(#colorLiteral(red: 1, green: 0.08433114744, blue: 0, alpha: 0))
-    
-    func showMailPrompt() -> some View {
-        ZStack {
-            ExposePromptColor
-        }
-        .alert(isPresented: $showMailAlert) {
-            sendEmailAlert
-        }
-    }
-    func supportDevPrompt() -> some View {
-        ZStack {
-            ExposePromptColor
-        }
-        .alert(isPresented: $timerSession.showSupportAd) {
-            helpAlert
-        }
-    }
-    func reviewTheAppPrompt() -> some View {
-        ZStack {
-            ExposePromptColor
-        }
-        .alert(isPresented: $timerSession.showReviewAd) {
-            reviewAlert
-        }
-    }
+//    let ExposePromptColor = Color(#colorLiteral(red: 1, green: 0.08433114744, blue: 0, alpha: 0))
+//    
+//    func showMailPrompt() -> some View {
+//        ZStack {
+//            ExposePromptColor
+//        }
+//        .alert(isPresented: $showMailAlert) {
+//            sendEmailAlert
+//        }
+//    }
+//    func supportDevPrompt() -> some View {
+//        ZStack {
+//            ExposePromptColor
+//        }
+//        .alert(isPresented: $timerSession.showSupportAd) {
+//            helpAlert
+//        }
+//    }
+//    func reviewTheAppPrompt() -> some View {
+//        ZStack {
+//            ExposePromptColor
+//        }
+//        .alert(isPresented: $timerSession.showReviewAd) {
+//            reviewAlert
+//        }
+//    }
     
 }
 

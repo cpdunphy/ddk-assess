@@ -166,8 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				F0B574B7239EFF8800194412 /* ProductsStore.swift */,
-				F0E44E0A239FD566000D2DC7 /* IAPManager.swift */,
 				F09213FA23AC401200054132 /* Email Coordinator.swift */,
+				F0E44E0A239FD566000D2DC7 /* IAPManager.swift */,
 			);
 			path = "IAP Setup";
 			sourceTree = "<group>";
