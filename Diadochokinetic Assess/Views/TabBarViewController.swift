@@ -44,7 +44,7 @@ struct TabBarViewController: View {
             }),
             secondaryButton: .default(Text("No"), action: {
                 if MFMailComposeViewController.canSendMail() {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         print("This message is delayed")
                         self.timerSession.activeAlert = .email
                         self.timerSession.showCentralAlert = true

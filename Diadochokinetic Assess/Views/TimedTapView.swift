@@ -85,7 +85,7 @@ struct TimedTapView : View {
                 ForEach(1...60, id: \.self) { time in
                     Text("\(time)")
                         .font(.custom("Nunito-SemiBold", size: 20))
-                        .tag(time <= 60 && time > 0 ? time : 3)
+//                        .tag(time <= 60 && time > 0 ? time : 3)
                 }.id(0)
             }.frame(width: 290, height: 235)
                 .offset(CGSize(width: -5, height: 0))

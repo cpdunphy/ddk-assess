@@ -47,8 +47,7 @@ struct TapHistoryList : View {
                     }
                 }.onDelete(perform: delete)
                 
-                    
-                Text(timerSession.totalLogCount != 0 ? "You have done \(timerSession.totalLogCount) DDK Assessments in total!\nPlease consider supporting the developer." : "")
+                Text("You have done \(timerSession.totalLogCount) DDK Assessment\(timerSession.totalLogCount == 1 ? "" : "s")! \(timerSession.logCount > 0 && timerSession.totalLogCount > 0 ? "\nPlease consider supporting the developer." : "")")
                     .font(.custom("Nunito-SemiBold", size: regularTextSize))
                 
                 
@@ -58,14 +57,14 @@ struct TapHistoryList : View {
                 leading: Button(action: {
                     self.presentSettingsModal.toggle()
                 }) {
-                    Image("gear")
+                    Image(systemName: "gear")
                         .font(.title)
                         .imageScale(.medium)
                 },
                 trailing: Button(action: {
                     self.showDeleteConf = true
                 }) {
-                    Image("trash.fill")
+                    Image(systemName: "trash.fill")
                         .font(.title)
                         .imageScale(.small)
                 }.alert(isPresented: $showDeleteConf) {
