@@ -40,7 +40,9 @@ struct UntimedTapView: View {
             .frame(height: Screen.width*0.25)
             .padding([.leading, .trailing], Screen.width * 0.09)
             
-            
+//            Button("Tap") {
+//                startTime = Date()
+//            }
             TapButton(timed: false).environmentObject(timerSession)//.padding(.top, -10)
             }
         }
@@ -51,13 +53,19 @@ struct UntimedTapView: View {
             .cornerRadius(15)
     }
     
+//    @State private var startTime : Date = Date()
+    
     func UntimedCenterText() -> some View {
         VStack {
             Text("\(timerSession.unTimedTaps) \(timerSession.unTimedTaps == 1 ? "tap" : "taps")")
                 .font(.custom("Nunito-Bold", size: 50))
                 .padding(.bottom)
-            Text(timerSession.getStandardTimeDisplayString(seconds: timerSession.currentUntimedCount))
+            Text(timerSession.getStandardTimeDisplayString(time: timerSession.currentUntimedCount))
+//            Text(startTime.addingTimeInterval(startTime.distance(to: Date())), style: .timer)
                 .font(.custom("Nunito-SemiBold", size: 22))
+//            Text("\(timerSession.currentUntimedCount)")
+//                .font(.custom("Nunito-SemiBold", size: 22))
+
         }
     }
 }

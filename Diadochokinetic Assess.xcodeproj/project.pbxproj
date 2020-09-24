@@ -31,6 +31,7 @@
 		F0E44E0F239FE11A000D2DC7 /* IAPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E44E0E239FE11A000D2DC7 /* IAPView.swift */; };
 		F0E44E1123A01BF8000D2DC7 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0E44E1023A01BF8000D2DC7 /* Nunito-Regular.ttf */; };
 		F0E44E1523A0481D000D2DC7 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0E44E1423A0481C000D2DC7 /* Nunito-Light.ttf */; };
+		F0F718AD250D191500905AC5 /* DDKApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F718AC250D191500905AC5 /* DDKApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		F0E44E0E239FE11A000D2DC7 /* IAPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPView.swift; sourceTree = "<group>"; };
 		F0E44E1023A01BF8000D2DC7 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		F0E44E1423A0481C000D2DC7 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
+		F0F718AC250D191500905AC5 /* DDKApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDKApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			children = (
 				F0C0FCF2239A8EF100CBF025 /* DDK.entitlements */,
 				F0D1826123938C2B0022998E /* AppDelegate.swift */,
+				F0F718AC250D191500905AC5 /* DDKApp.swift */,
 				F0D1826323938C2B0022998E /* SceneDelegate.swift */,
 				F0D1826723938C380022998E /* Assets.xcassets */,
 				F0E44E08239FD4E2000D2DC7 /* Constants.swift */,
@@ -256,6 +259,7 @@
 				F0D1827E23938D0B0022998E /* TapHistoryList.swift in Sources */,
 				F0C0FCE22394BD0700CBF025 /* UntimedTapView.swift in Sources */,
 				F0E44E09239FD4E3000D2DC7 /* Constants.swift in Sources */,
+				F0F718AD250D191500905AC5 /* DDKApp.swift in Sources */,
 				F0D1826423938C2B0022998E /* SceneDelegate.swift in Sources */,
 				F0D1828023938D0B0022998E /* TimedTapView.swift in Sources */,
 				F0D1826623938C2B0022998E /* TabBarViewController.swift in Sources */,
@@ -410,7 +414,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Diadochokinetic-Assess";
 				PRODUCT_NAME = DDK;
 				SWIFT_VERSION = 5.0;
@@ -434,7 +438,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Diadochokinetic-Assess";
 				PRODUCT_NAME = DDK;
 				SWIFT_VERSION = 5.0;
