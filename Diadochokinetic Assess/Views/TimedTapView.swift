@@ -180,7 +180,7 @@ struct TapButton : View {
     }
 }
 
-//MARK: CenterCircleText
+//MARK: - CenterCircleText
 struct CenterCircleText : View {
     @EnvironmentObject var timerSession : TimerSession
     var body : some View {
@@ -191,8 +191,8 @@ struct CenterCircleText : View {
             VStack(spacing: 10) {
                 Text(getLabelText(finished: timerSession.countingState == .finished, taps: timerSession.timedTaps, countdownCount: timerSession.countdownCount, showHeartRate: timerSession.showHeartRate))
                     .font(.custom("Nunito-Bold", size: 60))
-                    .lineLimit(1)
-                    .minimumScaleFactor(.leastNonzeroMagnitude)
+                    .layoutPriority(1.0)
+                    .minimumScaleFactor(0.003)
                 
                 Text(getTaps())
                     .lineLimit(1)

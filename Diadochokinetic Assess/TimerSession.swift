@@ -26,7 +26,7 @@ class TimerSession: ObservableObject {
     ///Time left on the Timer + Countdown
     @Published var currentTimedCount: Double = 10.0
     @Published var countdownCount = UserDefaults.standard.double(forKey: countdownKey) + 0.9
-    @Published var currentUntimedCount = 0
+    @Published var currentUntimedCount : Double = 0
 
     ///Timer CountingState
     @Published var countingState: PossibleCountingStates = .ready
@@ -138,7 +138,7 @@ class TimerSession: ObservableObject {
 
     private func FinishTimedMode() {
         timerCountingDown.invalidate()
-        let send = Record(date: Date(), taps: timedTaps, timed: true, duration: Int(totalTimerDuration))
+        let send = Record(date: Date(), taps: timedTaps, timed: true, duration: totalTimerDuration)
         increaseLogCount()
         self.recordingsArr.insert(send, at: 0)
         countingState = .finished
@@ -180,7 +180,7 @@ class TimerSession: ObservableObject {
 
     }
     private func logUntimed() {
-        let send = Record(date: Date(), taps: unTimedTaps, timed: false, duration: Int(currentUntimedCount))
+        let send = Record(date: Date(), taps: unTimedTaps, timed: false, duration: currentUntimedCount)
         increaseLogCount()
         self.recordingsArr.insert(send, at: 0)
         hapticFeedback.notificationOccurred(.success)
@@ -191,33 +191,52 @@ class TimerSession: ObservableObject {
     }
     
     private func startUntimed() {
-        timerCountingUp = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerDidFireUp), userInfo: nil, repeats: true)
+        
+//        var date : Date = Timer.publish(every: 1, on: .main, in: .common)
+//        timerCountingUp = Timer(timeInterval: 0.1, target: self, selector: #selector(timerDidFireUp), userInfo: nil, repeats: true)
+        
+            timerCountingUp = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(timerDidFireUp), userInfo: nil, repeats: true)
+        
+
     }
     
     @objc func timerDidFireUp() {
-        currentUntimedCount += 1
+        currentUntimedCount += 0.1
     }
     
     /// Time (String) in "00:00 format"
     ///
     /// - Parameter value: seconds (Int)
     /// - Returns: String to be displayed for standard "00:00 Display"
-    func getStandardTimeDisplayString(seconds: Int) -> String {
-        if seconds < 10 {
-            return "00:0\(seconds)"
-        } else if seconds >= 10 && seconds < 60 {
-            return "00:\(seconds)"
-        } else if seconds >= 60 && seconds < 600 {
-            if seconds%60 < 10 {
-                return "0\(seconds/60):0\(seconds%60)"
-            }
-            return "0\(seconds/60):\(seconds%60)"
-        } else {
-            if seconds%60 < 10 {
-                return "\(seconds/60):0\(seconds%60)"
-            }
-            return "\(seconds/60):\(seconds%60)"
+    func getStandardTimeDisplayString(time: Double) -> String {
+        let mins = Int(time)/60
+        var remainingSeconds = time - Double((mins * 60))
+        let seconds = String(format: "%.1f", remainingSeconds)
+        var minsZero = ""
+        while "\(mins)".count + minsZero.count < 2 {
+            minsZero += "0"
         }
+        var secsZero = ""
+        while seconds.count + secsZero.count < 4 {
+            secsZero += "0"
+        }
+        
+        return "\(minsZero)\(mins):\(secsZero)\(seconds)"
+//        if seconds < 10 {
+//            return "00:0\(seconds)"
+//        } else if seconds >= 10 && seconds < 60 {
+//            return "00:\(seconds)"
+//        } else if seconds >= 60 && seconds < 600 {
+//            if seconds%60 < 10 {
+//                return "0\(seconds/60):0\(seconds%60)"
+//            }
+//            return "0\(seconds/60):\(seconds%60)"
+//        } else {
+//            if seconds%60 < 10 {
+//                return "\(seconds/60):0\(seconds%60)"
+//            }
+//            return "\(seconds/60):\(seconds%60)"
+//        }
     }
     
     /// Fires at first tap of Untimed Mode

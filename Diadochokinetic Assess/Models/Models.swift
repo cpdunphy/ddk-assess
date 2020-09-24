@@ -13,7 +13,7 @@ struct Record : Identifiable, Hashable {
     var date: Date
     var taps: Int
     var timed: Bool
-    var duration: Int
+    var duration: Double
 }
 
 enum PossibleCountingStates {

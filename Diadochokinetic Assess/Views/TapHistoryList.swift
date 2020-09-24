@@ -26,53 +26,86 @@ struct TapHistoryList : View {
     @Binding var isShowingMailView : Bool
     var body : some View {
         NavigationView {
-            List {
-//                Text("\(timerSession.logCount)/60")
-                
-                ForEach(timerSession.recordingsArr, id: \.self) { record in
-                    RecordRow(record: record)
-                    .contextMenu {
-                        Button(action: {
-                            // change country setting
-                        }) {
-                            Text("Pin to Device")
-                            Image(systemName: "pin")
-                        }
-                        Button(action: {
-//                            self.delete
-                        }) {
-                            Text("Delete")
-                            Image(systemName: "trash")
-                        }
-                    }
-                }.onDelete(perform: delete)
-                
-                Text("You have done \(timerSession.totalLogCount) DDK Assessment\(timerSession.totalLogCount == 1 ? "" : "s")! \(timerSession.logCount > 0 && timerSession.totalLogCount > 0 ? "\nPlease consider supporting the developer." : "")")
-                    .font(.custom("Nunito-SemiBold", size: regularTextSize))
-                
-                
-            }
-            .navigationBarTitle(Text("History").font(.custom("Nunito-Regular", size: regularTextSize)), displayMode: .inline)
-            .navigationBarItems(
-                leading: Button(action: {
-                    self.presentSettingsModal.toggle()
-                }) {
-                    Image(systemName: "gear")
-                        .font(.title)
-                        .imageScale(.medium)
-                },
-                trailing: Button(action: {
-                    self.showDeleteConf = true
-                }) {
-                    Image(systemName: "trash.fill")
-                        .font(.title)
-                        .imageScale(.small)
-                }.alert(isPresented: $showDeleteConf) {
-                    deleteAlert
+            if #available(iOS 14.0, *) {
+                List {
+                    //                Text("\(timerSession.logCount)/60")
+                    
+                    ForEach(timerSession.recordingsArr, id: \.self) { record in
+                        RecordRow(record: record)
+                            .contextMenu {
+                                Button(action: {
+                                    // change country setting
+                                }) {
+                                    Text("Pin to Device")
+                                    Image(systemName: "pin")
+                                }
+                                Button(action: {
+                                    //                            self.delete
+                                }) {
+                                    Text("Delete")
+                                    Image(systemName: "trash")
+                                }
+                            }
+                    }.onDelete(perform: delete)
+                    
+                    Text("You have done \(timerSession.totalLogCount) DDK Assessment\(timerSession.totalLogCount == 1 ? "" : "s")! \(timerSession.logCount > 0 && timerSession.totalLogCount > 0 ? "\nPlease consider supporting the developer." : "")")
+                        .font(.custom("Nunito-SemiBold", size: regularTextSize))
+                    
+                    
                 }
-            )
+                .listStyle(InsetGroupedListStyle())
+                .navigationBarTitle("History", displayMode: .inline)
+                .navigationBarItems(
+                    leading: Button(action: {
+                        self.presentSettingsModal.toggle()
+                    }) {
+                        Image(systemName: "gear")
+                            .font(.title)
+                            .imageScale(.medium)
+                    },
+                    trailing: Button(action: {
+                        self.showDeleteConf = true
+                    }) {
+                        Image(systemName: "trash.fill")
+                            .font(.title)
+                            .imageScale(.small)
+                    }.alert(isPresented: $showDeleteConf) {
+                        deleteAlert
+                    }
+                )
                 .sheet(isPresented: $presentSettingsModal) {
                     Settings(presentSettingsModal: self.$presentSettingsModal, isShowingMailView: self.$isShowingMailView).environmentObject(self.timerSession)
+                }
+            } else {
+                List {
+                    ForEach(timerSession.recordingsArr, id: \.self) { record in
+                        RecordRow(record: record)
+                    }.onDelete(perform: delete)
+                    Text("You have done \(timerSession.totalLogCount) DDK Assessment\(timerSession.totalLogCount == 1 ? "" : "s")! \(timerSession.logCount > 0 && timerSession.totalLogCount > 0 ? "\nPlease consider supporting the developer." : "")")
+                        .font(.custom("Nunito-SemiBold", size: regularTextSize))
+                }
+                .navigationBarTitle("History", displayMode: .inline)
+                .navigationBarItems(
+                    leading: Button(action: {
+                        self.presentSettingsModal.toggle()
+                    }) {
+                        Image(systemName: "gear")
+                            .font(.title)
+                            .imageScale(.medium)
+                    },
+                    trailing: Button(action: {
+                        self.showDeleteConf = true
+                    }) {
+                        Image(systemName: "trash.fill")
+                            .font(.title)
+                            .imageScale(.small)
+                    }.alert(isPresented: $showDeleteConf) {
+                        deleteAlert
+                    }
+                )
+                .sheet(isPresented: $presentSettingsModal) {
+                    Settings(presentSettingsModal: self.$presentSettingsModal, isShowingMailView: self.$isShowingMailView).environmentObject(self.timerSession)
+                }
             }
         }
     }
@@ -89,7 +122,7 @@ struct TapHistoryList : View {
                     Text("\(record.taps) \(record.taps == 1 ? "tap" : "taps")")
                         .font(.custom("Nunito-Regular", size: regularTextSize))
                     Spacer()
-                    Text(getSecondsLength(time: record.duration))
+                    Text(record.timed ? getSecondsLength(time: Int(record.duration)) : getSecondsLengthDouble(time: record.duration))
                         .font(.custom("Nunito-Regular", size: regularTextSize))
                 }
                 HStack {
@@ -113,6 +146,15 @@ struct TapHistoryList : View {
                 return "\(time / 60) \(time / 60 == 1 ? "minute" : "minutes")"
             } else {
                 return "\(time) \(time == 1 ? "second" : "seconds")"
+            }
+        }
+        
+        func getSecondsLengthDouble(time: Double) -> String {
+            if time / 60 >= 1 {
+                return "\(time / 60) \(time / 60 == 1 ? "minute" : "minutes")"
+            } else {
+                let send = String(format: "%.1f", time)
+                return "\(send) \(send == "1.0" ? "second" : "seconds")"
             }
         }
         

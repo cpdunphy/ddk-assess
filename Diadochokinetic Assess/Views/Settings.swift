@@ -98,8 +98,8 @@ struct Settings: View {
             .sheet(isPresented: $isShowingMailView) {
                 MailView(result: self.$result)
             }
-            .navigationBarTitle(Text("Settings").font(.custom("Nunito-Regular", size: regularTextSize)))
-        .navigationBarItems(trailing: CloseButton())
+            .navigationBarTitle("Settings")
+            .navigationBarItems(trailing: CloseButton())
         }
         
     }
@@ -108,6 +108,7 @@ struct Settings: View {
             self.presentSettingsModal = false
         }) {
             Text("Close")
+                .foregroundColor(Color("AccentColor"))
         }
     }
     
