@@ -1,0 +1,801 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F025287A251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */; };
+		F025287B251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */; };
+		F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */; };
+		F0252882251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */; };
+		F0252888251CCC8600D2F5DF /* AssessmentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252887251CCC8600D2F5DF /* AssessmentPicker.swift */; };
+		F0252889251CCC8600D2F5DF /* AssessmentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252887251CCC8600D2F5DF /* AssessmentPicker.swift */; };
+		F02DB400251C23440038FEAE /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02DB3FF251C23440038FEAE /* Tests_iOS.swift */; };
+		F02DB40B251C23440038FEAE /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02DB40A251C23440038FEAE /* Tests_macOS.swift */; };
+		F02DB40D251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02DB3E4251C23430038FEAE /* Diadochokinetic_AssessApp.swift */; };
+		F02DB40E251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02DB3E4251C23430038FEAE /* Diadochokinetic_AssessApp.swift */; };
+		F02DB40F251C23440038FEAE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02DB3E5251C23430038FEAE /* ContentView.swift */; };
+		F02DB410251C23440038FEAE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02DB3E5251C23430038FEAE /* ContentView.swift */; };
+		F02DB411251C23440038FEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F02DB3E6251C23440038FEAE /* Assets.xcassets */; };
+		F02DB412251C23440038FEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F02DB3E6251C23440038FEAE /* Assets.xcassets */; };
+		F03046FD251E36F300B438E7 /* TimerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03046FC251E36F300B438E7 /* TimerSession.swift */; };
+		F03046FE251E36F300B438E7 /* TimerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03046FC251E36F300B438E7 /* TimerSession.swift */; };
+		F0304708251E4CD100B438E7 /* TapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0304707251E4CD100B438E7 /* TapButton.swift */; };
+		F0304709251E4CD100B438E7 /* TapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0304707251E4CD100B438E7 /* TapButton.swift */; };
+		F030470F251E65F400B438E7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030470E251E65F300B438E7 /* Color.swift */; };
+		F0304710251E65F400B438E7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030470E251E65F300B438E7 /* Color.swift */; };
+		F0C75699251C3A4300D066A9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C75698251C3A4300D066A9 /* StoreKit.framework */; };
+		F0C7569F251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */; };
+		F0C756A0251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */; };
+		F0C756B0251C3DA500D066A9 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756AF251C3DA500D066A9 /* States.swift */; };
+		F0C756B1251C3DA500D066A9 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756AF251C3DA500D066A9 /* States.swift */; };
+		F0C756B7251C3DC000D066A9 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756B6251C3DC000D066A9 /* Record.swift */; };
+		F0C756B8251C3DC000D066A9 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756B6251C3DC000D066A9 /* Record.swift */; };
+		F0CEA381251CC5C700818C6D /* CountingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CEA380251CC5C700818C6D /* CountingState.swift */; };
+		F0CEA382251CC5C700818C6D /* CountingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CEA380251CC5C700818C6D /* CountingState.swift */; };
+		F0D5539E251C24340084E0EB /* DDKModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5539D251C24340084E0EB /* DDKModel.swift */; };
+		F0D5539F251C24340084E0EB /* DDKModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5539D251C24340084E0EB /* DDKModel.swift */; };
+		F0D553A5251C24750084E0EB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D553A4251C24750084E0EB /* Store.swift */; };
+		F0D553A6251C24750084E0EB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D553A4251C24750084E0EB /* Store.swift */; };
+		F0D553AD251C3A000084E0EB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0D553AC251C3A000084E0EB /* StoreKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F02DB3FC251C23440038FEAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F02DB3DF251C23430038FEAE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F02DB3EA251C23440038FEAE;
+			remoteInfo = "Diadochokinetic Assess (iOS)";
+		};
+		F02DB407251C23440038FEAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F02DB3DF251C23430038FEAE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F02DB3F2251C23440038FEAE;
+			remoteInfo = "Diadochokinetic Assess (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMobileNavigation.swift; sourceTree = "<group>"; };
+		F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSidebarNavigation.swift; sourceTree = "<group>"; };
+		F0252887251CCC8600D2F5DF /* AssessmentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentPicker.swift; sourceTree = "<group>"; };
+		F02DB3E4251C23430038FEAE /* Diadochokinetic_AssessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diadochokinetic_AssessApp.swift; sourceTree = "<group>"; };
+		F02DB3E5251C23430038FEAE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F02DB3E6251C23440038FEAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F02DB3EB251C23440038FEAE /* Diadochokinetic Assess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Diadochokinetic Assess.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F02DB3EE251C23440038FEAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F02DB3F3251C23440038FEAE /* Diadochokinetic Assess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Diadochokinetic Assess.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F02DB3F5251C23440038FEAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F02DB3F6251C23440038FEAE /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		F02DB3FB251C23440038FEAE /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F02DB3FF251C23440038FEAE /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		F02DB401251C23440038FEAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F02DB406251C23440038FEAE /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F02DB40A251C23440038FEAE /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		F02DB40C251C23440038FEAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F03046FC251E36F300B438E7 /* TimerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSession.swift; sourceTree = "<group>"; };
+		F0304707251E4CD100B438E7 /* TapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapButton.swift; sourceTree = "<group>"; };
+		F030470E251E65F300B438E7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		F0C75698251C3A4300D066A9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SupportConfiguration.storekit; sourceTree = "<group>"; };
+		F0C756AF251C3DA500D066A9 /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		F0C756B6251C3DC000D066A9 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		F0CEA380251CC5C700818C6D /* CountingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingState.swift; sourceTree = "<group>"; };
+		F0D5539D251C24340084E0EB /* DDKModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDKModel.swift; sourceTree = "<group>"; };
+		F0D553A4251C24750084E0EB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		F0D553AC251C3A000084E0EB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F02DB3E8251C23440038FEAE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0D553AD251C3A000084E0EB /* StoreKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F02DB3F0251C23440038FEAE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0C75699251C3A4300D066A9 /* StoreKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F02DB3F8251C23440038FEAE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F02DB403251C23440038FEAE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F02DB3DE251C23430038FEAE = {
+			isa = PBXGroup;
+			children = (
+				F02DB3E3251C23430038FEAE /* Shared */,
+				F02DB3ED251C23440038FEAE /* iOS */,
+				F02DB3F4251C23440038FEAE /* macOS */,
+				F02DB3FE251C23440038FEAE /* Tests iOS */,
+				F02DB409251C23440038FEAE /* Tests macOS */,
+				F02DB3EC251C23440038FEAE /* Products */,
+				F0D553AB251C3A000084E0EB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F02DB3E3251C23430038FEAE /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				F02DB3E4251C23430038FEAE /* Diadochokinetic_AssessApp.swift */,
+				F02DB3E5251C23430038FEAE /* ContentView.swift */,
+				F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */,
+				F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */,
+				F0C756A5251C3B2900D066A9 /* Model */,
+				F0252887251CCC8600D2F5DF /* AssessmentPicker.swift */,
+				F0304707251E4CD100B438E7 /* TapButton.swift */,
+				F02DB3E6251C23440038FEAE /* Assets.xcassets */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		F02DB3EC251C23440038FEAE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F02DB3EB251C23440038FEAE /* Diadochokinetic Assess.app */,
+				F02DB3F3251C23440038FEAE /* Diadochokinetic Assess.app */,
+				F02DB3FB251C23440038FEAE /* Tests iOS.xctest */,
+				F02DB406251C23440038FEAE /* Tests macOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F02DB3ED251C23440038FEAE /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F02DB3EE251C23440038FEAE /* Info.plist */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		F02DB3F4251C23440038FEAE /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				F02DB3F5251C23440038FEAE /* Info.plist */,
+				F02DB3F6251C23440038FEAE /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		F02DB3FE251C23440038FEAE /* Tests iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F02DB3FF251C23440038FEAE /* Tests_iOS.swift */,
+				F02DB401251C23440038FEAE /* Info.plist */,
+			);
+			path = "Tests iOS";
+			sourceTree = "<group>";
+		};
+		F02DB409251C23440038FEAE /* Tests macOS */ = {
+			isa = PBXGroup;
+			children = (
+				F02DB40A251C23440038FEAE /* Tests_macOS.swift */,
+				F02DB40C251C23440038FEAE /* Info.plist */,
+			);
+			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		F0C756A5251C3B2900D066A9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */,
+				F0D5539D251C24340084E0EB /* DDKModel.swift */,
+				F03046FC251E36F300B438E7 /* TimerSession.swift */,
+				F0C756AF251C3DA500D066A9 /* States.swift */,
+				F030470E251E65F300B438E7 /* Color.swift */,
+				F0D553A4251C24750084E0EB /* Store.swift */,
+				F0C756B6251C3DC000D066A9 /* Record.swift */,
+				F0CEA380251CC5C700818C6D /* CountingState.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F0D553AB251C3A000084E0EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F0C75698251C3A4300D066A9 /* StoreKit.framework */,
+				F0D553AC251C3A000084E0EB /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F02DB3EA251C23440038FEAE /* Diadochokinetic Assess (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F02DB415251C23440038FEAE /* Build configuration list for PBXNativeTarget "Diadochokinetic Assess (iOS)" */;
+			buildPhases = (
+				F02DB3E7251C23440038FEAE /* Sources */,
+				F02DB3E8251C23440038FEAE /* Frameworks */,
+				F02DB3E9251C23440038FEAE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Diadochokinetic Assess (iOS)";
+			productName = "Diadochokinetic Assess (iOS)";
+			productReference = F02DB3EB251C23440038FEAE /* Diadochokinetic Assess.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F02DB3F2251C23440038FEAE /* Diadochokinetic Assess (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F02DB418251C23440038FEAE /* Build configuration list for PBXNativeTarget "Diadochokinetic Assess (macOS)" */;
+			buildPhases = (
+				F02DB3EF251C23440038FEAE /* Sources */,
+				F02DB3F0251C23440038FEAE /* Frameworks */,
+				F02DB3F1251C23440038FEAE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Diadochokinetic Assess (macOS)";
+			productName = "Diadochokinetic Assess (macOS)";
+			productReference = F02DB3F3251C23440038FEAE /* Diadochokinetic Assess.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F02DB3FA251C23440038FEAE /* Tests iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F02DB41B251C23440038FEAE /* Build configuration list for PBXNativeTarget "Tests iOS" */;
+			buildPhases = (
+				F02DB3F7251C23440038FEAE /* Sources */,
+				F02DB3F8251C23440038FEAE /* Frameworks */,
+				F02DB3F9251C23440038FEAE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F02DB3FD251C23440038FEAE /* PBXTargetDependency */,
+			);
+			name = "Tests iOS";
+			productName = "Tests iOS";
+			productReference = F02DB3FB251C23440038FEAE /* Tests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		F02DB405251C23440038FEAE /* Tests macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F02DB41E251C23440038FEAE /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildPhases = (
+				F02DB402251C23440038FEAE /* Sources */,
+				F02DB403251C23440038FEAE /* Frameworks */,
+				F02DB404251C23440038FEAE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F02DB408251C23440038FEAE /* PBXTargetDependency */,
+			);
+			name = "Tests macOS";
+			productName = "Tests macOS";
+			productReference = F02DB406251C23440038FEAE /* Tests macOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F02DB3DF251C23430038FEAE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					F02DB3EA251C23440038FEAE = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					F02DB3F2251C23440038FEAE = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					F02DB3FA251C23440038FEAE = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = F02DB3EA251C23440038FEAE;
+					};
+					F02DB405251C23440038FEAE = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = F02DB3F2251C23440038FEAE;
+					};
+				};
+			};
+			buildConfigurationList = F02DB3E2251C23430038FEAE /* Build configuration list for PBXProject "Diadochokinetic Assess" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F02DB3DE251C23430038FEAE;
+			productRefGroup = F02DB3EC251C23440038FEAE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F02DB3EA251C23440038FEAE /* Diadochokinetic Assess (iOS) */,
+				F02DB3F2251C23440038FEAE /* Diadochokinetic Assess (macOS) */,
+				F02DB3FA251C23440038FEAE /* Tests iOS */,
+				F02DB405251C23440038FEAE /* Tests macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F02DB3E9251C23440038FEAE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F02DB411251C23440038FEAE /* Assets.xcassets in Resources */,
+				F0C7569F251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F02DB3F1251C23440038FEAE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F02DB412251C23440038FEAE /* Assets.xcassets in Resources */,
+				F0C756A0251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F02DB3F9251C23440038FEAE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F02DB404251C23440038FEAE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F02DB3E7251C23440038FEAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0D5539E251C24340084E0EB /* DDKModel.swift in Sources */,
+				F02DB40F251C23440038FEAE /* ContentView.swift in Sources */,
+				F0C756B7251C3DC000D066A9 /* Record.swift in Sources */,
+				F02DB40D251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
+				F030470F251E65F400B438E7 /* Color.swift in Sources */,
+				F0D553A5251C24750084E0EB /* Store.swift in Sources */,
+				F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */,
+				F025287A251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */,
+				F0304708251E4CD100B438E7 /* TapButton.swift in Sources */,
+				F0C756B0251C3DA500D066A9 /* States.swift in Sources */,
+				F0CEA381251CC5C700818C6D /* CountingState.swift in Sources */,
+				F03046FD251E36F300B438E7 /* TimerSession.swift in Sources */,
+				F0252888251CCC8600D2F5DF /* AssessmentPicker.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F02DB3EF251C23440038FEAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0D5539F251C24340084E0EB /* DDKModel.swift in Sources */,
+				F02DB410251C23440038FEAE /* ContentView.swift in Sources */,
+				F0C756B8251C3DC000D066A9 /* Record.swift in Sources */,
+				F02DB40E251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
+				F0304710251E65F400B438E7 /* Color.swift in Sources */,
+				F0D553A6251C24750084E0EB /* Store.swift in Sources */,
+				F0252882251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */,
+				F025287B251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */,
+				F0304709251E4CD100B438E7 /* TapButton.swift in Sources */,
+				F0C756B1251C3DA500D066A9 /* States.swift in Sources */,
+				F0CEA382251CC5C700818C6D /* CountingState.swift in Sources */,
+				F03046FE251E36F300B438E7 /* TimerSession.swift in Sources */,
+				F0252889251CCC8600D2F5DF /* AssessmentPicker.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F02DB3F7251C23440038FEAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F02DB400251C23440038FEAE /* Tests_iOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F02DB402251C23440038FEAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F02DB40B251C23440038FEAE /* Tests_macOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F02DB3FD251C23440038FEAE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F02DB3EA251C23440038FEAE /* Diadochokinetic Assess (iOS) */;
+			targetProxy = F02DB3FC251C23440038FEAE /* PBXContainerItemProxy */;
+		};
+		F02DB408251C23440038FEAE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F02DB3F2251C23440038FEAE /* Diadochokinetic Assess (macOS) */;
+			targetProxy = F02DB407251C23440038FEAE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F02DB413251C23440038FEAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F02DB414251C23440038FEAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		F02DB416251C23440038FEAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 896Q68CL7P;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Diadochokinetic-Assess";
+				PRODUCT_NAME = "Diadochokinetic Assess";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F02DB417251C23440038FEAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 896Q68CL7P;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Diadochokinetic-Assess";
+				PRODUCT_NAME = "Diadochokinetic Assess";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F02DB419251C23440038FEAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 896Q68CL7P;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Diadochokinetic-Assess";
+				PRODUCT_NAME = "Diadochokinetic Assess";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F02DB41A251C23440038FEAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 896Q68CL7P;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Diadochokinetic-Assess";
+				PRODUCT_NAME = "Diadochokinetic Assess";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		F02DB41C251C23440038FEAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 896Q68CL7P;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Diadochokinetic Assess (iOS)";
+			};
+			name = Debug;
+		};
+		F02DB41D251C23440038FEAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 896Q68CL7P;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Diadochokinetic Assess (iOS)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F02DB41F251C23440038FEAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 896Q68CL7P;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Diadochokinetic Assess (macOS)";
+			};
+			name = Debug;
+		};
+		F02DB420251C23440038FEAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 896Q68CL7P;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Diadochokinetic Assess (macOS)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F02DB3E2251C23430038FEAE /* Build configuration list for PBXProject "Diadochokinetic Assess" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F02DB413251C23440038FEAE /* Debug */,
+				F02DB414251C23440038FEAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F02DB415251C23440038FEAE /* Build configuration list for PBXNativeTarget "Diadochokinetic Assess (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F02DB416251C23440038FEAE /* Debug */,
+				F02DB417251C23440038FEAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F02DB418251C23440038FEAE /* Build configuration list for PBXNativeTarget "Diadochokinetic Assess (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F02DB419251C23440038FEAE /* Debug */,
+				F02DB41A251C23440038FEAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F02DB41B251C23440038FEAE /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F02DB41C251C23440038FEAE /* Debug */,
+				F02DB41D251C23440038FEAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F02DB41E251C23440038FEAE /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F02DB41F251C23440038FEAE /* Debug */,
+				F02DB420251C23440038FEAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F02DB3DF251C23430038FEAE /* Project object */;
+}
