@@ -12,12 +12,13 @@ struct TapButton: View {
     @EnvironmentObject var timerSession: TimerSession
     @EnvironmentObject var model : DDKModel
     
+    #if os(iOS)
     let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
+    #endif
     var body : some View {
-        ZStack {
-            if model.currentTimedState == .counting || !(model.assessType == .timed) {
-                
-                Button(action: {
+        if model.currentTimedState == .counting || model.assessType == .count {
+            
+            Button(action: {
 //                    if self.timed {
 //                        self.timerSession.addTimedTaps()
 //                    } else {
@@ -26,16 +27,18 @@ struct TapButton: View {
 //                        }
 //                        self.timerSession.addUntimedTaps()
 //                    }
-                    self.impactFeedbackgenerator.prepare()
-                    self.impactFeedbackgenerator.impactOccurred()
-                }) {
-                    getButtonImage
-                }
-                .buttonStyle(PlainButtonStyle())
                 
-            } else {
+                #if os(iOS)
+                self.impactFeedbackgenerator.prepare()
+                self.impactFeedbackgenerator.impactOccurred()
+                #endif
+            }) {
                 getButtonImage
             }
+            .buttonStyle(PlainButtonStyle())
+            
+        } else {
+            getButtonImage
         }
     }
     
@@ -43,7 +46,8 @@ struct TapButton: View {
         Text(getText)
             .font(.system(size: 50, weight: .semibold, design: .rounded))
             .foregroundColor(model.currentTimedState != .counting && model.assessType == .timed ? Color(#colorLiteral(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)) : Color(#colorLiteral(red: 0.8640799026, green: 0.8640799026, blue: 0.8640799026, alpha: 1)))
-            .frame(minWidth: 150, idealWidth: 300, maxWidth: 500, minHeight: 150, idealHeight: 300, maxHeight: 500)
+//            .frame(minWidth: 150, idealWidth: 300, maxWidth: 500, minHeight: 150, idealHeight: 300, maxHeight: 500)
+            .frame(minWidth: 200, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
             .background(getBackgroundColor)
             .cornerRadius(15)
 //            .shadow(radius: model.currentTimedState != .counting && model.assessType == .timed ? 0 : 2)

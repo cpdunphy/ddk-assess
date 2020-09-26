@@ -39,37 +39,52 @@ struct AssessScreen : View {
     @State private var timer : AnyCancellable?
 
     var body : some View {
-        VStack {
-            Text(TimerLabel())
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .kerning(1)
-                .frame(alignment: .leading)
-            
-            Button("Connect") {
-//                self.timer = Timer.publish(every: 0.1, on: .main, in: .common)
-//                    .autoconnect()
-//                    .sink(receiveValue: { (time) in
-//                        date = time
-//                    })
-//                clearCurrentTime()
-//                model.connectTimer()
+        VStack(spacing: 12) {
+            VStack {
+                Text(timerDescription)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .kerning(1)
+                
+                Text(tapDescrition)
             }
+            .frame(minWidth: 200, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
+            .background(Color(.secondarySystemFill))
+            .layoutPriority(1)
             
-            Button("Clear") {
-                clearCurrentTime()
+            HStack {
+                Button("Connect") {
+    //                clearCurrentTime()
+    //                model.connectTimer()
+                }
+                
+                Button("Clear") {
+                    clearCurrentTime()
+                }
+                
+                Button("Disconnect") {
+    //                timer?.cancel()
+    //                model.disconnectTimer()
+                }
             }
+            .background(Color.green)
+            .layoutPriority(0)
             
-            Button("Disconnect") {
-//                timer?.cancel()
-//                model.disconnectTimer()
-            }
             TapButton()
+                .layoutPriority(1)
+
         }
         .padding(.horizontal, 20)
+        .padding(.bottom, 70)
+
     }
     
-    func TimerLabel() -> String {
+    var tapDescrition : String {
+        return "\(model.currentTaps) \(model.currentTaps == 1 ? "Tap" : "Taps")"
+    }
+    
+    
+    var timerDescription : String {
         switch model.assessType {
         case .timed:
             return getStandardTimeDisplayString(abs(model.referenceDate.timeIntervalSince(timerSession.currentDateTime)))
@@ -86,35 +101,20 @@ struct AssessScreen : View {
             model.latestCountDateRef = Date()
         }
     }
+    
 }
 
 
 
-// Format Time(s) to h/m/s/ds
+// Format Time(s) to m/s/ds
 func getStandardTimeDisplayString(_ time: Double) -> String {
-    
     //https://stackoverflow.com/questions/35215694/format-timer-label-to-hoursminutesseconds-in-swift/35215847
-    let mins = Int(time)/60
-    let remainingSeconds = time - Double((mins * 60))
-    let seconds2 = String(format: "%.1f", remainingSeconds)
-    print("\(seconds2)")
-//    var minsZero = ""
-//    while "\(mins)".count + minsZero.count < 2 {
-//        minsZero += "0"
-//    }
-//    var secsZero = ""
-//    while seconds.count + secsZero.count < 4 {
-//        secsZero += "0"
-//    }
-//
-//    return "\(minsZero)\(mins):\(secsZero)\(seconds)"
+    //https://stackoverflow.com/questions/52332747/what-are-the-supported-swift-string-format-specifiers/52332748
+    
     let minutes = Int(time) / 60 % 60
     let seconds = Int(time) % 60
     let deciseconds = time - Double(Int(time))
     var decisecondsFullStr = "\(Double(round(10*deciseconds)/10))"
     decisecondsFullStr.remove(at: decisecondsFullStr.startIndex)
-    print("\(seconds):\(deciseconds)")
     return String(format:"%02i:%02i%3$@", minutes, seconds, decisecondsFullStr)
-    
-    
 }

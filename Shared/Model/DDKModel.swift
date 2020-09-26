@@ -50,8 +50,6 @@ class DDKModel : ObservableObject {
         }
     }
     
-    
-    
     @Published var currentTimedState : CountingState = .ready
     @Published var currentCountState : CountingState = .ready
     
