@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F025287A251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */; };
-		F025287B251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */; };
 		F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */; };
 		F0252882251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */; };
 		F0252888251CCC8600D2F5DF /* AssessmentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252887251CCC8600D2F5DF /* AssessmentPicker.swift */; };
@@ -27,6 +26,10 @@
 		F0304709251E4CD100B438E7 /* TapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0304707251E4CD100B438E7 /* TapButton.swift */; };
 		F030470F251E65F400B438E7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030470E251E65F300B438E7 /* Color.swift */; };
 		F0304710251E65F400B438E7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030470E251E65F300B438E7 /* Color.swift */; };
+		F060BAC025213C2B009F9C81 /* StatsDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BABF25213C2B009F9C81 /* StatsDisplay.swift */; };
+		F060BAC125213C2B009F9C81 /* StatsDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BABF25213C2B009F9C81 /* StatsDisplay.swift */; };
+		F060BAC725214393009F9C81 /* RecordHistoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BAC625214393009F9C81 /* RecordHistoryList.swift */; };
+		F060BAC825214393009F9C81 /* RecordHistoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BAC625214393009F9C81 /* RecordHistoryList.swift */; };
 		F0C75699251C3A4300D066A9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C75698251C3A4300D066A9 /* StoreKit.framework */; };
 		F0C7569F251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */; };
 		F0C756A0251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */; };
@@ -41,6 +44,10 @@
 		F0D553A5251C24750084E0EB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D553A4251C24750084E0EB /* Store.swift */; };
 		F0D553A6251C24750084E0EB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D553A4251C24750084E0EB /* Store.swift */; };
 		F0D553AD251C3A000084E0EB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0D553AC251C3A000084E0EB /* StoreKit.framework */; };
+		F0E180A725236BA100E808AB /* SupportTheDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180A625236BA100E808AB /* SupportTheDev.swift */; };
+		F0E180A825236BA100E808AB /* SupportTheDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180A625236BA100E808AB /* SupportTheDev.swift */; };
+		F0E180B225236C3500E808AB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180B125236C3500E808AB /* Settings.swift */; };
+		F0E180B325236C3500E808AB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180B125236C3500E808AB /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +88,8 @@
 		F03046FC251E36F300B438E7 /* TimerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSession.swift; sourceTree = "<group>"; };
 		F0304707251E4CD100B438E7 /* TapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapButton.swift; sourceTree = "<group>"; };
 		F030470E251E65F300B438E7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		F060BABF25213C2B009F9C81 /* StatsDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsDisplay.swift; sourceTree = "<group>"; };
+		F060BAC625214393009F9C81 /* RecordHistoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordHistoryList.swift; sourceTree = "<group>"; };
 		F0C75698251C3A4300D066A9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SupportConfiguration.storekit; sourceTree = "<group>"; };
 		F0C756AF251C3DA500D066A9 /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
@@ -89,6 +98,8 @@
 		F0D5539D251C24340084E0EB /* DDKModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDKModel.swift; sourceTree = "<group>"; };
 		F0D553A4251C24750084E0EB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F0D553AC251C3A000084E0EB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		F0E180A625236BA100E808AB /* SupportTheDev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportTheDev.swift; sourceTree = "<group>"; };
+		F0E180B125236C3500E808AB /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,11 +154,9 @@
 			children = (
 				F02DB3E4251C23430038FEAE /* Diadochokinetic_AssessApp.swift */,
 				F02DB3E5251C23430038FEAE /* ContentView.swift */,
-				F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */,
 				F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */,
 				F0C756A5251C3B2900D066A9 /* Model */,
-				F0252887251CCC8600D2F5DF /* AssessmentPicker.swift */,
-				F0304707251E4CD100B438E7 /* TapButton.swift */,
+				F0DC244B2524FB96000CBCA8 /* Views */,
 				F02DB3E6251C23440038FEAE /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -167,6 +176,7 @@
 		F02DB3ED251C23440038FEAE /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */,
 				F02DB3EE251C23440038FEAE /* Info.plist */,
 			);
 			path = iOS;
@@ -221,6 +231,19 @@
 				F0D553AC251C3A000084E0EB /* StoreKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F0DC244B2524FB96000CBCA8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F0252887251CCC8600D2F5DF /* AssessmentPicker.swift */,
+				F060BAC625214393009F9C81 /* RecordHistoryList.swift */,
+				F0E180B125236C3500E808AB /* Settings.swift */,
+				F060BABF25213C2B009F9C81 /* StatsDisplay.swift */,
+				F0E180A625236BA100E808AB /* SupportTheDev.swift */,
+				F0304707251E4CD100B438E7 /* TapButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,13 +408,17 @@
 				F0D5539E251C24340084E0EB /* DDKModel.swift in Sources */,
 				F02DB40F251C23440038FEAE /* ContentView.swift in Sources */,
 				F0C756B7251C3DC000D066A9 /* Record.swift in Sources */,
+				F0E180B225236C3500E808AB /* Settings.swift in Sources */,
 				F02DB40D251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
+				F060BAC025213C2B009F9C81 /* StatsDisplay.swift in Sources */,
+				F060BAC725214393009F9C81 /* RecordHistoryList.swift in Sources */,
 				F030470F251E65F400B438E7 /* Color.swift in Sources */,
 				F0D553A5251C24750084E0EB /* Store.swift in Sources */,
 				F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */,
 				F025287A251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */,
 				F0304708251E4CD100B438E7 /* TapButton.swift in Sources */,
 				F0C756B0251C3DA500D066A9 /* States.swift in Sources */,
+				F0E180A725236BA100E808AB /* SupportTheDev.swift in Sources */,
 				F0CEA381251CC5C700818C6D /* CountingState.swift in Sources */,
 				F03046FD251E36F300B438E7 /* TimerSession.swift in Sources */,
 				F0252888251CCC8600D2F5DF /* AssessmentPicker.swift in Sources */,
@@ -405,13 +432,16 @@
 				F0D5539F251C24340084E0EB /* DDKModel.swift in Sources */,
 				F02DB410251C23440038FEAE /* ContentView.swift in Sources */,
 				F0C756B8251C3DC000D066A9 /* Record.swift in Sources */,
+				F0E180B325236C3500E808AB /* Settings.swift in Sources */,
 				F02DB40E251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
+				F060BAC125213C2B009F9C81 /* StatsDisplay.swift in Sources */,
+				F060BAC825214393009F9C81 /* RecordHistoryList.swift in Sources */,
 				F0304710251E65F400B438E7 /* Color.swift in Sources */,
 				F0D553A6251C24750084E0EB /* Store.swift in Sources */,
 				F0252882251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */,
-				F025287B251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */,
 				F0304709251E4CD100B438E7 /* TapButton.swift in Sources */,
 				F0C756B1251C3DA500D066A9 /* States.swift in Sources */,
+				F0E180A825236BA100E808AB /* SupportTheDev.swift in Sources */,
 				F0CEA382251CC5C700818C6D /* CountingState.swift in Sources */,
 				F03046FE251E36F300B438E7 /* TimerSession.swift in Sources */,
 				F0252889251CCC8600D2F5DF /* AssessmentPicker.swift in Sources */,
@@ -616,6 +646,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 896Q68CL7P;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -641,6 +672,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 896Q68CL7P;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
