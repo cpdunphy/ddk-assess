@@ -42,12 +42,12 @@ struct StatsDisplay: View {
             Spacer(minLength: 0)
             Button(action: handleLeft) {
                 leftButton
-            }.animation(.easeInOut)
+            }
             Spacer(minLength: 0)
             Spacer(minLength: 0)
             Button(action: handleRight) {
                 rightButton
-            }.animation(.easeInOut)
+            }
             Spacer(minLength: 0)
         }
     }
@@ -71,24 +71,21 @@ struct StatsDisplay: View {
     }
     
     func handleLeftTimed() {
-        switch model.currentTimedState {
-        case CountingState.ready, .finished:
-            model.resetTimed()
-        case CountingState.countdown, .counting, .paused:
-            model.stopTimed()
-        }
+        model.resetTimed()
     }
     
     func handleRightTimed() {
         switch model.currentTimedState {
-        case CountingState.ready:
+        case [CountingState.ready]:
             model.startTimed()
-        case CountingState.paused:
+        case [CountingState.paused, .counting], [.paused, .countdown]:
             model.resumeTimed()
-        case CountingState.counting, .countdown:
+        case [CountingState.counting], [.countdown]:
             model.pauseTimed()
-        case CountingState.finished:
+        case [CountingState.finished]:
             showBPMStatus.toggle()
+        default:
+            print("Default Handling Right Button")
         }
     }
     
@@ -112,27 +109,31 @@ struct StatsDisplay: View {
     
     @ViewBuilder var timedRightButton : some View {
         switch model.currentTimedState {
-        case CountingState.ready:
+        case [CountingState.ready]:
             ControlButton(.start)
-        case CountingState.paused:
+        case [CountingState.paused, .counting], [.paused, .countdown]:
             ControlButton(.resume)
-        case CountingState.counting, .countdown:
+        case [CountingState.counting], [.countdown]:
             ControlButton(.pause)
-        case CountingState.finished:
+        case [CountingState.finished]:
             if showBPMStatus {
                 ControlButton(.heartEnabled)
             } else {
                 ControlButton(.heartDisabled)
             }
+        default:
+            Text("Default Right Button")
         }
     }
     
     @ViewBuilder var timedLeftButton : some View {
         switch model.currentTimedState {
-        case CountingState.ready, .finished:
+        case [CountingState.ready], [.finished]:
             ControlButton(.reset)
-        case CountingState.countdown, .counting, .paused:
+        case [CountingState.countdown], [.counting], [.counting, .paused], [.countdown, .paused]:
             ControlButton(.stop)
+        default:
+            Text("Default Left Button")
         }
     }
     
@@ -149,12 +150,14 @@ struct StatsDisplay: View {
     
     @ViewBuilder var timedDisplay : some View {
         switch model.currentTimedState {
-        case .ready:
+        case [.ready]:
             timePicker
-        case .countdown, .counting, .paused:
+        case [.countdown], [.counting], [.paused, .counting], [.paused, .countdown]:
             timerIsCounting
-        case .finished:
+        case [.finished]:
             timerIsFinished
+        default:
+            Text("Default Timed Display")
         }
     }
 
@@ -186,25 +189,29 @@ struct StatsDisplay: View {
     let gColors = [Color(#colorLiteral(red: 0.214261921, green: 0.3599105657, blue: 0.5557389428, alpha: 1)), Color(#colorLiteral(red: 0.2784313725, green: 0.8274509804, blue: 0.7764705882, alpha: 1))]
 
     var progressIndicator : some View {
-        ZStack {
+        var percent = 1.0
+        if model.currentTimedState != [.countdown] && model.currentTimedState != [.countdown, .paused] {
+        percent = calculateTimeLeft()/Double(model.currentlySelectedTimerLength)
+        }
+        
+        return ZStack {
             RoundedRectangle(cornerRadius: 15.0)
-                .stroke(Color.secondary, lineWidth: 14)
+                .stroke(Color.secondary, lineWidth: 7)
             RoundedRectProgress()
-                .trim(from: 0, to: CGFloat(calculateTimeLeft()/Double(model.currentlySelectedTimerLength)))
-                .stroke(AngularGradient(gradient: Gradient(colors: gColors), center: .center, startAngle: .degrees(-90), endAngle: .degrees(270)), style: StrokeStyle(lineWidth: 14,  lineCap: .round))
-                .animation(.linear(duration: 0.125))
-            if model.currentTimedState != .finished {
+                .trim(from: 0, to: CGFloat(percent))
+                .stroke(AngularGradient(gradient: Gradient(colors: gColors), center: .center, startAngle: .degrees(-90), endAngle: .degrees(270)), style: StrokeStyle(lineWidth: 7,  lineCap: .round))
+
+            if model.currentTimedState != [.finished] {
             RoundedRectProgress()
                 .trim(from: 0.0, to: 0.001)
-                .stroke(gColors[0], style: StrokeStyle(lineWidth: 14, lineCap: .round))
+                .stroke(gColors[0], style: StrokeStyle(lineWidth: 7, lineCap: .round))
             }
-        }
+        }.padding(4).animation(.linear)
+        
     }
     
     var timerIsFinished : some View {
-        VStack {
-            titleLabel(showBPMStatus ? bpmDescriptionStr : tapsDescriptionStr)
-        }
+        titleLabel(showBPMStatus ? bpmDescriptionStr : tapsDescriptionStr)
     }
     
     func calculateBPM(taps: Int, duration: TimeInterval) -> Int {
@@ -237,7 +244,7 @@ struct StatsDisplay: View {
     
     func titleLabel(_ label: String) -> some View {
             Text(label)
-                .font(.system(size: 48, weight: .bold, design: .rounded))
+                .font(Font.system(size: 48, weight: .bold, design: .rounded).monospacedDigit())
         }
     
     var seperator : some View {
@@ -249,7 +256,7 @@ struct StatsDisplay: View {
     
     func subtitleLabel(_ label: String) -> some View {
         Text(label)
-            .font(.system(size: 24, weight: .regular, design: .default))
+            .font(Font.system(size: 24, weight: .regular, design: .default).monospacedDigit())
             .kerning(1)
     }
 
@@ -262,7 +269,7 @@ struct StatsDisplay: View {
         var duration : Double = 0.0
         let totalTime = TimeInterval(model.currentlySelectedTimerLength)
         
-        if model.currentTimedState == .paused {
+        if model.currentTimedState == [.paused, .counting] {
             duration = model.referenceDate
                     .addingTimeInterval(totalTime)
                     .addingTimeInterval(model.timeSpentPaused)
@@ -284,7 +291,7 @@ struct StatsDisplay: View {
     func calculateTimeLeftCountdown() -> Double {
         var duration : Double = 0.0
         let totalTime = TimeInterval(model.currentlySelectedCountdownLength)
-        if model.currentTimedState == .paused {
+        if model.currentTimedState == [.paused, .countdown] {
             duration = model.referenceDate
                     .addingTimeInterval(totalTime)
                     .addingTimeInterval(model.timeSpentPaused)
@@ -306,9 +313,15 @@ struct StatsDisplay: View {
     var timerDescription : String {
         switch model.assessType {
         case .timed:
-            
-            
-            return model.currentTimedState == .countdown ?  "\(calculateTimeLeftCountdown())..." :  getStandardTimeDisplayString(calculateTimeLeft())
+            switch model.currentTimedState {
+            case [.countdown], [.countdown, .paused]:
+                return "\(Int(min(calculateTimeLeftCountdown().rounded(.up), Double(model.currentlySelectedCountdownLength))))..."
+//                return "\(String(format: "%.1f", calculateTimeLeftCountdown()))..."
+            case [.counting], [.counting, .paused]:
+                return getStandardTimeDisplayString(calculateTimeLeft())
+            default:
+                return "Default Timer Description"
+            }
         case .count:
             return getStandardTimeDisplayString(max(0, timerSession.currentDateTime.timeIntervalSince(model.referenceDate)))
         }

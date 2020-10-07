@@ -52,7 +52,7 @@ class DDKModel : ObservableObject {
         }
     }
 
-    @Published var currentTimedState : CountingState = .ready
+    @Published var currentTimedState : Set<CountingState> = [.ready]
     @Published var currentCountState : CountingState = .ready
     
     @Published var records : [Record] = []
@@ -84,35 +84,35 @@ extension DDKModel {
     }
     
     func stopTimed() {
-        currentTimedState = .ready
+        currentTimedState = [.ready]
         timeSpentPaused = 0
     }
     
     func pauseTimed() {
-        currentTimedState = .paused
+        currentTimedState.insert(.paused)
         timeStartLatestPaused = Date()
     }
     
     func startTimed() {
-        currentTimedState = .countdown
+        currentTimedState = [.countdown]
         syncTimeRef()
     }
     
     func resetTimed() {
-        currentTimedState = .ready
+        currentTimedState = [.ready]
         timeSpentPaused = 0
         currentTimedTaps = 0
     }
     
     func resumeTimed() {
-        currentTimedState = .counting
+        currentTimedState.remove(.paused)
         let duration = Date().timeIntervalSince(timeStartLatestPaused)
         timeSpentPaused += duration
     }
     
     func finishTimer() {
-        if currentTimedState != .finished {
-            currentTimedState = .finished
+        if currentTimedState != [.finished] {
+            currentTimedState = [.finished]
             let record = Record(date: Date(), taps: currentTimedTaps, timed: true, duration: Double(currentlySelectedTimerLength))
             records.insert(record, at: 0)
             print(records)
@@ -120,9 +120,9 @@ extension DDKModel {
     }
     
     func finishCountdown() {
-        currentTimedState = .counting
-//        timeSpentPaused = 0
-        
+        currentTimedState = [.counting]
+        timeSpentPaused = 0
+        syncTimeRef()
     }
 }
 

@@ -38,6 +38,7 @@ struct Settings: View {
             Section {
                 Button("Reset Preferences") {
                     showResetConfirmationAlert = true
+                    defaultAssessmentType = .timed
                 }.foregroundColor(.red)
             }
 
