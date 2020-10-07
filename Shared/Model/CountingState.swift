@@ -15,9 +15,9 @@ enum CountingState {
     case countdown
 }
 
-enum AssessType {
-    case timed
-    case count
+enum AssessType : String {
+    case timed = "timed"
+    case count = "count"
     
     var label : String {
         switch self {

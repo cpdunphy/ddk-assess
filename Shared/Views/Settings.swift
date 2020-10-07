@@ -16,17 +16,18 @@ struct Settings: View {
     
     @AppStorage("countdown_length") var countdown : Int = 3
     @AppStorage("show_heartrate_stats") var heartrate : Bool = false
+    @AppStorage("default_assessment_style") var defaultAssessmentType : AssessType = .timed
     
     
     var body: some View {
         Form {
             Section(header: Text("User preferences")) {
-//                Picker("Default Assessment Style", selection: $model.defaultAssessmentType) {
-//                    ForEach([AssessType.timed, AssessType.count], id: \.self) {
-//                        Text("\($0.label)")
-//                            .tag($0.label)
-//                    }
-//                }.onChange(of: model.defaultAssessmentType) { (item) in
+                Picker("Default Assessment Style", selection: $defaultAssessmentType) {
+                    ForEach([AssessType.timed, AssessType.count], id: \.self) {
+                        Text("\($0.label)")
+                            .tag($0)
+                    }
+                }//.onChange(of: model.defaultAssessmentType) { (item) in
 //                    print("Change of \(item)")
 //                }
                 Stepper("Countdown Time: \(countdown) \(countdown == 1 ? "second" : "seconds")", value: $countdown, in: 0...60)
@@ -40,7 +41,7 @@ struct Settings: View {
                 }.foregroundColor(.red)
             }
 
-            Section(header: Text("Products:"), footer: Text(getAppCurrentVersionNumber())) {
+            Section(header: Text("Support:"), footer: Text(getAppCurrentVersionNumber())) {
                 if !store.supportProductOptions.isEmpty {
                     ForEach(store.supportProductOptions, id: \.self) { product in
                         NavigationLink(destination: Text("Testing")) {

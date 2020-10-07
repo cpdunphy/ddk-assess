@@ -23,7 +23,7 @@ class DDKModel : ObservableObject {
             return latestCountDateRef
         }
     }
-    
+    @AppStorage("default_assessment_style") var defaultAssessmentType : AssessType = .timed
     @Published var assessType : AssessType = .timed
     
     /// Sets the currently selected view's referenceDate equal to the current date
@@ -36,7 +36,9 @@ class DDKModel : ObservableObject {
         }
     }
     
-    init () {}
+    init () {
+        assessType = defaultAssessmentType
+    }
     
     @Published var currentTimedTaps : Int = 0
     @Published var currentCountTaps : Int = 0
@@ -55,14 +57,13 @@ class DDKModel : ObservableObject {
     
     @Published var records : [Record] = []
     
-    
-    
-    @Published var defaultAssessmentType : String = "Timed"
     @AppStorage("countdown_length") var currentlySelectedCountdownLength: Int = 3
     @AppStorage("timer_length") var currentlySelectedTimerLength: Int = 10
-    
     @AppStorage("userLogCountTOTAL") var totalAssessments : Int = 0
     
+    @Published var timeSpentPaused : Double = 0.0
+    @Published var timeStartLatestPaused : Date = Date()
+    @Published var timeStartCountdown : Date = Date()
 }
 
 //MARK: - Handling Timed
@@ -70,7 +71,6 @@ extension DDKModel {
 
     func handleTimedTaps() {
         print("DDKModel: handleTimedTaps()")
-        syncTimeRef()
         currentTimedTaps += 1
     }
     
@@ -81,6 +81,48 @@ extension DDKModel {
         case .count:
             handleCountTaps()
         }
+    }
+    
+    func stopTimed() {
+        currentTimedState = .ready
+        timeSpentPaused = 0
+    }
+    
+    func pauseTimed() {
+        currentTimedState = .paused
+        timeStartLatestPaused = Date()
+    }
+    
+    func startTimed() {
+        currentTimedState = .countdown
+        syncTimeRef()
+    }
+    
+    func resetTimed() {
+        currentTimedState = .ready
+        timeSpentPaused = 0
+        currentTimedTaps = 0
+    }
+    
+    func resumeTimed() {
+        currentTimedState = .counting
+        let duration = Date().timeIntervalSince(timeStartLatestPaused)
+        timeSpentPaused += duration
+    }
+    
+    func finishTimer() {
+        if currentTimedState != .finished {
+            currentTimedState = .finished
+            let record = Record(date: Date(), taps: currentTimedTaps, timed: true, duration: Double(currentlySelectedTimerLength))
+            records.insert(record, at: 0)
+            print(records)
+        }
+    }
+    
+    func finishCountdown() {
+        currentTimedState = .counting
+//        timeSpentPaused = 0
+        
     }
 }
 

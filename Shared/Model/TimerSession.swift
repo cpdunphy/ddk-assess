@@ -16,6 +16,8 @@ class TimerSession : ObservableObject {
 
     @Published var currentDateTime : Date = Date()
 
+    @Published var percentOfTimer : Double = 1.0
+    
     init() {
         self.timer = Timer.publish(every: 0.1, on: .main, in: .default)
             .autoconnect()

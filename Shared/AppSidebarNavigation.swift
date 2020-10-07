@@ -36,28 +36,10 @@ struct AppSidebarNavigation: View {
     var layout: some View {
         VStack(spacing: 20) {
             StatsDisplay()
-//            VStack {
-//                
-//                Button(action: {
-//                    
-//                }) {
-//                    Circle()
-//                        .foregroundColor(.green)
-//                        .frame(width: 90, height: 90)
-//                }.buttonStyle(PlainButtonStyle())
-//                
-//                Spacer()
-//                
-//                Button(action: {}) {
-//                    Circle()
-//                        .foregroundColor(.red)
-//                        .frame(width: 90, height: 90)
-//                }.buttonStyle(PlainButtonStyle())
-//            }
             TapButton()
         }
         .padding(.top, 20)
-        
+        .padding([.horizontal, .bottom], 20)
 //        .background(
 //            Color(.systemGroupedBackground)
 //                .edgesIgnoringSafeArea(.all)
@@ -67,7 +49,6 @@ struct AppSidebarNavigation: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Assess")
-        .padding([.horizontal, .bottom], 20)
     }
     
     private func toggleSidebar() {

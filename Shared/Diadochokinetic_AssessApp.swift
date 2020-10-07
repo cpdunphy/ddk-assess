@@ -55,20 +55,3 @@ func getStandardTimeDisplayString(_ time: Double) -> String {
     decisecondsFullStr.remove(at: decisecondsFullStr.startIndex)
     return String(format:"%02i:%02i%3$@", minutes, seconds, decisecondsFullStr)
 }
-
-
-
-//struct AssessTypeEnvironmentKey: EnvironmentKey {
-//    static let defaultValue: AssessType = .timed
-//}
-//
-//extension EnvironmentValues {
-//    var assessType: AssessType {
-//        get {
-//            self[AssessTypeEnvironmentKey]
-//        }
-//        set {
-//            self[AssessTypeEnvironmentKey] = newValue
-//        }
-//    }
-//}
