@@ -13,28 +13,19 @@ struct SupportTheDev: View {
     
     @Environment(\.colorScheme) var colorScheme
     
+    var product : [SKProduct]? = nil
+    
     var body: some View {
         VStack(alignment: .center) {
             Spacer()
-            VStack(alignment: .leading) {
-                Text("Why Donate? 🎁")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .padding(.bottom, 4)
-                
-                Text(termsIAPText)
-                    .font(.title3)
-                    .fontWeight(.regular)
-//                    .multilineTextAlignment(.center)
-            }
-//            Spacer()
+            DonateDescription()
             LazyHStack(spacing: 20) {
                 
-                ForEach(store.supportProductOptions, id: \.productIdentifier) { item in
+                ForEach(product ?? store.supportProductOptions, id: \.productIdentifier) { item in
                     Button(action: {
-                        
+                        store.purchaseProduct(item)
                     }) {
-                        productButton(item)
+                        ProductButton(item)
                     }.buttonStyle(PlainButtonStyle())
                 }
             }
@@ -43,14 +34,33 @@ struct SupportTheDev: View {
         .background(Color(.systemGroupedBackground).edgesIgnoringSafeArea(.all))
         .navigationTitle("Donation")
     }
+}
+
+struct SuppportTheDev_Previews: PreviewProvider {
+    static var previews: some View {
+        SupportTheDev()
+    }
+}
+
+
+struct ProductButton : View {
     
-    func productButton(_ skproduct: SKProduct) -> some View {
+    @EnvironmentObject var store : Store
+    @Environment(\.colorScheme) var colorScheme
+    
+    var skproduct: SKProduct
+    
+    init(_ skproduct: SKProduct) {
+        self.skproduct = skproduct
+    }
+    
+    var body: some View {
         VStack {
             Text(store.getEmoji(id: skproduct.productIdentifier))
                 .font(.largeTitle)
                 .padding(.bottom, 3)
             
-            Text("Testing")
+            Text(skproduct.localizedTitle)
                 .foregroundColor(.accentColor)
                 .font(.headline)
                 .fontWeight(.medium)
@@ -70,13 +80,22 @@ struct SupportTheDev: View {
                 .stroke(colorScheme == .light ? Color.clear : Color.accentColor, lineWidth: 2)
         )
     }
-    
-    var termsIAPText : String = "I built this app after talking with my aunt, who is a speech pathologist. This is my first app I have published, and plan to go to college next year to study engineering or computer science (and hopefully publish more apps). If you like this app and find it useful, please consider buying me a snack.\n\nThank you for your consideration,\n - The developer"
-    
 }
 
-struct SuppportTheDev_Previews: PreviewProvider {
-    static var previews: some View {
-        SupportTheDev()
+struct DonateDescription : View {
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Why Donate? 🎁")
+                .font(.title2)
+                .fontWeight(.semibold)
+                .padding(.bottom, 4)
+            
+            Text(termsIAPText)
+                .font(.title3)
+                .fontWeight(.regular)
+        }.layoutPriority(1.0)
     }
+    
+    var termsIAPText : String = "I built this app after talking with my aunt, who is a speech pathologist. This is my first app I have published, and plan to go to college next year to study engineering or computer science (and hopefully publish more apps). If you like this app and find it useful, please consider buying me a snack.\n\nThank you for your consideration,\n - The developer"
+
 }

@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct RecordRow : View {
+    @EnvironmentObject var timerSession : TimerSession
+    
     var record : Record
+    
     var body : some View {
         VStack(alignment: .leading) {
             HStack {
@@ -22,7 +25,7 @@ struct RecordRow : View {
                         .font(.footnote)
                         .foregroundColor(.secondary)
                     Text("[\(dateToString(date: record.date))]")
-                        .font(.footnote)
+                        .font(Font.footnote.monospacedDigit())
                         .foregroundColor(.secondary)
                 }
                 Spacer()
@@ -32,6 +35,7 @@ struct RecordRow : View {
             }
         }
     }
+    
     func getSecondsLength(time: Int) -> String {
         if time / 60 >= 1 {
             return "\(time / 60) \(time / 60 == 1 ? "minute" : "minutes")"
@@ -42,7 +46,8 @@ struct RecordRow : View {
     
     func getSecondsLengthDouble(time: Double) -> String {
         if time / 60 >= 1 {
-            return "\(time / 60) \(time / 60 == 1 ? "minute" : "minutes")"
+            let send = String(format: "%.1f", time/60)
+            return "\(send) \(send == "1.0" ? "minute" : "minutes")"
         } else {
             let send = String(format: "%.1f", time)
             return "\(send) \(send == "1.0" ? "second" : "seconds")"

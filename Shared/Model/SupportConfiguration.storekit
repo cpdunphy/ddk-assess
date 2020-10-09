@@ -7,7 +7,7 @@
       "localizations" : [
         {
           "description" : "",
-          "displayName" : "",
+          "displayName" : "Donut",
           "locale" : "en_US"
         }
       ],
@@ -22,7 +22,7 @@
       "localizations" : [
         {
           "description" : "",
-          "displayName" : "",
+          "displayName" : "Lunch",
           "locale" : "en_US"
         }
       ],
@@ -37,7 +37,7 @@
       "localizations" : [
         {
           "description" : "",
-          "displayName" : "",
+          "displayName" : "Smoothie",
           "locale" : "en_US"
         }
       ],

@@ -17,7 +17,7 @@ struct Settings: View {
     @AppStorage("countdown_length") var countdown : Int = 3
     @AppStorage("show_heartrate_stats") var heartrate : Bool = false
     @AppStorage("default_assessment_style") var defaultAssessmentType : AssessType = .timed
-    
+    @AppStorage("show_decimal_timer") var showDecimalOnTimer : Bool = true
     
     var body: some View {
         Form {
@@ -27,13 +27,11 @@ struct Settings: View {
                         Text("\($0.label)")
                             .tag($0)
                     }
-                }//.onChange(of: model.defaultAssessmentType) { (item) in
-//                    print("Change of \(item)")
-//                }
+                }
+                
                 Stepper("Countdown Time: \(countdown) \(countdown == 1 ? "second" : "seconds")", value: $countdown, in: 0...60)
-                    .onChange(of: countdown, perform: { value in
-                        print("Change of Countdown: \(value)")
-                    })
+
+                Toggle("Show Decimal on Timer", isOn: $showDecimalOnTimer)
             }
             Section {
                 Button("Reset Preferences") {
@@ -41,20 +39,25 @@ struct Settings: View {
                     defaultAssessmentType = .timed
                 }.foregroundColor(.red)
             }
-
-            Section(header: Text("Support:"), footer: Text(getAppCurrentVersionNumber())) {
-                if !store.supportProductOptions.isEmpty {
-                    ForEach(store.supportProductOptions, id: \.self) { product in
-                        NavigationLink(destination: Text("Testing")) {
-                            Text("Buy the developer a \(product.localizedTitle) \(store.getEmoji(id: product.productIdentifier))")
-                                .foregroundColor(.accentColor)
+            
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                Section(header: Text("Support:")) {
+                    if !store.supportProductOptions.isEmpty {
+                        ForEach(store.supportProductOptions, id: \.self) { product in
+                            NavigationLink(destination: SupportTheDev(product: [product])) {
+                                Text("Buy the developer a \(product.localizedTitle) \(store.getEmoji(id: product.productIdentifier))")
+                                    .foregroundColor(.accentColor)
+                            }
                         }
+                    } else {
+                        Text("No Products Currently Available")
                     }
-                } else {
-                    Text("No Products Currently Available")
                 }
             }
             
+            Section(header: Text(getAppCurrentVersionNumber())) {
+                
+            }
         }
         .navigationTitle("Settings")
         .alert(isPresented: $showResetConfirmationAlert) {
@@ -81,8 +84,9 @@ struct Settings: View {
                 countdown = 3
                 model.currentlySelectedTimerLength = 10
                 heartrate = false
-//                self.timerSession.ResetTimedMode()
-//                self.timerSession.stopUntimed()
+                showDecimalOnTimer = true
+                model.resetTimed()
+                model.resetCount()
 //                defaults.set(false, forKey: showOnboardingKey)
             })
         )

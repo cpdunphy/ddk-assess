@@ -8,7 +8,10 @@
 import Foundation
 import Combine
 import SwiftUI
+import CoreHaptics
 // MARK: - DDKModel
+
+let hapticFeedback = UINotificationFeedbackGenerator()
 
 class DDKModel : ObservableObject {
     
@@ -116,6 +119,7 @@ extension DDKModel {
             let record = Record(date: Date(), taps: currentTimedTaps, timed: true, duration: Double(currentlySelectedTimerLength))
             records.insert(record, at: 0)
             print(records)
+            hapticFeedback.notificationOccurred(.success)
         }
     }
     
@@ -150,6 +154,7 @@ extension DDKModel {
         currentCountTaps = 0
         records.insert(record, at: 0)
         totalAssessments += 1
+        hapticFeedback.notificationOccurred(.success)
     }
     
 }
