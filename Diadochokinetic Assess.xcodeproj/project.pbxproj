@@ -34,6 +34,7 @@
 		F060BAC825214393009F9C81 /* RecordHistoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BAC625214393009F9C81 /* RecordHistoryList.swift */; };
 		F070196925267AD400158A85 /* RecordRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F070196825267AD400158A85 /* RecordRow.swift */; };
 		F070196A25267AD400158A85 /* RecordRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F070196825267AD400158A85 /* RecordRow.swift */; };
+		F07564EC2530FA8200EC058A /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07564EB2530FA8200EC058A /* MailView.swift */; };
 		F0C75699251C3A4300D066A9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C75698251C3A4300D066A9 /* StoreKit.framework */; };
 		F0C7569F251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */; };
 		F0C756A0251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */; };
@@ -96,6 +97,7 @@
 		F060BABF25213C2B009F9C81 /* StatsDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsDisplay.swift; sourceTree = "<group>"; };
 		F060BAC625214393009F9C81 /* RecordHistoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordHistoryList.swift; sourceTree = "<group>"; };
 		F070196825267AD400158A85 /* RecordRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRow.swift; sourceTree = "<group>"; };
+		F07564EB2530FA8200EC058A /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		F0C75698251C3A4300D066A9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SupportConfiguration.storekit; sourceTree = "<group>"; };
 		F0C756AF251C3DA500D066A9 /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				F060BAC625214393009F9C81 /* RecordHistoryList.swift */,
 				F070196825267AD400158A85 /* RecordRow.swift */,
 				F0E180B125236C3500E808AB /* Settings.swift */,
+				F07564EB2530FA8200EC058A /* MailView.swift */,
 				F060BABF25213C2B009F9C81 /* StatsDisplay.swift */,
 				F0E180A625236BA100E808AB /* SupportTheDev.swift */,
 				F0304707251E4CD100B438E7 /* TapButton.swift */,
@@ -420,6 +423,7 @@
 				F0C756B7251C3DC000D066A9 /* Record.swift in Sources */,
 				F0E180B225236C3500E808AB /* Settings.swift in Sources */,
 				F02DB40D251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
+				F07564EC2530FA8200EC058A /* MailView.swift in Sources */,
 				F060BAC025213C2B009F9C81 /* StatsDisplay.swift in Sources */,
 				F060BAC725214393009F9C81 /* RecordHistoryList.swift in Sources */,
 				F030470F251E65F400B438E7 /* Color.swift in Sources */,
@@ -609,6 +613,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 896Q68CL7P;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -632,6 +637,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 896Q68CL7P;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;

@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+#if os(iOS)
+import MessageUI
+#endif
+
 struct Settings: View {
     
     @EnvironmentObject var model : DDKModel
@@ -18,6 +22,13 @@ struct Settings: View {
     @AppStorage("show_heartrate_stats") var heartrate : Bool = false
     @AppStorage("default_assessment_style") var defaultAssessmentType : AssessType = .timed
     @AppStorage("show_decimal_timer") var showDecimalOnTimer : Bool = true
+    
+    #if os(iOS)
+    @State private var result: Result<MFMailComposeResult, Error>? = nil
+    @State private var isShowingMailView : Bool = false
+    #endif
+    
+    //TODO: This is a mess. Make it feel more uniform.
     
     var body: some View {
         Form {
@@ -39,6 +50,17 @@ struct Settings: View {
                 }.foregroundColor(.red)
             }
             
+            #if os(iOS)
+            Section {
+                Button(action: {
+                    self.isShowingMailView.toggle()
+                }) {
+                    FeedbackText()
+                }.disabled(!MFMailComposeViewController.canSendMail())
+                ///TODO-V2: Can put output in ZStack to take up whole screen, would also get rid of dark mode bug in modal view
+            }
+            #endif
+            
             if UIDevice.current.userInterfaceIdiom == .phone {
                 Section(header: Text("Support:")) {
                     if !store.supportProductOptions.isEmpty {
@@ -55,7 +77,7 @@ struct Settings: View {
                 }
             }
             
-            Section(header: Text(getAppCurrentVersionNumber())) {
+            Section(header: Text(versionDescription())) {
                 
             }
         }
@@ -63,6 +85,10 @@ struct Settings: View {
         .alert(isPresented: $showResetConfirmationAlert) {
             resetAlert
         }
+        .sheet(isPresented: $isShowingMailView) {
+            MailView(result: $result, versionNumber: getAppCurrentVersionNumber())
+        }
+        
     }
     
     func getAppCurrentVersionNumber() -> String {
@@ -71,7 +97,11 @@ struct Settings: View {
         let build : AnyObject? = dictionary["CFBundleVersion"] as AnyObject?
         let versionStr = version as! String
         let buildStr = build as! String
-        return "Made with ❤️ \(versionStr) (\(buildStr))"
+        return "\(versionStr) (\(buildStr))"
+    }
+    
+    func versionDescription() -> String {
+        return "Made with ❤️ \(getAppCurrentVersionNumber())"
     }
     
     var resetAlert: Alert {
@@ -99,3 +129,27 @@ struct Settings_Previews: PreviewProvider {
         Settings()
     }
 }
+
+
+#if os(iOS)
+struct FeedbackText :View {
+    var disabled = !MFMailComposeViewController.canSendMail()
+    var body : some View {
+        HStack {
+            Image(systemName: "paperplane.fill")
+                .imageScale(.large)
+                .foregroundColor(disabled ?
+                    .secondary : .accentColor)
+            
+            VStack(alignment: .leading) {
+                Text("Submit Feedback")
+                Text("Help us improve the app.")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+            }.padding(.leading)
+            
+        }.padding()
+    }
+}
+#endif
+
