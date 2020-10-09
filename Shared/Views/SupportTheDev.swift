@@ -20,13 +20,18 @@ struct SupportTheDev: View {
             Spacer()
             DonateDescription()
             LazyHStack(spacing: 20) {
-                
-                ForEach(product ?? store.supportProductOptions, id: \.productIdentifier) { item in
-                    Button(action: {
-                        store.purchaseProduct(item)
-                    }) {
-                        ProductButton(item)
-                    }.buttonStyle(PlainButtonStyle())
+                if !store.supportProductOptions.isEmpty {
+                    ForEach(product ?? store.supportProductOptions, id: \.productIdentifier) { item in
+                        Button(action: {
+                            store.purchaseProduct(item)
+                        }) {
+                            ProductButton(item)
+                        }.buttonStyle(PlainButtonStyle())
+                    }
+                } else {
+                    Text("No support options currently available.")
+                        .padding()
+                        .modifier(NeonButtonStyle())
                 }
             }
         }
@@ -70,15 +75,24 @@ struct ProductButton : View {
                 .foregroundColor(.secondary)
         }
         .frame(idealWidth: 150, maxWidth: 200, idealHeight: 100, maxHeight: 125)
-        .background(
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(Color(.systemGroupedBackground))
-                .shadow(radius: 10)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(colorScheme == .light ? Color.clear : Color.accentColor, lineWidth: 2)
-        )
+        .modifier(NeonButtonStyle())
+    }
+}
+
+struct NeonButtonStyle: ViewModifier {
+    @Environment(\.colorScheme) var colorScheme
+    
+    func body(content: Content) -> some View {
+        content
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(Color(.systemGroupedBackground))
+                    .shadow(radius: 10)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(colorScheme == .light ? Color.clear : Color.accentColor, lineWidth: 2)
+            )
     }
 }
 

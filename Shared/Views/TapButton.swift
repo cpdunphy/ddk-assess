@@ -30,16 +30,15 @@ struct TapButton: View {
         }
     }
     
+    @ScaledMetric(relativeTo: .largeTitle) var buttonLabelTextSize: CGFloat = 50
+
     var getButtonImage : some View {
         Text(getText)
-            .font(.system(size: 50, weight: .semibold, design: .rounded))
+            .font(.system(size: buttonLabelTextSize, weight: .semibold, design: .rounded))
             .foregroundColor(model.currentTimedState != [.counting] && model.assessType == .timed ? Color(#colorLiteral(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)) : Color(#colorLiteral(red: 0.8640799026, green: 0.8640799026, blue: 0.8640799026, alpha: 1)))
             .frame(minWidth: 200, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
             .background(getBackgroundColor)
             .cornerRadius(15)
-//        ContainerRelativeShape()
-//            .inset(by: 0)
-//            .foregroundColor(getBackgroundColor)
     }
     
     func handleTaps() {

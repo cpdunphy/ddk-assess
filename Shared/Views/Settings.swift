@@ -36,7 +36,6 @@ struct Settings: View {
             Section {
                 Button("Reset Preferences") {
                     showResetConfirmationAlert = true
-                    defaultAssessmentType = .timed
                 }.foregroundColor(.red)
             }
             
@@ -50,7 +49,8 @@ struct Settings: View {
                             }
                         }
                     } else {
-                        Text("No Products Currently Available")
+                        Text("No Support Options Currently Available")
+                            .font(.footnote)
                     }
                 }
             }
@@ -71,8 +71,7 @@ struct Settings: View {
         let build : AnyObject? = dictionary["CFBundleVersion"] as AnyObject?
         let versionStr = version as! String
         let buildStr = build as! String
-        return "Made with ❤️ \(versionStr)(\(buildStr))"
-//        return nsObject as! String
+        return "Made with ❤️ \(versionStr) (\(buildStr))"
     }
     
     var resetAlert: Alert {
@@ -80,16 +79,18 @@ struct Settings: View {
             title: Text("Reset Preferences"),
             message: Text("Are you sure you want to reset all preferences?"),
             primaryButton: .cancel(Text("Cancel")),
-            secondaryButton: .destructive(Text("Reset"), action: {
-                countdown = 3
-                model.currentlySelectedTimerLength = 10
-                heartrate = false
-                showDecimalOnTimer = true
-                model.resetTimed()
-                model.resetCount()
-//                defaults.set(false, forKey: showOnboardingKey)
-            })
+            secondaryButton: .destructive(Text("Reset"), action: resetPreferences)
         )
+    }
+    
+    func resetPreferences() {
+        countdown = 3
+        model.currentlySelectedTimerLength = 10
+        defaultAssessmentType = .timed
+        heartrate = false
+        showDecimalOnTimer = true
+        model.resetTimed()
+        model.resetCount()
     }
 }
 

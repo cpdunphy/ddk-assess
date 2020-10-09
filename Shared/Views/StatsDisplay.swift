@@ -244,8 +244,11 @@ struct StatsDisplay: View {
     
     func titleLabel(_ label: String) -> some View {
             Text(label)
-                .font(Font.system(size: 48, weight: .bold, design: .rounded).monospacedDigit())
+                .font(Font.system(size: titleFontSize, weight: .bold, design: .rounded).monospacedDigit())
         }
+
+    @ScaledMetric(relativeTo: .largeTitle) var titleFontSize: CGFloat = 48
+    @ScaledMetric(relativeTo: .headline) var subtitleFontSize: CGFloat = 24
     
     var seperator : some View {
         RoundedRectangle(cornerRadius: 100.0)
@@ -256,7 +259,7 @@ struct StatsDisplay: View {
     
     func subtitleLabel(_ label: String) -> some View {
         Text(label)
-            .font(Font.system(size: 24, weight: .regular, design: .rounded).monospacedDigit())
+            .font(Font.system(size: subtitleFontSize, weight: .regular, design: .rounded).monospacedDigit())
             .kerning(1)
     }
 
