@@ -118,6 +118,7 @@ extension DDKModel {
             currentTimedState = [.finished]
             let record = Record(date: Date(), taps: currentTimedTaps, timed: true, duration: Double(currentlySelectedTimerLength))
             records.insert(record, at: 0)
+            totalAssessments += 1
             print(records)
             hapticFeedback.notificationOccurred(.success)
         }
