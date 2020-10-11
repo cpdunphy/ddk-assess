@@ -57,7 +57,6 @@ struct Settings: View {
                 }) {
                     FeedbackText()
                 }.disabled(!MFMailComposeViewController.canSendMail())
-                ///TODO-V2: Can put output in ZStack to take up whole screen, would also get rid of dark mode bug in modal view
             }
             #endif
             
