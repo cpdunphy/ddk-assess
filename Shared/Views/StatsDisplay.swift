@@ -441,7 +441,7 @@ struct RoundedRectProgress : InsettableShape {
         let topRightCornerLineStart = CGPoint(x: topRightCornerWithInset.x - cornerRadius, y: topRightCornerWithInset.y)
         let bottomRightCornerLineStart = CGPoint(x: bottomRightCornerWithInset.x, y: bottomRightCornerWithInset.y - cornerRadius)
         let bottomLeftCornerLineStart = CGPoint(x: bottomLeftCornerWithInset.x + cornerRadius, y: bottomLeftCornerWithInset.y)
-        let topLeftCornerxLineStart = CGPoint(x: topLeftCornerWithInset.x, y: topLeftCornerWithInset.y + cornerRadius)
+        let topLeftCornerLineStart = CGPoint(x: topLeftCornerWithInset.x, y: topLeftCornerWithInset.y + cornerRadius)
 
         let topRightArcCenter : CGPoint = CGPoint(x: topRightCornerWithInset.x - cornerRadius, y: topRightCornerWithInset.y + cornerRadius)
         let bottomRightArcCenter : CGPoint = CGPoint(x: bottomRightCornerWithInset.x - cornerRadius, y: bottomRightCornerWithInset.y - cornerRadius)
