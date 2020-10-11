@@ -36,7 +36,7 @@ struct SupportTheDev: View {
             }
         }
         .padding(20)
-        .background(Color(.systemGroupedBackground).edgesIgnoringSafeArea(.all))
+        .background(Color(.systemGroupedBackground).edgesIgnoringSafeArea(.all)) //TODO: Add Mac Compatability
         .navigationTitle("Donation")
     }
 }
@@ -86,7 +86,7 @@ struct NeonButtonStyle: ViewModifier {
         content
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(Color(.systemGroupedBackground))
+                    .foregroundColor(Color(.systemGroupedBackground)) //TODO: Add Mac Compatability
                     .shadow(radius: 10)
             )
             .overlay(

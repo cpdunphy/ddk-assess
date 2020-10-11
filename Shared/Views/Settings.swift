@@ -58,7 +58,6 @@ struct Settings: View {
                     FeedbackText()
                 }.disabled(!MFMailComposeViewController.canSendMail())
             }
-            #endif
             
             if UIDevice.current.userInterfaceIdiom == .phone {
                 Section(header: Text("Support:")) {
@@ -75,6 +74,7 @@ struct Settings: View {
                     }
                 }
             }
+            #endif
             
             Section(header: Text(versionDescription())) {
                 

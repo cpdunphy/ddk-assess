@@ -29,7 +29,12 @@ struct AppSidebarNavigation: View {
             #else
             sidebar
             #endif
+            #if os(macOS)
             layout
+            #else
+            layout
+            .navigationBarTitleDisplayMode(.inline)
+            #endif
         }
     }
     
@@ -47,7 +52,6 @@ struct AppSidebarNavigation: View {
         .toolbar {
             AssessmentPicker(type: $model.assessType)
         }
-        .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Assess")
     }
     
@@ -70,9 +74,11 @@ struct AppSidebarNavigation: View {
             NavigationLink(destination: SupportTheDev()) {
                 NavigationItem.support.label
             }.tag(NavigationItem.support)
+            #if os(iOS)
             NavigationLink(destination: Settings()) {
                 NavigationItem.settings.label
             }.tag(NavigationItem.settings)
+            #endif
         }.listStyle(SidebarListStyle())
         .navigationTitle("DDK")
     }

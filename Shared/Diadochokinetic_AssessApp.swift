@@ -21,6 +21,13 @@ struct Diadochokinetic_AssessApp: App {
                 .environmentObject(timerSession)
                 .environmentObject(store)
         }
+        
+        #if os(macOS)
+        Settings {
+            Text("Settings here.")
+            
+        }
+        #endif
     }
 }
 

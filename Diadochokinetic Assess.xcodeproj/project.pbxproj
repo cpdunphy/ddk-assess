@@ -52,7 +52,6 @@
 		F0E180A725236BA100E808AB /* SupportTheDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180A625236BA100E808AB /* SupportTheDev.swift */; };
 		F0E180A825236BA100E808AB /* SupportTheDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180A625236BA100E808AB /* SupportTheDev.swift */; };
 		F0E180B225236C3500E808AB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180B125236C3500E808AB /* Settings.swift */; };
-		F0E180B325236C3500E808AB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180B125236C3500E808AB /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -447,7 +446,6 @@
 				F0D5539F251C24340084E0EB /* DDKModel.swift in Sources */,
 				F02DB410251C23440038FEAE /* ContentView.swift in Sources */,
 				F0C756B8251C3DC000D066A9 /* Record.swift in Sources */,
-				F0E180B325236C3500E808AB /* Settings.swift in Sources */,
 				F02DB40E251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
 				F060BAC125213C2B009F9C81 /* StatsDisplay.swift in Sources */,
 				F060BAC825214393009F9C81 /* RecordHistoryList.swift in Sources */,
@@ -674,7 +672,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Diadochokinetic-Assess";
 				PRODUCT_NAME = "Diadochokinetic Assess";
 				SDKROOT = macosx;
@@ -700,7 +698,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Diadochokinetic-Assess";
 				PRODUCT_NAME = "Diadochokinetic Assess";
 				SDKROOT = macosx;
