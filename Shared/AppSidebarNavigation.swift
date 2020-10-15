@@ -45,10 +45,10 @@ struct AppSidebarNavigation: View {
         }
         .padding(.top, 20)
         .padding([.horizontal, .bottom], 20)
-//        .background(
-//            Color(.systemGroupedBackground)
-//                .edgesIgnoringSafeArea(.all)
-//        )
+        .background(
+            Color(.systemGroupedBackground)
+                .edgesIgnoringSafeArea(.all)
+        )
         .toolbar {
             AssessmentPicker(type: $model.assessType)
         }
