@@ -21,7 +21,7 @@ struct SupportTheDev: View {
             DonateDescription()
             LazyHStack(spacing: 20) {
                 if !store.supportProductOptions.isEmpty {
-                    ForEach(product ?? store.supportProductOptions, id: \.productIdentifier) { item in
+                    ForEach(product ?? store.supportProductOptions.sorted { $0.productIdentifier < $1.productIdentifier }, id: \.productIdentifier) { item in
                         Button(action: {
                             store.purchaseProduct(item)
                         }) {

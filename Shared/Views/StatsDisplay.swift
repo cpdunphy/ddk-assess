@@ -226,7 +226,7 @@ struct StatsDisplay: View {
         
         return ZStack {
             RoundedRectangle(cornerRadius: 15.0)
-                .stroke(Color.secondary, lineWidth: 7)
+                .stroke(Color("RectangleBackgroundProgrss"), lineWidth: 7)
             
             RoundedRectProgress()
                 .trim(from: 0, to: CGFloat(percent))

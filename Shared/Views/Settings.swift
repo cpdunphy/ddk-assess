@@ -62,7 +62,7 @@ struct Settings: View {
             if UIDevice.current.userInterfaceIdiom == .phone {
                 Section(header: Text("Support:")) {
                     if !store.supportProductOptions.isEmpty {
-                        ForEach(store.supportProductOptions, id: \.self) { product in
+                        ForEach(store.supportProductOptions.sorted { $0.productIdentifier < $1.productIdentifier }, id: \.self) { product in
                             NavigationLink(destination: SupportTheDev(product: [product])) {
                                 Text("Buy the developer a \(product.localizedTitle) \(store.getEmoji(id: product.productIdentifier))")
                                     .foregroundColor(.accentColor)
