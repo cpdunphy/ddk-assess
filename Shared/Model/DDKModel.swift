@@ -149,7 +149,11 @@ extension DDKModel {
     
     func logCount() {
         currentCountState = .ready
-        let record = Record(date: Date(), taps: currentCountTaps, timed: false, duration: abs(latestCountDateRef.timeIntervalSince(Date())))
+        var duration: Double = abs(latestCountDateRef.timeIntervalSince(Date()))
+        if currentCountTaps == 0 {
+            duration = 0.0
+        }
+        let record = Record(date: Date(), taps: currentCountTaps, timed: false, duration: duration)
         currentCountTaps = 0
         records.insert(record, at: 0)
         totalAssessments += 1
