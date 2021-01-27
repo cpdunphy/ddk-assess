@@ -17,30 +17,36 @@ struct TapButton: View {
     #if os(iOS)
     let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
     #endif
+    
     var body : some View {
         if model.currentTimedState == [.counting] || model.assessType == .count {
             
             Button(action: handleTaps) {
-                getButtonImage
+                buttonTapArea
             }
             .buttonStyle(PlainButtonStyle())
             
         } else {
-            getButtonImage
+            buttonTapArea
         }
     }
     
     @ScaledMetric(relativeTo: .largeTitle) var buttonLabelTextSize: CGFloat = 50
 
-    var getButtonImage : some View {
+    var buttonTapArea : some View {
         Text(getText)
             .font(.system(size: buttonLabelTextSize, weight: .semibold, design: .rounded))
-            .foregroundColor(model.currentTimedState != [.counting] && model.assessType == .timed ? Color(#colorLiteral(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)) : Color(#colorLiteral(red: 0.8640799026, green: 0.8640799026, blue: 0.8640799026, alpha: 1)))
+            .foregroundColor(
+                model.currentTimedState != [.counting] && model.assessType == .timed ?
+                    Color.gray.opacity(0.75) :
+                    .white
+            )
             .frame(minWidth: 200, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
             .background(getBackgroundColor)
             .cornerRadius(15)
     }
     
+    /// Calls the handleTaps on model and sending the haptic feedback to the user. Called each time theres a tap and lets the DDKModel figure out what to do with it. 
     func handleTaps() {
         model.handleTaps()
         
@@ -50,15 +56,17 @@ struct TapButton: View {
         #endif
     }
     
+    /// Gets the background color for the assess button. Using a switch statement for future-proofing
     var getBackgroundColor : Color {
         switch model.assessType {
         case .timed:
-            return model.currentTimedState == [.counting] ? Color("tappingEnabled") : Color("tappingDisabled")
+            return model.currentTimedState == [.counting] ? .tappingEnabled : .tappingDisabled
         case .count:
-            return Color("tappingEnabled")
+            return .tappingEnabled
         }
     }
     
+    /// Gets the display label for the assess button. Using a switch statement for future-proofing
     var getText : String {
         switch model.assessType {
         case .timed:

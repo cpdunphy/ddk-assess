@@ -30,18 +30,20 @@
 		F0340413252E1CAA00A005FA /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = F0340411252E1CAA00A005FA /* StoreKitTestCertificate.cer */; };
 		F060BAC025213C2B009F9C81 /* StatsDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BABF25213C2B009F9C81 /* StatsDisplay.swift */; };
 		F060BAC125213C2B009F9C81 /* StatsDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BABF25213C2B009F9C81 /* StatsDisplay.swift */; };
-		F060BAC725214393009F9C81 /* RecordHistoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BAC625214393009F9C81 /* RecordHistoryList.swift */; };
-		F060BAC825214393009F9C81 /* RecordHistoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BAC625214393009F9C81 /* RecordHistoryList.swift */; };
-		F070196925267AD400158A85 /* RecordRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F070196825267AD400158A85 /* RecordRow.swift */; };
-		F070196A25267AD400158A85 /* RecordRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F070196825267AD400158A85 /* RecordRow.swift */; };
+		F060BAC725214393009F9C81 /* HistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BAC625214393009F9C81 /* HistoryScreen.swift */; };
+		F060BAC825214393009F9C81 /* HistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BAC625214393009F9C81 /* HistoryScreen.swift */; };
 		F07564EC2530FA8200EC058A /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07564EB2530FA8200EC058A /* MailView.swift */; };
+		F0B423BB25A66D97002805C9 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423BA25A66D97002805C9 /* NavigationItem.swift */; };
+		F0B423BC25A66D97002805C9 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423BA25A66D97002805C9 /* NavigationItem.swift */; };
+		F0B423C725A6719C002805C9 /* AssessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423C525A6719C002805C9 /* AssessScreen.swift */; };
+		F0B423D025A6723D002805C9 /* AssessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423C525A6719C002805C9 /* AssessScreen.swift */; };
 		F0C75699251C3A4300D066A9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C75698251C3A4300D066A9 /* StoreKit.framework */; };
 		F0C7569F251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */; };
 		F0C756A0251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */; };
 		F0C756B0251C3DA500D066A9 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756AF251C3DA500D066A9 /* States.swift */; };
 		F0C756B1251C3DA500D066A9 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756AF251C3DA500D066A9 /* States.swift */; };
-		F0C756B7251C3DC000D066A9 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756B6251C3DC000D066A9 /* Record.swift */; };
-		F0C756B8251C3DC000D066A9 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756B6251C3DC000D066A9 /* Record.swift */; };
+		F0C756B7251C3DC000D066A9 /* AssessmentRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756B6251C3DC000D066A9 /* AssessmentRecord.swift */; };
+		F0C756B8251C3DC000D066A9 /* AssessmentRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756B6251C3DC000D066A9 /* AssessmentRecord.swift */; };
 		F0CEA381251CC5C700818C6D /* CountingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CEA380251CC5C700818C6D /* CountingState.swift */; };
 		F0CEA382251CC5C700818C6D /* CountingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CEA380251CC5C700818C6D /* CountingState.swift */; };
 		F0D5539E251C24340084E0EB /* DDKModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5539D251C24340084E0EB /* DDKModel.swift */; };
@@ -51,7 +53,7 @@
 		F0D553AD251C3A000084E0EB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0D553AC251C3A000084E0EB /* StoreKit.framework */; };
 		F0E180A725236BA100E808AB /* SupportTheDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180A625236BA100E808AB /* SupportTheDev.swift */; };
 		F0E180A825236BA100E808AB /* SupportTheDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180A625236BA100E808AB /* SupportTheDev.swift */; };
-		F0E180B225236C3500E808AB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180B125236C3500E808AB /* Settings.swift */; };
+		F0E180B225236C3500E808AB /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180B125236C3500E808AB /* SettingsScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,19 +96,20 @@
 		F030470E251E65F300B438E7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F0340411252E1CAA00A005FA /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		F060BABF25213C2B009F9C81 /* StatsDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsDisplay.swift; sourceTree = "<group>"; };
-		F060BAC625214393009F9C81 /* RecordHistoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordHistoryList.swift; sourceTree = "<group>"; };
-		F070196825267AD400158A85 /* RecordRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRow.swift; sourceTree = "<group>"; };
+		F060BAC625214393009F9C81 /* HistoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScreen.swift; sourceTree = "<group>"; };
 		F07564EB2530FA8200EC058A /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
+		F0B423BA25A66D97002805C9 /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
+		F0B423C525A6719C002805C9 /* AssessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessScreen.swift; sourceTree = "<group>"; };
 		F0C75698251C3A4300D066A9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SupportConfiguration.storekit; sourceTree = "<group>"; };
 		F0C756AF251C3DA500D066A9 /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
-		F0C756B6251C3DC000D066A9 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		F0C756B6251C3DC000D066A9 /* AssessmentRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentRecord.swift; sourceTree = "<group>"; };
 		F0CEA380251CC5C700818C6D /* CountingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingState.swift; sourceTree = "<group>"; };
 		F0D5539D251C24340084E0EB /* DDKModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDKModel.swift; sourceTree = "<group>"; };
 		F0D553A4251C24750084E0EB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F0D553AC251C3A000084E0EB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		F0E180A625236BA100E808AB /* SupportTheDev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportTheDev.swift; sourceTree = "<group>"; };
-		F0E180B125236C3500E808AB /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		F0E180B125236C3500E808AB /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,17 +219,30 @@
 			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
+		F0B423E525A67711002805C9 /* Supporting Views */ = {
+			isa = PBXGroup;
+			children = (
+				F0E180A625236BA100E808AB /* SupportTheDev.swift */,
+				F0252887251CCC8600D2F5DF /* AssessmentPicker.swift */,
+				F060BABF25213C2B009F9C81 /* StatsDisplay.swift */,
+				F0304707251E4CD100B438E7 /* TapButton.swift */,
+				F07564EB2530FA8200EC058A /* MailView.swift */,
+			);
+			path = "Supporting Views";
+			sourceTree = "<group>";
+		};
 		F0C756A5251C3B2900D066A9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */,
 				F0340411252E1CAA00A005FA /* StoreKitTestCertificate.cer */,
 				F0D5539D251C24340084E0EB /* DDKModel.swift */,
+				F0D553A4251C24750084E0EB /* Store.swift */,
 				F03046FC251E36F300B438E7 /* TimerSession.swift */,
+				F0B423BA25A66D97002805C9 /* NavigationItem.swift */,
 				F0C756AF251C3DA500D066A9 /* States.swift */,
 				F030470E251E65F300B438E7 /* Color.swift */,
-				F0D553A4251C24750084E0EB /* Store.swift */,
-				F0C756B6251C3DC000D066A9 /* Record.swift */,
+				F0C756B6251C3DC000D066A9 /* AssessmentRecord.swift */,
 				F0CEA380251CC5C700818C6D /* CountingState.swift */,
 			);
 			path = Model;
@@ -244,14 +260,10 @@
 		F0DC244B2524FB96000CBCA8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F0252887251CCC8600D2F5DF /* AssessmentPicker.swift */,
-				F060BAC625214393009F9C81 /* RecordHistoryList.swift */,
-				F070196825267AD400158A85 /* RecordRow.swift */,
-				F0E180B125236C3500E808AB /* Settings.swift */,
-				F07564EB2530FA8200EC058A /* MailView.swift */,
-				F060BABF25213C2B009F9C81 /* StatsDisplay.swift */,
-				F0E180A625236BA100E808AB /* SupportTheDev.swift */,
-				F0304707251E4CD100B438E7 /* TapButton.swift */,
+				F0B423C525A6719C002805C9 /* AssessScreen.swift */,
+				F060BAC625214393009F9C81 /* HistoryScreen.swift */,
+				F0E180B125236C3500E808AB /* SettingsScreen.swift */,
+				F0B423E525A67711002805C9 /* Supporting Views */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -419,12 +431,14 @@
 			files = (
 				F0D5539E251C24340084E0EB /* DDKModel.swift in Sources */,
 				F02DB40F251C23440038FEAE /* ContentView.swift in Sources */,
-				F0C756B7251C3DC000D066A9 /* Record.swift in Sources */,
-				F0E180B225236C3500E808AB /* Settings.swift in Sources */,
+				F0C756B7251C3DC000D066A9 /* AssessmentRecord.swift in Sources */,
+				F0E180B225236C3500E808AB /* SettingsScreen.swift in Sources */,
 				F02DB40D251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
 				F07564EC2530FA8200EC058A /* MailView.swift in Sources */,
+				F0B423BB25A66D97002805C9 /* NavigationItem.swift in Sources */,
 				F060BAC025213C2B009F9C81 /* StatsDisplay.swift in Sources */,
-				F060BAC725214393009F9C81 /* RecordHistoryList.swift in Sources */,
+				F060BAC725214393009F9C81 /* HistoryScreen.swift in Sources */,
+				F0B423D025A6723D002805C9 /* AssessScreen.swift in Sources */,
 				F030470F251E65F400B438E7 /* Color.swift in Sources */,
 				F0D553A5251C24750084E0EB /* Store.swift in Sources */,
 				F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */,
@@ -435,7 +449,6 @@
 				F0CEA381251CC5C700818C6D /* CountingState.swift in Sources */,
 				F03046FD251E36F300B438E7 /* TimerSession.swift in Sources */,
 				F0252888251CCC8600D2F5DF /* AssessmentPicker.swift in Sources */,
-				F070196925267AD400158A85 /* RecordRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,16 +458,17 @@
 			files = (
 				F0D5539F251C24340084E0EB /* DDKModel.swift in Sources */,
 				F02DB410251C23440038FEAE /* ContentView.swift in Sources */,
-				F0C756B8251C3DC000D066A9 /* Record.swift in Sources */,
+				F0C756B8251C3DC000D066A9 /* AssessmentRecord.swift in Sources */,
 				F02DB40E251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
+				F0B423BC25A66D97002805C9 /* NavigationItem.swift in Sources */,
 				F060BAC125213C2B009F9C81 /* StatsDisplay.swift in Sources */,
-				F060BAC825214393009F9C81 /* RecordHistoryList.swift in Sources */,
+				F060BAC825214393009F9C81 /* HistoryScreen.swift in Sources */,
 				F0304710251E65F400B438E7 /* Color.swift in Sources */,
 				F0D553A6251C24750084E0EB /* Store.swift in Sources */,
+				F0B423C725A6719C002805C9 /* AssessScreen.swift in Sources */,
 				F0252882251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */,
 				F0304709251E4CD100B438E7 /* TapButton.swift in Sources */,
 				F0C756B1251C3DA500D066A9 /* States.swift in Sources */,
-				F070196A25267AD400158A85 /* RecordRow.swift in Sources */,
 				F0E180A825236BA100E808AB /* SupportTheDev.swift in Sources */,
 				F0CEA382251CC5C700818C6D /* CountingState.swift in Sources */,
 				F03046FE251E36F300B438E7 /* TimerSession.swift in Sources */,

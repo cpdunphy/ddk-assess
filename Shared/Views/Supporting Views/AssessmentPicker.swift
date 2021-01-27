@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct AssessmentPicker: View {
-    @Binding var type : AssessType
+    
+    @EnvironmentObject var model : DDKModel
     
     var values : [AssessType] = [AssessType.timed, AssessType.count]
     
     var body: some View {
-        Picker("What type of assessment?", selection: $type) {
-            ForEach(values, id: \.self.hashValue) { value in
+        Picker("What type of assessment?", selection: $model.assessType) {
+            ForEach(values, id: \.self.rawValue) { value in
                 Text(value.label).tag(value)
             }
         }.pickerStyle(SegmentedPickerStyle())
@@ -23,6 +24,6 @@ struct AssessmentPicker: View {
 
 struct AssessmentPicker_Previews: PreviewProvider {
     static var previews: some View {
-        AssessmentPicker(type: .constant(AssessType.timed))
+        AssessmentPicker()
     }
 }

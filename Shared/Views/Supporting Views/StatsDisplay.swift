@@ -22,7 +22,6 @@ struct StatsDisplay: View {
             }
         }
         .frame(minWidth: 200, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
-//        .background(Color(.textBackgroundColor))
         .background(Color(.secondarySystemGroupedBackground)) //TODO: Add Mac compatability
         .cornerRadius(15.0)
     }
@@ -214,7 +213,6 @@ struct StatsDisplay: View {
         }
     }
     
-    let gColors = [Color(#colorLiteral(red: 0.214261921, green: 0.3599105657, blue: 0.5557389428, alpha: 1)), Color(#colorLiteral(red: 0.2784313725, green: 0.8274509804, blue: 0.7764705882, alpha: 1))]
     
     var progressIndicator : some View {
         var percent = 1.0
@@ -230,14 +228,14 @@ struct StatsDisplay: View {
             
             RoundedRectProgress()
                 .trim(from: 0, to: CGFloat(percent))
-                .stroke(AngularGradient(gradient: Gradient(colors: gColors), center: .center, startAngle: .degrees(-90), endAngle: .degrees(270)), style: StrokeStyle(lineWidth: 7,  lineCap: .round))
+                .stroke(AngularGradient(gradient: Gradient(colors: Color.progressGradientColors), center: .center, startAngle: .degrees(-90), endAngle: .degrees(270)), style: StrokeStyle(lineWidth: 7,  lineCap: .round))
             
             ///TODO: Try to use strokeBorder() so that it does the border inside of the shape.. not currently possible because .trim returns 'Shape' which doesnt conform to 'ShapeInsettable'
             
             if model.currentTimedState != [.finished] {
                 RoundedRectProgress()
                     .trim(from: 0.0, to: 0.001)
-                    .stroke(gColors[0], style: StrokeStyle(lineWidth: 7, lineCap: .round))
+                    .stroke(Color.progressGradientColors[0], style: StrokeStyle(lineWidth: 7, lineCap: .round))
             }
         }.padding(4).animation(.linear)
         

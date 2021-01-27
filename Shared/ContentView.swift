@@ -8,26 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var model : DDKModel
-    @State private var type : AssessType = .timed
-    
+        
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif
-    
-    @State private var mobiletabSelection : NavigationItem = .assess
-    @State private var sidebarSelection : Set<NavigationItem> = [.assess]
-    
+        
     var body: some View {
         #if os(iOS)
         if horizontalSizeClass == .compact {
-            AppMobileNavigation(mobiletabSelection: $mobiletabSelection)
+            AppMobileNavigation()
         } else {
-            AppSidebarNavigation(sidebarSelection: $sidebarSelection)
+            AppSidebarNavigation()
         }
         
         #else
-        AppSidebarNavigation(sidebarSelection: $sidebarSelection)
+        AppSidebarNavigation()
         #endif
     }
 }

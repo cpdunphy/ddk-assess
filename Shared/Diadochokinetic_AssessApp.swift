@@ -10,8 +10,13 @@ import SwiftUI
 @main
 struct Diadochokinetic_AssessApp: App {
     
+    /// Inital declaration and initation of 'DDKModel'
     @StateObject private var ddkModel : DDKModel = DDKModel()
+    
+    /// Inital declaration and initation of 'Store'
     @StateObject private var store : Store = Store()
+    
+    /// Inital declaration and initation of 'TimerSession'
     @StateObject private var timerSession : TimerSession = TimerSession()
     
     var body: some Scene {
@@ -21,34 +26,6 @@ struct Diadochokinetic_AssessApp: App {
                 .environmentObject(timerSession)
                 .environmentObject(store)
         }
-        
-        #if os(macOS)
-        Settings {
-            Text("Settings here.")
-            
-        }
-        #endif
     }
 }
-
-enum NavigationItem {
-    case assess, history, support, settings
-}
-
-extension NavigationItem {
-    var label: some View {
-        switch self {
-        case .assess:
-            return Label("Assess", systemImage: "hand.tap.fill")
-        case .history:
-            return Label("History", systemImage: "tray.full.fill")
-        case .support:
-            return Label("Support", systemImage: "heart.fill")
-        case .settings:
-            return Label("Settings", systemImage: "gearshape.fill")
-        }
-    }
-}
-
-
 

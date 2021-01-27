@@ -11,7 +11,7 @@ import SwiftUI
 import MessageUI
 #endif
 
-struct Settings: View {
+struct SettingsScreen: View {
     
     @EnvironmentObject var model : DDKModel
     @EnvironmentObject var store : Store
@@ -121,11 +121,12 @@ struct Settings: View {
         model.resetTimed()
         model.resetCount()
     }
+
 }
 
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        Settings()
+        SettingsScreen()
     }
 }
 
@@ -151,4 +152,6 @@ struct FeedbackText :View {
     }
 }
 #endif
+
+
 

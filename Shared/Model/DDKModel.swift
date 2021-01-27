@@ -12,19 +12,9 @@ import CoreHaptics
 // MARK: - DDKModel
 
 class DDKModel : ObservableObject {
-    
-    @Published var latestTimedDateRef : Date = Date()
-    @Published var latestCountDateRef : Date = Date()
-    
-    var referenceDate : Date {
-        switch self.assessType {
-        case .timed:
-            return latestTimedDateRef
-        case .count:
-            return latestCountDateRef
-        }
-    }
-    @AppStorage("default_assessment_style") var defaultAssessmentType : AssessType = .timed
+        
+    // MARK: Assess Type
+    /// Source of truth for the assessment type of the whole app
     @Published var assessType : AssessType = .timed
     
     /// Sets the currently selected view's referenceDate equal to the current date
@@ -37,13 +27,16 @@ class DDKModel : ObservableObject {
         }
     }
     
-    init () {
-        assessType = defaultAssessmentType
-    }
     
+    // MARK: Tap Count
+    
+    /// Current number of taps in timed mode
     @Published var currentTimedTaps : Int = 0
+    
+    /// Current number of taps in count mode
     @Published var currentCountTaps : Int = 0
     
+    /// Outputs the current number of taps based on the currently selected 'assessType'
     var currentTaps : Int {
         switch self.assessType {
         case .timed:
@@ -53,21 +46,72 @@ class DDKModel : ObservableObject {
         }
     }
 
+    // MARK: Counting States
+    /// Monitors the state of the current state of the timed mode. This is a set due to the variety of possibilities the timed state can be in
     @Published var currentTimedState : Set<CountingState> = [.ready]
+    
+    /// Monitors the state of the current state of the timed mode
     @Published var currentCountState : CountingState = .ready
     
-    @Published var records : [Record] = []
+        
+    // MARK: Records
     
+    /// The patient assessment records, doesn't restore from any backup and is cleared upon app quit (can also be cleared via the settings screen)
+    @Published var records : [AssessmentRecord] = []
+    
+    
+    // MARK: User Preferences
+    
+    /// Default Assessment Style. Sets the inital assessment format upon init
+    @AppStorage("default_assessment_style") var defaultAssessmentType : AssessType = .timed
+    
+    /// Countdown Length. Sets how long the timer counts down for before starting the assessment
     @AppStorage("countdown_length") var currentlySelectedCountdownLength: Int = 3
+    
+    
+    /// How long the timer should countdown for during timed assessment mode
     @AppStorage("timer_length") var currentlySelectedTimerLength: Int = 10
+    
+    /// The total amount of assessments done by the user. Incremented each time an assessment completes via 'finishTimer' & 'logCount'
     @AppStorage("userLogCountTOTAL") var totalAssessments : Int = 0
     
+
+    // MARK: Time References
+    /// The latest start of a timed assessment
+    @Published var latestTimedDateRef : Date = Date()
+    
+    /// The latest start of a count assessment
+    @Published var latestCountDateRef : Date = Date()
+    
+    /// /// The latest start of an assessment, outputs the currently selected assess type
+    var referenceDate : Date {
+        switch self.assessType {
+        case .timed:
+            return latestTimedDateRef
+        case .count:
+            return latestCountDateRef
+        }
+    }
+   
+    
+    // MARK: Timer Utility
+    /// Time spent paused on timed mode
     @Published var timeSpentPaused : Double = 0.0
+    
+    /// Lastest time a timed assessment was started
     @Published var timeStartLatestPaused : Date = Date()
+    
+    /// The latest time a countdown was started
     @Published var timeStartCountdown : Date = Date()
+    
+    // MARK: - init
+    init () {
+        assessType = defaultAssessmentType
+    }
+
 }
 
-//MARK: - Handling Timed
+// MARK: - Handling Timed
 extension DDKModel {
 
     func handleTimedTaps() {
@@ -114,7 +158,7 @@ extension DDKModel {
     func finishTimer() {
         if currentTimedState != [.finished] {
             currentTimedState = [.finished]
-            let record = Record(date: Date(), taps: currentTimedTaps, timed: true, duration: Double(currentlySelectedTimerLength))
+            let record = AssessmentRecord(date: Date(), taps: currentTimedTaps, timed: true, duration: Double(currentlySelectedTimerLength))
             records.insert(record, at: 0)
             totalAssessments += 1
             print(records)
@@ -129,7 +173,7 @@ extension DDKModel {
     }
 }
 
-//MARK: - Handling Count
+// MARK: - Handling Count
 extension DDKModel {
     
     func handleCountTaps() {
@@ -153,15 +197,15 @@ extension DDKModel {
         if currentCountTaps == 0 {
             duration = 0.0
         }
-        let record = Record(date: Date(), taps: currentCountTaps, timed: false, duration: duration)
+        let record = AssessmentRecord(date: Date(), taps: currentCountTaps, timed: false, duration: duration)
         currentCountTaps = 0
         records.insert(record, at: 0)
         totalAssessments += 1
         triggerHapticFeedbackSuccess()
     }
-    
 }
-//MARK: - HapticFeedback
+
+// MARK: - HapticFeedback
 extension DDKModel {
     func triggerHapticFeedbackSuccess() {
         #if os(iOS)

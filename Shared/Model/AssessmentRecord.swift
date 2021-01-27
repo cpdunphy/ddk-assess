@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Record : Identifiable, Hashable {
+struct AssessmentRecord : Identifiable, Hashable {
     var id = UUID()
     var date: Date
     var taps: Int
