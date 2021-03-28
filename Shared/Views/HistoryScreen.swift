@@ -28,7 +28,8 @@ struct HistoryScreen: View {
         List {
             ForEach(model.records, id: \.id) { record in
                 RecordHistoryRow(record: record)
-            }.onDelete(perform: delete)
+            }
+            .onDelete(perform: delete)
                 
             Text("You have done \(totalAssessments) DDK \(totalAssessments == 1 ? "Assessment!" : "Assessments!")")
         }
@@ -40,7 +41,7 @@ struct HistoryScreen: View {
             Button(action: {
                 showTrashConfirmationAlert = true
             }) {
-                Image(systemName: "trash.fill")
+                Label("Delete Logs", systemImage: "trash.fill")
             }
         }
     }
@@ -118,7 +119,7 @@ struct HistoryScreen: View {
         
         
         func dateToString(date : Date) -> String {
-            print("Calculating")
+//            print("Calculating")
             let interval = Date().timeIntervalSince(date)
             var str = 0
             var unit : TimeUnits = .seconds
