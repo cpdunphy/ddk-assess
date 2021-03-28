@@ -70,9 +70,9 @@ struct ProductButton : View {
                 .font(.headline)
                 .fontWeight(.medium)
 
-            Text("\(skproduct.price)")
-                .font(.footnote)
-                .foregroundColor(.secondary)
+                Text("$\(product.price)")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
         }
         .frame(idealWidth: 150, maxWidth: 200, idealHeight: 100, maxHeight: 125)
         .modifier(NeonButtonStyle())
