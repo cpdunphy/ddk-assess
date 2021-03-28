@@ -18,8 +18,8 @@ class DDKModel : ObservableObject {
     @Published var assessType : AssessType = .timed
     
     /// Sets the currently selected view's referenceDate equal to the current date
-    func syncTimeRef() {
-        switch assessType {
+    func syncTimeRef(_ override: AssessType? = nil) {
+        switch override ?? assessType {
         case .timed:
             latestTimedDateRef = Date()
         case .count:
@@ -82,17 +82,7 @@ class DDKModel : ObservableObject {
     
     /// The latest start of a count assessment
     @Published var latestCountDateRef : Date = Date()
-    
-    /// /// The latest start of an assessment, outputs the currently selected assess type
-//    var referenceDate : Date {
-//        switch self.assessType {
-//        case .timed:
-//            return latestTimedDateRef
-//        case .count:
-//            return latestCountDateRef
-//        }
-//    }
-   
+       
     
     // MARK: Timer Utility
     /// Time spent paused on timed mode
@@ -158,7 +148,12 @@ extension DDKModel {
     func finishTimer() {
         if currentTimedState != [.finished] {
             currentTimedState = [.finished]
-            let record = AssessmentRecord(date: Date(), taps: currentTimedTaps, timed: true, duration: Double(currentlySelectedTimerLength))
+            let record = AssessmentRecord(
+                date: Date(),
+                taps: currentTimedTaps,
+                timed: true,
+                duration: Double(currentlySelectedTimerLength)
+            )
             records.insert(record, at: 0)
             totalAssessments += 1
             print(records)
@@ -169,7 +164,7 @@ extension DDKModel {
     func finishCountdown() {
         currentTimedState = [.counting]
         timeSpentPaused = 0
-        syncTimeRef()
+        syncTimeRef(.timed)
     }
 }
 
@@ -177,9 +172,9 @@ extension DDKModel {
 extension DDKModel {
     
     func handleCountTaps() {
-        print("DDKModel: handleCountTaps()")
+        print("handleCountTaps()")
         if currentCountTaps == 0 {
-            print("DDKModel: handleCountTaps(): Starting inital taps")
+            print("Starting initial taps")
             syncTimeRef()
             currentCountState = .counting
         }
