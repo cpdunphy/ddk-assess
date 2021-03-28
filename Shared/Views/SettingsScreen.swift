@@ -61,19 +61,17 @@ struct SettingsScreen: View {
                 }.disabled(!MFMailComposeViewController.canSendMail())
             }
             
-            if UIDevice.current.userInterfaceIdiom == .phone {
-                Section(header: Text("Support:")) {
-                    if !store.supportProductOptions.isEmpty {
-                        ForEach(store.supportProductOptions.sorted { $0.productIdentifier < $1.productIdentifier }, id: \.self) { product in
-                            NavigationLink(destination: SupportTheDev(product: [product])) {
-                                Text("Buy the developer a \(product.localizedTitle) \(store.getEmoji(id: product.productIdentifier))")
-                                    .foregroundColor(.accentColor)
-                            }
+            Section(header: Text("Support")) {
+                if !store.supportProductOptions.isEmpty {
+                    ForEach(store.supportProductOptions.sorted { $0.productIdentifier < $1.productIdentifier }, id: \.self) { product in
+                        NavigationLink(destination: SupportTheDev(product: product)) {
+                            Text("Buy the developer a \(product.localizedTitle) \(Store.getEmoji(id: product.productIdentifier))")
+                                .foregroundColor(.accentColor)
                         }
-                    } else {
-                        Text("No Support Options Currently Available")
-                            .font(.footnote)
                     }
+                } else {
+                    Text("No Support Options Currently Available")
+                        .font(.footnote)
                 }
             }
             #endif

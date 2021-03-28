@@ -12,7 +12,7 @@ struct SupportTheDev: View {
     
     @EnvironmentObject var store : Store
         
-    var product : [SKProduct]? = nil
+    var product : SKProduct
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -23,13 +23,11 @@ struct SupportTheDev: View {
             
             HStack(spacing: 20) {
                 if !store.supportProductOptions.isEmpty {
-                    ForEach(product ?? store.supportProductOptions.sorted { $0.productIdentifier < $1.productIdentifier }, id: \.productIdentifier) { item in
-                        Button {
-                            store.purchaseProduct(item)
-                        } label: {
-                            ProductButton(item)
-                        }.buttonStyle(PlainButtonStyle())
-                    }
+                    Button {
+                        store.purchaseProduct(product)
+                    } label: {
+                        ProductButton(product)
+                    }.buttonStyle(PlainButtonStyle())
                 } else {
                     Text("No support options currently available.")
                         .padding()
@@ -45,7 +43,7 @@ struct SupportTheDev: View {
 
 struct SuppportTheDev_Previews: PreviewProvider {
     static var previews: some View {
-        SupportTheDev()
+        SupportTheDev(product: SKProduct())
     }
 }
 

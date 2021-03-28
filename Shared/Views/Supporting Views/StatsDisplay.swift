@@ -351,7 +351,6 @@ struct StatsDisplay: View {
     var timerDescription : String {
         if model.currentTimedState.contains(.countdown) {
             calculateTimeLeftCountdown()
-            
         } else if model.currentTimedState.contains(.counting) {
             calculateTimeLeft()
         }
