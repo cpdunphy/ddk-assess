@@ -9,22 +9,24 @@ import SwiftUI
 import StoreKit
 
 struct SupportTheDev: View {
+    
     @EnvironmentObject var store : Store
-    
-    @Environment(\.colorScheme) var colorScheme
-    
+        
     var product : [SKProduct]? = nil
     
     var body: some View {
-        VStack(alignment: .center) {
-            Spacer()
-            DonateDescription()
-            LazyHStack(spacing: 20) {
+        ZStack(alignment: .bottom) {
+
+            ScrollView {
+                DonateDescription().padding(20)
+            }
+            
+            HStack(spacing: 20) {
                 if !store.supportProductOptions.isEmpty {
                     ForEach(product ?? store.supportProductOptions.sorted { $0.productIdentifier < $1.productIdentifier }, id: \.productIdentifier) { item in
-                        Button(action: {
+                        Button {
                             store.purchaseProduct(item)
-                        }) {
+                        } label: {
                             ProductButton(item)
                         }.buttonStyle(PlainButtonStyle())
                     }
@@ -33,11 +35,11 @@ struct SupportTheDev: View {
                         .padding()
                         .modifier(NeonButtonStyle())
                 }
-            }
+            }.padding(.bottom, 30)
         }
-        .padding(20)
         .background(Color(.systemGroupedBackground).edgesIgnoringSafeArea(.all)) //TODO: Add Mac Compatability
         .navigationTitle("Donation")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -50,31 +52,35 @@ struct SuppportTheDev_Previews: PreviewProvider {
 
 struct ProductButton : View {
     
-    @EnvironmentObject var store : Store
+//    @EnvironmentObject var store : Store
     @Environment(\.colorScheme) var colorScheme
     
-    var skproduct: SKProduct
+    var product: SKProduct
     
-    init(_ skproduct: SKProduct) {
-        self.skproduct = skproduct
+    init(_ product: SKProduct) {
+        self.product = product
     }
     
     var body: some View {
-        VStack {
-            Text(store.getEmoji(id: skproduct.productIdentifier))
+        HStack {
+            Text(Store.getEmoji(id: product.productIdentifier))
                 .font(.largeTitle)
-                .padding(.bottom, 3)
+//                .padding(.bottom, 3)
+                .padding(.trailing, 4)
             
-            Text(skproduct.localizedTitle)
-                .foregroundColor(.accentColor)
-                .font(.headline)
-                .fontWeight(.medium)
+            VStack(alignment: .leading) {
+                Text(product.localizedTitle)
+                    .foregroundColor(.accentColor)
+                    .font(.headline)
+                    .fontWeight(.medium)
 
                 Text("$\(product.price)")
                     .font(.footnote)
                     .foregroundColor(.secondary)
+            }
         }
-        .frame(idealWidth: 150, maxWidth: 200, idealHeight: 100, maxHeight: 125)
+        .padding(.vertical, 20)
+        .padding(.horizontal, 30)
         .modifier(NeonButtonStyle())
     }
 }
@@ -87,7 +93,7 @@ struct NeonButtonStyle: ViewModifier {
             .background(
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(Color(.systemGroupedBackground)) //TODO: Add Mac Compatability
-                    .shadow(radius: 10)
+                    .shadow(radius: 8, x: 4, y: 4)
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
@@ -110,6 +116,6 @@ struct DonateDescription : View {
         }.layoutPriority(1.0)
     }
     
-    var termsIAPText : String = "I built this app after talking with my aunt, who is a speech pathologist. This is my first app I have published, and plan to go to college next year to study engineering or computer science (and hopefully publish more apps). If you like this app and find it useful, please consider buying me a snack.\n\nThank you for your consideration,\n - Collin"
+    var termsIAPText : String = "I built this app after talking with my aunt, who is a speech pathologist. This is my first app I have published, and plan to go to college next year to study engineering or computer science (and hopefully publish more apps). If you like this app and find it useful, please consider buying me a snack.\n\nThank you for your consideration,\nCollin"
 
 }
