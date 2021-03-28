@@ -45,8 +45,10 @@ struct SettingsScreen: View {
                 Toggle("Show Decimal on Timer", isOn: $showDecimalOnTimer)
             }
             Section {
-                Button("Reset Preferences") {
+                Button {
                     showResetConfirmationAlert = true
+                } label: {
+                    Label("Reset Preferences", systemImage: "exclamationmark.arrow.circlepath")
                 }.foregroundColor(.red)
             }
             
@@ -76,9 +78,7 @@ struct SettingsScreen: View {
             }
             #endif
             
-            Section(header: Text(versionDescription())) {
-                
-            }
+            Section(header: Text(versionDescription())) {}
         }
         .navigationTitle("Settings")
         .alert(isPresented: $showResetConfirmationAlert) {
