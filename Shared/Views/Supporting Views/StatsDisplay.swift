@@ -40,14 +40,18 @@ struct StatsDisplay: View {
     var buttons: some View {
         HStack {
             Spacer(minLength: 0)
+            
             Button(action: handleLeft) {
                 leftButton
             }.buttonStyle(ControlButtonStyle(option: leftButtonOptionLogic()))
+            
             Spacer(minLength: 0)
             Spacer(minLength: 0)
+            
             Button(action: handleRight) {
                 rightButton
             }.buttonStyle(ControlButtonStyle(option: rightButtonOptionLogic()))
+            
             Spacer(minLength: 0)
         }
     }
@@ -206,7 +210,7 @@ struct StatsDisplay: View {
             VStack(spacing: 0) {
                 titleLabel(timerDescription)
                 
-                seperator
+                separator
                 
                 subtitleLabel(tapDescrition)
             }
@@ -265,9 +269,9 @@ struct StatsDisplay: View {
         VStack(spacing: 0) {
             titleLabel(tapDescrition)
             
-            seperator
+            separator
             
-            subtitleLabel(model.currentCountState == .ready ? showDecimalTimer ? "00:00.0" : "00:00" : timerDescription)
+            subtitleLabel(timerDescription)
         }
     }
     
@@ -281,7 +285,7 @@ struct StatsDisplay: View {
     @ScaledMetric(relativeTo: .largeTitle) var titleFontSize: CGFloat = 48
     @ScaledMetric(relativeTo: .headline) var subtitleFontSize: CGFloat = 24
     
-    var seperator : some View {
+    var separator : some View {
         RoundedRectangle(cornerRadius: 100.0)
             .foregroundColor(.secondary)
             .frame(width: 100, height: 5)
@@ -304,12 +308,12 @@ struct StatsDisplay: View {
         let totalTime = TimeInterval(model.currentlySelectedTimerLength)
         
         if model.currentTimedState == [.paused, .counting] {
-            duration = model.referenceDate
+            duration = model.latestTimedDateRef
                 .addingTimeInterval(totalTime)
                 .addingTimeInterval(model.timeSpentPaused)
                 .timeIntervalSince(model.timeStartLatestPaused)
         } else {
-            duration = model.referenceDate
+            duration = model.latestTimedDateRef
                 .addingTimeInterval(totalTime)
                 .addingTimeInterval(model.timeSpentPaused)
                 .timeIntervalSince(timerSession.currentDateTime)
@@ -326,12 +330,12 @@ struct StatsDisplay: View {
         var duration : Double = 0.0
         let totalTime = TimeInterval(model.currentlySelectedCountdownLength)
         if model.currentTimedState == [.paused, .countdown] {
-            duration = model.referenceDate
+            duration = model.latestTimedDateRef
                 .addingTimeInterval(totalTime)
                 .addingTimeInterval(model.timeSpentPaused)
                 .timeIntervalSince(model.timeStartLatestPaused)
         } else {
-            duration = model.referenceDate
+            duration = model.latestTimedDateRef
                 .addingTimeInterval(totalTime)
                 .addingTimeInterval(model.timeSpentPaused)
                 .timeIntervalSince(timerSession.currentDateTime)
@@ -345,19 +349,29 @@ struct StatsDisplay: View {
     }
     
     var timerDescription : String {
+        if model.currentTimedState.contains(.countdown) {
+            calculateTimeLeftCountdown()
+            
+        } else if model.currentTimedState.contains(.counting) {
+            calculateTimeLeft()
+        }
+        
         switch model.assessType {
         case .timed:
             switch model.currentTimedState {
             case [.countdown], [.countdown, .paused]:
                 return "\(Int(min(calculateTimeLeftCountdown().rounded(.up), Double(model.currentlySelectedCountdownLength))))..."
-            //                return "\(String(format: "%.1f", calculateTimeLeftCountdown()))..."
             case [.counting], [.counting, .paused]:
                 return getStandardTimeDisplayString(calculateTimeLeft())
             default:
                 return "Default Timer Description"
             }
         case .count:
-            return getStandardTimeDisplayString(max(0, timerSession.currentDateTime.timeIntervalSince(model.referenceDate)))
+            if model.currentCountState == .ready {
+                return showDecimalTimer ? "00:00.0" : "00:00"
+            }
+            
+            return getStandardTimeDisplayString(max(0, timerSession.currentDateTime.timeIntervalSince(model.latestCountDateRef)))
         }
     }
     

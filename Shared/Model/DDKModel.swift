@@ -84,14 +84,14 @@ class DDKModel : ObservableObject {
     @Published var latestCountDateRef : Date = Date()
     
     /// /// The latest start of an assessment, outputs the currently selected assess type
-    var referenceDate : Date {
-        switch self.assessType {
-        case .timed:
-            return latestTimedDateRef
-        case .count:
-            return latestCountDateRef
-        }
-    }
+//    var referenceDate : Date {
+//        switch self.assessType {
+//        case .timed:
+//            return latestTimedDateRef
+//        case .count:
+//            return latestCountDateRef
+//        }
+//    }
    
     
     // MARK: Timer Utility
