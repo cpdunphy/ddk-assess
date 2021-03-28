@@ -27,13 +27,13 @@ struct AssessScreen : View {
     }
     
     var assess : some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 16) {
             StatsDisplay()
                 .layoutPriority(1)
             TapButton()
                 .layoutPriority(1)
         }
-        .padding(.all, 20)
+        .padding(16)
     }
 }
 
