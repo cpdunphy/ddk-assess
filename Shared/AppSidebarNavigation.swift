@@ -12,12 +12,13 @@ struct AppSidebarNavigation: View {
     @EnvironmentObject var model : DDKModel
     
     @State private var sidebarSelection : Set<NavigationItem> = [.assess]
-    
+    @State private var showSettingsModal : Bool = false
+
     var body: some View {
         NavigationView {
             #if os(macOS)
             /// Brings support to macOS, setting a limit on the extent to which it can expand/contract. Also adds a 'toggle to open/close the sidebar.
-            sidebar
+            HistoryScreen()
                 .frame(minWidth: 100, idealWidth: 150, maxHeight: .infinity)
                 .toolbar {
                     ToolbarItem(placement: .navigation) {
@@ -25,7 +26,10 @@ struct AppSidebarNavigation: View {
                     }
                 }
             #else
-            sidebar
+            HistoryScreen()
+                .sheet(isPresented: $showSettingsModal) {
+                    SettingsModal()
+                }
             #endif
             
             
@@ -35,37 +39,18 @@ struct AppSidebarNavigation: View {
             #else
             AssessScreen()
                 .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItemGroup(placement: ToolbarItemPlacement.navigationBarLeading) {
+                        Button {
+                            showSettingsModal = true
+                        } label: {
+                            Image(systemName: "gearshape")
+                        }
+                    }
+                }
             #endif
         }
     }
-    
-    /// Sidebar for use in macOS & iPadOS
-    var sidebar : some View {
-        List(selection: $sidebarSelection) {
-            NavigationLink(destination: AssessScreen()) {
-                NavigationItem.assess.label
-            }.tag(NavigationItem.assess)
-            
-            NavigationLink(destination: HistoryScreen()) {
-                NavigationItem.history.label
-            }.tag(NavigationItem.history)
-            
-            NavigationLink(destination: SupportTheDev()) {
-                NavigationItem.support.label
-            }.tag(NavigationItem.support)
-            
-            /// SettingsScreen is only in iOS because macOS has its own settings configuration. TODO: Needs to be implemented through 'ContentView'
-            #if os(iOS)
-            NavigationLink(destination: SettingsScreen()) {
-                NavigationItem.settings.label
-            }.tag(NavigationItem.settings)
-            #endif
-        }
-        .listStyle(SidebarListStyle())
-        .navigationTitle("DDK")
-    }
-    
-    
     
     /// macOS Sidebar Toggle
     #if os(macOS)
@@ -81,4 +66,26 @@ struct AppSidebarNavigation: View {
     }
     #endif
     
+    
+    struct SettingsModal : View {
+        @EnvironmentObject var model : DDKModel
+        @EnvironmentObject var store : Store
+        
+        @Environment(\.presentationMode) var presentationMode
+        
+        var body: some View {
+            NavigationView {
+                SettingsScreen()
+                    .environmentObject(model)
+                    .environmentObject(store)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        Button(
+                            "Done",
+                            action: { presentationMode.wrappedValue.dismiss() }
+                        )
+                    }
+            }
+        }
+    }
 }
