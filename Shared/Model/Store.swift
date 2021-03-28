@@ -47,7 +47,7 @@ extension Store {
     static let donateSmoothieIdentifier = "com.Ballygorey.Diadochokinetic_Assess.SupportTheDev2"
 
     
-    func getEmoji(id: String) -> String {
+    static func getEmoji(id: String) -> String {
         switch id {
         case Store.donateDonutIdentifier:
             return "🍩"
