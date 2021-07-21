@@ -11,8 +11,11 @@ struct HistoryScreen: View {
     
     @EnvironmentObject var model : DDKModel
     
+    @AppStorage(StorageKeys.User.totalAssessments) var totalAssessments : Int = 0
+    @AppStorage(StorageKeys.History.historyIsGrouped) var historyIsGrouped : Bool = false
+
+    @State private var recordEditSelection: AssessmentRecord? = nil
     @State private var showTrashConfirmationAlert : Bool = false
-    @AppStorage("userLogCountTOTAL") var totalAssessments : Int = 0
     
     var body: some View {
         #if os(iOS)
@@ -22,8 +25,6 @@ struct HistoryScreen: View {
         list
         #endif
     }
-    
-    @State private var recordEditSelection: AssessmentRecord? = nil
     
     var list: some View {
         List {
@@ -62,7 +63,6 @@ struct HistoryScreen: View {
             primaryButton: .cancel(Text("Cancel")),
             secondaryButton: .destructive(Text("Delete"), action: {
                 model.records = []
-                //                model.ResetTimedMode()
             })
         )
     }
