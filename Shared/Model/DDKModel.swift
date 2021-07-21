@@ -57,7 +57,10 @@ class DDKModel : ObservableObject {
     // MARK: Records
     
     /// The patient assessment records, doesn't restore from any backup and is cleared upon app quit (can also be cleared via the settings screen)
-    @Published var records : [AssessmentRecord] = []
+    @Published var records : [AssessmentRecord] = [
+        AssessmentRecord(date: Date(), taps: 7, type: .timed, duration: 15),
+        AssessmentRecord(date: Date(), taps: 14, type: .count, duration: 23.6)
+    ]
     
     
     // MARK: User Preferences
@@ -151,7 +154,7 @@ extension DDKModel {
             let record = AssessmentRecord(
                 date: Date(),
                 taps: currentTimedTaps,
-                timed: true,
+                type: .timed,
                 duration: Double(currentlySelectedTimerLength)
             )
             records.insert(record, at: 0)
@@ -192,7 +195,7 @@ extension DDKModel {
         if currentCountTaps == 0 {
             duration = 0.0
         }
-        let record = AssessmentRecord(date: Date(), taps: currentCountTaps, timed: false, duration: duration)
+        let record = AssessmentRecord(date: Date(), taps: currentCountTaps, type: .count, duration: duration)
         currentCountTaps = 0
         records.insert(record, at: 0)
         totalAssessments += 1

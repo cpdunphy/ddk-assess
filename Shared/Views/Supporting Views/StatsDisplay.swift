@@ -241,7 +241,7 @@ struct StatsDisplay: View {
                     .trim(from: 0.0, to: 0.001)
                     .stroke(Color.progressGradientColors[0], style: StrokeStyle(lineWidth: 7, lineCap: .round))
             }
-        }.padding(4).animation(.linear)
+        }.padding(4)
         
     }
     

@@ -23,15 +23,24 @@ struct HistoryScreen: View {
         #endif
     }
     
+    @State private var recordEditSelection: AssessmentRecord? = nil
     
     var list: some View {
         List {
             ForEach(model.records, id: \.id) { record in
-                RecordHistoryRow(record: record)
+                HistoryRecordButton(
+                    record: record,
+                    recordEditSelection: $recordEditSelection
+                )
             }
-            .onDelete(perform: delete)
-                
+            
             Text("You have done \(totalAssessments) DDK \(totalAssessments == 1 ? "Assessment!" : "Assessments!")")
+        }
+        .sheet(
+            item: $recordEditSelection,
+            onDismiss: { recordEditSelection = nil }
+        ) { record in
+            NavigationView { EditRecordScreen(record) }
         }
         .navigationTitle("History")
         .alert(isPresented: $showTrashConfirmationAlert) {
@@ -53,7 +62,7 @@ struct HistoryScreen: View {
             primaryButton: .cancel(Text("Cancel")),
             secondaryButton: .destructive(Text("Delete"), action: {
                 model.records = []
-//                model.ResetTimedMode()
+                //                model.ResetTimedMode()
             })
         )
     }
@@ -71,10 +80,18 @@ struct HistoryScreen: View {
         
         var body : some View {
             VStack(alignment: .leading) {
+                
+                Label(record.type.title, systemImage: "circle.fill")
+                    .foregroundColor(record.type.color)
+                
                 HStack {
                     Text("\(record.taps) \(record.taps == 1 ? "tap" : "taps")")
                     Spacer()
-                    Text(record.timed ? getSecondsLength(time: Int(record.duration)) : getSecondsLengthDouble(time: record.duration))
+                    Text(
+                        record.type == .timed ?
+                        getSecondsLength(time: Int(record.duration)) :
+                            getSecondsLengthDouble(time: record.duration)
+                    )
                 }
                 HStack {
                     HStack {
@@ -86,10 +103,16 @@ struct HistoryScreen: View {
                             .foregroundColor(.secondary)
                     }
                     Spacer()
-                    Text("\(record.timed ? "Timer" : "Count")")
+                    Text(record.type.title)
                         .font(.footnote)
                         .foregroundColor(Color(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)))
                 }
+                
+                Text(record.date, style: .time)
+                Text(record.date, style: .date)
+                
+                
+                Text("[") + Text(record.date, style: .relative) + Text("]")
             }
         }
         
@@ -119,7 +142,7 @@ struct HistoryScreen: View {
         
         
         func dateToString(date : Date) -> String {
-//            print("Calculating")
+            //            print("Calculating")
             let interval = Date().timeIntervalSince(date)
             var str = 0
             var unit : TimeUnits = .seconds
