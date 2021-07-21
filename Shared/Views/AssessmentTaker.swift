@@ -11,6 +11,8 @@ struct AssessmentTaker: View {
     
     @Environment(\.dismiss) var dismiss
     
+    @State var assessmentSettingsSelection : AssessmentType? = nil
+    
     var type : AssessmentType
     
     var body: some View {
@@ -29,6 +31,11 @@ struct AssessmentTaker: View {
             
         }
         .background(Color(.systemGroupedBackground))
+        .sheet(item: $assessmentSettingsSelection) { type in
+            NavigationView {
+                AssessmentOptions(type: type)
+            }
+        }
     }
     
     var navigationBar : some View {
@@ -54,7 +61,7 @@ struct AssessmentTaker: View {
                 
                 HStack(spacing: 16) {
                     Button {
-                        
+                        assessmentSettingsSelection = type
                     } label: {
                         Label("Options", systemImage: "ellipsis.circle")
                             .imageScale(.large)
