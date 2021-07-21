@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0214EEA26A31B8100003DDC /* AssessmentGalleryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */; };
+		F0214EEC26A31BEA00003DDC /* AssessmentGalleryGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */; };
+		F0214EEE26A31BF600003DDC /* AssessmentGalleryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EED26A31BF600003DDC /* AssessmentGalleryList.swift */; };
+		F0214EF126A31F0D00003DDC /* AssessmentGalleryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EF026A31F0D00003DDC /* AssessmentGalleryType.swift */; };
+		F022212F26A321E900AA0340 /* AssessmentGalleryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EF026A31F0D00003DDC /* AssessmentGalleryType.swift */; };
+		F022213126A325B900AA0340 /* AssessmentGalleryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */; };
 		F025287A251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */; };
 		F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */; };
 		F0252882251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */; };
@@ -35,10 +41,22 @@
 		F07564EC2530FA8200EC058A /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07564EB2530FA8200EC058A /* MailView.swift */; };
 		F07B3BD0261108E5004EB5AC /* Print.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07B3BCF261108E5004EB5AC /* Print.swift */; };
 		F07B3BD1261108E5004EB5AC /* Print.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07B3BCF261108E5004EB5AC /* Print.swift */; };
+		F080D72926A3B5C700A1F49D /* AssessmentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D72826A3B5C700A1F49D /* AssessmentType.swift */; };
+		F080D72A26A3B5C700A1F49D /* AssessmentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D72826A3B5C700A1F49D /* AssessmentType.swift */; };
+		F080D72C26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D72B26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift */; };
+		F080D72D26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D72B26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift */; };
+		F080D72F26A4ED7F00A1F49D /* AssessmentTaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D72E26A4ED7F00A1F49D /* AssessmentTaker.swift */; };
+		F080D73026A4ED7F00A1F49D /* AssessmentTaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D72E26A4ED7F00A1F49D /* AssessmentTaker.swift */; };
+		F080D73226A4EDCE00A1F49D /* AssessmentOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D73126A4EDCE00A1F49D /* AssessmentOptions.swift */; };
+		F080D73326A4EDCE00A1F49D /* AssessmentOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D73126A4EDCE00A1F49D /* AssessmentOptions.swift */; };
+		F080D73526A5C77A00A1F49D /* EditRecordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D73426A5C77A00A1F49D /* EditRecordScreen.swift */; };
+		F080D73626A5C77A00A1F49D /* EditRecordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D73426A5C77A00A1F49D /* EditRecordScreen.swift */; };
+		F080D73826A5D44F00A1F49D /* RecordGeneralInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D73726A5D44F00A1F49D /* RecordGeneralInfo.swift */; };
+		F080D73926A5D44F00A1F49D /* RecordGeneralInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D73726A5D44F00A1F49D /* RecordGeneralInfo.swift */; };
+		F080D73B26A5E0F100A1F49D /* HistoryRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D73A26A5E0F100A1F49D /* HistoryRecordButton.swift */; };
+		F080D73C26A5E0F100A1F49D /* HistoryRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D73A26A5E0F100A1F49D /* HistoryRecordButton.swift */; };
 		F0B423BB25A66D97002805C9 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423BA25A66D97002805C9 /* NavigationItem.swift */; };
 		F0B423BC25A66D97002805C9 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423BA25A66D97002805C9 /* NavigationItem.swift */; };
-		F0B423C725A6719C002805C9 /* AssessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423C525A6719C002805C9 /* AssessScreen.swift */; };
-		F0B423D025A6723D002805C9 /* AssessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423C525A6719C002805C9 /* AssessScreen.swift */; };
 		F0C75699251C3A4300D066A9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C75698251C3A4300D066A9 /* StoreKit.framework */; };
 		F0C7569F251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */; };
 		F0C756A0251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */; };
@@ -76,6 +94,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryScreen.swift; sourceTree = "<group>"; };
+		F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryGrid.swift; sourceTree = "<group>"; };
+		F0214EED26A31BF600003DDC /* AssessmentGalleryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryList.swift; sourceTree = "<group>"; };
+		F0214EF026A31F0D00003DDC /* AssessmentGalleryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryType.swift; sourceTree = "<group>"; };
+		F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryIcon.swift; sourceTree = "<group>"; };
 		F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMobileNavigation.swift; sourceTree = "<group>"; };
 		F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSidebarNavigation.swift; sourceTree = "<group>"; };
 		F0252887251CCC8600D2F5DF /* AssessmentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentPicker.swift; sourceTree = "<group>"; };
@@ -101,8 +124,14 @@
 		F060BAC625214393009F9C81 /* HistoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScreen.swift; sourceTree = "<group>"; };
 		F07564EB2530FA8200EC058A /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		F07B3BCF261108E5004EB5AC /* Print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Print.swift; sourceTree = "<group>"; };
+		F080D72826A3B5C700A1F49D /* AssessmentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentType.swift; sourceTree = "<group>"; };
+		F080D72B26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryContextMenuItems.swift; sourceTree = "<group>"; };
+		F080D72E26A4ED7F00A1F49D /* AssessmentTaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentTaker.swift; sourceTree = "<group>"; };
+		F080D73126A4EDCE00A1F49D /* AssessmentOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentOptions.swift; sourceTree = "<group>"; };
+		F080D73426A5C77A00A1F49D /* EditRecordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRecordScreen.swift; sourceTree = "<group>"; };
+		F080D73726A5D44F00A1F49D /* RecordGeneralInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordGeneralInfo.swift; sourceTree = "<group>"; };
+		F080D73A26A5E0F100A1F49D /* HistoryRecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRecordButton.swift; sourceTree = "<group>"; };
 		F0B423BA25A66D97002805C9 /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
-		F0B423C525A6719C002805C9 /* AssessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessScreen.swift; sourceTree = "<group>"; };
 		F0C75698251C3A4300D066A9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SupportConfiguration.storekit; sourceTree = "<group>"; };
 		F0C756AF251C3DA500D066A9 /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
@@ -149,9 +178,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F0214EEF26A31BFE00003DDC /* Assess Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */,
+				F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */,
+				F0214EED26A31BF600003DDC /* AssessmentGalleryList.swift */,
+				F080D72B26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift */,
+				F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */,
+			);
+			path = "Assess Gallery";
+			sourceTree = "<group>";
+		};
 		F02DB3DE251C23430038FEAE = {
 			isa = PBXGroup;
 			children = (
+				F080D73A26A5E0F100A1F49D /* HistoryRecordButton.swift */,
 				F02DB3E3251C23430038FEAE /* Shared */,
 				F02DB3ED251C23440038FEAE /* iOS */,
 				F02DB3F4251C23440038FEAE /* macOS */,
@@ -246,8 +288,9 @@
 				F0B423BA25A66D97002805C9 /* NavigationItem.swift */,
 				F0C756AF251C3DA500D066A9 /* States.swift */,
 				F030470E251E65F300B438E7 /* Color.swift */,
-				F0C756B6251C3DC000D066A9 /* AssessmentRecord.swift */,
+				F0214EF026A31F0D00003DDC /* AssessmentGalleryType.swift */,
 				F0CEA380251CC5C700818C6D /* CountingState.swift */,
+				F0C756B6251C3DC000D066A9 /* AssessmentRecord.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -264,8 +307,13 @@
 		F0DC244B2524FB96000CBCA8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F0B423C525A6719C002805C9 /* AssessScreen.swift */,
+				F080D72826A3B5C700A1F49D /* AssessmentType.swift */,
+				F080D72E26A4ED7F00A1F49D /* AssessmentTaker.swift */,
+				F080D73126A4EDCE00A1F49D /* AssessmentOptions.swift */,
+				F0214EEF26A31BFE00003DDC /* Assess Gallery */,
 				F060BAC625214393009F9C81 /* HistoryScreen.swift */,
+				F080D73426A5C77A00A1F49D /* EditRecordScreen.swift */,
+				F080D73726A5D44F00A1F49D /* RecordGeneralInfo.swift */,
 				F0E180B125236C3500E808AB /* SettingsScreen.swift */,
 				F0B423E525A67711002805C9 /* Supporting Views */,
 			);
@@ -352,7 +400,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					F02DB3EA251C23440038FEAE = {
 						CreatedOnToolsVersion = 12.2;
@@ -434,22 +482,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0D5539E251C24340084E0EB /* DDKModel.swift in Sources */,
+				F080D73B26A5E0F100A1F49D /* HistoryRecordButton.swift in Sources */,
 				F02DB40F251C23440038FEAE /* ContentView.swift in Sources */,
+				F0214EEA26A31B8100003DDC /* AssessmentGalleryScreen.swift in Sources */,
 				F0C756B7251C3DC000D066A9 /* AssessmentRecord.swift in Sources */,
 				F0E180B225236C3500E808AB /* SettingsScreen.swift in Sources */,
 				F02DB40D251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
 				F07564EC2530FA8200EC058A /* MailView.swift in Sources */,
+				F080D72926A3B5C700A1F49D /* AssessmentType.swift in Sources */,
 				F0B423BB25A66D97002805C9 /* NavigationItem.swift in Sources */,
 				F060BAC025213C2B009F9C81 /* StatsDisplay.swift in Sources */,
+				F080D73526A5C77A00A1F49D /* EditRecordScreen.swift in Sources */,
 				F060BAC725214393009F9C81 /* HistoryScreen.swift in Sources */,
-				F0B423D025A6723D002805C9 /* AssessScreen.swift in Sources */,
+				F022213126A325B900AA0340 /* AssessmentGalleryIcon.swift in Sources */,
 				F030470F251E65F400B438E7 /* Color.swift in Sources */,
 				F0D553A5251C24750084E0EB /* Store.swift in Sources */,
+				F0214EF126A31F0D00003DDC /* AssessmentGalleryType.swift in Sources */,
 				F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */,
 				F025287A251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */,
+				F0214EEC26A31BEA00003DDC /* AssessmentGalleryGrid.swift in Sources */,
+				F0214EEE26A31BF600003DDC /* AssessmentGalleryList.swift in Sources */,
+				F080D72C26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift in Sources */,
 				F0304708251E4CD100B438E7 /* TapButton.swift in Sources */,
+				F080D72F26A4ED7F00A1F49D /* AssessmentTaker.swift in Sources */,
 				F0C756B0251C3DA500D066A9 /* States.swift in Sources */,
+				F080D73226A4EDCE00A1F49D /* AssessmentOptions.swift in Sources */,
 				F07B3BD0261108E5004EB5AC /* Print.swift in Sources */,
+				F080D73826A5D44F00A1F49D /* RecordGeneralInfo.swift in Sources */,
 				F0E180A725236BA100E808AB /* SupportTheDev.swift in Sources */,
 				F0CEA381251CC5C700818C6D /* CountingState.swift in Sources */,
 				F03046FD251E36F300B438E7 /* TimerSession.swift in Sources */,
@@ -461,24 +520,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F080D73026A4ED7F00A1F49D /* AssessmentTaker.swift in Sources */,
 				F0D5539F251C24340084E0EB /* DDKModel.swift in Sources */,
 				F02DB410251C23440038FEAE /* ContentView.swift in Sources */,
+				F080D73C26A5E0F100A1F49D /* HistoryRecordButton.swift in Sources */,
+				F080D73926A5D44F00A1F49D /* RecordGeneralInfo.swift in Sources */,
 				F0C756B8251C3DC000D066A9 /* AssessmentRecord.swift in Sources */,
 				F02DB40E251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
+				F022212F26A321E900AA0340 /* AssessmentGalleryType.swift in Sources */,
 				F0B423BC25A66D97002805C9 /* NavigationItem.swift in Sources */,
 				F060BAC125213C2B009F9C81 /* StatsDisplay.swift in Sources */,
 				F060BAC825214393009F9C81 /* HistoryScreen.swift in Sources */,
 				F07B3BD1261108E5004EB5AC /* Print.swift in Sources */,
 				F0304710251E65F400B438E7 /* Color.swift in Sources */,
 				F0D553A6251C24750084E0EB /* Store.swift in Sources */,
-				F0B423C725A6719C002805C9 /* AssessScreen.swift in Sources */,
 				F0252882251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */,
+				F080D72D26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift in Sources */,
 				F0304709251E4CD100B438E7 /* TapButton.swift in Sources */,
 				F0C756B1251C3DA500D066A9 /* States.swift in Sources */,
+				F080D73326A4EDCE00A1F49D /* AssessmentOptions.swift in Sources */,
 				F0E180A825236BA100E808AB /* SupportTheDev.swift in Sources */,
+				F080D72A26A3B5C700A1F49D /* AssessmentType.swift in Sources */,
 				F0CEA382251CC5C700818C6D /* CountingState.swift in Sources */,
 				F03046FE251E36F300B438E7 /* TimerSession.swift in Sources */,
 				F0252889251CCC8600D2F5DF /* AssessmentPicker.swift in Sources */,
+				F080D73626A5C77A00A1F49D /* EditRecordScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,12 +701,12 @@
 				DEVELOPMENT_TEAM = 896Q68CL7P;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Diadochokinetic-Assess";
 				PRODUCT_NAME = "Diadochokinetic Assess";
 				SDKROOT = iphoneos;
@@ -659,12 +725,12 @@
 				DEVELOPMENT_TEAM = 896Q68CL7P;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Diadochokinetic-Assess";
 				PRODUCT_NAME = "Diadochokinetic Assess";
 				SDKROOT = iphoneos;
@@ -680,6 +746,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -706,6 +773,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
