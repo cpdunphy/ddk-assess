@@ -187,8 +187,7 @@
 				F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */,
 				F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */,
 				F0214EED26A31BF600003DDC /* AssessmentGalleryList.swift */,
-				F080D72B26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift */,
-				F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */,
+				F080D74226A8C2E700A1F49D /* Supporting Views */,
 			);
 			path = "Assess Gallery";
 			sourceTree = "<group>";
@@ -196,7 +195,6 @@
 		F02DB3DE251C23430038FEAE = {
 			isa = PBXGroup;
 			children = (
-				F080D73A26A5E0F100A1F49D /* RecordHistoryRow.swift */,
 				F02DB3E3251C23430038FEAE /* Shared */,
 				F02DB3ED251C23440038FEAE /* iOS */,
 				F02DB3F4251C23440038FEAE /* macOS */,
@@ -267,6 +265,34 @@
 			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
+		F080D74026A8C2B000A1F49D /* History */ = {
+			isa = PBXGroup;
+			children = (
+				F060BAC625214393009F9C81 /* HistoryScreen.swift */,
+				F080D73426A5C77A00A1F49D /* EditRecordScreen.swift */,
+				F080D73726A5D44F00A1F49D /* RecordGeneralInfo.swift */,
+				F080D73A26A5E0F100A1F49D /* RecordHistoryRow.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		F080D74126A8C2D600A1F49D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F0E180B125236C3500E808AB /* SettingsScreen.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		F080D74226A8C2E700A1F49D /* Supporting Views */ = {
+			isa = PBXGroup;
+			children = (
+				F080D72B26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift */,
+				F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */,
+			);
+			path = "Supporting Views";
+			sourceTree = "<group>";
+		};
 		F0B423E525A67711002805C9 /* Supporting Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,10 +341,8 @@
 				F080D72E26A4ED7F00A1F49D /* AssessmentTaker.swift */,
 				F080D73126A4EDCE00A1F49D /* AssessmentOptions.swift */,
 				F0214EEF26A31BFE00003DDC /* Assess Gallery */,
-				F060BAC625214393009F9C81 /* HistoryScreen.swift */,
-				F080D73426A5C77A00A1F49D /* EditRecordScreen.swift */,
-				F080D73726A5D44F00A1F49D /* RecordGeneralInfo.swift */,
-				F0E180B125236C3500E808AB /* SettingsScreen.swift */,
+				F080D74026A8C2B000A1F49D /* History */,
+				F080D74126A8C2D600A1F49D /* Settings */,
 				F0B423E525A67711002805C9 /* Supporting Views */,
 			);
 			path = Views;

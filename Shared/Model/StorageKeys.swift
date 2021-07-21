@@ -13,6 +13,10 @@ struct StorageKeys {
         public static let totalAssessments : String = "userLogCountTOTAL"
     }
     
+    struct AssessGallery {
+        public static let galleryType = "assessment_gallery_type"
+    }
+    
     struct History {
         
         public static let historyIsGrouped : String = "history_is_grouped"

@@ -11,7 +11,7 @@ struct AssessmentGalleryScreen: View {
     
     @EnvironmentObject var model : DDKModel
     
-    @AppStorage("assessment_gallery_type") private var assessmentGalleryType : AssessmentGalleryType = .grid
+    @AppStorage(StorageKeys.AssessGallery.galleryType) private var assessmentGalleryType : AssessmentGalleryType = .grid
     
     @State var assessmentSettingsSelection  : AssessmentType? = nil
     @State var assessmentSelection          : AssessmentType? = nil

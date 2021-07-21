@@ -37,13 +37,16 @@ struct HistoryScreen: View {
             
             Text("You have done \(totalAssessments) DDK \(totalAssessments == 1 ? "Assessment!" : "Assessments!")")
         }
+        .navigationTitle("History")
+        
         .sheet(
             item: $recordEditSelection,
             onDismiss: { recordEditSelection = nil }
         ) { record in
             NavigationView { EditRecordScreen(record) }
         }
-        .navigationTitle("History")
+        
+        // Delete All Logs Confirmation
         .alert(
             "Delete Logs",
             isPresented: $showTrashConfirmationAlert,
@@ -58,6 +61,7 @@ struct HistoryScreen: View {
                 Text("Are you sure you want to delete all logs?")
             }
         )
+        
         .toolbar {
             Menu {
                 // Group / Sort Controls
@@ -90,17 +94,6 @@ struct HistoryScreen: View {
                 Label("More", systemImage: "ellipsis.circle")
             }
         }
-    }
-    
-    var deleteAlert: Alert {
-        Alert(
-            title: Text("Delete Logs"),
-            message: Text("Are you sure you want to delete all logs?"),
-            primaryButton: .cancel(Text("Cancel")),
-            secondaryButton: .destructive(Text("Delete"), action: {
-                model.records = []
-            })
-        )
     }
 }
 
