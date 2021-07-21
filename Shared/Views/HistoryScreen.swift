@@ -44,9 +44,20 @@ struct HistoryScreen: View {
             NavigationView { EditRecordScreen(record) }
         }
         .navigationTitle("History")
-        .alert(isPresented: $showTrashConfirmationAlert) {
-            deleteAlert
-        }
+        .alert(
+            "Delete Logs",
+            isPresented: $showTrashConfirmationAlert,
+            actions: {
+                Button("Cancel", role: .cancel) { }
+                
+                Button("Delete", role: .destructive) {
+                    model.records = []
+                }
+            },
+            message: {
+                Text("Are you sure you want to delete all logs?")
+            }
+        )
         .toolbar {
             Button(action: {
                 showTrashConfirmationAlert = true
