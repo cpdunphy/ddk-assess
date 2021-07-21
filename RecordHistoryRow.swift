@@ -1,13 +1,13 @@
 //
-//  HistoryRecordButton.swift
-//  HistoryRecordButton
+//  RecordHistoryRow.swift
+//  RecordHistoryRow
 //
 //  Created by Collin Dunphy on 7/19/21.
 //
 
 import SwiftUI
 
-struct HistoryRecordButton: View {
+struct RecordHistoryRow: View {
     
     @EnvironmentObject var model : DDKModel
     
@@ -85,9 +85,9 @@ struct HistoryRecordButton: View {
             deleteButton
         }
         .confirmationDialog("Are you sure?", isPresented: $deleteConfirmationIsPresented) {
+            //
             Button(role: .destructive) {
-                print("Deleting..")
-                model.records.removeAll(where: { $0.id == record.id })
+                model.deleteRecord(record)
             } label: {
                 Text("Delete the assessment")
             }
@@ -107,8 +107,11 @@ struct HistoryRecordButton: View {
     
     var deleteButton : some View {
         Button(role: .destructive) {
-            deleteConfirmationIsPresented = true
-            print("Confirmation is true")
+            if false { // Implement pinning system
+                deleteConfirmationIsPresented = true
+            } else {
+                model.deleteRecord(record)
+            }
         } label: {
             Label("Delete", systemImage: "trash")
         }
@@ -129,7 +132,7 @@ struct HistoryRecordButton: View {
 
 struct HistoryRecordButton_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryRecordButton(
+        RecordHistoryRow(
             record: AssessmentRecord(date: Date(), taps: 7, type: .timed, duration: 15),
             recordEditSelection: .constant(nil)
         )
