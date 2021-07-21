@@ -13,6 +13,10 @@ import CoreHaptics
 
 class DDKModel : ObservableObject {
         
+
+    
+    @AppStorage(StorageKeys.AssessGallery.favoriteAssessments) var favoriteAssessments : Set<String> = []
+    
     // MARK: Assess Type
     /// Source of truth for the assessment type of the whole app
     @Published var assessType : AssessType = .timed
@@ -229,4 +233,21 @@ extension DDKModel {
     func deleteRecord(_ record: AssessmentRecord) {
         records.removeAll(where: { $0.id == record.id })
     }
+}
+
+extension DDKModel {
+    
+    func assessmentTypeIsFavorite(_ type: AssessmentType) -> Bool {
+        return favoriteAssessments.contains(type.id)
+    }
+    
+    func toggleFavoriteStatus(_ type: AssessmentType) {
+        
+        let (inserted, _) = favoriteAssessments.insert(type.id)
+
+        if !inserted {
+            favoriteAssessments.remove(type.id)
+        }
+    }
+    
 }

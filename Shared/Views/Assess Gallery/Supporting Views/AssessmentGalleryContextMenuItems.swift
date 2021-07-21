@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AssessmentGalleryContextMenuItems: View {
     
+    @EnvironmentObject var model : DDKModel
+    
     var type: AssessmentType
     
     @Binding var assessmentSettingsSelection : AssessmentType?
@@ -16,14 +18,17 @@ struct AssessmentGalleryContextMenuItems: View {
     var body: some View {
         Group {
             Button {
-                //TODO: Implement Favorites
-                print(type.title)
+                model.toggleFavoriteStatus(type)
             } label: {
-                Label("Favorite", systemImage: "star")
+                if model.assessmentTypeIsFavorite(type) {
+                    Label("Unfavorite", systemImage: "star.slash")
+                } else {
+                    Label("Favorite", systemImage: "star")
+                }
+                
             }
             
             Button {
-                //TODO: Implement Options
                 assessmentSettingsSelection = type
             } label: {
                 Label("Options", systemImage: "ellipsis.circle")

@@ -15,6 +15,7 @@ struct StorageKeys {
     
     struct AssessGallery {
         public static let galleryType = "assessment_gallery_type"
+        public static let favoriteAssessments = "favorite_assessment_types"
     }
     
     struct History {

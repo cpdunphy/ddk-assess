@@ -16,6 +16,7 @@ struct EditRecordScreen: View {
     var record: AssessmentRecord
     
     @State private var draftRecord : AssessmentRecord
+    @State private var imported : Bool = false
     
     @State private var deleteConfirmationIsPresented : Bool = false
     
@@ -154,6 +155,10 @@ struct EditRecordScreen: View {
         }
         .onAppear {
             print("On Appear")
+            if !imported {
+                draftRecord = record
+                imported = true
+            }
         }
         .onDisappear {
             print("On Disappear")

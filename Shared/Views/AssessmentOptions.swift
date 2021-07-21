@@ -9,14 +9,27 @@ import SwiftUI
 
 struct AssessmentOptions: View {
     
+    @EnvironmentObject var model : DDKModel
+    
     @Environment(\.dismiss) var dismiss
+    
     
     var type : AssessmentType
     
     var body: some View {
         Form {
             Section {
-                Toggle("\(Image(systemName: "star.fill")) Favorite", isOn: .constant(false))
+                Toggle(
+                    "\(Image(systemName: "star.fill")) Favorite",
+                    isOn: Binding<Bool>(
+                        get: {
+                            model.assessmentTypeIsFavorite(type)
+                        },
+                        set: { newValue in
+                            model.toggleFavoriteStatus(type)
+                        }
+                    )
+                )
             }
             
             Section {

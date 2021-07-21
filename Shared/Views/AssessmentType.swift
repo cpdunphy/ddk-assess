@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum AssessmentType : String, CaseIterable, Identifiable {
+enum AssessmentType : String, Codable, CaseIterable, Identifiable {
     
     case timed
     case count
