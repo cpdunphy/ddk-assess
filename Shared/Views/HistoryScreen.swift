@@ -29,7 +29,7 @@ struct HistoryScreen: View {
     var list: some View {
         List {
             ForEach(model.records, id: \.id) { record in
-                HistoryRecordButton(
+                RecordHistoryRow(
                     record: record,
                     recordEditSelection: $recordEditSelection
                 )
@@ -59,10 +59,35 @@ struct HistoryScreen: View {
             }
         )
         .toolbar {
-            Button(action: {
-                showTrashConfirmationAlert = true
-            }) {
-                Label("Delete Logs", systemImage: "trash.fill")
+            Menu {
+                // Group / Sort Controls
+                Section {
+                    Button {
+                        historyIsGrouped.toggle()
+                    } label: {
+                        Text("Use Groups")
+                    }
+                    if historyIsGrouped {
+                        Menu("Group By") {
+                            Picker("Group Selection", selection: .constant("Kind")) {
+                                ForEach(["Kind", "Date", "Pinned"], id: \.self) {
+                                    Text($0).tag($0)
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                // Delete All Logs Button
+                Section {
+                    Button(role: .destructive) {
+                        showTrashConfirmationAlert = true
+                    } label: {
+                        Label("Delete Logs", systemImage: "trash.fill")
+                    }
+                }
+            } label: {
+                Label("More", systemImage: "ellipsis.circle")
             }
         }
     }

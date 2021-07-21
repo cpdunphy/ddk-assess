@@ -118,7 +118,7 @@ struct EditRecordScreen: View {
                 }
                 .confirmationDialog("Are you sure?", isPresented: $deleteConfirmationIsPresented) {
                     Button(role: .destructive) {
-                        //TODO: delete the item
+                        model.deleteRecord(record)
                     } label: {
                         Text("Delete the assessment")
                     }
@@ -130,6 +130,8 @@ struct EditRecordScreen: View {
         .navigationTitle("Edit Record")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+            
+            // Cancel Button
             ToolbarItem(placement: .cancellationAction) {
                 Button {
                     dismiss()
@@ -139,19 +141,11 @@ struct EditRecordScreen: View {
                 }
             }
             
+            // Save Button
             ToolbarItem(placement: .automatic) {
                 Button {
-                    print("Saved button pressed!")
-                    
-                    guard let index = model.records.firstIndex(where: { $0.id == record.id }) else {
-                        print("Error: Couldn't find index")
-                        return
-                    }
-
-                    model.records[index] = draftRecord
-
+                    model.updateRecord(draftRecord)
                     dismiss()
-                    
                 } label: {
                     Label("Save", systemImage: "checkmark.circle")
                         .labelStyle(.titleOnly)

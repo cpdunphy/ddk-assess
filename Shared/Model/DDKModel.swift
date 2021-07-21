@@ -212,3 +212,21 @@ extension DDKModel {
         #endif
     }
 }
+
+
+// MARK: - Record Handling
+
+extension DDKModel {
+    func updateRecord(_ record: AssessmentRecord) {
+        guard let index = records.firstIndex(where: { $0.id == record.id }) else {
+            print("Error: Couldn't find index")
+            return
+        }
+
+        records[index] = record
+    }
+    
+    func deleteRecord(_ record: AssessmentRecord) {
+        records.removeAll(where: { $0.id == record.id })
+    }
+}

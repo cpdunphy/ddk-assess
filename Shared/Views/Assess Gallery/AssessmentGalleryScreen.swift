@@ -30,8 +30,10 @@ struct AssessmentGalleryScreen: View {
                             }
                         }
                         // TODO: Sort Controls
+                        
+                        
                     } label: {
-                        Label("More", systemImage: "ellipsis.circle")
+                        assessmentGalleryType.label
                     }
                 }
             }
