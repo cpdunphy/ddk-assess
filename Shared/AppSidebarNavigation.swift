@@ -35,10 +35,10 @@ struct AppSidebarNavigation: View {
             
             /// Applies a conditional modifier to devices not on macOS, setting the NavBar Display Mode to '.inline'
             #if os(macOS)
-            AssessScreen()
+            AssessmentGalleryScreen()
             #else
-            AssessScreen()
-                .navigationBarTitleDisplayMode(.inline)
+            AssessmentGalleryScreen()
+//                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItemGroup(placement: ToolbarItemPlacement.navigationBarLeading) {
                         Button {
