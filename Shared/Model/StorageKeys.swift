@@ -16,10 +16,11 @@ struct StorageKeys {
     struct AssessGallery {
         public static let galleryType = "assessment_gallery_type"
         public static let favoriteAssessments = "favorite_assessment_types"
+        public static let galleryIsGrouped = "gallery_is_grouped"
     }
     
     struct History {
-        
+        public static let pinnedRecords = "pinned_records"
         public static let historyIsGrouped : String = "history_is_grouped"
         
     }

@@ -12,11 +12,12 @@ import CoreHaptics
 // MARK: - DDKModel
 
 class DDKModel : ObservableObject {
-        
 
     
     @AppStorage(StorageKeys.AssessGallery.favoriteAssessments) var favoriteAssessments : Set<String> = []
     
+    @AppStorage(StorageKeys.History.pinnedRecords) var pinnedRecords : [AssessmentRecord] = []
+
     // MARK: Assess Type
     /// Source of truth for the assessment type of the whole app
     @Published var assessType : AssessType = .timed
@@ -65,6 +66,10 @@ class DDKModel : ObservableObject {
         AssessmentRecord(date: Date(), taps: 7, type: .timed, duration: 15),
         AssessmentRecord(date: Date(), taps: 14, type: .count, duration: 23.6)
     ]
+    
+    var allRecords: [AssessmentRecord] {
+        return records + pinnedRecords
+    }
     
     
     // MARK: User Preferences
@@ -222,12 +227,13 @@ extension DDKModel {
 
 extension DDKModel {
     func updateRecord(_ record: AssessmentRecord) {
-        guard let index = records.firstIndex(where: { $0.id == record.id }) else {
+        if let index = records.firstIndex(where: { $0.id == record.id }) {
             print("Error: Couldn't find index")
-            return
+            records[index] = record
+        } else if let index = pinnedRecords.firstIndex(where: { $0.id == record.id  }) {
+            pinnedRecords[index] = record
         }
 
-        records[index] = record
     }
     
     func deleteRecord(_ record: AssessmentRecord) {
@@ -235,6 +241,7 @@ extension DDKModel {
     }
 }
 
+// MARK: - Favorite Assessments
 extension DDKModel {
     
     func assessmentTypeIsFavorite(_ type: AssessmentType) -> Bool {
@@ -250,4 +257,36 @@ extension DDKModel {
         }
     }
     
+    var isFavoriteAssessmentsEmpty : Bool {
+        return AssessmentType.allCases.filter {
+            favoriteAssessments.contains($0.id)
+        }.isEmpty
+    }
+    
+}
+
+//MARK: - Pinned Records
+
+extension DDKModel {
+    
+    func recordIsPinned(_ id : UUID) -> Bool {
+        return pinnedRecords.contains(where: { id == $0.id })
+    }
+    
+    func pinRecord(_ record: AssessmentRecord) {
+        if recordIsPinned(record.id) {
+            if let index = pinnedRecords.firstIndex(where: { $0.id == record.id }) {
+                pinnedRecords.remove(at: index)
+                records.append(record)
+            }
+            
+        } else {
+            pinnedRecords.append(record)
+            records.removeAll(where: { $0.id == record.id })
+            
+            print("Pinned Successfully: \(pinnedRecords.count)")
+            
+            
+        }
+    }
 }

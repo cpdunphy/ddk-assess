@@ -57,6 +57,8 @@
 		F080D73C26A5E0F100A1F49D /* RecordHistoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D73A26A5E0F100A1F49D /* RecordHistoryRow.swift */; };
 		F080D73E26A8B6F400A1F49D /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D73D26A8B6F400A1F49D /* StorageKeys.swift */; };
 		F080D73F26A8B6F400A1F49D /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D73D26A8B6F400A1F49D /* StorageKeys.swift */; };
+		F0AE5B9526A9F06400ADAD3D /* Array-Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */; };
+		F0AE5B9626A9F06400ADAD3D /* Array-Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */; };
 		F0B423BB25A66D97002805C9 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423BA25A66D97002805C9 /* NavigationItem.swift */; };
 		F0B423BC25A66D97002805C9 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423BA25A66D97002805C9 /* NavigationItem.swift */; };
 		F0C75699251C3A4300D066A9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C75698251C3A4300D066A9 /* StoreKit.framework */; };
@@ -134,6 +136,7 @@
 		F080D73726A5D44F00A1F49D /* RecordGeneralInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordGeneralInfo.swift; sourceTree = "<group>"; };
 		F080D73A26A5E0F100A1F49D /* RecordHistoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordHistoryRow.swift; sourceTree = "<group>"; };
 		F080D73D26A8B6F400A1F49D /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
+		F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-Set.swift"; sourceTree = "<group>"; };
 		F0B423BA25A66D97002805C9 /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
 		F0C75698251C3A4300D066A9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SupportConfiguration.storekit; sourceTree = "<group>"; };
@@ -319,6 +322,7 @@
 				F030470E251E65F300B438E7 /* Color.swift */,
 				F080D73D26A8B6F400A1F49D /* StorageKeys.swift */,
 				F0214EF026A31F0D00003DDC /* AssessmentGalleryType.swift */,
+				F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */,
 				F0CEA380251CC5C700818C6D /* CountingState.swift */,
 				F0C756B6251C3DC000D066A9 /* AssessmentRecord.swift */,
 			);
@@ -517,6 +521,7 @@
 				F0E180B225236C3500E808AB /* SettingsScreen.swift in Sources */,
 				F02DB40D251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
 				F07564EC2530FA8200EC058A /* MailView.swift in Sources */,
+				F0AE5B9526A9F06400ADAD3D /* Array-Set.swift in Sources */,
 				F080D72926A3B5C700A1F49D /* AssessmentType.swift in Sources */,
 				F0B423BB25A66D97002805C9 /* NavigationItem.swift in Sources */,
 				F060BAC025213C2B009F9C81 /* StatsDisplay.swift in Sources */,
@@ -552,6 +557,7 @@
 				F080D73026A4ED7F00A1F49D /* AssessmentTaker.swift in Sources */,
 				F080D73F26A8B6F400A1F49D /* StorageKeys.swift in Sources */,
 				F0D5539F251C24340084E0EB /* DDKModel.swift in Sources */,
+				F0AE5B9626A9F06400ADAD3D /* Array-Set.swift in Sources */,
 				F02DB410251C23440038FEAE /* ContentView.swift in Sources */,
 				F080D73C26A5E0F100A1F49D /* RecordHistoryRow.swift in Sources */,
 				F080D73926A5D44F00A1F49D /* RecordGeneralInfo.swift in Sources */,

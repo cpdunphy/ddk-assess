@@ -49,10 +49,10 @@ struct RecordHistoryRow: View {
             
             Spacer()
             
-            if false { //TODO: Implement
+            if model.recordIsPinned(record.id) {
                 Image(systemName: "pin.circle.fill")
                     .symbolRenderingMode(.hierarchical)
-                    .foregroundColor(.accentColor)
+                    .foregroundColor(.secondary)
                     .imageScale(.small)
             }
         }
@@ -107,7 +107,7 @@ struct RecordHistoryRow: View {
     
     var deleteButton : some View {
         Button(role: .destructive) {
-            if false { // Implement pinning system
+            if model.recordIsPinned(record.id) {
                 deleteConfirmationIsPresented = true
             } else {
                 model.deleteRecord(record)
@@ -119,9 +119,9 @@ struct RecordHistoryRow: View {
     
     var pinButton: some View {
         Button {
-            //TODO: Implement Save Button
+            model.pinRecord(record)
         } label: {
-            if false { //Implement favorite system
+            if model.recordIsPinned(record.id) {
                 Label("Unpin", systemImage: "pin.slash")
             } else {
                 Label("Pin", systemImage: "pin")

@@ -9,68 +9,108 @@ import SwiftUI
 
 struct AssessmentGalleryGrid: View {
     
+    @EnvironmentObject var model : DDKModel
+    
     @Binding var assessmentSelection         : AssessmentType?
     @Binding var assessmentSettingsSelection : AssessmentType?
     
+    var columns = [
+        GridItem(.adaptive(minimum: 170))
+    ]
+    
     var body: some View {
         ScrollView {
-            LazyVGrid(
-                columns: [
-                    GridItem(.adaptive(minimum: 170))
-                ],
-                alignment: .trailing,
-                spacing: 12
-            ) {
-                ForEach(AssessmentType.allCases) { type in
-                    
-                    Button {
-                        triggerHapticFeedbackSuccess()
-                        assessmentSelection = type
-                    } label: {
+            VStack {
+                
+                // Favorited Assessments
+                if !model.isFavoriteAssessmentsEmpty {
+                    VStack(alignment: .leading) {
+                        Text("Favorites".uppercased())
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .padding(.leading)
                         
-                        VStack(alignment: .leading) {
-                         
-                            HStack {
-                                Image(systemName: type.icon)
-                                    .font(.title)
-                                    .padding(.bottom)
-                                
-                                Spacer()
+                        LazyVGrid(
+                            columns: columns,
+                            spacing: 12
+                        ) {
+                            ForEach(
+                                AssessmentType.allCases.filter {
+                                    model.favoriteAssessments.contains($0.id)
+                                }
+                            ) { type in
+                                button(type)
                             }
-                            
-                            Text(type.title)
-                                .font(.headline)
-                                .lineLimit(1)
-                            
-                            Text("53 assessments")
-                                .font(.caption)
                         }
-                        .foregroundColor(.white)
-                        .padding(10)
-                        .background(
-                            //TODO: make this a gradient
-                            type.color,
-                            in: RoundedRectangle(cornerRadius: 10)
-                        )
                         
+                        Divider()
+                            .padding(.vertical, 6)
                     }
-                    .buttonStyle(.plain)
-                    .contextMenu {
-                        AssessmentGalleryContextMenuItems(
-                            type: type,
-                            assessmentSettingsSelection: $assessmentSettingsSelection
-                        )
+                }
+                
+                // Not Favorited Assessments
+                LazyVGrid(
+                    columns: columns,
+                    spacing: 12
+                ) {
+                    ForEach(
+                        AssessmentType.allCases.filter {
+                            !model.favoriteAssessments.contains($0.id)
+                        }
+                    ) { type in
+                        button(type)
                     }
                 }
             }.padding(.horizontal)
         }
     }
     
+    func button(_ type: AssessmentType) -> some View {
+        Button {
+            triggerHapticFeedbackSuccess()
+            assessmentSelection = type
+        } label: {
+            
+            VStack(alignment: .leading) {
+                
+                HStack {
+                    Image(systemName: type.icon)
+                        .font(.title)
+                        .padding(.bottom)
+                    
+                    Spacer()
+                }
+                
+                Text(type.title)
+                    .font(.headline)
+                    .lineLimit(1)
+                
+                Text("53 assessments")
+                    .font(.caption)
+            }
+            .foregroundColor(.white)
+            .padding(10)
+            .background(
+                //TODO: make this a gradient
+                type.color,
+                in: RoundedRectangle(cornerRadius: 10)
+            )
+            
+        }
+        .buttonStyle(.plain)
+        .contextMenu {
+            AssessmentGalleryContextMenuItems(
+                type: type,
+                assessmentSettingsSelection: $assessmentSettingsSelection
+            )
+        }
+    }
+    
     func triggerHapticFeedbackSuccess() {
-        #if os(iOS)
+#if os(iOS)
         let hapticFeedback = UINotificationFeedbackGenerator()
         hapticFeedback.notificationOccurred(.success)
-        #endif
+#endif
     }
 }
 

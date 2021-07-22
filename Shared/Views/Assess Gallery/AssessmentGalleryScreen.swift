@@ -12,31 +12,37 @@ struct AssessmentGalleryScreen: View {
     @EnvironmentObject var model : DDKModel
     
     @AppStorage(StorageKeys.AssessGallery.galleryType) private var assessmentGalleryType : AssessmentGalleryType = .grid
-        
+    @AppStorage(StorageKeys.AssessGallery.galleryIsGrouped) var galleryIsGrouped : Bool = false
+
     @State var assessmentSettingsSelection  : AssessmentType? = nil
     @State var assessmentSelection          : AssessmentType? = nil
+    
+    @ViewBuilder
+    var assessSwitch : some View {
+        switch assessmentGalleryType {
+        
+        // Gallery Grid
+        case .grid:
+            AssessmentGalleryGrid(
+                assessmentSelection: $assessmentSelection,
+                assessmentSettingsSelection: $assessmentSettingsSelection
+            )
+            
+        // Gallery List
+        case .list:
+            AssessmentGalleryList(
+                assessmentSelection: $assessmentSelection,
+                assessmentSettingsSelection: $assessmentSettingsSelection
+            )
+        }
+    }
     
     var body : some View {
         assessSwitch
             .toolbar {
-                ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
-                    Menu {
-                        // Gallery Controls
-                        Section {
-                            Picker("Gallery Type", selection: $assessmentGalleryType) {
-                                ForEach(AssessmentGalleryType.allCases) {
-                                    $0.label.tag($0)
-                                }
-                            }
-                        }
-                        // TODO: Sort Controls
-                        
-                        
-                    } label: {
-                        assessmentGalleryType.label
-                    }
-                }
+                toolbarMenu
             }
+            .navigationTitle(NavigationItem.assess.title)
             .fullScreenCover(item: $assessmentSelection) { type in
                 AssessmentTaker(type: type)
             }
@@ -45,22 +51,35 @@ struct AssessmentGalleryScreen: View {
                     AssessmentOptions(type: type)
                 }
             }
-            .navigationTitle(NavigationItem.assess.title)
     }
     
-    @ViewBuilder
-    var assessSwitch : some View {
-        switch assessmentGalleryType {
-        case .grid:
-            AssessmentGalleryGrid(
-                assessmentSelection: $assessmentSelection,
-                assessmentSettingsSelection: $assessmentSettingsSelection
-            )
-        case .list:
-            AssessmentGalleryList(
-                assessmentSelection: $assessmentSelection,
-                assessmentSettingsSelection: $assessmentSettingsSelection
-            )
+    var toolbarMenu : some View {
+        Menu {
+            // Gallery Controls
+            Section {
+                Picker("Gallery Type", selection: $assessmentGalleryType) {
+                    ForEach(AssessmentGalleryType.allCases) {
+                        $0.label.tag($0)
+                    }
+                }
+            }
+            
+            // TODO: Sort Controls
+            Section {
+                Toggle("Use Groups", isOn: $galleryIsGrouped)
+                
+                if galleryIsGrouped {
+                    Menu("Group By") {
+                        Picker("Group Selection", selection: .constant("Kind")) {
+                            ForEach(["Kind", "Date"], id: \.self) {
+                                Text($0).tag($0)
+                            }
+                        }
+                    }
+                }
+            }
+        } label: {
+            assessmentGalleryType.label
         }
     }
 }
@@ -68,47 +87,5 @@ struct AssessmentGalleryScreen: View {
 struct AssessmentGalleryScreen_Previews: PreviewProvider {
     static var previews: some View {
         AssessmentGalleryScreen()
-    }
-}
-
-
-
-extension Set: RawRepresentable where Element: Codable {
-    public init?(rawValue: String) {
-        guard let data = rawValue.data(using: .utf8),
-              let result = try? JSONDecoder().decode(Set<Element>.self, from: data)
-        else {
-            return nil
-        }
-        self = result
-    }
-
-    public var rawValue: String {
-        guard let data = try? JSONEncoder().encode(self),
-              let result = String(data: data, encoding: .utf8)
-        else {
-            return "[]"
-        }
-        return result
-    }
-}
-
-extension Array: RawRepresentable where Element: Codable {
-    public init?(rawValue: String) {
-        guard let data = rawValue.data(using: .utf8),
-              let result = try? JSONDecoder().decode([Element].self, from: data)
-        else {
-            return nil
-        }
-        self = result
-    }
-
-    public var rawValue: String {
-        guard let data = try? JSONEncoder().encode(self),
-              let result = String(data: data, encoding: .utf8)
-        else {
-            return "[]"
-        }
-        return result
     }
 }

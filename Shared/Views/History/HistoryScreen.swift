@@ -20,7 +20,7 @@ struct HistoryScreen: View {
     var body: some View {
         #if os(iOS)
         list
-            .listStyle(InsetGroupedListStyle())
+            .listStyle(.insetGrouped)
         #else
         list
         #endif
@@ -28,7 +28,7 @@ struct HistoryScreen: View {
     
     var list: some View {
         List {
-            ForEach(model.records, id: \.id) { record in
+            ForEach(model.allRecords, id: \.id) { record in
                 RecordHistoryRow(
                     record: record,
                     recordEditSelection: $recordEditSelection
@@ -64,13 +64,11 @@ struct HistoryScreen: View {
         
         .toolbar {
             Menu {
-                // Group / Sort Controls
+                // TODO: Group / Sort Controls
                 Section {
-                    Button {
-                        historyIsGrouped.toggle()
-                    } label: {
-                        Text("Use Groups")
-                    }
+
+                    Toggle("Use Groups", isOn: $historyIsGrouped)
+                    
                     if historyIsGrouped {
                         Menu("Group By") {
                             Picker("Group Selection", selection: .constant("Kind")) {

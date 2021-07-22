@@ -16,8 +16,9 @@ struct AssessmentGalleryList: View {
     
     var body: some View {
         List {
-            if !AssessmentType.allCases.filter { model.favoriteAssessments.contains($0.id)
-            }.isEmpty {
+            
+            // Favorited Assessments
+            if !model.isFavoriteAssessmentsEmpty {
                 Section("Favorites") {
                     ForEach(
                         AssessmentType.allCases.filter { model.favoriteAssessments.contains($0.id)
@@ -29,6 +30,7 @@ struct AssessmentGalleryList: View {
                 
             }
             
+            // Not Favorited Assessments
             Section {
                 ForEach(
                     AssessmentType.allCases.filter { !model.favoriteAssessments.contains($0.id)
@@ -67,9 +69,13 @@ struct AssessmentGalleryList: View {
         }
         .swipeActions(edge: .leading) {
             Button {
-                print("Mark as favorite")
+                model.toggleFavoriteStatus(type)
             } label: {
-                Label("Favorite", systemImage: "star")
+                if model.assessmentTypeIsFavorite(type) {
+                    Label("Unfavorite", systemImage: "star.slash")
+                } else {
+                    Label("Favorite", systemImage: "star")
+                }
             }.tint(.yellow)
         }
     }

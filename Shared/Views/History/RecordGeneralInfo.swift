@@ -10,8 +10,9 @@ import SwiftUI
 struct RecordGeneralInfo: View {
     
     @Environment(\.dismiss) var dismiss
-//    @Environment(\.) var horizontalSizeClass
 
+    @EnvironmentObject var model : DDKModel
+    
     var record: AssessmentRecord
     
     init(_ record: AssessmentRecord) {
@@ -38,17 +39,21 @@ struct RecordGeneralInfo: View {
     var main: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
-            
-    //                Image(systemName: record.type.icon)
-    //                    .font(.system(size: 150))
-    //
-    //                Divider()
-                
                 VStack(alignment: .leading) {
-                    Text("Information")
-                        .font(.title2)
-                        .bold()
-                        .padding(.bottom)
+                    HStack(alignment: .firstTextBaseline) {
+                        Text("Information")
+                            .font(.title2)
+                            .bold()
+                            .padding(.bottom)
+                        
+                        Spacer()
+                        
+                        if model.recordIsPinned(record.id) {
+                            Image(systemName: "pin.circle.fill")
+                                .accentColor(.secondary)
+                                .symbolRenderingMode(.hierarchical)
+                        }
+                    }
                     
                     VStack {
                         HStack {
@@ -94,7 +99,7 @@ struct RecordGeneralInfo: View {
 
                             Spacer()
                                 
-                            Text(String(record.taps))
+                            Text("\(record.taps)")
                         }
                         .font(.callout)
                     }
