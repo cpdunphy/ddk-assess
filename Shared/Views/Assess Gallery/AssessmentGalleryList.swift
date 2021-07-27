@@ -14,6 +14,7 @@ struct AssessmentGalleryList: View {
     @Binding var assessmentSelection         : AssessmentType?
     @Binding var assessmentSettingsSelection : AssessmentType?
     
+    // MARK: - Body
     var body: some View {
         List {
             
@@ -21,7 +22,8 @@ struct AssessmentGalleryList: View {
             if !model.isFavoriteAssessmentsEmpty {
                 Section("Favorites") {
                     ForEach(
-                        AssessmentType.allCases.filter { model.favoriteAssessments.contains($0.id)
+                        AssessmentType.allCases.filter {
+                            model.favoriteAssessments.contains($0.id)
                         }
                     ) { type in
                         button(type)
@@ -33,7 +35,8 @@ struct AssessmentGalleryList: View {
             // Not Favorited Assessments
             Section {
                 ForEach(
-                    AssessmentType.allCases.filter { !model.favoriteAssessments.contains($0.id)
+                    AssessmentType.allCases.filter {
+                        !model.favoriteAssessments.contains($0.id)
                     }
                 ) { type in
                     button(type)
@@ -42,6 +45,7 @@ struct AssessmentGalleryList: View {
         }
     }
     
+    // List Row
     func button(_ type: AssessmentType) -> some View {
         Button {
             assessmentSelection = type
@@ -52,21 +56,38 @@ struct AssessmentGalleryList: View {
                 
                 VStack(alignment: .leading) {
                     Text(type.title)
+                        .foregroundColor(.primary)
                         .font(.headline)
+                    
                     Text("53 assessments")
                         .foregroundColor(.secondary)
                         .font(.caption)
                 }
                 
                 Spacer()
+                
+                // Context Menu Items
+                Menu {
+                    AssessmentGalleryContextMenuItems(type: type, assessmentSettingsSelection: $assessmentSettingsSelection)
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .foregroundColor(.primary)
+                    // Extends the Hit-box
+                        .padding([.leading])
+                        .frame(maxHeight: .infinity)
+                }
+                
             }
         }
+        // Context Menu
         .contextMenu {
             AssessmentGalleryContextMenuItems(
                 type: type,
                 assessmentSettingsSelection: $assessmentSettingsSelection
             )
         }
+        
+        // Swipe to Favorite
         .swipeActions(edge: .leading) {
             Button {
                 model.toggleFavoriteStatus(type)

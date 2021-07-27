@@ -11,24 +11,25 @@ struct AssessmentGalleryScreen: View {
     
     @EnvironmentObject var model : DDKModel
     
-    @AppStorage(StorageKeys.AssessGallery.galleryType) private var assessmentGalleryType : AssessmentGalleryType = .grid
-    @AppStorage(StorageKeys.AssessGallery.galleryIsGrouped) var galleryIsGrouped : Bool = false
-
+    @AppStorage(StorageKeys.AssessGallery.galleryType) private var galleryType :    AssessmentGalleryType = .grid
+    @AppStorage(StorageKeys.AssessGallery.sortBy) var sortBy :                      String = ""
+    
     @State var assessmentSettingsSelection  : AssessmentType? = nil
     @State var assessmentSelection          : AssessmentType? = nil
     
+    // MARK: - Assessment Switch
     @ViewBuilder
     var assessSwitch : some View {
-        switch assessmentGalleryType {
-        
-        // Gallery Grid
+        switch galleryType {
+            
+            // Gallery Grid
         case .grid:
             AssessmentGalleryGrid(
                 assessmentSelection: $assessmentSelection,
                 assessmentSettingsSelection: $assessmentSettingsSelection
             )
             
-        // Gallery List
+            // Gallery List
         case .list:
             AssessmentGalleryList(
                 assessmentSelection: $assessmentSelection,
@@ -37,50 +38,50 @@ struct AssessmentGalleryScreen: View {
         }
     }
     
+    //MARK: - Body
     var body : some View {
         assessSwitch
-            .toolbar {
-                toolbarMenu
-            }
             .navigationTitle(NavigationItem.assess.title)
+        
+        // Toolbar Controls
+            .toolbar {
+                Menu {
+                    // Gallery Controls
+                    Section {
+                        Picker("Gallery Type", selection: $galleryType) {
+                            ForEach(AssessmentGalleryType.allCases) {
+                                $0.label.tag($0)
+                            }
+                        }
+                    }
+                    
+                    // TODO: Sort Controls
+                    Section {
+                        Menu("Sort By") {
+                            Picker("Sort By", selection: $sortBy) {
+                                ForEach(["Kind", "Date"], id: \.self) {
+                                    Text($0).tag($0)
+                                }
+                            }
+                        }
+                    }
+                } label: {
+                    galleryType.label
+                }
+
+            }
+        
+        // Assessment Taker
             .fullScreenCover(item: $assessmentSelection) { type in
                 AssessmentTaker(type: type)
             }
+        
+        // Configure Assessment Options
             .sheet(item: $assessmentSettingsSelection) { type in
                 NavigationView {
                     AssessmentOptions(type: type)
                 }
             }
-    }
-    
-    var toolbarMenu : some View {
-        Menu {
-            // Gallery Controls
-            Section {
-                Picker("Gallery Type", selection: $assessmentGalleryType) {
-                    ForEach(AssessmentGalleryType.allCases) {
-                        $0.label.tag($0)
-                    }
-                }
-            }
-            
-            // TODO: Sort Controls
-            Section {
-                Toggle("Use Groups", isOn: $galleryIsGrouped)
-                
-                if galleryIsGrouped {
-                    Menu("Group By") {
-                        Picker("Group Selection", selection: .constant("Kind")) {
-                            ForEach(["Kind", "Date"], id: \.self) {
-                                Text($0).tag($0)
-                            }
-                        }
-                    }
-                }
-            }
-        } label: {
-            assessmentGalleryType.label
-        }
     }
 }
 

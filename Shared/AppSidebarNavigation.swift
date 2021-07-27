@@ -16,29 +16,26 @@ struct AppSidebarNavigation: View {
 
     var body: some View {
         NavigationView {
-            #if os(macOS)
+
             /// Brings support to macOS, setting a limit on the extent to which it can expand/contract. Also adds a 'toggle to open/close the sidebar.
             HistoryScreen()
+            #if os(macOS)
                 .frame(minWidth: 100, idealWidth: 150, maxHeight: .infinity)
                 .toolbar {
                     ToolbarItem(placement: .navigation) {
                         sidebarToggleButton
                     }
                 }
-            #else
-            HistoryScreen()
+            #endif
                 .sheet(isPresented: $showSettingsModal) {
                     SettingsModal()
                 }
-            #endif
+            
             
             
             /// Applies a conditional modifier to devices not on macOS, setting the NavBar Display Mode to '.inline'
-            #if os(macOS)
             AssessmentGalleryScreen()
-            #else
-            AssessmentGalleryScreen()
-//                .navigationBarTitleDisplayMode(.inline)
+            #if !os(macOS)
                 .toolbar {
                     ToolbarItemGroup(placement: ToolbarItemPlacement.navigationBarLeading) {
                         Button {
@@ -71,7 +68,7 @@ struct AppSidebarNavigation: View {
         @EnvironmentObject var model : DDKModel
         @EnvironmentObject var store : Store
         
-        @Environment(\.presentationMode) var presentationMode
+        @Environment(\.dismiss) var dismiss
         
         var body: some View {
             NavigationView {
@@ -80,10 +77,7 @@ struct AppSidebarNavigation: View {
                     .environmentObject(store)
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
-                        Button(
-                            "Done",
-                            action: { presentationMode.wrappedValue.dismiss() }
-                        )
+                        Button("Done", action: { dismiss() } )
                     }
             }
         }

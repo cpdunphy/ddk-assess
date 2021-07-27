@@ -9,15 +9,26 @@ import SwiftUI
 
 struct AssessmentOptions: View {
     
-    @EnvironmentObject var model : DDKModel
-    
     @Environment(\.dismiss) var dismiss
     
+    @EnvironmentObject var model : DDKModel
+    
+    @EnvironmentObject var hr : HeartRateAssessment
+    
+    @AppStorage("countdown_length") var countdown :             Int = 3
+    @AppStorage("show_decimal_timer") var showDecimalOnTimer :  Bool = true
+    @AppStorage("show_heartrate_stats") var heartRate :         Bool = false
+    @AppStorage(StorageKeys.Timed.timerLength) var duration:    Int = 10
     
     var type : AssessmentType
     
-    var body: some View {
+    // MARK: - Form
+    var form: some View {
         Form {
+            Section {
+//                Text(hr.title)
+            }
+            
             Section {
                 Toggle(
                     "\(Image(systemName: "star.fill")) Favorite",
@@ -32,38 +43,48 @@ struct AssessmentOptions: View {
                 )
             }
             
-            Section {
-                Picker("Set the Seconds", selection: .constant(10)) {
+            Section("Duration") {
+                Picker("Set the Seconds", selection: $duration) {
                     ForEach(1...60, id: \.self) {
-                        Text("\($0)")
-                            .tag($0)
+                        Text("\($0)").tag($0)
                     }
-                }.pickerStyle(.automatic)
-                
-    //            Stepper("Countdown Time: \(countdown) \(countdown == 1 ? "second" : "seconds")", value: $countdown, in: 0...60)
-                
-                Stepper("Countdown Time: \(3)", value: .constant(3))
-
-                Toggle("Show Decimal on Timer", isOn: .constant(true))
+                }.pickerStyle(.inline)
             }
             
             Section {
-                Toggle("Show BPM vs BPS", isOn: .constant(true))
+                Stepper(
+                    "Countdown Time: \(countdown) \(countdown == 1 ? "second" : "seconds")",
+                    value: $countdown,
+                    in: 0...60
+                )
+                
+                Toggle("Show Decimal on Timer", isOn: $showDecimalOnTimer)
+            }
+            
+            Section {
+                Toggle("Show BPM vs BPS", isOn: $heartRate)
             }
             
         }
-        .navigationTitle(type.title)
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    dismiss()
-                } label: {
-                    Text("Done").bold()
+    }
+    
+    // MARK: - Body
+    var body: some View {
+        form
+            .navigationTitle(type.title)
+            .navigationBarTitleDisplayMode(.inline)
+        
+        // Toolbar
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(
+                        "Done",
+                        role: .destructive,
+                        action: { dismiss() }
+                    )
                 }
+                
             }
-            
-        }
     }
 }
 

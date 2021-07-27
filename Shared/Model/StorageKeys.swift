@@ -14,14 +14,18 @@ struct StorageKeys {
     }
     
     struct AssessGallery {
-        public static let galleryType = "assessment_gallery_type"
-        public static let favoriteAssessments = "favorite_assessment_types"
-        public static let galleryIsGrouped = "gallery_is_grouped"
+        public static let galleryType :         String = "assessment_gallery_type"
+        public static let favoriteAssessments : String = "favorite_assessment_types"
+        public static let sortBy :              String = "sort_by_assessment_gallery"
+    }
+    
+    struct Timed {
+        public static let timerLength : String = "timer_length"
     }
     
     struct History {
-        public static let pinnedRecords = "pinned_records"
-        public static let historyIsGrouped : String = "history_is_grouped"
+        public static let pinnedRecords :   String = "pinned_records"
+        public static let sortBy :          String = "sort_history_by"
         
     }
     

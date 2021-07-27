@@ -20,6 +20,7 @@ class DDKModel : ObservableObject {
 
     // MARK: Assess Type
     /// Source of truth for the assessment type of the whole app
+    @available(*, deprecated, message: "There is no need for a single selection of assessment??")
     @Published var assessType : AssessType = .timed
     
     /// Sets the currently selected view's referenceDate equal to the current date
@@ -75,6 +76,7 @@ class DDKModel : ObservableObject {
     // MARK: User Preferences
     
     /// Default Assessment Style. Sets the inital assessment format upon init
+    @available(*, unavailable, message: "A default is no longer needed.")
     @AppStorage("default_assessment_style") var defaultAssessmentType : AssessType = .timed
     
     /// Countdown Length. Sets how long the timer counts down for before starting the assessment
@@ -107,9 +109,7 @@ class DDKModel : ObservableObject {
     @Published var timeStartCountdown : Date = Date()
     
     // MARK: - init
-    init () {
-        assessType = defaultAssessmentType
-    }
+    init () {  }
 
 }
 
