@@ -19,14 +19,8 @@ struct RecordHistoryRow: View {
     var record : AssessmentRecord
     @Binding var recordEditSelection: AssessmentRecord?
     
-    var dateTimeFormat: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/yy 'at' HH:mm"
-        return formatter
-    }
-    
-    
-    var body: some View {
+    // MARK: - Row
+    var row: some View {
         HStack {
             Label(record.type.title, systemImage: record.type.icon)
                 .font(.title3)
@@ -56,6 +50,14 @@ struct RecordHistoryRow: View {
                     .imageScale(.small)
             }
         }
+    }
+    
+    // MARK: - Body
+    var body: some View {
+
+        row
+        
+        // More Record Options
         .contextMenu {
             Button {
                 recordGetInfoPopover = true
@@ -75,17 +77,22 @@ struct RecordHistoryRow: View {
                 deleteButton
             }
         }
+        
+        // Information on a Record
         .popover(isPresented: $recordGetInfoPopover, arrowEdge: .trailing) {
             RecordGeneralInfo(record)
         }
+        
+        // Swipe Action Shortcuts
         .swipeActions {
             pinButton
             .tint(.accentColor)
             
             deleteButton
         }
+        
+        // Confirm Deletion if record is pinned
         .confirmationDialog("Are you sure?", isPresented: $deleteConfirmationIsPresented) {
-            //
             Button(role: .destructive) {
                 model.deleteRecord(record)
             } label: {
@@ -95,16 +102,7 @@ struct RecordHistoryRow: View {
         }
     }
     
-    func getSecondsLengthDouble(_ time: Double) -> String {
-        if time / 60 >= 1 {
-            let send = String(format: "%.1f", time/60)
-            return "\(send) \(send == "1.0" ? "min" : "mins")"
-        } else {
-            let send = String(format: "%.1f", time)
-            return "\(send) \(send == "1.0" ? "sec" : "secs")"
-        }
-    }
-    
+    // Delete Record Button
     var deleteButton : some View {
         Button(role: .destructive) {
             if model.recordIsPinned(record.id) {
@@ -117,6 +115,7 @@ struct RecordHistoryRow: View {
         }
     }
     
+    // Pin Record Button
     var pinButton: some View {
         Button {
             model.pinRecord(record)

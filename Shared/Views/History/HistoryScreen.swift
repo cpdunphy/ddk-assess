@@ -11,21 +11,13 @@ struct HistoryScreen: View {
     
     @EnvironmentObject var model : DDKModel
     
-    @AppStorage(StorageKeys.User.totalAssessments) var totalAssessments : Int = 0
-    @AppStorage(StorageKeys.History.historyIsGrouped) var historyIsGrouped : Bool = false
-
-    @State private var recordEditSelection: AssessmentRecord? = nil
+    @AppStorage(StorageKeys.User.totalAssessments) var totalAssessments :   Int = 0
+    @AppStorage(StorageKeys.History.sortBy) var sortBy :                    String = "Date"
+    
+    @State private var recordEditSelection :        AssessmentRecord? = nil
     @State private var showTrashConfirmationAlert : Bool = false
     
-    var body: some View {
-        #if os(iOS)
-        list
-            .listStyle(.insetGrouped)
-        #else
-        list
-        #endif
-    }
-    
+    // MARK: - List
     var list: some View {
         List {
             ForEach(model.allRecords, id: \.id) { record in
@@ -37,61 +29,71 @@ struct HistoryScreen: View {
             
             Text("You have done \(totalAssessments) DDK \(totalAssessments == 1 ? "Assessment!" : "Assessments!")")
         }
-        .navigationTitle("History")
+    }
+    
+    // MARK: - Body
+    var body: some View {
         
-        .sheet(
-            item: $recordEditSelection,
-            onDismiss: { recordEditSelection = nil }
-        ) { record in
-            NavigationView { EditRecordScreen(record) }
-        }
+        list
+            .navigationTitle("History")
         
-        // Delete All Logs Confirmation
-        .alert(
-            "Delete Logs",
-            isPresented: $showTrashConfirmationAlert,
-            actions: {
-                Button("Cancel", role: .cancel) { }
-                
-                Button("Delete", role: .destructive) {
-                    model.records = []
-                }
-            },
-            message: {
-                Text("Are you sure you want to delete all logs?")
+        // Optional List Style Modifier (Done b/c sidebar style takes over on iPadOS)
+        #if os(iOS)
+            .listStyle(.insetGrouped)
+        #endif
+        
+        // Record Editor
+            .sheet(
+                item: $recordEditSelection,
+                onDismiss: { recordEditSelection = nil }
+            ) { record in
+                NavigationView { EditRecordScreen(record) }
             }
-        )
         
-        .toolbar {
-            Menu {
-                // TODO: Group / Sort Controls
-                Section {
-
-                    Toggle("Use Groups", isOn: $historyIsGrouped)
+        // Delete All Logs Confirmation Dialog
+            .alert(
+                "Delete Logs",
+                isPresented: $showTrashConfirmationAlert,
+                actions: {
+                    Button("Cancel", role: .cancel) { }
                     
-                    if historyIsGrouped {
-                        Menu("Group By") {
-                            Picker("Group Selection", selection: .constant("Kind")) {
+                    Button("Delete", role: .destructive) {
+                        model.records = []
+                    }
+                },
+                message: {
+                    Text("Are you sure you want to delete all logs?")
+                }
+            )
+        
+        // Toolbar Controls
+            .toolbar {
+                Menu {
+                    // TODO: Group / Sort Controls
+                    Section {
+                        Menu {
+                            Picker("Sort By", selection: $sortBy) {
                                 ForEach(["Kind", "Date", "Pinned"], id: \.self) {
                                     Text($0).tag($0)
                                 }
                             }
+                        } label: {
+                            Label("Sort By", systemImage: "arrow.up.arrow.down")
                         }
                     }
-                }
-                
-                // Delete All Logs Button
-                Section {
-                    Button(role: .destructive) {
-                        showTrashConfirmationAlert = true
-                    } label: {
-                        Label("Delete Logs", systemImage: "trash.fill")
+                    
+                    // Delete All Logs Button
+                    Section {
+                        Button(role: .destructive) {
+                            showTrashConfirmationAlert = true
+                        } label: {
+                            Label("Delete Logs", systemImage: "trash.fill")
+                        }
                     }
+                } label: {
+                    Label("More", systemImage: "ellipsis.circle")
                 }
-            } label: {
-                Label("More", systemImage: "ellipsis.circle")
             }
-        }
     }
 }
 

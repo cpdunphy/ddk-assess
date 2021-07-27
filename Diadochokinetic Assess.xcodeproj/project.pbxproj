@@ -59,6 +59,8 @@
 		F080D73F26A8B6F400A1F49D /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D73D26A8B6F400A1F49D /* StorageKeys.swift */; };
 		F0AE5B9526A9F06400ADAD3D /* Array-Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */; };
 		F0AE5B9626A9F06400ADAD3D /* Array-Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */; };
+		F0AE5B9826AB151200ADAD3D /* AboutDDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9726AB151200ADAD3D /* AboutDDK.swift */; };
+		F0AE5B9926AB151200ADAD3D /* AboutDDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9726AB151200ADAD3D /* AboutDDK.swift */; };
 		F0B423BB25A66D97002805C9 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423BA25A66D97002805C9 /* NavigationItem.swift */; };
 		F0B423BC25A66D97002805C9 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423BA25A66D97002805C9 /* NavigationItem.swift */; };
 		F0C75699251C3A4300D066A9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C75698251C3A4300D066A9 /* StoreKit.framework */; };
@@ -75,6 +77,7 @@
 		F0D553A5251C24750084E0EB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D553A4251C24750084E0EB /* Store.swift */; };
 		F0D553A6251C24750084E0EB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D553A4251C24750084E0EB /* Store.swift */; };
 		F0D553AD251C3A000084E0EB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0D553AC251C3A000084E0EB /* StoreKit.framework */; };
+		F0DAFDA226B07A7E00CDA62F /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0DAFDA126B07A7E00CDA62F /* AuthenticationServices.framework */; };
 		F0E180A725236BA100E808AB /* SupportTheDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180A625236BA100E808AB /* SupportTheDev.swift */; };
 		F0E180A825236BA100E808AB /* SupportTheDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180A625236BA100E808AB /* SupportTheDev.swift */; };
 		F0E180B225236C3500E808AB /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180B125236C3500E808AB /* SettingsScreen.swift */; };
@@ -137,6 +140,7 @@
 		F080D73A26A5E0F100A1F49D /* RecordHistoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordHistoryRow.swift; sourceTree = "<group>"; };
 		F080D73D26A8B6F400A1F49D /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-Set.swift"; sourceTree = "<group>"; };
+		F0AE5B9726AB151200ADAD3D /* AboutDDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDDK.swift; sourceTree = "<group>"; };
 		F0B423BA25A66D97002805C9 /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
 		F0C75698251C3A4300D066A9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SupportConfiguration.storekit; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 		F0D5539D251C24340084E0EB /* DDKModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDKModel.swift; sourceTree = "<group>"; };
 		F0D553A4251C24750084E0EB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F0D553AC251C3A000084E0EB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		F0DAFDA126B07A7E00CDA62F /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/AuthenticationServices.framework; sourceTree = DEVELOPER_DIR; };
 		F0E180A625236BA100E808AB /* SupportTheDev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportTheDev.swift; sourceTree = "<group>"; };
 		F0E180B125236C3500E808AB /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0DAFDA226B07A7E00CDA62F /* AuthenticationServices.framework in Frameworks */,
 				F0D553AD251C3A000084E0EB /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				F0E180B125236C3500E808AB /* SettingsScreen.swift */,
+				F0AE5B9726AB151200ADAD3D /* AboutDDK.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -319,12 +326,12 @@
 				F03046FC251E36F300B438E7 /* TimerSession.swift */,
 				F0B423BA25A66D97002805C9 /* NavigationItem.swift */,
 				F0C756AF251C3DA500D066A9 /* States.swift */,
-				F030470E251E65F300B438E7 /* Color.swift */,
 				F080D73D26A8B6F400A1F49D /* StorageKeys.swift */,
 				F0214EF026A31F0D00003DDC /* AssessmentGalleryType.swift */,
-				F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */,
+				F0DAFDA326B07DB400CDA62F /* Extension */,
 				F0CEA380251CC5C700818C6D /* CountingState.swift */,
 				F0C756B6251C3DC000D066A9 /* AssessmentRecord.swift */,
+				F080D72826A3B5C700A1F49D /* AssessmentType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -332,16 +339,25 @@
 		F0D553AB251C3A000084E0EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F0DAFDA126B07A7E00CDA62F /* AuthenticationServices.framework */,
 				F0C75698251C3A4300D066A9 /* StoreKit.framework */,
 				F0D553AC251C3A000084E0EB /* StoreKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F0DAFDA326B07DB400CDA62F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F030470E251E65F300B438E7 /* Color.swift */,
+				F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		F0DC244B2524FB96000CBCA8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F080D72826A3B5C700A1F49D /* AssessmentType.swift */,
 				F080D72E26A4ED7F00A1F49D /* AssessmentTaker.swift */,
 				F080D73126A4EDCE00A1F49D /* AssessmentOptions.swift */,
 				F0214EEF26A31BFE00003DDC /* Assess Gallery */,
@@ -362,6 +378,7 @@
 				F02DB3E7251C23440038FEAE /* Sources */,
 				F02DB3E8251C23440038FEAE /* Frameworks */,
 				F02DB3E9251C23440038FEAE /* Resources */,
+				F09871F426AB166700A05C49 /* Increment Build */,
 			);
 			buildRules = (
 			);
@@ -508,6 +525,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F09871F426AB166700A05C49 /* Increment Build */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Increment Build";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F02DB3E7251C23440038FEAE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -527,6 +565,7 @@
 				F060BAC025213C2B009F9C81 /* StatsDisplay.swift in Sources */,
 				F080D73E26A8B6F400A1F49D /* StorageKeys.swift in Sources */,
 				F080D73526A5C77A00A1F49D /* EditRecordScreen.swift in Sources */,
+				F0AE5B9826AB151200ADAD3D /* AboutDDK.swift in Sources */,
 				F060BAC725214393009F9C81 /* HistoryScreen.swift in Sources */,
 				F022213126A325B900AA0340 /* AssessmentGalleryIcon.swift in Sources */,
 				F030470F251E65F400B438E7 /* Color.swift in Sources */,
@@ -561,6 +600,7 @@
 				F02DB410251C23440038FEAE /* ContentView.swift in Sources */,
 				F080D73C26A5E0F100A1F49D /* RecordHistoryRow.swift in Sources */,
 				F080D73926A5D44F00A1F49D /* RecordGeneralInfo.swift in Sources */,
+				F0AE5B9926AB151200ADAD3D /* AboutDDK.swift in Sources */,
 				F0C756B8251C3DC000D066A9 /* AssessmentRecord.swift in Sources */,
 				F02DB40E251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
 				F022212F26A321E900AA0340 /* AssessmentGalleryType.swift in Sources */,
@@ -732,6 +772,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Diadochokinetic Assess (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 896Q68CL7P;
@@ -756,6 +797,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Diadochokinetic Assess (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 896Q68CL7P;
@@ -782,7 +824,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -809,7 +851,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
