@@ -15,7 +15,6 @@ struct MailView: UIViewControllerRepresentable {
 
     @Environment(\.presentationMode) var presentation
     @Binding var result: Result<MFMailComposeResult, Error>?
-    var versionNumber: String
 
     class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
 
@@ -42,6 +41,15 @@ struct MailView: UIViewControllerRepresentable {
         }
     }
 
+    func getAppCurrentVersionNumber() -> String {
+        let dictionary = Bundle.main.infoDictionary!
+        let version: AnyObject? = dictionary["CFBundleShortVersionString"] as AnyObject?
+        let build : AnyObject? = dictionary["CFBundleVersion"] as AnyObject?
+        let versionStr = version as! String
+        let buildStr = build as! String
+        return "\(versionStr) (\(buildStr))"
+    }
+    
     func makeCoordinator() -> Coordinator {
         return Coordinator(presentation: presentation,
                            result: $result)
@@ -52,7 +60,7 @@ struct MailView: UIViewControllerRepresentable {
         vc.setToRecipients(["support@ballygorey.com"])
         vc.setSubject("DDK Feedback")// #\(UUID())")
         vc.mailComposeDelegate = context.coordinator
-        vc.setMessageBody("Dear DDK Developer,\n[\(versionNumber)]", isHTML: false)
+        vc.setMessageBody("Dear DDK Developer,\n[\(getAppCurrentVersionNumber())]", isHTML: false)
         return vc
     }
 

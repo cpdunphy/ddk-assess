@@ -48,3 +48,68 @@ enum AssessmentType : String, Codable, CaseIterable, Identifiable {
         return self.rawValue
     }
 }
+
+
+class Assessment : ObservableObject {
+    
+    var type : AssessmentType
+    
+    init(_ type: AssessmentType) {
+        self.type = type
+    }
+    
+    var title: String {
+        type.title
+    }
+    
+    var color: Color {
+        type.color
+    }
+    
+    var symbol: String {
+        type.icon
+    }
+    
+    var id: String {
+        return title
+    }
+    
+    var finiteTime : Bool = true
+}
+
+
+class TimedAssessment : Assessment {
+    
+}
+
+class UntimedAssessment : Assessment {
+//    override var finiteTime: Bool {
+//        get {
+//            return false
+//        }
+//        set {
+//
+//        }
+//    }
+    
+    override init(_ type: AssessmentType) {
+        super.init(type)
+        super.finiteTime = false
+    }
+}
+
+class HeartRateAssessment : TimedAssessment {
+    
+    init() {
+        super.init(.heartRate)
+    }
+}
+
+
+struct HeartRateOptions : View {
+    var body : some View {
+        Section {
+            
+        }
+    }
+}

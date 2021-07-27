@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import StoreKit
+
 #if os(iOS)
 import MessageUI
 #endif
@@ -15,35 +17,26 @@ struct SettingsScreen: View {
     
     @EnvironmentObject var model : DDKModel
     @EnvironmentObject var store : Store
+        
+    @AppStorage("show_decimal_timer") var showDecimalOnTimer : Bool = true
     
     @State private var showResetConfirmationAlert : Bool = false
     
-    @AppStorage("countdown_length") var countdown : Int = 3
-    @AppStorage("show_heartrate_stats") var heartrate : Bool = false
-    @AppStorage("default_assessment_style") var defaultAssessmentType : AssessType = .timed
-    @AppStorage("show_decimal_timer") var showDecimalOnTimer : Bool = true
-    
     #if os(iOS)
-    @State private var result: Result<MFMailComposeResult, Error>? = nil
-    @State private var isShowingMailView : Bool = false
+    @State private var mailResult:          Result<MFMailComposeResult, Error>? = nil
+    @State private var showingMailView :    Bool = false
     #endif
-    
-    //TODO: This is a mess. Make it feel more uniform.
-    
-    var body: some View {
+       
+    // MARK: - Form
+    var form: some View {
         Form {
-            Section(header: Text("User preferences")) {
-                Picker("Default Assessment Style", selection: $defaultAssessmentType) {
-                    ForEach([AssessType.timed, AssessType.count], id: \.self) {
-                        Text("\($0.label)")
-                            .tag($0)
-                    }
-                }
-                
-                Stepper("Countdown Time: \(countdown) \(countdown == 1 ? "second" : "seconds")", value: $countdown, in: 0...60)
-
+            
+            // User Preferences
+            Section("User Preferences") {
                 Toggle("Show Decimal on Timer", isOn: $showDecimalOnTimer)
             }
+            
+            // Reset Preferences
             Section {
                 Button {
                     showResetConfirmationAlert = true
@@ -52,21 +45,15 @@ struct SettingsScreen: View {
                 }.foregroundColor(.red)
             }
             
+            // Support The Dev
             #if os(iOS)
-            Section {
-                Button(action: {
-                    self.isShowingMailView.toggle()
-                }) {
-                    FeedbackText()
-                }.disabled(!MFMailComposeViewController.canSendMail())
-            }
-            
-            Section(header: Text("Support")) {
+            Section("Support") {
                 if !store.supportProductOptions.isEmpty {
                     ForEach(store.supportProductOptions.sorted { $0.productIdentifier < $1.productIdentifier }, id: \.self) { product in
-                        NavigationLink(destination: SupportTheDev(product: product)) {
+                        NavigationLink(
+                            destination: SupportTheDev(product: product)
+                        ) {
                             Text("Buy the developer a \(product.localizedTitle) \(Store.getEmoji(id: product.productIdentifier))")
-                                .foregroundColor(.accentColor)
                         }
                     }
                 } else {
@@ -75,51 +62,71 @@ struct SettingsScreen: View {
                 }
             }
             #endif
+                                 
+            // App Information + More
+            Section("Information") {
+                NavigationLink(
+                    destination: AboutDDK()
+                ) {
+                    Label("About", systemImage: "d.circle.fill")
+                        .symbolRenderingMode(.multicolor)
+                        .imageScale(.large)
+                }
+                
+                #if os(iOS)
+                Button {
+                    showingMailView.toggle()
+                } label: {
+                    Label("Support/Feedback", systemImage: "paperplane")
+                        .symbolVariant(.fill)
+                }.disabled(!MFMailComposeViewController.canSendMail())
+                #endif
+                
+                Link(
+                    destination: URL(string: "itms-apps://itunes.apple.com/app/id\(1489873060)?action=write-review&mt=8")!
+                ) {
+                    Label("Do you love DDK?", systemImage: "suit.heart")
+                        .symbolRenderingMode(.multicolor)
+                        .symbolVariant(.fill)
+                }
+            }
             
-            Section(header: Text(versionDescription())) {}
         }
-        .navigationTitle("Settings")
-        .alert(isPresented: $showResetConfirmationAlert) {
-            resetAlert
-        }
-        .sheet(isPresented: $isShowingMailView) {
-            MailView(result: $result, versionNumber: getAppCurrentVersionNumber())
-        }
+    }
+    
+    // MARK: - Body
+    var body: some View {
+        form
+            .navigationTitle("Settings")
+        
+        // Reset Settings Confirmation
+            .alert(
+                "Reset Preferences",
+                isPresented: $showResetConfirmationAlert,
+                actions: {
+                    Button("Cancel", role: .cancel) { }
+                    
+                    Button("Reset", role: .destructive, action: resetPreferences)
+                },
+                message: {
+                    Text("Are you sure you want to reset all preferences?")
+                }
+            )
+        
+        // Mail Popover Sheet
+            .sheet(isPresented: $showingMailView) {
+                MailView(result: $mailResult)
+            }
         
     }
     
-    func getAppCurrentVersionNumber() -> String {
-        let dictionary = Bundle.main.infoDictionary!
-        let version: AnyObject? = dictionary["CFBundleShortVersionString"] as AnyObject?
-        let build : AnyObject? = dictionary["CFBundleVersion"] as AnyObject?
-        let versionStr = version as! String
-        let buildStr = build as! String
-        return "\(versionStr) (\(buildStr))"
-    }
-    
-    func versionDescription() -> String {
-        return "Made with ❤️ \(getAppCurrentVersionNumber())"
-    }
-    
-    var resetAlert: Alert {
-        Alert(
-            title: Text("Reset Preferences"),
-            message: Text("Are you sure you want to reset all preferences?"),
-            primaryButton: .cancel(Text("Cancel")),
-            secondaryButton: .destructive(Text("Reset"), action: resetPreferences)
-        )
-    }
-    
     func resetPreferences() {
-        countdown = 3
         model.currentlySelectedTimerLength = 10
-        defaultAssessmentType = .timed
-        heartrate = false
         showDecimalOnTimer = true
         model.resetTimed()
         model.resetCount()
     }
-
+    
 }
 
 struct Settings_Previews: PreviewProvider {
@@ -127,29 +134,3 @@ struct Settings_Previews: PreviewProvider {
         SettingsScreen()
     }
 }
-
-
-#if os(iOS)
-struct FeedbackText :View {
-    var disabled = !MFMailComposeViewController.canSendMail()
-    var body : some View {
-        HStack {
-            Image(systemName: "paperplane.fill")
-                .imageScale(.large)
-                .foregroundColor(disabled ?
-                    .secondary : .accentColor)
-            
-            VStack(alignment: .leading) {
-                Text("Submit Feedback")
-                Text("Help us improve the app.")
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
-            }.padding(.leading)
-            
-        }.padding()
-    }
-}
-#endif
-
-
-
