@@ -197,10 +197,9 @@ struct StatsDisplay: View {
             #endif
             Picker("Set the Seconds", selection: $model.currentlySelectedTimerLength) {
                 ForEach(1...60, id: \.self) {
-                    Text("\($0)")
-                        .tag($0)
+                    Text("\($0)").tag($0)
                 }
-            }
+            }.pickerStyle(.wheel)
         }
     }
     

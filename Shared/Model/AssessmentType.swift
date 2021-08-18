@@ -49,6 +49,14 @@ enum AssessmentType : String, Codable, CaseIterable, Identifiable {
     }
 }
 
+class TestAssessment: ObservableObject {
+    @Published var type : AssessmentType = .heartRate
+    
+    init() {
+    
+    }
+}
+
 
 class Assessment : ObservableObject {
     

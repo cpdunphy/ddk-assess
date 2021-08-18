@@ -7,34 +7,121 @@
 
 import SwiftUI
 
+enum HistorySortTypes : String, CaseIterable {
+    case kind = "kind"
+    case date = "date"
+    case pinned = "pinned"
+    
+    var title : String {
+        switch self {
+        case .kind:     return "Kind"
+        case .date:     return "Date"
+        case .pinned:   return "Pinned"
+        }
+    }
+}
+
+
+
+
 struct HistoryScreen: View {
     
     @EnvironmentObject var model : DDKModel
     
     @AppStorage(StorageKeys.User.totalAssessments) var totalAssessments :   Int = 0
-    @AppStorage(StorageKeys.History.sortBy) var sortBy :                    String = "Date"
+    @AppStorage(StorageKeys.History.useGroups) var useGroups :              Bool = false
+    @AppStorage(StorageKeys.History.sortBy) var sortBy :                    HistorySortTypes = .pinned
     
     @State private var recordEditSelection :        AssessmentRecord? = nil
     @State private var showTrashConfirmationAlert : Bool = false
     
-    // MARK: - List
-    var list: some View {
+    
+    // Grouped Records Switch. Sorts and labels sections of records appropriately.
+    var groupedRecords : [String:[AssessmentRecord]] {
+        switch sortBy {
+        case .pinned:
+            return ["Pinned" : model.pinnedRecords, "Unpinned": model.records]
+        default:
+            return ["" : model.allRecords]
+        }
+    }
+    
+    // MARK: - List 
+    var listOfRecords: some View {
         List {
-            ForEach(model.allRecords, id: \.id) { record in
-                RecordHistoryRow(
-                    record: record,
-                    recordEditSelection: $recordEditSelection
-                )
+            if useGroups {
+                
+                // Iterate over the keys in the dictionary
+                ForEach(Array(groupedRecords.keys), id: \.self) { key in //TODO: Dict is inherently unordered. Find some way to keep this consistent.
+                    if let records = groupedRecords[key] ?? [] {
+                        if !records.isEmpty {
+                            
+                            // Grouped Section with a Key and existent Records.
+                            sectionOfRecordHistory(key, records)
+                        }
+                    }
+                }
+            } else {
+                
+                // Show all records by time, regardless of "GroupBy"
+//                Section {
+                    sectionOfRecordHistory(nil, model.allRecords)
+//                }
             }
             
             Text("You have done \(totalAssessments) DDK \(totalAssessments == 1 ? "Assessment!" : "Assessments!")")
         }
     }
     
+    // MARK: - sectionOfRecordHistory
+    /// Creates a section in the list and loops over the provided records
+    /// - Parameters:
+    ///   - header: Section title string, shown above the section of records
+    ///   - records: Array of Records to loop over
+    @ViewBuilder
+    func sectionOfRecordHistory(_ header: String? = nil, _ records: [AssessmentRecord]) -> some View {
+        
+        // Check to see if header exists
+        if let header = header {
+            
+            // Check to see if header has a value, if not, don't add a header to the section.
+            if !header.isEmpty {
+                Section(header) {
+                    ForEach(records, id: \.id) { record in
+                        RecordHistoryRow(
+                            record: record,
+                            recordEditSelection: $recordEditSelection
+                        )
+                    }
+                }
+            } else {
+                Section {
+                    ForEach(records, id: \.id) { record in
+                        RecordHistoryRow(
+                            record: record,
+                            recordEditSelection: $recordEditSelection
+                        )
+                    }
+                }
+            }
+            
+        } else {
+            Section {
+                ForEach(records, id: \.id) { record in
+                    RecordHistoryRow(
+                        record: record,
+                        recordEditSelection: $recordEditSelection
+                    )
+                }
+            }
+        }
+    }
+    
+    
     // MARK: - Body
     var body: some View {
         
-        list
+        listOfRecords
             .navigationTitle("History")
         
         // Optional List Style Modifier (Done b/c sidebar style takes over on iPadOS)
@@ -69,16 +156,22 @@ struct HistoryScreen: View {
         // Toolbar Controls
             .toolbar {
                 Menu {
+                    
                     // TODO: Group / Sort Controls
                     Section {
-                        Menu {
-                            Picker("Sort By", selection: $sortBy) {
-                                ForEach(["Kind", "Date", "Pinned"], id: \.self) {
-                                    Text($0).tag($0)
+                        
+                        Toggle("Use Groups", isOn: $useGroups)
+                        
+                        if useGroups {
+                            Menu {
+                                Picker("Group By", selection: $sortBy) {
+                                    ForEach(HistorySortTypes.allCases, id: \.self) {
+                                        Text($0.title).tag($0)
+                                    }
                                 }
+                            } label: {
+                                Label("Group By", systemImage: "arrow.up.arrow.down")
                             }
-                        } label: {
-                            Label("Sort By", systemImage: "arrow.up.arrow.down")
                         }
                     }
                     

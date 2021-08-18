@@ -27,9 +27,11 @@ struct AppSidebarNavigation: View {
                     }
                 }
             #endif
+            #if !os(macOS)
                 .sheet(isPresented: $showSettingsModal) {
                     SettingsModal()
                 }
+            #endif
             
             
             

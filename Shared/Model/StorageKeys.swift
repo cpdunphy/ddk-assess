@@ -26,6 +26,7 @@ struct StorageKeys {
     struct History {
         public static let pinnedRecords :   String = "pinned_records"
         public static let sortBy :          String = "sort_history_by"
+        public static let useGroups :       String = "use_groups_in_history"
         
     }
     

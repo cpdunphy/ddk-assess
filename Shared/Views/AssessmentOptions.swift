@@ -12,7 +12,6 @@ struct AssessmentOptions: View {
     @Environment(\.dismiss) var dismiss
     
     @EnvironmentObject var model : DDKModel
-    
     @EnvironmentObject var hr : HeartRateAssessment
     
     @AppStorage("countdown_length") var countdown :             Int = 3
@@ -26,7 +25,8 @@ struct AssessmentOptions: View {
     var form: some View {
         Form {
             Section {
-//                Text(hr.title)
+                Text(hr.type.title)
+                
             }
             
             Section {
@@ -48,7 +48,7 @@ struct AssessmentOptions: View {
                     ForEach(1...60, id: \.self) {
                         Text("\($0)").tag($0)
                     }
-                }.pickerStyle(.inline)
+                }.pickerStyle(.wheel)
             }
             
             Section {

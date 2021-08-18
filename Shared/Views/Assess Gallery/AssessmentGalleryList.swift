@@ -57,7 +57,7 @@ struct AssessmentGalleryList: View {
                 VStack(alignment: .leading) {
                     Text(type.title)
                         .foregroundColor(.primary)
-                        .font(.headline)
+                        .fontWeight(.medium)
                     
                     Text("53 assessments")
                         .foregroundColor(.secondary)
@@ -68,7 +68,10 @@ struct AssessmentGalleryList: View {
                 
                 // Context Menu Items
                 Menu {
-                    AssessmentGalleryContextMenuItems(type: type, assessmentSettingsSelection: $assessmentSettingsSelection)
+                    AssessmentGalleryContextMenuItems(
+                        type: type,
+                        assessmentSettingsSelection: $assessmentSettingsSelection
+                    )
                 } label: {
                     Image(systemName: "ellipsis")
                         .foregroundColor(.primary)
@@ -79,6 +82,7 @@ struct AssessmentGalleryList: View {
                 
             }
         }
+        
         // Context Menu
         .contextMenu {
             AssessmentGalleryContextMenuItems(

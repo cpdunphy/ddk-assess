@@ -13,6 +13,7 @@ struct Diadochokinetic_AssessApp: App {
     /// Inital declaration and initation of 'DDKModel'
     @StateObject private var ddkModel : DDKModel = DDKModel()
     
+    
     @StateObject private var heartRate : HeartRateAssessment = HeartRateAssessment()
     
     /// Inital declaration and initation of 'Store'
@@ -27,6 +28,7 @@ struct Diadochokinetic_AssessApp: App {
                 .environmentObject(ddkModel)
                 .environmentObject(timerSession)
                 .environmentObject(store)
+                .environmentObject(heartRate)
         }
     }
 }
