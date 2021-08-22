@@ -7,23 +7,6 @@
 
 import SwiftUI
 
-enum HistorySortTypes : String, CaseIterable {
-    case kind = "kind"
-    case date = "date"
-    case pinned = "pinned"
-    
-    var title : String {
-        switch self {
-        case .kind:     return "Kind"
-        case .date:     return "Date"
-        case .pinned:   return "Pinned"
-        }
-    }
-}
-
-
-
-
 struct HistoryScreen: View {
     
     @EnvironmentObject var model : DDKModel
@@ -34,39 +17,71 @@ struct HistoryScreen: View {
     
     @State private var recordEditSelection :        AssessmentRecord? = nil
     @State private var showTrashConfirmationAlert : Bool = false
-    
-    
-    // Grouped Records Switch. Sorts and labels sections of records appropriately.
-    var groupedRecords : [String:[AssessmentRecord]] {
+        
+    // MARK: - Grouped Records
+    // Sorts and labels sections of records appropriately.
+    var groupedRecords : [RecordGroup] {
         switch sortBy {
-        case .pinned:
-            return ["Pinned" : model.pinnedRecords, "Unpinned": model.records]
-        default:
-            return ["" : model.allRecords]
+            
+        case .pinned: // Group by Pinned
+            return [
+                RecordGroup(title: "Pinned", records: model.pinnedRecords),
+                RecordGroup(title: "Unpinned", records: model.records)
+            ]
+            
+        case .date: // Group by Date
+            
+            // Use the standard library to group by date. (Alternative to using .filter)
+            let groupedByDate: [String: [AssessmentRecord]] = Dictionary(
+                grouping: model.allRecords,
+                by : {
+                    $0.date.formatted(
+                        date: .numeric,
+                        time: .omitted
+                    )
+                }
+            )
+            
+            var groupedRecords: [RecordGroup] = []
+
+            for (date, group) in groupedByDate {
+                groupedRecords.append(
+                    RecordGroup(title: date, records: group)
+                )
+            }
+            
+            return groupedRecords
+            
+        case .kind: // Group by Kind
+            
+            var groupedRecords: [RecordGroup] = []
+            
+            // Iterate over possible Types and filter the records by the type
+            for type in AssessmentType.allCases {
+                let filteredRecordsByType: [AssessmentRecord] = model.allRecords.filter { $0.type == type }
+                
+                groupedRecords.append(RecordGroup(title: type.title, records: filteredRecordsByType))
+            }
+            
+            return groupedRecords
         }
     }
     
-    // MARK: - List 
+    // MARK: - List
     var listOfRecords: some View {
         List {
             if useGroups {
                 
                 // Iterate over the keys in the dictionary
-                ForEach(Array(groupedRecords.keys), id: \.self) { key in //TODO: Dict is inherently unordered. Find some way to keep this consistent.
-                    if let records = groupedRecords[key] ?? [] {
-                        if !records.isEmpty {
-                            
-                            // Grouped Section with a Key and existent Records.
-                            sectionOfRecordHistory(key, records)
-                        }
+                ForEach(groupedRecords, id: \.title) { group in //TODO: Dict is inherently unordered. Find some way to keep this consistent.
+                    if !group.records.isEmpty {
+                        // Grouped Section with a Key and existent Records.
+                        sectionOfRecordHistory(group.title, group.records)
                     }
                 }
             } else {
-                
                 // Show all records by time, regardless of "GroupBy"
-//                Section {
-                    sectionOfRecordHistory(nil, model.allRecords)
-//                }
+                sectionOfRecordHistory(nil, model.allRecords)
             }
             
             Text("You have done \(totalAssessments) DDK \(totalAssessments == 1 ? "Assessment!" : "Assessments!")")
@@ -125,9 +140,9 @@ struct HistoryScreen: View {
             .navigationTitle("History")
         
         // Optional List Style Modifier (Done b/c sidebar style takes over on iPadOS)
-        #if os(iOS)
+#if os(iOS)
             .listStyle(.insetGrouped)
-        #endif
+#endif
         
         // Record Editor
             .sheet(
@@ -187,6 +202,27 @@ struct HistoryScreen: View {
                     Label("More", systemImage: "ellipsis.circle")
                 }
             }
+    }
+    
+    // MARK: - RecordGroup
+    struct RecordGroup {
+        var title: String?
+        var records: [AssessmentRecord]
+    }
+    
+    // MARK: - HistorySortTypes
+    enum HistorySortTypes : String, CaseIterable {
+        case kind = "kind"
+        case date = "date"
+        case pinned = "pinned"
+        
+        var title : String {
+            switch self {
+            case .kind:     return "Kind"
+            case .date:     return "Date"
+            case .pinned:   return "Pinned"
+            }
+        }
     }
 }
 
