@@ -13,7 +13,7 @@ struct HistoryScreen: View {
     
     @AppStorage(StorageKeys.User.totalAssessments) var totalAssessments :   Int = 0
     @AppStorage(StorageKeys.History.useGroups) var useGroups :              Bool = false
-    @AppStorage(StorageKeys.History.sortBy) var sortBy :                    HistorySortTypes = .pinned
+    @AppStorage(StorageKeys.History.sortBy) var sortBy :                    RecordSortTypes = .pinned
     
     @State private var recordEditSelection :        AssessmentRecord? = nil
     @State private var showTrashConfirmationAlert : Bool = false
@@ -180,7 +180,7 @@ struct HistoryScreen: View {
                         if useGroups {
                             Menu {
                                 Picker("Group By", selection: $sortBy) {
-                                    ForEach(HistorySortTypes.allCases, id: \.self) {
+                                    ForEach(RecordSortTypes.allCases, id: \.self) {
                                         Text($0.title).tag($0)
                                     }
                                 }
@@ -203,15 +203,21 @@ struct HistoryScreen: View {
                 }
             }
     }
+}
+
+extension HistoryScreen {
     
     // MARK: - RecordGroup
     struct RecordGroup {
         var title: String?
         var records: [AssessmentRecord]
     }
+}
+
+extension HistoryScreen {
     
-    // MARK: - HistorySortTypes
-    enum HistorySortTypes : String, CaseIterable {
+    // MARK: - SortTypes
+    enum RecordSortTypes : String, CaseIterable {
         case kind = "kind"
         case date = "date"
         case pinned = "pinned"
@@ -225,7 +231,6 @@ struct HistoryScreen: View {
         }
     }
 }
-
 
 struct HistoryScreen_Previews: PreviewProvider {
     static var previews: some View {
