@@ -7,37 +7,55 @@
 
 import SwiftUI
 
+enum HeartRateDisplayUnit : String, Codable, CaseIterable, Identifiable {
+    case bpm = "BPM"
+    case bps = "BPS"
+    
+    var id: String {
+        self.rawValue
+    }
+}
+
 struct AssessmentOptions: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @EnvironmentObject var model : DDKModel
+    @EnvironmentObject var ddk : DDKModel
+    
+    @EnvironmentObject var timed : TimedCountingAssessment
+    @EnvironmentObject var count : CountingAssessment
     @EnvironmentObject var hr : HeartRateAssessment
     
     @AppStorage("countdown_length") var countdown :             Int = 3
     @AppStorage("show_decimal_timer") var showDecimalOnTimer :  Bool = true
-    @AppStorage("show_heartrate_stats") var heartRate :         Bool = false
+    @AppStorage("heart_rate_unit") var heartRate :              String = "BPM"
     @AppStorage(StorageKeys.Timed.timerLength) var duration:    Int = 10
     
     var type : AssessmentType
     
+    var model : Assessment {
+        switch type {
+        case .timed:
+            return timed
+        case .count:
+            return count
+        case .heartRate:
+            return hr
+        }
+    }
+    
     // MARK: - Form
     var form: some View {
-        Form {
-            Section {
-                Text(hr.type.title)
-                
-            }
-            
+        AssessmentOptionsForm {
             Section {
                 Toggle(
                     "\(Image(systemName: "star.fill")) Favorite",
                     isOn: Binding<Bool>(
                         get: {
-                            model.assessmentTypeIsFavorite(type)
+                            ddk.assessmentTypeIsFavorite(type)
                         },
                         set: { newValue in
-                            model.toggleFavoriteStatus(type)
+                            ddk.toggleFavoriteStatus(type)
                         }
                     )
                 )
@@ -62,16 +80,19 @@ struct AssessmentOptions: View {
             }
             
             Section {
-                Toggle("Show BPM vs BPS", isOn: $heartRate)
+                Picker("Display Unit", selection: $heartRate) {
+                    ForEach(HeartRateDisplayUnit.allCases) {
+                        Text($0.rawValue).tag($0)
+                    }
+                }
             }
-            
         }
     }
     
     // MARK: - Body
     var body: some View {
         form
-            .navigationTitle(type.title)
+            .navigationTitle(model.title)
             .navigationBarTitleDisplayMode(.inline)
         
         // Toolbar
@@ -91,5 +112,21 @@ struct AssessmentOptions: View {
 struct AssessmentOptions_Previews: PreviewProvider {
     static var previews: some View {
         AssessmentOptions(type: .timed)
+    }
+}
+
+
+struct AssessmentOptionsForm<Content:View> : View {
+    
+    var content: Content
+    
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+    
+    var body: some View {
+        Form {
+            content
+        }
     }
 }

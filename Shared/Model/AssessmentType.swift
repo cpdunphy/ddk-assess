@@ -49,15 +49,6 @@ enum AssessmentType : String, Codable, CaseIterable, Identifiable {
     }
 }
 
-class TestAssessment: ObservableObject {
-    @Published var type : AssessmentType = .heartRate
-    
-    init() {
-    
-    }
-}
-
-
 class Assessment : ObservableObject {
     
     var type : AssessmentType
@@ -88,17 +79,12 @@ class Assessment : ObservableObject {
 
 class TimedAssessment : Assessment {
     
+    
+    @Published var duration: Double = 0.0
+    
 }
 
 class UntimedAssessment : Assessment {
-//    override var finiteTime: Bool {
-//        get {
-//            return false
-//        }
-//        set {
-//
-//        }
-//    }
     
     override init(_ type: AssessmentType) {
         super.init(type)
@@ -107,9 +93,25 @@ class UntimedAssessment : Assessment {
 }
 
 class HeartRateAssessment : TimedAssessment {
+    @AppStorage("show_heartrate_stats") var heartRate : Bool = false
     
     init() {
         super.init(.heartRate)
+    }
+}
+
+class CountingAssessment : UntimedAssessment {
+    
+    init() {
+        super.init(.count)
+    }
+}
+
+
+class TimedCountingAssessment : TimedAssessment {
+    
+    init() {
+        super.init(.timed)
     }
 }
 
