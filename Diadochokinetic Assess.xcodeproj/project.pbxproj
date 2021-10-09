@@ -63,9 +63,11 @@
 		F0AE5B9926AB151200ADAD3D /* AboutDDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9726AB151200ADAD3D /* AboutDDK.swift */; };
 		F0B423BB25A66D97002805C9 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423BA25A66D97002805C9 /* NavigationItem.swift */; };
 		F0B423BC25A66D97002805C9 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423BA25A66D97002805C9 /* NavigationItem.swift */; };
+		F0BC56D92710E2E400071A6E /* Products.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0BC56D82710E2E400071A6E /* Products.plist */; };
+		F0BC56DA2710E2E400071A6E /* Products.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0BC56D82710E2E400071A6E /* Products.plist */; };
 		F0C75699251C3A4300D066A9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C75698251C3A4300D066A9 /* StoreKit.framework */; };
-		F0C7569F251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */; };
-		F0C756A0251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */; };
+		F0C7569F251C3A6E00D066A9 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* Products.storekit */; };
+		F0C756A0251C3A6E00D066A9 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* Products.storekit */; };
 		F0C756B0251C3DA500D066A9 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756AF251C3DA500D066A9 /* States.swift */; };
 		F0C756B1251C3DA500D066A9 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756AF251C3DA500D066A9 /* States.swift */; };
 		F0C756B7251C3DC000D066A9 /* AssessmentRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756B6251C3DC000D066A9 /* AssessmentRecord.swift */; };
@@ -142,8 +144,9 @@
 		F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-Set.swift"; sourceTree = "<group>"; };
 		F0AE5B9726AB151200ADAD3D /* AboutDDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDDK.swift; sourceTree = "<group>"; };
 		F0B423BA25A66D97002805C9 /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
+		F0BC56D82710E2E400071A6E /* Products.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Products.plist; sourceTree = "<group>"; };
 		F0C75698251C3A4300D066A9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SupportConfiguration.storekit; sourceTree = "<group>"; };
+		F0C7569E251C3A6E00D066A9 /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		F0C756AF251C3DA500D066A9 /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		F0C756B6251C3DC000D066A9 /* AssessmentRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentRecord.swift; sourceTree = "<group>"; };
 		F0CEA380251CC5C700818C6D /* CountingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingState.swift; sourceTree = "<group>"; };
@@ -318,11 +321,12 @@
 		F0C756A5251C3B2900D066A9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F0C7569E251C3A6E00D066A9 /* SupportConfiguration.storekit */,
+				F0C7569E251C3A6E00D066A9 /* Products.storekit */,
 				F0340411252E1CAA00A005FA /* StoreKitTestCertificate.cer */,
 				F0D5539D251C24340084E0EB /* DDKModel.swift */,
 				F07B3BCF261108E5004EB5AC /* Print.swift */,
 				F0D553A4251C24750084E0EB /* Store.swift */,
+				F0BC56D82710E2E400071A6E /* Products.plist */,
 				F03046FC251E36F300B438E7 /* TimerSession.swift */,
 				F0B423BA25A66D97002805C9 /* NavigationItem.swift */,
 				F0C756AF251C3DA500D066A9 /* States.swift */,
@@ -494,7 +498,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F02DB411251C23440038FEAE /* Assets.xcassets in Resources */,
-				F0C7569F251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */,
+				F0C7569F251C3A6E00D066A9 /* Products.storekit in Resources */,
+				F0BC56D92710E2E400071A6E /* Products.plist in Resources */,
 				F0340412252E1CAA00A005FA /* StoreKitTestCertificate.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,7 +509,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F02DB412251C23440038FEAE /* Assets.xcassets in Resources */,
-				F0C756A0251C3A6E00D066A9 /* SupportConfiguration.storekit in Resources */,
+				F0C756A0251C3A6E00D066A9 /* Products.storekit in Resources */,
+				F0BC56DA2710E2E400071A6E /* Products.plist in Resources */,
 				F0340413252E1CAA00A005FA /* StoreKitTestCertificate.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

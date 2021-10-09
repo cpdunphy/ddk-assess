@@ -48,12 +48,12 @@ struct SettingsScreen: View {
             // Support The Dev
             #if os(iOS)
             Section("Support") {
-                if !store.supportProductOptions.isEmpty {
-                    ForEach(store.supportProductOptions.sorted { $0.productIdentifier < $1.productIdentifier }, id: \.self) { product in
+                if !store.productOptions.isEmpty {
+                    ForEach(store.productOptions) { product in
                         NavigationLink(
                             destination: SupportTheDev(product: product)
                         ) {
-                            Text("Buy the developer a \(product.localizedTitle) \(Store.getEmoji(id: product.productIdentifier))")
+                            Text("Buy the developer a \(product.displayName) \(store.emoji(for: product.id))")
                         }
                     }
                 } else {
