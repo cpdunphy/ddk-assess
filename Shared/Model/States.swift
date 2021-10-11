@@ -8,14 +8,6 @@
 
 import Foundation
 
-enum PossibleCountingStates {
-    case ready
-    case counting
-    case paused
-    case finished
-    case countdown
-}
-
 enum ActiveAlert {
     case none
     case buying

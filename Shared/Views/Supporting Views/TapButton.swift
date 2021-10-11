@@ -14,70 +14,91 @@ struct TapButton: View {
     @EnvironmentObject var timerSession: TimerSession
     @EnvironmentObject var model : DDKModel
 
+    @Binding var taps: Int
+    var countingState : Set<CountingState>?
+    var enabledBackgroundColor : Color = .tappingEnabled
+    var disabledBackgroundColor : Color = .tappingDisabled
+    var enabledText : String = "Tap!"
+    var disabledText : String = "Disabled"
+    var enabledTextColor : Color = .white
+    var disabledTextColor : Color = Color.gray.opacity(0.75)
+    
+    
     #if os(iOS)
-    let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
+    let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     #endif
     
     var body : some View {
-        if model.currentTimedState == [.counting] || model.assessType == .count {
-            
+        if let countingState = countingState {
+            if countingState == [.counting] {
+                Button(action: handleTaps) {
+                    buttonTapArea
+                }
+                .buttonStyle(PlainButtonStyle())
+            } else {
+                buttonTapArea
+            }
+        } else {
             Button(action: handleTaps) {
                 buttonTapArea
             }
             .buttonStyle(PlainButtonStyle())
-            
-        } else {
-            buttonTapArea
         }
     }
     
     @ScaledMetric(relativeTo: .largeTitle) var buttonLabelTextSize: CGFloat = 50
 
     var buttonTapArea : some View {
-        Text(getText)
+        Text(displayText)
             .font(.system(size: buttonLabelTextSize, weight: .semibold, design: .rounded))
-            .foregroundColor(
-                model.currentTimedState != [.counting] && model.assessType == .timed ?
-                    Color.gray.opacity(0.75) :
-                    .white
-            )
+            .foregroundColor(textColor)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(getBackgroundColor)
+            .background(backgroundColor)
     }
     
     /// Calls the handleTaps on model and sending the haptic feedback to the user. Called each time theres a tap and lets the DDKModel figure out what to do with it. 
     func handleTaps() {
-        model.handleTaps()
+        taps += 1
         
         #if os(iOS)
-        self.impactFeedbackgenerator.prepare()
-        self.impactFeedbackgenerator.impactOccurred()
+        self.impactFeedbackGenerator.prepare()
+        self.impactFeedbackGenerator.impactOccurred()
         #endif
     }
     
-    /// Gets the background color for the assess button. Using a switch statement for future-proofing
-    var getBackgroundColor : Color {
-        switch model.assessType {
-        case .timed:
-            return model.currentTimedState == [.counting] ? .tappingEnabled : .tappingDisabled
-        case .count:
+    /// Gets the background color for the assess button.
+    var backgroundColor : Color {
+        
+        guard let countingState = countingState else {
             return .tappingEnabled
         }
+        
+        return countingState == [.counting] ? .tappingEnabled : .tappingDisabled
+        
+    }
+
+    /// Gets the text color for the assess button.
+    var textColor : Color {
+        guard let countingState = countingState else {
+            return enabledTextColor
+        }
+        
+        return countingState == [.counting] ? enabledTextColor : disabledTextColor
     }
     
-    /// Gets the display label for the assess button. Using a switch statement for future-proofing
-    var getText : String {
-        switch model.assessType {
-        case .timed:
-            return model.currentTimedState == [.counting] ? "Tap!" : "Disabled"
-        case .count:
-            return "Tap!"
+    
+    /// Gets the display label for the assess button.
+    var displayText : String {
+        guard let countingState = countingState else {
+            return enabledText
         }
+        
+        return countingState == [.counting] ? enabledText : disabledText
     }
 }
 
 struct TapButton_Previews: PreviewProvider {
     static var previews: some View {
-        TapButton()
+        TapButton(taps: .constant(7))
     }
 }

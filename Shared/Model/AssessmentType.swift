@@ -132,6 +132,8 @@ class HeartRateAssessment : Assessment {
     @AppStorage(Keys.countdownLength(.heartRate)) var countdownLength : Int = 3
     @Published var taps : Int = 0
     
+    @Published var countingState : Set<CountingState> = [.ready]
+    
     init() {
         super.init(.heartRate)
     }

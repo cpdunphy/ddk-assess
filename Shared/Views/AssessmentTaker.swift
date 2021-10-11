@@ -45,12 +45,7 @@ struct AssessmentTaker: View {
     // MARK: - Body
     var body: some View {
         VStack(spacing: 0) {
-            
-            // Navigation Bar
-            navigationBar
-                .background(.bar)
-                .layoutPriority(0)
-            
+
             // Actual Assessment taking, customized to fit the given type
             VStack(spacing: spacing) {
                 
@@ -66,11 +61,17 @@ struct AssessmentTaker: View {
             .padding(spacing)
             .layoutPriority(1)
             
-            
             // Required to keep the navigationBar pressed against the top of the view when now buttons or stats are available to display
             Spacer(minLength: 0)
                 .layoutPriority(0)
         }
+        
+        // Navigation Bar
+        .safeAreaInset(edge: .top, spacing: 0) {
+            navigationBar
+                .background(.bar)
+        }
+        
         .background(Color(.systemGroupedBackground))
         .sheet(item: $assessmentSettingsSelection) { type in
             NavigationView {
@@ -159,8 +160,10 @@ extension AssessmentTaker {
             @EnvironmentObject var model : HeartRateAssessment
             
             var body: some View {
-                TapButton()
-                    .cornerRadius(15.0)
+                TapButton(
+                    taps: $model.taps,
+                    countingState: model.countingState
+                ).cornerRadius(15)
             }
         }
     }
