@@ -41,9 +41,8 @@ struct TapButton: View {
                     Color.gray.opacity(0.75) :
                     .white
             )
-            .frame(minWidth: 200, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(getBackgroundColor)
-            .cornerRadius(15)
     }
     
     /// Calls the handleTaps on model and sending the haptic feedback to the user. Called each time theres a tap and lets the DDKModel figure out what to do with it. 

@@ -44,49 +44,42 @@ struct AssessmentOptions: View {
         }
     }
     
+    @ViewBuilder
+    var options : some View {
+        switch type {
+        case .timed:
+            EmptyView()
+        case .count:
+            EmptyView()
+        case .heartRate:
+            HeartRate()
+        }
+    }
+    
+    
     // MARK: - Form
     var form: some View {
-        AssessmentOptionsForm {
+        Form {
             Section {
-                Toggle(
-                    "\(Image(systemName: "star.fill")) Favorite",
-                    isOn: Binding<Bool>(
-                        get: {
-                            ddk.assessmentTypeIsFavorite(type)
-                        },
-                        set: { newValue in
-                            ddk.toggleFavoriteStatus(type)
-                        }
-                    )
-                )
+                favoriteToggle
             }
             
-            Section("Duration") {
-                Picker("Set the Seconds", selection: $duration) {
-                    ForEach(1...60, id: \.self) {
-                        Text("\($0)").tag($0)
-                    }
-                }.pickerStyle(.wheel)
-            }
-            
-            Section {
-                Stepper(
-                    "Countdown Time: \(countdown) \(countdown == 1 ? "second" : "seconds")",
-                    value: $countdown,
-                    in: 0...60
-                )
-                
-                Toggle("Show Decimal on Timer", isOn: $showDecimalOnTimer)
-            }
-            
-            Section {
-                Picker("Display Unit", selection: $heartRate) {
-                    ForEach(HeartRateDisplayUnit.allCases) {
-                        Text($0.rawValue).tag($0)
-                    }
-                }
-            }
+            options
         }
+    }
+        
+    var favoriteToggle : some View {
+        Toggle(
+            "\(Image(systemName: "star.fill")) Favorite",
+            isOn: Binding<Bool>(
+                get: {
+                    ddk.assessmentTypeIsFavorite(type)
+                },
+                set: { newValue in
+                    ddk.toggleFavoriteStatus(type)
+                }
+            )
+        )
     }
     
     // MARK: - Body
@@ -104,7 +97,6 @@ struct AssessmentOptions: View {
                         action: { dismiss() }
                     )
                 }
-                
             }
     }
 }

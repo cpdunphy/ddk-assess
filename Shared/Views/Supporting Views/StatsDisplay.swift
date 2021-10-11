@@ -23,7 +23,6 @@ struct StatsDisplay: View {
         }
         .frame(minWidth: 200, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
         .background(Color(.secondarySystemGroupedBackground)) //TODO: Add Mac compatability
-        .cornerRadius(15.0)
     }
     
     @ViewBuilder var assessSwitch : some View {

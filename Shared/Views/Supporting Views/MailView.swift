@@ -57,7 +57,7 @@ struct MailView: UIViewControllerRepresentable {
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<MailView>) -> MFMailComposeViewController {
         let vc = MFMailComposeViewController()
-        vc.setToRecipients(["support@ballygorey.com"])
+        vc.setToRecipients(["apps@ballygorey.com"])
         vc.setSubject("DDK Feedback")// #\(UUID())")
         vc.mailComposeDelegate = context.coordinator
         vc.setMessageBody("Dear DDK Developer,\n[\(getAppCurrentVersionNumber())]", isHTML: false)

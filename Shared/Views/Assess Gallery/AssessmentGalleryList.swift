@@ -28,7 +28,7 @@ struct AssessmentGalleryList: View {
                     ) { type in
                         button(type)
                     }
-                }
+                } 
                 
             }
             
@@ -49,6 +49,7 @@ struct AssessmentGalleryList: View {
     func button(_ type: AssessmentType) -> some View {
         Button {
             assessmentSelection = type
+            triggerHapticFeedbackSuccess()
         } label: {
             HStack {
                 AssessmentGalleryIcon(type: type)
@@ -103,6 +104,13 @@ struct AssessmentGalleryList: View {
                 }
             }.tint(.yellow)
         }
+    }
+    
+    func triggerHapticFeedbackSuccess() {
+#if os(iOS)
+        let hapticFeedback = UINotificationFeedbackGenerator()
+        hapticFeedback.notificationOccurred(.success)
+#endif
     }
 }
 

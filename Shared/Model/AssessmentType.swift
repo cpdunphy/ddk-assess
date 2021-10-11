@@ -79,8 +79,7 @@ class Assessment : ObservableObject {
 
 class TimedAssessment : Assessment {
     
-    
-    @Published var duration: Double = 0.0
+    //    @Published var duration: Double = 0.0
     
 }
 
@@ -92,34 +91,105 @@ class UntimedAssessment : Assessment {
     }
 }
 
-class HeartRateAssessment : TimedAssessment {
-    @AppStorage("show_heartrate_stats") var heartRate : Bool = false
+
+// MARK: - Actual Assessment Models
+
+struct Keys {
+    static func timerLength(_ type: AssessmentType) -> String {
+        return type.rawValue + "_timer_length"
+    }
     
-    init() {
-        super.init(.heartRate)
+    static func countdownLength(_ type: AssessmentType) -> String {
+        return type.rawValue + "_countdown_length"
     }
 }
 
-class CountingAssessment : UntimedAssessment {
+class TimedCountingAssessment : Assessment {
     
-    init() {
-        super.init(.count)
-    }
-}
-
-
-class TimedCountingAssessment : TimedAssessment {
+    @Published var taps : Int = 0
+    @AppStorage(Keys.timerLength(.timed)) var duration : Int = 10
+    @AppStorage(Keys.countdownLength(.timed)) var countdownLength : Int = 3
     
     init() {
         super.init(.timed)
     }
 }
 
+class CountingAssessment : Assessment {
+    
+    @Published var taps : Int = 0
+    
+    init() {
+        super.init(.count)
+    }
+}
 
-struct HeartRateOptions : View {
-    var body : some View {
-        Section {
+class HeartRateAssessment : Assessment {
+    
+    
+    @AppStorage("heart_rate_unit") var heartRate : String = "BPM"
+    @AppStorage(Keys.timerLength(.heartRate)) var duration : Int = 10
+    @AppStorage(Keys.countdownLength(.heartRate)) var countdownLength : Int = 3
+    @Published var taps : Int = 0
+    
+    init() {
+        super.init(.heartRate)
+    }
+}
+
+
+extension AssessmentOptions {
+    struct HeartRate : View {
+        @EnvironmentObject var model : HeartRateAssessment
+        
+        var body : some View {
             
+            Section("Duration") {
+                BuildingBlocks.DurationPicker(duration: $model.duration)
+                BuildingBlocks.CountdownStepper(countdown: $model.countdownLength)
+            }
+            
+            Section {
+                Toggle("Show Decimal on Timer", isOn: .constant(true))
+            }
+            
+            Section {
+                Picker("Display Unit", selection: $model.heartRate) {
+                    ForEach(HeartRateDisplayUnit.allCases) {
+                        Text($0.rawValue).tag($0)
+                    }
+                }
+            }
         }
     }
 }
+
+extension AssessmentOptions {
+    
+    struct BuildingBlocks {
+        
+        struct DurationPicker : View {
+            @Binding var duration : Int
+            private let range : ClosedRange<Int> = 1...60
+            
+            var body: some View {
+                Picker("Set the Seconds", selection: $duration) {
+                    ForEach(range, id: \.self) {
+                        Text("\($0)").tag($0)
+                    }
+                }.pickerStyle(.wheel)
+            }
+        }
+        
+        struct CountdownStepper : View {
+            
+            @Binding var countdown : Int
+            
+            var body: some View {
+                Stepper("Countdown for \(countdown) \(countdown == 1 ? "sec" : "secs")", value: $countdown, in: 0...60)
+            }
+        }
+    }
+    
+}
+

@@ -53,7 +53,7 @@ struct SettingsScreen: View {
                         NavigationLink(
                             destination: SupportTheDev(product: product)
                         ) {
-                            Text("Buy the developer a \(product.displayName) \(store.emoji(for: product.id))")
+                            Text("Buy the developer a \(product.displayName) \(store .emoji(for: product.id))")
                         }
                     }
                 } else {

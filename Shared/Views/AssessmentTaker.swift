@@ -15,20 +15,61 @@ struct AssessmentTaker: View {
     
     var type : AssessmentType
     
+    @ViewBuilder
+    var statsDisplay : some View {
+        switch type {
+        case .timed:
+            EmptyView()
+        case .count:
+            EmptyView()
+        case .heartRate:
+            Stats.HeartRate()
+        }
+    }
+    
+    @ViewBuilder
+    var buttons : some View {
+        switch type {
+        case .timed:
+            EmptyView()
+        case .count:
+            EmptyView()
+        case .heartRate:
+            Buttons.HeartRate()
+        }
+    }
+    
+    private let spacing: CGFloat = 16
+    private let cornerRadius : Int = 15
+    
+    // MARK: - Body
     var body: some View {
         VStack(spacing: 0) {
+            
+            // Navigation Bar
             navigationBar
                 .background(.bar)
+                .layoutPriority(0)
             
-            VStack(spacing: 16) {
+            // Actual Assessment taking, customized to fit the given type
+            VStack(spacing: spacing) {
                 
-                StatsDisplay()
-                    .layoutPriority(1)
-                TapButton()
-                    .layoutPriority(1)
+                statsDisplay
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .layoutPriority(2)
+
+                buttons
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .layoutPriority(2)
                 
-            }.padding(16)
+            }
+            .padding(spacing)
+            .layoutPriority(1)
             
+            
+            // Required to keep the navigationBar pressed against the top of the view when now buttons or stats are available to display
+            Spacer(minLength: 0)
+                .layoutPriority(0)
         }
         .background(Color(.systemGroupedBackground))
         .sheet(item: $assessmentSettingsSelection) { type in
@@ -38,6 +79,7 @@ struct AssessmentTaker: View {
         }
     }
     
+    // MARK: - Navigation Bar
     var navigationBar : some View {
         VStack(spacing: 0) {
             
@@ -87,10 +129,39 @@ struct AssessmentTaker: View {
         }
         
     }
+    
 }
 
 struct AssessmentTaker_Previews: PreviewProvider {
     static var previews: some View {
         AssessmentTaker(type: .timed)
+    }
+}
+
+// Customized portions
+extension AssessmentTaker {
+    
+    struct Stats {
+        struct HeartRate : View {
+            
+            @EnvironmentObject var model : HeartRateAssessment
+
+            var body: some View {
+                StatsDisplay()
+                    .cornerRadius(15.0)
+            }
+        }
+    }
+    
+    struct Buttons {
+        struct HeartRate : View {
+            
+            @EnvironmentObject var model : HeartRateAssessment
+            
+            var body: some View {
+                TapButton()
+                    .cornerRadius(15.0)
+            }
+        }
     }
 }
