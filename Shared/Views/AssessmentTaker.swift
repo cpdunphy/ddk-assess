@@ -138,6 +138,17 @@ struct AssessmentTaker_Previews: PreviewProvider {
         AssessmentTaker(type: .timed)
     }
 }
+extension AssessmentTaker {
+    
+    struct BuildingBlocks {
+        struct Button : View {
+            var body: some View {
+                Label("Start", systemImage: "star")
+            }
+        }
+    }
+}
+
 
 // Customized portions
 extension AssessmentTaker {

@@ -124,12 +124,22 @@ class CountingAssessment : Assessment {
     }
 }
 
+struct Defaults {
+    public static let hrDisplayUnit : HeartRateDisplayUnit = .bpm
+    
+    public static let countdownDuration : Int = 3
+    public static let timerDuration : Int = 10
+    
+    public static let timerRange : ClosedRange<Int> = 1...60
+    public static let countdownRange : ClosedRange<Int> = 0...30
+}
+
 class HeartRateAssessment : Assessment {
     
     
-    @AppStorage("heart_rate_unit") var heartRate : String = "BPM"
-    @AppStorage(Keys.timerLength(.heartRate)) var duration : Int = 10
-    @AppStorage(Keys.countdownLength(.heartRate)) var countdownLength : Int = 3
+    @AppStorage("heart_rate_unit") var heartRate : HeartRateDisplayUnit = Defaults.hrDisplayUnit
+    @AppStorage(Keys.timerLength(.heartRate)) var duration : Int = Defaults.timerDuration
+    @AppStorage(Keys.countdownLength(.heartRate)) var countdownLength : Int = Defaults.countdownDuration
     @Published var taps : Int = 0
     
     @Published var countingState : Set<CountingState> = [.ready]
@@ -171,8 +181,17 @@ extension AssessmentOptions {
     struct BuildingBlocks {
         
         struct DurationPicker : View {
+            
             @Binding var duration : Int
-            private let range : ClosedRange<Int> = 1...60
+            var range : ClosedRange<Int>
+            
+            init (duration: Binding<Int>, range: ClosedRange<Int> = Defaults.timerRange) {
+                self._duration = duration
+                self.range = range
+                if !range.contains(self.duration) {
+                    self.duration = Defaults.timerDuration
+                }
+            }
             
             var body: some View {
                 Picker("Set the Seconds", selection: $duration) {
@@ -186,9 +205,17 @@ extension AssessmentOptions {
         struct CountdownStepper : View {
             
             @Binding var countdown : Int
+            var range: ClosedRange<Int>
             
+            init (countdown: Binding<Int>, range: ClosedRange<Int> = Defaults.countdownRange) {
+                self._countdown = countdown
+                self.range = range
+                if !range.contains(self.countdown) {
+                    self.countdown = Defaults.countdownDuration
+                }
+            }
             var body: some View {
-                Stepper("Countdown for \(countdown) \(countdown == 1 ? "sec" : "secs")", value: $countdown, in: 0...60)
+                Stepper("Countdown for \(countdown) \(countdown == 1 ? "sec" : "secs")", value: $countdown, in: range)
             }
         }
     }
