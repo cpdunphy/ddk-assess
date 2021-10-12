@@ -16,44 +16,32 @@ struct TapButton: View {
 
     @Binding var taps: Int
     var countingState : Set<CountingState>?
-    var enabledBackgroundColor : Color = .tappingEnabled
-    var disabledBackgroundColor : Color = .tappingDisabled
+    var style : AssessmentButtonStyle
     var enabledText : String = "Tap!"
     var disabledText : String = "Disabled"
-    var enabledTextColor : Color = .white
-    var disabledTextColor : Color = Color.gray.opacity(0.75)
     
+    init(taps: Binding<Int>, countingState: Set<CountingState>? = nil, style: AssessmentButtonStyle? = nil, enabledText: String = "Tap!", disabledText: String = "Disabled") {
+        self._taps = taps
+        self.countingState = countingState
+        self.style = style ?? AssessmentButtonStyle(countingState: countingState)
+        self.enabledText = enabledText
+        self.disabledText = disabledText
+    }
+    
+    @ScaledMetric(relativeTo: .largeTitle) var buttonLabelTextSize: CGFloat = 50
     
     #if os(iOS)
     let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     #endif
     
     var body : some View {
-        if let countingState = countingState {
-            if countingState == [.counting] {
-                Button(action: handleTaps) {
-                    buttonTapArea
-                }
-                .buttonStyle(PlainButtonStyle())
-            } else {
-                buttonTapArea
-            }
-        } else {
-            Button(action: handleTaps) {
-                buttonTapArea
-            }
-            .buttonStyle(PlainButtonStyle())
+        Button(action: handleTaps) {
+            Text(displayText)
+                .font(.system(size: buttonLabelTextSize, weight: .semibold, design: .rounded))
         }
-    }
-    
-    @ScaledMetric(relativeTo: .largeTitle) var buttonLabelTextSize: CGFloat = 50
-
-    var buttonTapArea : some View {
-        Text(displayText)
-            .font(.system(size: buttonLabelTextSize, weight: .semibold, design: .rounded))
-            .foregroundColor(textColor)
+            .buttonStyle(style)
+            .disabled(isDisabled)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(backgroundColor)
     }
     
     /// Calls the handleTaps on model and sending the haptic feedback to the user. Called each time theres a tap and lets the DDKModel figure out what to do with it. 
@@ -66,34 +54,47 @@ struct TapButton: View {
         #endif
     }
     
-    /// Gets the background color for the assess button.
-    var backgroundColor : Color {
-        
-        guard let countingState = countingState else {
-            return .tappingEnabled
-        }
-        
-        return countingState == [.counting] ? .tappingEnabled : .tappingDisabled
-        
-    }
-
-    /// Gets the text color for the assess button.
-    var textColor : Color {
-        guard let countingState = countingState else {
-            return enabledTextColor
-        }
-        
-        return countingState == [.counting] ? enabledTextColor : disabledTextColor
-    }
-    
-    
     /// Gets the display label for the assess button.
     var displayText : String {
+        return isDisabled ? disabledText : enabledText
+    }
+    
+    var isDisabled : Bool {
         guard let countingState = countingState else {
-            return enabledText
+            return true
         }
         
-        return countingState == [.counting] ? enabledText : disabledText
+        return countingState != [.counting]
+    }
+    
+    struct AssessmentButtonStyle: ButtonStyle {
+        
+        var countingState : Set<CountingState>?
+        
+        var corners: UIRectCorner = .allCorners
+        
+        var enabledForegroundColor : Color = .white
+        var disabledForegroundColor : Color = Color.gray.opacity(0.75)
+        var enabledBackgroundColor : Color = .tappingEnabled
+        var disabledBackgroundColor : Color = .tappingDisabled
+        
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .foregroundColor(isDisabled ? disabledForegroundColor : enabledForegroundColor)
+                .background(isDisabled ? disabledBackgroundColor : enabledBackgroundColor)
+                .cornerRadius(15.0, corners: corners)
+                .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+                .opacity(configuration.isPressed ? 0.7 : 1.0)
+        }
+        
+        var isDisabled : Bool {
+            guard let countingState = countingState else {
+                return true
+            }
+            
+            return countingState != [.counting]
+        }
     }
 }
 
@@ -102,3 +103,8 @@ struct TapButton_Previews: PreviewProvider {
         TapButton(taps: .constant(7))
     }
 }
+
+
+
+
+

@@ -163,7 +163,7 @@ extension AssessmentTaker {
                 TapButton(
                     taps: $model.taps,
                     countingState: model.countingState
-                ).cornerRadius(15)
+                )
             }
         }
     }
