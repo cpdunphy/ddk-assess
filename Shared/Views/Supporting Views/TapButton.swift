@@ -34,13 +34,24 @@ struct TapButton: View {
     let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     #endif
     
+    /// Says if the button should be enabled or not given the current state
+    static func isDisabled(_ countingState: Set<CountingState>?) -> Bool {
+    
+        guard let countingState = countingState else {
+            return true
+        }
+
+        return countingState != [.counting]
+    }
+    
+    // MARK: - Body
     var body : some View {
         Button(action: handleTaps) {
             Text(displayText)
                 .font(.system(size: buttonLabelTextSize, weight: .semibold, design: .rounded))
         }
             .buttonStyle(style)
-            .disabled(isDisabled)
+            .disabled(TapButton.isDisabled(countingState))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
@@ -56,19 +67,12 @@ struct TapButton: View {
     
     /// Gets the display label for the assess button.
     var displayText : String {
-        return isDisabled ? disabledText : enabledText
+        return TapButton.isDisabled(countingState) ? disabledText : enabledText
     }
     
-    var isDisabled : Bool {
-        guard let countingState = countingState else {
-            return true
-        }
-        
-        return countingState != [.counting]
-    }
-    
+
     struct AssessmentButtonStyle: ButtonStyle {
-        
+                
         var countingState : Set<CountingState>?
         
         var corners: UIRectCorner = .allCorners
@@ -81,19 +85,11 @@ struct TapButton: View {
         func makeBody(configuration: Configuration) -> some View {
             configuration.label
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .foregroundColor(isDisabled ? disabledForegroundColor : enabledForegroundColor)
-                .background(isDisabled ? disabledBackgroundColor : enabledBackgroundColor)
+                .foregroundColor(isDisabled(countingState) ? disabledForegroundColor : enabledForegroundColor)
+                .background(isDisabled(countingState) ? disabledBackgroundColor : enabledBackgroundColor)
                 .cornerRadius(15.0, corners: corners)
                 .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
                 .opacity(configuration.isPressed ? 0.7 : 1.0)
-        }
-        
-        var isDisabled : Bool {
-            guard let countingState = countingState else {
-                return true
-            }
-            
-            return countingState != [.counting]
         }
     }
 }
