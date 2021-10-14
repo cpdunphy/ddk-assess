@@ -65,11 +65,7 @@ struct RecordHistoryRow: View {
                 Label("Get Info", systemImage: "info.circle")
             }
             
-            Button {
-                recordEditSelection = record
-            } label: {
-                Label("Edit", systemImage: "slider.horizontal.3")
-            }
+            editButton
             
             pinButton
             
@@ -84,9 +80,14 @@ struct RecordHistoryRow: View {
         }
         
         // Swipe Action Shortcuts
-        .swipeActions {
+        .swipeActions(edge: .leading) {
             pinButton
-            .tint(.accentColor)
+                .tint(.accentColor)
+        }
+        
+        .swipeActions(allowsFullSwipe: false) {
+            editButton
+                .tint(.yellow)
             
             deleteButton
         }
@@ -112,6 +113,16 @@ struct RecordHistoryRow: View {
             }
         } label: {
             Label("Delete", systemImage: "trash")
+        }
+    }
+    
+    // Edit Record Button
+    var editButton: some View {
+        Button {
+            recordEditSelection = record
+        } label: {
+            Label("Edit", systemImage: "slider.horizontal.3")
+                .font(.largeTitle)
         }
     }
     
