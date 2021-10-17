@@ -59,6 +59,10 @@
 		F080D73F26A8B6F400A1F49D /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D73D26A8B6F400A1F49D /* StorageKeys.swift */; };
 		F08D1BAD27150E4E004FE52A /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08D1BAC27150E4E004FE52A /* RoundedCorner.swift */; };
 		F08D1BAE27150E53004FE52A /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08D1BAC27150E4E004FE52A /* RoundedCorner.swift */; };
+		F08D1BB0271A20A6004FE52A /* ButtonOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08D1BAF271A20A6004FE52A /* ButtonOptions.swift */; };
+		F08D1BB1271A20AC004FE52A /* ButtonOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08D1BAF271A20A6004FE52A /* ButtonOptions.swift */; };
+		F08D1BB4271A2135004FE52A /* RoundRectProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08D1BB3271A2135004FE52A /* RoundRectProgress.swift */; };
+		F08D1BB5271A213B004FE52A /* RoundRectProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08D1BB3271A2135004FE52A /* RoundRectProgress.swift */; };
 		F0AE5B9526A9F06400ADAD3D /* Array-Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */; };
 		F0AE5B9626A9F06400ADAD3D /* Array-Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */; };
 		F0AE5B9826AB151200ADAD3D /* AboutDDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9726AB151200ADAD3D /* AboutDDK.swift */; };
@@ -144,6 +148,8 @@
 		F080D73A26A5E0F100A1F49D /* RecordHistoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordHistoryRow.swift; sourceTree = "<group>"; };
 		F080D73D26A8B6F400A1F49D /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		F08D1BAC27150E4E004FE52A /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		F08D1BAF271A20A6004FE52A /* ButtonOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonOptions.swift; sourceTree = "<group>"; };
+		F08D1BB3271A2135004FE52A /* RoundRectProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundRectProgress.swift; sourceTree = "<group>"; };
 		F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-Set.swift"; sourceTree = "<group>"; };
 		F0AE5B9726AB151200ADAD3D /* AboutDDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDDK.swift; sourceTree = "<group>"; };
 		F0B423BA25A66D97002805C9 /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
@@ -309,6 +315,16 @@
 			path = "Supporting Views";
 			sourceTree = "<group>";
 		};
+		F08D1BB2271A20CE004FE52A /* Assess */ = {
+			isa = PBXGroup;
+			children = (
+				F080D72E26A4ED7F00A1F49D /* AssessmentTaker.swift */,
+				F08D1BB3271A2135004FE52A /* RoundRectProgress.swift */,
+				F08D1BAF271A20A6004FE52A /* ButtonOptions.swift */,
+			);
+			path = Assess;
+			sourceTree = "<group>";
+		};
 		F0B423E525A67711002805C9 /* Supporting Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,7 +382,7 @@
 		F0DC244B2524FB96000CBCA8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F080D72E26A4ED7F00A1F49D /* AssessmentTaker.swift */,
+				F08D1BB2271A20CE004FE52A /* Assess */,
 				F080D73126A4EDCE00A1F49D /* AssessmentOptions.swift */,
 				F0214EEF26A31BFE00003DDC /* Assess Gallery */,
 				F080D74026A8C2B000A1F49D /* History */,
@@ -588,6 +604,7 @@
 				F0214EEE26A31BF600003DDC /* AssessmentGalleryList.swift in Sources */,
 				F080D72C26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift in Sources */,
 				F0304708251E4CD100B438E7 /* TapButton.swift in Sources */,
+				F08D1BB4271A2135004FE52A /* RoundRectProgress.swift in Sources */,
 				F080D72F26A4ED7F00A1F49D /* AssessmentTaker.swift in Sources */,
 				F0C756B0251C3DA500D066A9 /* States.swift in Sources */,
 				F080D73226A4EDCE00A1F49D /* AssessmentOptions.swift in Sources */,
@@ -596,6 +613,7 @@
 				F0E180A725236BA100E808AB /* SupportTheDev.swift in Sources */,
 				F0CEA381251CC5C700818C6D /* CountingState.swift in Sources */,
 				F03046FD251E36F300B438E7 /* TimerSession.swift in Sources */,
+				F08D1BB0271A20A6004FE52A /* ButtonOptions.swift in Sources */,
 				F0252888251CCC8600D2F5DF /* AssessmentPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,6 +622,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F08D1BB1271A20AC004FE52A /* ButtonOptions.swift in Sources */,
 				F080D73026A4ED7F00A1F49D /* AssessmentTaker.swift in Sources */,
 				F080D73F26A8B6F400A1F49D /* StorageKeys.swift in Sources */,
 				F0D5539F251C24340084E0EB /* DDKModel.swift in Sources */,
@@ -619,6 +638,7 @@
 				F060BAC125213C2B009F9C81 /* StatsDisplay.swift in Sources */,
 				F060BAC825214393009F9C81 /* HistoryScreen.swift in Sources */,
 				F07B3BD1261108E5004EB5AC /* Print.swift in Sources */,
+				F08D1BB5271A213B004FE52A /* RoundRectProgress.swift in Sources */,
 				F0304710251E65F400B438E7 /* Color.swift in Sources */,
 				F0D553A6251C24750084E0EB /* Store.swift in Sources */,
 				F0252882251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */,

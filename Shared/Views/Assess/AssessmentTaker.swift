@@ -39,26 +39,45 @@ struct AssessmentTaker: View {
         }
     }
     
-    private let spacing: CGFloat = 16
+    private let spacing: CGFloat = 12
     private let cornerRadius : Int = 15
+    
+    var bottomInset : CGFloat {
+        let keyWindow = UIApplication.shared.connectedScenes
+                .filter({$0.activationState == .foregroundActive})
+                .compactMap({$0 as? UIWindowScene})
+                .first?.windows
+                .filter({$0.isKeyWindow}).first
+        return keyWindow?.safeAreaInsets.bottom ?? 0
+    }
     
     // MARK: - Body
     var body: some View {
         VStack(spacing: 0) {
-
+            
             // Actual Assessment taking, customized to fit the given type
             VStack(spacing: spacing) {
                 
-                statsDisplay
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .layoutPriority(2)
-
+                VStack(spacing: spacing) {
+                    statsDisplay
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    
+                    HStack(spacing: spacing) {
+                        ButtonOptions.reset.button(action: {
+                            print(bottomInset)
+                        })
+                        
+                        ButtonOptions.start.button(action: {})
+                    }
+                }.layoutPriority(2)
+                
                 buttons
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .layoutPriority(2)
-                
+
             }
-            .padding(spacing)
+            .scenePadding(.horizontal)
+            .scenePadding(bottomInset != 0 ? .top : .vertical)
             .layoutPriority(1)
             
             // Required to keep the navigationBar pressed against the top of the view when now buttons or stats are available to display
@@ -91,25 +110,24 @@ struct AssessmentTaker: View {
                 VStack(alignment: .leading) {
                     
                     Text(type.title)
-                        .font(.title2 )
+                        .font(.title2)
                         .fontWeight(.bold)
+                        .lineLimit(1)
                     
                     Text("53 assessments")
                         .foregroundColor(.secondary)
                         .font(.caption)
-                    
+                        .lineLimit(1)
                 }
                 
                 Spacer()
                 
                 HStack(spacing: 16) {
+                    
                     Button {
                         assessmentSettingsSelection = type
                     } label: {
                         Label("Options", systemImage: "ellipsis.circle")
-                            .imageScale(.large)
-                            .labelStyle(.iconOnly)
-                            .font(.title3)
                     }
                     
                     Button {
@@ -118,11 +136,12 @@ struct AssessmentTaker: View {
                         Label("Close", systemImage: "xmark.circle.fill")
                             .symbolRenderingMode(.hierarchical)
                             .foregroundColor(.gray)
-                            .labelStyle(.iconOnly)
-                            .imageScale(.large)
-                            .font(.title3)
                     }
                 }
+                .labelStyle(.iconOnly)
+                .imageScale(.large)
+                .font(.title3)
+                
             }.padding()
             
             Divider()
@@ -138,14 +157,29 @@ struct AssessmentTaker_Previews: PreviewProvider {
         AssessmentTaker(type: .timed)
     }
 }
+
 extension AssessmentTaker {
     
     struct BuildingBlocks {
-        struct Button : View {
+        
+        struct ControlButton : View {
+            var title: String
+            var systemImage: String
+            var color: Color
+            
+            var action : () -> Void
+            
             var body: some View {
-                Label("Start", systemImage: "star")
+                Button(action: action) {
+                    Label(title, systemImage: systemImage)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .tint(color)
+                .font(.title2)
             }
         }
+        
     }
 }
 
@@ -157,7 +191,7 @@ extension AssessmentTaker {
         struct HeartRate : View {
             
             @EnvironmentObject var model : HeartRateAssessment
-
+            
             var body: some View {
                 StatsDisplay()
                     .cornerRadius(15.0)

@@ -15,11 +15,11 @@ struct StatsDisplay: View {
     var body: some View {
         ZStack(alignment: .center) {
             assessSwitch
-            VStack {
-                Spacer(minLength: 0)
-                buttons
-                    .padding(.bottom)
-            }
+//            VStack {
+//                Spacer(minLength: 0)
+//                buttons
+//                    .padding(.bottom)
+//            }
         }
         .frame(minWidth: 200, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
         .background(Color(.secondarySystemGroupedBackground)) //TODO: Add Mac compatability
@@ -39,17 +39,13 @@ struct StatsDisplay: View {
     var buttons: some View {
         HStack {
             Spacer(minLength: 0)
-            
-            Button(action: handleLeft) {
-                leftButton
-            }.buttonStyle(ControlButtonStyle(option: leftButtonOptionLogic()))
+                      
+            leftButtonOptionLogic().button(action: handleLeft)
             
             Spacer(minLength: 0)
             Spacer(minLength: 0)
-            
-            Button(action: handleRight) {
-                rightButton
-            }.buttonStyle(ControlButtonStyle(option: rightButtonOptionLogic()))
+                        
+            rightButtonOptionLogic().button(action: handleRight)
             
             Spacer(minLength: 0)
         }
@@ -96,7 +92,7 @@ struct StatsDisplay: View {
         if model.assessType == .timed {
             timedLeftButton
         } else {
-            Label(ButtonOptions.reset.title, systemImage: ButtonOptions.reset.systemSymbol)
+            Label(AssessmentTaker.ButtonOptions.reset.title, systemImage: AssessmentTaker.ButtonOptions.reset.systemSymbol)
         }
     }
     
@@ -104,13 +100,13 @@ struct StatsDisplay: View {
         if model.assessType == .timed {
             timedRightButton
         } else {
-            Label(ButtonOptions.log.title, systemImage: ButtonOptions.log.systemSymbol)
+            Label(AssessmentTaker.ButtonOptions.log.title, systemImage: AssessmentTaker.ButtonOptions.log.systemSymbol)
         }
     }
     
     @AppStorage("showBPMStatus") var showBPMStatus : Bool = false
     
-    func rightButtonOptionLogic() -> ButtonOptions {
+    func rightButtonOptionLogic() -> AssessmentTaker.ButtonOptions {
         if model.assessType == .timed {
             switch model.currentTimedState {
             case [CountingState.ready]:
@@ -119,12 +115,12 @@ struct StatsDisplay: View {
                 return .resume
             case [CountingState.counting], [.countdown]:
                 return .pause
-            case [CountingState.finished]:
-                if showBPMStatus {
-                    return .heartEnabled
-                } else {
-                    return .heartDisabled
-                }
+//            case [CountingState.finished]:
+//                if showBPMStatus {
+////                    return .heartEnabled
+//                } else {
+////                    return .heartDisabled
+//                }
             default:
                 return .reset
             }
@@ -133,7 +129,7 @@ struct StatsDisplay: View {
         }
     }
     
-    func leftButtonOptionLogic() -> ButtonOptions {
+    func leftButtonOptionLogic() -> AssessmentTaker.ButtonOptions {
         if model.assessType == .timed {
             switch model.currentTimedState {
             case [CountingState.ready], [.finished]:
@@ -149,29 +145,13 @@ struct StatsDisplay: View {
     }
     
     @ViewBuilder var timedRightButton : some View {
-        let style: ButtonOptions = rightButtonOptionLogic()
+        let style: AssessmentTaker.ButtonOptions = rightButtonOptionLogic()
         Label(style.title, systemImage: style.systemSymbol)
     }
     
     @ViewBuilder var timedLeftButton : some View {
-        let style : ButtonOptions = leftButtonOptionLogic()
+        let style : AssessmentTaker.ButtonOptions = leftButtonOptionLogic()
         Label(style.title, systemImage: style.systemSymbol)
-    }
-    
-    struct ControlButtonStyle: ButtonStyle {
-        
-        var option: ButtonOptions
-        
-        func makeBody(configuration: Self.Configuration) -> some View {
-            configuration.label
-                .foregroundColor(configuration.isPressed ? option.color.opacity(0.65) : option.color)
-                .font(.title2)
-                .scaleEffect(configuration.isPressed ? 0.93 : 1.0)
-                .padding(6)
-                .background(option.backgroundColor)
-                .cornerRadius(10.0)
-            
-        }
     }
     
     // MARK: - Timed
@@ -400,127 +380,5 @@ struct StatsDisplay_Previews: PreviewProvider {
 }
 
 
-enum ButtonOptions {
-    case start
-    case resume
-    case pause
-    case stop
-    case reset
-    case log
-    case heartDisabled
-    case heartEnabled
-    
-    var systemSymbol : String {
-        switch self {
-        case .start: return "stopwatch"
-        case .resume: return "play.fill"
-        case .pause: return "pause.fill"
-        case .stop: return "stop.fill"
-        case .reset: return "gobackward"
-        case .log: return "square.and.pencil"
-        case .heartDisabled: return "heart.fill"
-        case .heartEnabled: return "heart.fill"
-        }
-    }
-    
-    var title : String {
-        switch self {
-        case .start: return "Start"
-        case .resume: return "Resume"
-        case .pause: return "Pause"
-        case .stop: return "Stop"
-        case .reset: return "Reset"
-        case .log: return "Log"
-        case .heartDisabled: return "Count"
-        case .heartEnabled: return "BPM"
-        }
-    }
-    
-    var color : Color {
-        switch self {
-        case .start: return Color.green
-        case .resume: return Color.green
-        case .pause: return Color.orange
-        case .stop, .reset:
-            #if os(iOS)
-            return Color.gray
-            #elseif os(macOS)
-            return Color.white
-            #else
-            return Color.gray
-            #endif
-        case .log: return Color.orange
-        case .heartDisabled: return Color.pink
-        case .heartEnabled: return Color.white
-        }
-    }
-    
-//    @Environment(\.colorScheme) var colorScheme
-    
-    var backgroundColor : Color {
-        switch self {
-        case .heartEnabled: return Color.pink
-        default:
-            #if os(iOS)
-            return Color(.tertiarySystemGroupedBackground)
-            #elseif os(macOS)
-            return Color(.gray)
-            #else
-            return Color.blue
-            #endif
-        }
-    }
-}
 
-struct RoundedRectProgress : InsettableShape {
-    var insetAmount: CGFloat = 0
-    
-    var cornerRadius: CGFloat = 15
-    var clockwise : Bool = false
-    
-    func path(in rect: CGRect) -> Path {
-        
-        let startingPointWithOffset: CGPoint = CGPoint(x: rect.midX + insetAmount, y: rect.minY + insetAmount)
-        
-        let topRightCorner: CGPoint = CGPoint(x: rect.maxX, y: rect.minY)
-        let bottomRightCorner: CGPoint = CGPoint(x: rect.maxX , y: rect.maxY)
-        let bottomLeftCorner: CGPoint = CGPoint(x: rect.minX, y: rect.maxY)
-        let topLeftCorner: CGPoint = CGPoint(x: rect.minX, y: rect.minY)
-        
-        let topRightCornerWithInset = CGPoint(x: topRightCorner.x - insetAmount, y: topRightCorner.y + insetAmount)
-        let bottomRightCornerWithInset = CGPoint(x: bottomRightCorner.x - insetAmount, y: bottomRightCorner.y - insetAmount)
-        let bottomLeftCornerWithInset = CGPoint(x: bottomLeftCorner.x + insetAmount, y: bottomLeftCorner.y - insetAmount)
-        let topLeftCornerWithInset = CGPoint(x: topLeftCorner.x + insetAmount, y: topLeftCorner.y + insetAmount)
-        
-        let topRightCornerLineStart = CGPoint(x: topRightCornerWithInset.x - cornerRadius, y: topRightCornerWithInset.y)
-        let bottomRightCornerLineStart = CGPoint(x: bottomRightCornerWithInset.x, y: bottomRightCornerWithInset.y - cornerRadius)
-        let bottomLeftCornerLineStart = CGPoint(x: bottomLeftCornerWithInset.x + cornerRadius, y: bottomLeftCornerWithInset.y)
-        let topLeftCornerLineStart = CGPoint(x: topLeftCornerWithInset.x, y: topLeftCornerWithInset.y + cornerRadius)
-        
-        let topRightArcCenter : CGPoint = CGPoint(x: topRightCornerWithInset.x - cornerRadius, y: topRightCornerWithInset.y + cornerRadius)
-        let bottomRightArcCenter : CGPoint = CGPoint(x: bottomRightCornerWithInset.x - cornerRadius, y: bottomRightCornerWithInset.y - cornerRadius)
-        let bottomLeftArcCenter : CGPoint = CGPoint(x: bottomLeftCornerWithInset.x + cornerRadius, y: bottomLeftCornerWithInset.y - cornerRadius)
-        let topLeftArcCenter : CGPoint = CGPoint(x: topLeftCornerWithInset.x + cornerRadius, y: topLeftCornerWithInset.y + cornerRadius)
-        
-        var p = Path()
-        
-        p.move(to: startingPointWithOffset)
-        p.addLine(to: topRightCornerLineStart)
-        p.addArc(center: topRightArcCenter, radius: cornerRadius, startAngle: .degrees(-90), endAngle: .degrees(0), clockwise: clockwise, transform: .identity)
-        p.addLine(to: bottomRightCornerLineStart)
-        p.addArc(center: bottomRightArcCenter, radius: cornerRadius, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: clockwise, transform: .identity)
-        p.addLine(to: bottomLeftCornerLineStart)
-        p.addArc(center: bottomLeftArcCenter, radius: cornerRadius, startAngle: .degrees(90), endAngle: .degrees(180), clockwise: clockwise, transform: .identity)
-        p.addLine(to: topLeftCornerLineStart)
-        p.addArc(center: topLeftArcCenter, radius: cornerRadius, startAngle: .degrees(180), endAngle: .degrees(270), clockwise: clockwise, transform: .identity)
-        p.addLine(to: startingPointWithOffset)
-        return p
-    }
-    
-    
-    func inset(by amount: CGFloat) -> some InsettableShape {
-        var rect = self
-        rect.insetAmount += amount
-        return rect
-    }
-}
+
