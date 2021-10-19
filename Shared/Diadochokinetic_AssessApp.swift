@@ -11,8 +11,7 @@ import SwiftUI
 struct Diadochokinetic_AssessApp: App {
     
     /// Initial declaration and initiation of 'DDKModel'
-    @StateObject private var ddkModel : DDKModel = DDKModel()
-    
+    @StateObject private var ddk : DDKModel = DDKModel()
     
     
     /// Initial declaration and initiation of 'HeartRateAssessment'
@@ -25,7 +24,6 @@ struct Diadochokinetic_AssessApp: App {
     @StateObject private var heartRate : HeartRateAssessment = HeartRateAssessment()
     
     
-    
     /// Initial declaration and initiation of 'Store'
     @StateObject private var store : Store = Store()
     
@@ -35,7 +33,7 @@ struct Diadochokinetic_AssessApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(ddkModel)
+                .environmentObject(ddk)
                 .environmentObject(timerSession)
                 .environmentObject(store)
                 .environmentObject(timed)

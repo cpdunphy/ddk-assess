@@ -13,6 +13,8 @@ import StoreKit
 import MessageUI
 #endif
 
+import Shiny
+
 struct SettingsScreen: View {
     
     @EnvironmentObject var model : DDKModel
@@ -29,22 +31,47 @@ struct SettingsScreen: View {
        
     // MARK: - Form
     var form: some View {
-        Form {
+        List {
             
-            // User Preferences
-            Section("User Preferences") {
-                Toggle("Show Decimal on Timer", isOn: $showDecimalOnTimer)
-            }
-            
-            // Reset Preferences
-            Section {
+            Section("Getting Started") {
                 Button {
-                    showResetConfirmationAlert = true
+                    
                 } label: {
-                    Label("Reset Preferences", systemImage: "exclamationmark.arrow.circlepath")
-                }.foregroundColor(.red)
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Image(systemName: "atom")
+                                .font(.largeTitle)
+
+                            Text("What's new in\nTritium 2")
+                                .font(.system(.title2, design: .rounded))
+                                .fontWeight(.bold)
+                                .fixedSize(horizontal: false, vertical: true)
+
+                        }
+                        .shiny(.init(colors: [.cyan, .teal]))
+                        .padding(.bottom, 8)
+                        
+                        Text("50+ new features. A total redesign. See what's new in the biggest update to Tritium yet.")
+                            .fixedSize(horizontal: false, vertical: true)
+                            .foregroundColor(.primary)
+                        
+                    }.padding(.vertical, 8)
+                }
             }
             
+            // Manage Subscription
+            Section("Membership") {
+                NavigationLink(destination: ManageMembership()) {
+                    SettingsScreenButton(
+                        title: "Manage your Membership",
+                        symbolSystemName: "staroflife",
+                        symbolColor: .accentColor
+                    ).symbolVariant(.fill)
+                }
+            }
+            
+            
+            /*
             // Support The Dev
             #if os(iOS)
             Section("Support") {
@@ -62,38 +89,58 @@ struct SettingsScreen: View {
                 }
             }
             #endif
-                                 
+             */
+             
             // App Information + More
             Section("Information") {
+                
                 NavigationLink(
                     destination: AboutDDK()
                 ) {
-                    Label("About", systemImage: "d.circle.fill")
-                        .symbolRenderingMode(.multicolor)
-                        .imageScale(.large)
+                    SettingsScreenButton(
+                        title: "About",
+                        symbolSystemName: "info.circle",
+                        symbolColor: .accentColor
+                    )
                 }
                 
                 #if os(iOS)
                 Button {
                     showingMailView.toggle()
                 } label: {
-                    Label("Support/Feedback", systemImage: "paperplane")
-                        .symbolVariant(.fill)
+                    SettingsScreenButton(
+                        title: "Support / Feedback",
+                        symbolSystemName: "questionmark.diamond.fill"
+                    ).symbolRenderingMode(.multicolor)
                 }.disabled(!MFMailComposeViewController.canSendMail())
                 #endif
                 
                 Link(
                     destination: URL(string: "itms-apps://itunes.apple.com/app/id\(1489873060)?action=write-review&mt=8")!
                 ) {
-                    Label("Do you love DDK?", systemImage: "suit.heart")
-                        .symbolRenderingMode(.multicolor)
-                        .symbolVariant(.fill)
+                    SettingsScreenButton(
+                        title: "Do you love DDK?",
+                        symbolSystemName: "suit.heart.fill",
+                        symbolColor: .pink
+                    )
                 }
+                
+            }
+            
+            // Reset Preferences
+            Section {
+                Button {
+                    showResetConfirmationAlert = true
+                } label: {
+                    Label("Reset Preferences", systemImage: "exclamationmark.arrow.circlepath")
+                }.foregroundColor(.red)
             }
             
         }
+        
     }
-    
+    @State private var testing : Bool = false
+
     // MARK: - Body
     var body: some View {
         form

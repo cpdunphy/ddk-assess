@@ -70,7 +70,7 @@ struct TapButton: View {
         return TapButton.isDisabled(countingState) ? disabledText : enabledText
     }
     
-
+    
     struct AssessmentButtonStyle: ButtonStyle {
                 
         var countingState : Set<CountingState>?
