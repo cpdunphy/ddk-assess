@@ -22,6 +22,7 @@ struct AboutDDK: View {
             Text("Made with ❤️.")
         }
         .navigationTitle("About")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     func getAppCurrentVersionNumber() -> String {

@@ -77,11 +77,11 @@ class Assessment : ObservableObject {
 }
 
 
-class TimedAssessment : Assessment {
-    
-    //    @Published var duration: Double = 0.0
-    
-}
+//class TimedAssessment : Assessment {
+//
+//    //    @Published var duration: Double = 0.0
+//
+//}
 
 class UntimedAssessment : Assessment {
     
@@ -104,11 +104,20 @@ struct Keys {
     }
 }
 
-class TimedCountingAssessment : Assessment {
+protocol TimedAssessment {
+    var duration : Int { get set }
+    var countdownLength : Int { get set }
+    var countingState : Set<CountingState> { get set }
+}
+
+class TimedCountingAssessment : Assessment, TimedAssessment {
+    
     
     @Published var taps : Int = 0
     @AppStorage(Keys.timerLength(.timed)) var duration : Int = 10
     @AppStorage(Keys.countdownLength(.timed)) var countdownLength : Int = 3
+    
+    @Published var countingState: Set<CountingState> = [.ready]
     
     init() {
         super.init(.timed)
@@ -134,7 +143,7 @@ struct Defaults {
     public static let countdownRange : ClosedRange<Int> = 0...30
 }
 
-class HeartRateAssessment : Assessment {
+class HeartRateAssessment : Assessment, TimedAssessment {
     
     
     @AppStorage("heart_rate_unit") var heartRate : HeartRateDisplayUnit = Defaults.hrDisplayUnit
