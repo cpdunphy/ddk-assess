@@ -42,47 +42,42 @@ struct AssessmentTaker: View {
     private let spacing: CGFloat = 12
     private let cornerRadius : Int = 15
     
-    var bottomInset : CGFloat {
-        let keyWindow = UIApplication.shared.connectedScenes
-                .filter({$0.activationState == .foregroundActive})
-                .compactMap({$0 as? UIWindowScene})
-                .first?.windows
-                .filter({$0.isKeyWindow}).first
-        return keyWindow?.safeAreaInsets.bottom ?? 0
-    }
-    
     // MARK: - Body
     var body: some View {
-        VStack(spacing: 0) {
+        
+        GeometryReader { geo in
             
-            // Actual Assessment taking, customized to fit the given type
-            VStack(spacing: spacing) {
+            VStack(spacing: 0) {
                 
+                // Actual Assessment taking, customized to fit the given type
                 VStack(spacing: spacing) {
-                    statsDisplay
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
-                    HStack(spacing: spacing) {
-                        ButtonOptions.reset.button(action: {
-                            print(bottomInset)
-                        })
+                    VStack(spacing: spacing) {
+                        statsDisplay
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                         
-                        ButtonOptions.start.button(action: {})
-                    }
-                }.layoutPriority(2)
+                        HStack(spacing: spacing) {
+                            ButtonOptions.reset.button(action: {})
+                            
+                            ButtonOptions.start.button(action: {})
+                        }
+                    }.layoutPriority(2)
+                    
+                    buttons
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .layoutPriority(2)
+                    
+                }
+                .scenePadding(.horizontal)
+                .scenePadding(geo.safeAreaInsets.bottom != 0 ? .top : .vertical)
+                .layoutPriority(1)
                 
-                buttons
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .layoutPriority(2)
-
+                
+                // Required to keep the navigationBar pressed against the top of the view when now buttons or stats are available to display
+                Spacer(minLength: 0)
+                    .layoutPriority(0)
+                
             }
-            .scenePadding(.horizontal)
-            .scenePadding(bottomInset != 0 ? .top : .vertical)
-            .layoutPriority(1)
-            
-            // Required to keep the navigationBar pressed against the top of the view when now buttons or stats are available to display
-            Spacer(minLength: 0)
-                .layoutPriority(0)
         }
         
         // Navigation Bar
