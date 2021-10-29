@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(*, deprecated, message: "No need for a single app wide control toggle.")
 struct AssessmentPicker: View {
     
     @EnvironmentObject var model : DDKModel

@@ -115,20 +115,6 @@ class DDKModel : ObservableObject {
 
 // MARK: - Handling Timed
 extension DDKModel {
-
-    func handleTimedTaps() {
-        print("DDKModel: handleTimedTaps()")
-        currentTimedTaps += 1
-    }
-    
-    func handleTaps() {
-        switch assessType {
-        case .timed:
-            handleTimedTaps()
-        case .count:
-            handleCountTaps()
-        }
-    }
     
     func stopTimed() {
         currentTimedState = [.ready]

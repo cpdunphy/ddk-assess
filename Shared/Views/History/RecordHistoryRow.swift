@@ -35,6 +35,7 @@ struct RecordHistoryRow: View {
                     Text(record.date, style: .time)
                     + Text(" — ")
                     + Text("\(record.durationDescription)")
+//                    + Text(record.duration.formatted())
                 }
                 .foregroundColor(.secondary)
                 .font(.caption)
@@ -44,8 +45,9 @@ struct RecordHistoryRow: View {
             Spacer()
             
             if model.recordIsPinned(record.id) {
-                Image(systemName: "pin.circle.fill")
+                Label("Pinned", systemImage: "pin.circle.fill")
                     .symbolRenderingMode(.hierarchical)
+                    .labelStyle(.iconOnly)
                     .foregroundColor(.secondary)
                     .imageScale(.small)
             }

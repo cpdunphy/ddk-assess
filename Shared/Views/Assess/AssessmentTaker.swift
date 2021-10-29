@@ -28,14 +28,26 @@ struct AssessmentTaker: View {
     }
     
     @ViewBuilder
-    var buttons : some View {
+    var controlButtons : some View {
         switch type {
         case .timed:
             EmptyView()
         case .count:
             EmptyView()
         case .heartRate:
-            Buttons.HeartRate()
+            ControlButtons.HeartRate()
+        }
+    }
+    
+    @ViewBuilder
+    var tapButtons : some View {
+        switch type {
+        case .timed:
+            EmptyView()
+        case .count:
+            EmptyView()
+        case .heartRate:
+            TapButtons.HeartRate()
         }
     }
     
@@ -57,13 +69,11 @@ struct AssessmentTaker: View {
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                         
                         HStack(spacing: spacing) {
-                            ButtonOptions.reset.button(action: {})
-                            
-                            ButtonOptions.start.button(action: {})
+                            controlButtons
                         }
                     }.layoutPriority(2)
                     
-                    buttons
+                    tapButtons
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .layoutPriority(2)
                     
@@ -93,8 +103,16 @@ struct AssessmentTaker: View {
             }
         }
     }
-    
-    // MARK: - Navigation Bar
+}
+
+struct AssessmentTaker_Previews: PreviewProvider {
+    static var previews: some View {
+        AssessmentTaker(type: .timed)
+    }
+}
+
+// MARK: - Navigation Bar
+extension AssessmentTaker {
     var navigationBar : some View {
         VStack(spacing: 0) {
             
@@ -144,15 +162,9 @@ struct AssessmentTaker: View {
         }
         
     }
-    
 }
 
-struct AssessmentTaker_Previews: PreviewProvider {
-    static var previews: some View {
-        AssessmentTaker(type: .timed)
-    }
-}
-
+// MARK: Building Blocks
 extension AssessmentTaker {
     
     struct BuildingBlocks {
@@ -167,6 +179,7 @@ extension AssessmentTaker {
             var body: some View {
                 Button(action: action) {
                     Label(title, systemImage: systemImage)
+                        .lineLimit(2)
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.bordered)
@@ -175,36 +188,103 @@ extension AssessmentTaker {
             }
         }
         
+        
+        struct TitleFont: ViewModifier {
+            @ScaledMetric(relativeTo: .largeTitle) var titleFontSize: CGFloat = 48
+            
+            func body(content: Content) -> some View {
+                return content.font(.system(size: titleFontSize, weight: .bold, design: .rounded).monospacedDigit())
+            }
+        }
+        
+        struct SubtitleFont: ViewModifier {
+            @ScaledMetric(relativeTo: .largeTitle) var subtitleFontSize: CGFloat = 24
+            
+            func body(content: Content) -> some View {
+                return content
+                    .font(Font.system(size: subtitleFontSize, weight: .regular, design: .rounded).monospacedDigit())
+            }
+        }
+        
+        struct Separator : View {
+            
+            var width : CGFloat = 95
+            
+            var body: some View {
+                RoundedRectangle(cornerRadius: 100.0)
+                    .foregroundColor(.secondary)
+                    .frame(width: width, height: 4)
+                    .padding(.vertical, 10)
+            }
+        }
     }
 }
 
+//@available(iOS 13, macCatalyst 13, tvOS 13, watchOS 6, *)
+//extension View {
+//    func scaledFont(name: String, size: CGFloat) -> some View {
+//        return self.modifier(ScaledFont(name: name, size: size))
+//    }
+//}
 
-// Customized portions
+
+// MARK: Customized portions
 extension AssessmentTaker {
     
+    // MARK: Stats
     struct Stats {
         struct HeartRate : View {
             
             @EnvironmentObject var model : HeartRateAssessment
             
-            var body: some View {
-                StatsDisplay()
-                    .cornerRadius(15.0)
-            }
-        }
-    }
-    
-    struct Buttons {
-        struct HeartRate : View {
+            @ScaledMetric(relativeTo: .largeTitle) var titleFontSize: CGFloat = 48
+            @ScaledMetric(relativeTo: .headline) var subtitleFontSize: CGFloat = 24
             
-            @EnvironmentObject var model : HeartRateAssessment
             
             var body: some View {
-                TapButton(
-                    taps: $model.taps,
-                    countingState: model.countingState
-                )
-            }
+                GeometryReader { geo in
+                    VStack(spacing: 0) {
+                        
+                        Text("00:07.5")
+                            .modifier(BuildingBlocks.TitleFont())
+                        
+                        BuildingBlocks.Separator()
+
+                        Text("12 taps")
+                            .modifier(BuildingBlocks.SubtitleFont())
+                        
+                    }.position(x: geo.size.width / 2, y: geo.size.height / 2)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color(.secondarySystemGroupedBackground))
+                .cornerRadius(15.0)
         }
     }
+}
+
+// MARK: Controls
+struct ControlButtons {
+    struct HeartRate : View {
+        var body: some View {
+            ButtonOptions.reset.button(action: {})
+            
+            ButtonOptions.start.button(action: {})
+        }
+    }
+}
+
+// MARK: Taps
+struct TapButtons {
+    struct HeartRate : View {
+        
+        @EnvironmentObject var model : HeartRateAssessment
+        
+        var body: some View {
+            TapButton(
+                taps: $model.taps,
+                countingState: model.countingState
+            )
+        }
+    }
+}
 }

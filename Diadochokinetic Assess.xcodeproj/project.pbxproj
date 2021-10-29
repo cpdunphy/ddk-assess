@@ -331,6 +331,8 @@
 				F080D72E26A4ED7F00A1F49D /* AssessmentTaker.swift */,
 				F08D1BB3271A2135004FE52A /* RoundRectProgress.swift */,
 				F08D1BAF271A20A6004FE52A /* ButtonOptions.swift */,
+				F060BABF25213C2B009F9C81 /* StatsDisplay.swift */,
+				F0304707251E4CD100B438E7 /* TapButton.swift */,
 			);
 			path = Assess;
 			sourceTree = "<group>";
@@ -340,8 +342,6 @@
 			children = (
 				F0E180A625236BA100E808AB /* SupportTheDev.swift */,
 				F0252887251CCC8600D2F5DF /* AssessmentPicker.swift */,
-				F060BABF25213C2B009F9C81 /* StatsDisplay.swift */,
-				F0304707251E4CD100B438E7 /* TapButton.swift */,
 				F07564EB2530FA8200EC058A /* MailView.swift */,
 			);
 			path = "Supporting Views";

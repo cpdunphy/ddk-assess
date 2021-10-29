@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(*, deprecated, message: "In favor of a scalable architecture.")
 struct StatsDisplay: View {
     
     @EnvironmentObject var model : DDKModel
@@ -14,24 +15,10 @@ struct StatsDisplay: View {
     
     var body: some View {
         ZStack(alignment: .center) {
-            assessSwitch
-//            VStack {
-//                Spacer(minLength: 0)
-//                buttons
-//                    .padding(.bottom)
-//            }
+            EmptyView()
         }
         .frame(minWidth: 200, maxWidth: .infinity, minHeight: 200, maxHeight: .infinity)
         .background(Color(.secondarySystemGroupedBackground)) //TODO: Add Mac compatability
-    }
-    
-    @ViewBuilder var assessSwitch : some View {
-        switch model.assessType {
-        case .timed:
-            timedDisplay
-        case .count:
-            countDisplay
-        }
     }
     
     // MARK: - Buttons
@@ -328,9 +315,9 @@ struct StatsDisplay: View {
     
     var timerDescription : String {
         if model.currentTimedState.contains(.countdown) {
-            calculateTimeLeftCountdown()
+            let _ = calculateTimeLeftCountdown()
         } else if model.currentTimedState.contains(.counting) {
-            calculateTimeLeft()
+            let _ = calculateTimeLeft()
         }
         
         switch model.assessType {
