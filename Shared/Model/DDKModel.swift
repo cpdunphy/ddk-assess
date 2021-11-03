@@ -5,10 +5,11 @@
 //  Created by Collin Dunphy on 9/23/20.
 //
 
-import Foundation
 import Combine
-import SwiftUI
 import CoreHaptics
+import Foundation
+import SwiftUI
+
 // MARK: - DDKModel
 
 class DDKModel : ObservableObject {
@@ -64,8 +65,8 @@ class DDKModel : ObservableObject {
     
     /// The patient assessment records, doesn't restore from any backup and is cleared upon app quit (can also be cleared via the settings screen)
     @Published var records : [AssessmentRecord] = [
-        AssessmentRecord(date: Date(), taps: 7, type: .timed, duration: 15),
-        AssessmentRecord(date: Date(), taps: 14, type: .count, duration: 23.6)
+        AssessmentRecord(date: .now, taps: 7, type: .timed, duration: 15),
+        AssessmentRecord(date: .now, taps: 14, type: .count, duration: 23.6)
     ]
     
     var allRecords: [AssessmentRecord] {
@@ -144,8 +145,8 @@ extension DDKModel {
     }
     
     func finishTimer() {
-        if currentTimedState != [.finished] {
-            currentTimedState = [.finished]
+//        if currentTimedState != [.finished] {
+//            currentTimedState = [.finished]
             let record = AssessmentRecord(
                 date: Date(),
                 taps: currentTimedTaps,
@@ -155,8 +156,8 @@ extension DDKModel {
             records.insert(record, at: 0)
             totalAssessments += 1
             print(records)
-            triggerHapticFeedbackSuccess()
-        }
+            DDKModel.triggerHapticFeedbackSuccess()
+//        }
     }
     
     func finishCountdown() {
@@ -194,13 +195,13 @@ extension DDKModel {
         currentCountTaps = 0
         records.insert(record, at: 0)
         totalAssessments += 1
-        triggerHapticFeedbackSuccess()
+        DDKModel.triggerHapticFeedbackSuccess()
     }
 }
 
 // MARK: - HapticFeedback
 extension DDKModel {
-    func triggerHapticFeedbackSuccess() {
+    static func triggerHapticFeedbackSuccess() {
         #if os(iOS)
         let hapticFeedback = UINotificationFeedbackGenerator()
         hapticFeedback.notificationOccurred(.success)
@@ -224,6 +225,12 @@ extension DDKModel {
     
     func deleteRecord(_ record: AssessmentRecord) {
         records.removeAll(where: { $0.id == record.id })
+    }
+    
+    func addRecord(_ record: AssessmentRecord) {
+        records.insert(record, at: 0)
+        totalAssessments += 1
+        DDKModel.triggerHapticFeedbackSuccess()
     }
 }
 

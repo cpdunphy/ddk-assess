@@ -11,8 +11,8 @@ enum CountingState {
     case ready
     case counting
     case paused
-    case finished
     case countdown
+//    case finished
 }
 
 enum AssessType : String {

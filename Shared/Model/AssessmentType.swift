@@ -77,12 +77,6 @@ class Assessment : ObservableObject {
 }
 
 
-//class TimedAssessment : Assessment {
-//
-//    //    @Published var duration: Double = 0.0
-//
-//}
-
 class UntimedAssessment : Assessment {
     
     override init(_ type: AssessmentType) {
@@ -102,25 +96,50 @@ struct Keys {
     static func countdownLength(_ type: AssessmentType) -> String {
         return type.rawValue + "_countdown_length"
     }
+    
+    static func showDecimal(_ type: AssessmentType) -> String {
+        return type.rawValue + "_show_decimal"
+    }
 }
 
-protocol TimedAssessment {
-    var duration : Int { get set }
-    var countdownLength : Int { get set }
-    var countingState : Set<CountingState> { get set }
-}
 
-class TimedCountingAssessment : Assessment, TimedAssessment {
-    
-    
+
+class TimedCountingAssessment : Assessment, TimedAssessmentProtocol {
+
     @Published var taps : Int = 0
     @AppStorage(Keys.timerLength(.timed)) var duration : Int = 10
     @AppStorage(Keys.countdownLength(.timed)) var countdownLength : Int = 3
-    
+    @Published var startOfAssessment : Date = Date.now
+
     @Published var countingState: Set<CountingState> = [.ready]
     
     init() {
         super.init(.timed)
+    }
+    
+    func startTimer() {
+        countingState = [.countdown]
+        startOfAssessment = Date.now
+    }
+    
+    func pauseTimer() {
+        
+    }
+    
+    func resumeTimer() {
+        
+    }
+    
+    func resetTimer() {
+        
+    }
+    
+    func transitionToCounting() {
+        
+    }
+    
+    func transitionToFinished() {
+        
     }
 }
 
@@ -143,19 +162,100 @@ struct Defaults {
     public static let countdownRange : ClosedRange<Int> = 0...30
 }
 
-class HeartRateAssessment : Assessment, TimedAssessment {
+//class TimedAssessmentBase : Assessment {
+////    var duration: Int = 0
+//
+////    var countdownLength: Int
+//
+//    @Published var countingState: Set<CountingState> = [.ready]
+//
+//    func startTimer() {
+//        countingState = [.countdown]
+//        startOfAssessment = Date.now
+//    }
+//
+//    init() {
+//
+//    }
+//}
+protocol TimedAssessmentProtocol {
+    var duration : Int { get set }
+    var countdownLength : Int { get set }
+    var countingState : Set<CountingState> { get set }
     
+    func startTimer()
+    func pauseTimer()
+    func resumeTimer()
+    func resetTimer()
+    func transitionToCounting()
+    func transitionToFinished()
+}
+
+class TimedAssessment : Assessment {
+    
+    override init(_ type: AssessmentType) {
+        super.init(type)
+    }
+}
+
+class HeartRateAssessment : TimedAssessment, TimedAssessmentProtocol {
     
     @AppStorage("heart_rate_unit") var heartRate : HeartRateDisplayUnit = Defaults.hrDisplayUnit
     @AppStorage(Keys.timerLength(.heartRate)) var duration : Int = Defaults.timerDuration
     @AppStorage(Keys.countdownLength(.heartRate)) var countdownLength : Int = Defaults.countdownDuration
+    @AppStorage(Keys.showDecimal(.heartRate)) var showDecimalOnTimer : Bool = true
+    
+    @Published var startOfAssessment : Date = Date.now
     @Published var taps : Int = 0
     
     @Published var countingState : Set<CountingState> = [.ready]
     
+    /// Time spent paused on timed mode
+    @Published var timeSpentPaused : Double = 0.0
+    
+    /// Lastest time a timed assessment was started
+    @Published var timeOfLatestPause : Date = Date()
+    
+
     init() {
         super.init(.heartRate)
     }
+    
+    func startTimer() {
+        resetTimer()
+        countingState = [.countdown]
+        startOfAssessment = Date.now
+    }
+    
+    func pauseTimer() {
+        countingState.insert(.paused)
+        timeOfLatestPause = Date.now
+    }
+    
+    func resumeTimer() {
+        countingState.remove(.paused)
+        let duration = Date.now.timeIntervalSince(timeOfLatestPause)
+        timeOfLatestPause += duration
+    }
+    
+    func resetTimer() {
+        countingState = [.ready]
+        taps = 0
+    }
+    
+    func transitionToCounting() {
+        countingState = [.counting]
+        timeSpentPaused = 0
+        startOfAssessment = .now
+    }
+    
+    func transitionToFinished() {
+        if countingState != [.ready] {
+            countingState = [.ready]
+
+        }
+    }
+    
 }
 
 
@@ -171,7 +271,7 @@ extension AssessmentOptions {
             }
             
             Section {
-                Toggle("Show Decimal on Timer", isOn: .constant(true))
+                Toggle("Show Decimal on Timer", isOn: $model.showDecimalOnTimer)
             }
             
             Section {

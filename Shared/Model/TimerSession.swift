@@ -14,7 +14,7 @@ class TimerSession : ObservableObject {
     
     private var timer : AnyCancellable?
 
-    @Published var currentDateTime : Date = Date()
+    @Published var currentDateTime : Date = .now
 
     @Published var percentOfTimer : Double = 1.0
     

@@ -68,8 +68,8 @@ struct StatsDisplay: View {
             model.resumeTimed()
         case [CountingState.counting], [.countdown]:
             model.pauseTimed()
-        case [CountingState.finished]:
-            showBPMStatus.toggle()
+//        case [CountingState.finished]:
+//            showBPMStatus.toggle()
         default:
             print("Default Handling Right Button")
         }
@@ -119,7 +119,7 @@ struct StatsDisplay: View {
     func leftButtonOptionLogic() -> AssessmentTaker.ButtonOptions {
         if model.assessType == .timed {
             switch model.currentTimedState {
-            case [CountingState.ready], [.finished]:
+            case [CountingState.ready]://, [.finished]:
                 return .reset
             case [CountingState.countdown], [.counting], [.counting, .paused], [.countdown, .paused]:
                 return .stop
@@ -149,8 +149,8 @@ struct StatsDisplay: View {
             timePicker
         case [.countdown], [.counting], [.paused, .counting], [.paused, .countdown]:
             timerIsCounting
-        case [.finished]:
-            timerIsFinished
+//        case [.finished]:
+//            timerIsFinished
         default:
             Text("Default Timed Display")
         }
@@ -201,7 +201,7 @@ struct StatsDisplay: View {
             
             ///TODO: Try to use strokeBorder() so that it does the border inside of the shape.. not currently possible because .trim returns 'Shape' which doesnt conform to 'ShapeInsettable'
             
-            if model.currentTimedState != [.finished] {
+            if model.currentTimedState != [.ready] {
                 RoundedRectProgress()
                     .trim(from: 0.0, to: 0.001)
                     .stroke(Color.progressGradientColors[0], style: StrokeStyle(lineWidth: 7, lineCap: .round))
