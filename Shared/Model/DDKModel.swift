@@ -19,48 +19,6 @@ class DDKModel : ObservableObject {
     
     @AppStorage(StorageKeys.History.pinnedRecords) var pinnedRecords : [AssessmentRecord] = []
 
-    // MARK: Assess Type
-    /// Source of truth for the assessment type of the whole app
-    @available(*, deprecated, message: "There is no need for a single selection of assessment??")
-    @Published var assessType : AssessType = .timed
-    
-    /// Sets the currently selected view's referenceDate equal to the current date
-    func syncTimeRef(_ override: AssessType? = nil) {
-        switch override ?? assessType {
-        case .timed:
-            latestTimedDateRef = Date()
-        case .count:
-            latestCountDateRef = Date()
-        }
-    }
-    
-    
-    // MARK: Tap Count
-    
-    /// Current number of taps in timed mode
-    @Published var currentTimedTaps : Int = 0
-    
-    /// Current number of taps in count mode
-    @Published var currentCountTaps : Int = 0
-    
-    /// Outputs the current number of taps based on the currently selected 'assessType'
-    var currentTaps : Int {
-        switch self.assessType {
-        case .timed:
-            return currentTimedTaps
-        case .count:
-            return currentCountTaps
-        }
-    }
-
-    // MARK: Counting States
-    /// Monitors the state of the current state of the timed mode. This is a set due to the variety of possibilities the timed state can be in
-    @Published var currentTimedState : Set<CountingState> = [.ready]
-    
-    /// Monitors the state of the current state of the timed mode
-    @Published var currentCountState : CountingState = .ready
-    
-        
     // MARK: Records
     
     /// The patient assessment records, doesn't restore from any backup and is cleared upon app quit (can also be cleared via the settings screen)
@@ -75,10 +33,6 @@ class DDKModel : ObservableObject {
     
     
     // MARK: User Preferences
-    
-    /// Default Assessment Style. Sets the inital assessment format upon init
-    @available(*, unavailable, message: "A default is no longer needed.")
-    @AppStorage("default_assessment_style") var defaultAssessmentType : AssessType = .timed
     
     /// Countdown Length. Sets how long the timer counts down for before starting the assessment
     @AppStorage("countdown_length") var currentlySelectedCountdownLength: Int = 3
@@ -114,59 +68,7 @@ class DDKModel : ObservableObject {
 
 }
 
-// MARK: - Handling Timed
-extension DDKModel {
-    
-    func stopTimed() {
-        currentTimedState = [.ready]
-        timeSpentPaused = 0
-    }
-    
-    func pauseTimed() {
-        currentTimedState.insert(.paused)
-        timeStartLatestPaused = Date()
-    }
-    
-    func startTimed() {
-        currentTimedState = [.countdown]
-        syncTimeRef()
-    }
-    
-    func resetTimed() {
-        currentTimedState = [.ready]
-        timeSpentPaused = 0
-        currentTimedTaps = 0
-    }
-    
-    func resumeTimed() {
-        currentTimedState.remove(.paused)
-        let duration = Date().timeIntervalSince(timeStartLatestPaused)
-        timeSpentPaused += duration
-    }
-    
-    func finishTimer() {
-//        if currentTimedState != [.finished] {
-//            currentTimedState = [.finished]
-            let record = AssessmentRecord(
-                date: Date(),
-                taps: currentTimedTaps,
-                type: .timed,
-                duration: Double(currentlySelectedTimerLength)
-            )
-            records.insert(record, at: 0)
-            totalAssessments += 1
-            print(records)
-            DDKModel.triggerHapticFeedbackSuccess()
-//        }
-    }
-    
-    func finishCountdown() {
-        currentTimedState = [.counting]
-        timeSpentPaused = 0
-        syncTimeRef(.timed)
-    }
-}
-
+/*
 // MARK: - Handling Count
 extension DDKModel {
     
@@ -198,6 +100,7 @@ extension DDKModel {
         DDKModel.triggerHapticFeedbackSuccess()
     }
 }
+*/
 
 // MARK: - HapticFeedback
 extension DDKModel {

@@ -9,6 +9,7 @@ import Foundation
 
 class TimedAssessmentBase : Assessment {
     
+    /// Monitors the state of the current state of the timed mode. This is a set due to the variety of possibilities the timed state can be in
     @Published var countingState : Set<CountingState> = [.ready]
     @Published var startOfAssessment : Date = Date.now
     

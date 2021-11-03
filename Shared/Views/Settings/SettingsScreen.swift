@@ -170,8 +170,7 @@ struct SettingsScreen: View {
     func resetPreferences() {
         model.currentlySelectedTimerLength = 10
         showDecimalOnTimer = true
-        model.resetTimed()
-        model.resetCount()
+        //TODO: Reset all models and their subsequent preferences.
     }
     
 }
