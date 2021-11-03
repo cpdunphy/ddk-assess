@@ -15,7 +15,7 @@ struct Diadochokinetic_AssessApp: App {
     
     
     /// Initial declaration and initiation of 'HeartRateAssessment'
-    @StateObject private var timed : TimedCountingAssessment = TimedCountingAssessment()
+    @StateObject private var timed : TimedAssessment = TimedAssessment()
     
     /// Initial declaration and initiation of 'HeartRateAssessment'
     @StateObject private var count : CountingAssessment = CountingAssessment()
@@ -27,14 +27,10 @@ struct Diadochokinetic_AssessApp: App {
     /// Initial declaration and initiation of 'Store'
     @StateObject private var store : Store = Store()
     
-    /// Initial declaration and initiation of 'TimerSession'
-    @StateObject private var timerSession : TimerSession = TimerSession()
-    
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(ddk)
-                .environmentObject(timerSession)
                 .environmentObject(store)
                 .environmentObject(timed)
                 .environmentObject(count)

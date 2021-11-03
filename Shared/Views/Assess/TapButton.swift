@@ -11,7 +11,6 @@ import UIKit
 #endif
 
 struct TapButton: View {
-    @EnvironmentObject var timerSession: TimerSession
     @EnvironmentObject var model : DDKModel
 
     @Binding var taps: Int

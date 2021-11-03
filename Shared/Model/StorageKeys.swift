@@ -19,9 +19,22 @@ struct StorageKeys {
         public static let sortBy :              String = "sort_by_assessment_gallery"
     }
     
-    struct Timed {
-        public static let timerLength : String = "timer_length"
+    
+    struct Assessments {
+        
+        static func timerLength(_ type: AssessmentType) -> String {
+            return type.rawValue + "_timer_length"
+        }
+        
+        static func countdownLength(_ type: AssessmentType) -> String {
+            return type.rawValue + "_countdown_length"
+        }
+        
+        static func showDecimal(_ type: AssessmentType) -> String {
+            return type.rawValue + "_show_decimal"
+        }
     }
+    
     
     struct History {
         public static let pinnedRecords :   String = "pinned_records"
@@ -31,3 +44,5 @@ struct StorageKeys {
     }
     
 }
+
+

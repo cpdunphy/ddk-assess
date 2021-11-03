@@ -61,7 +61,7 @@
          </BuildableReference>
       </BuildableProductRunnable>
       <StoreKitConfigurationFileReference
-         identifier = "../../Shared/Model/Products.storekit">
+         identifier = "../../Shared/Model/Store/Products.storekit">
       </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction

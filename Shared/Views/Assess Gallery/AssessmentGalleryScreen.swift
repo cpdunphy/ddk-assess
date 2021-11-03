@@ -7,6 +7,28 @@
 
 import SwiftUI
 
+extension AssessmentGalleryScreen {
+
+    enum AssessmentGalleryType: String, Identifiable, CaseIterable {
+
+        case grid, list
+        
+        var label: some View {
+            switch self {
+            case .grid:
+                return Label("Icons", systemImage: "square.grid.2x2")
+            case .list:
+                return Label("List", systemImage: "list.bullet")
+            }
+        }
+        
+        var id: String {
+            return self.rawValue
+        }
+    }
+
+}
+
 struct AssessmentGalleryScreen: View {
     
     @EnvironmentObject var model : DDKModel

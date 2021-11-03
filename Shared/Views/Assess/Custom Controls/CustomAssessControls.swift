@@ -1,0 +1,75 @@
+//
+//  File.swift
+//  Diadochokinetic Assess (iOS)
+//
+//  Created by Collin Dunphy on 11/2/21.
+//
+
+import Foundation
+import SwiftUI
+
+// MARK: Controls
+extension AssessmentTaker {
+    struct ControlButtons {
+        
+        struct HeartRate : View {
+            @EnvironmentObject var model : HeartRateAssessment
+            
+            var body: some View {
+                leftButton
+                
+                rightButton
+            }
+            
+            @ViewBuilder
+            var rightButton : some View {
+                switch model.countingState {
+                case [CountingState.ready]:
+                    ButtonOptions.start.button(action: model.startTimer)
+                case [CountingState.paused, .counting], [.paused, .countdown]:
+                    ButtonOptions.resume.button(action: model.resumeTimer)
+                case [CountingState.counting], [.countdown]:
+                    ButtonOptions.pause.button(action: model.pauseTimer)
+                default:
+                    ButtonOptions.reset.button(action: model.resetTimer)
+                }
+            }
+            
+            @ViewBuilder
+            var leftButton : some View {
+                switch model.countingState {
+                case [CountingState.ready]:
+                    ButtonOptions.reset.button(action: model.resetTimer)
+                case [CountingState.countdown], [.counting], [.counting, .paused], [.countdown, .paused]:
+                    ButtonOptions.stop.button(action: model.resetTimer)
+                default:
+                    ButtonOptions.reset.button(action: model.resetTimer)
+                }
+            }
+        }
+        
+    }
+}
+
+// Building Blocks
+extension AssessmentTaker.BuildingBlocks {
+    struct ControlButton : View {
+        var title: String
+        var systemImage: String
+        var color: Color
+        
+        var action : () -> Void
+        
+        var body: some View {
+            Button(action: action) {
+                Label(title, systemImage: systemImage)
+                    .lineLimit(2)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.bordered)
+            .tint(color)
+            .font(.title2)
+        }
+    }
+    
+}

@@ -22,14 +22,9 @@ struct AssessmentOptions: View {
     
     @EnvironmentObject var ddk : DDKModel
     
-    @EnvironmentObject var timed : TimedCountingAssessment
+    @EnvironmentObject var timed : TimedAssessment
     @EnvironmentObject var count : CountingAssessment
     @EnvironmentObject var hr : HeartRateAssessment
-    
-    @AppStorage("countdown_length") var countdown :             Int = 3
-    @AppStorage("show_decimal_timer") var showDecimalOnTimer :  Bool = true
-    @AppStorage("heart_rate_unit") var heartRate :              String = "BPM"
-    @AppStorage(StorageKeys.Timed.timerLength) var duration:    Int = 10
     
     var type : AssessmentType
     
@@ -43,19 +38,6 @@ struct AssessmentOptions: View {
             return hr
         }
     }
-    
-    @ViewBuilder
-    var options : some View {
-        switch type {
-        case .timed:
-            EmptyView()
-        case .count:
-            EmptyView()
-        case .heartRate:
-            HeartRate()
-        }
-    }
-    
     
     // MARK: - Form
     var form: some View {

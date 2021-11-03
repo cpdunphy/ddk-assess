@@ -7,17 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CAEE285273239CA00184E39 /* CustomAssessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE284273239CA00184E39 /* CustomAssessOptions.swift */; };
+		6CAEE286273239D500184E39 /* CustomAssessOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE284273239CA00184E39 /* CustomAssessOptions.swift */; };
+		6CAEE28827323A4900184E39 /* HeartRateAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE28727323A4900184E39 /* HeartRateAssessment.swift */; };
+		6CAEE28A27323A5D00184E39 /* TimedAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE28927323A5D00184E39 /* TimedAssessment.swift */; };
+		6CAEE28C27323A7600184E39 /* CountingAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE28B27323A7600184E39 /* CountingAssessment.swift */; };
+		6CAEE28F27323AA800184E39 /* Assessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE28E27323AA800184E39 /* Assessment.swift */; };
+		6CAEE29227323B0B00184E39 /* TimedAssessmentBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE29127323B0B00184E39 /* TimedAssessmentBase.swift */; };
+		6CAEE29827323E2800184E39 /* CustomAssessTaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE29727323E2800184E39 /* CustomAssessTaps.swift */; };
+		6CAEE29A27323E5600184E39 /* CustomAssessControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE29927323E5600184E39 /* CustomAssessControls.swift */; };
+		6CAEE29C27323E6300184E39 /* CustomAssessStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE29B27323E6300184E39 /* CustomAssessStats.swift */; };
 		F0214EEA26A31B8100003DDC /* AssessmentGalleryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */; };
 		F0214EEC26A31BEA00003DDC /* AssessmentGalleryGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */; };
 		F0214EEE26A31BF600003DDC /* AssessmentGalleryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EED26A31BF600003DDC /* AssessmentGalleryList.swift */; };
-		F0214EF126A31F0D00003DDC /* AssessmentGalleryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EF026A31F0D00003DDC /* AssessmentGalleryType.swift */; };
-		F022212F26A321E900AA0340 /* AssessmentGalleryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EF026A31F0D00003DDC /* AssessmentGalleryType.swift */; };
 		F022213126A325B900AA0340 /* AssessmentGalleryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */; };
 		F025287A251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */; };
 		F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */; };
 		F0252882251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */; };
-		F0252888251CCC8600D2F5DF /* AssessmentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252887251CCC8600D2F5DF /* AssessmentPicker.swift */; };
-		F0252889251CCC8600D2F5DF /* AssessmentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252887251CCC8600D2F5DF /* AssessmentPicker.swift */; };
 		F02DB400251C23440038FEAE /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02DB3FF251C23440038FEAE /* Tests_iOS.swift */; };
 		F02DB40B251C23440038FEAE /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02DB40A251C23440038FEAE /* Tests_macOS.swift */; };
 		F02DB40D251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02DB3E4251C23430038FEAE /* Diadochokinetic_AssessApp.swift */; };
@@ -26,8 +32,6 @@
 		F02DB410251C23440038FEAE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02DB3E5251C23430038FEAE /* ContentView.swift */; };
 		F02DB411251C23440038FEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F02DB3E6251C23440038FEAE /* Assets.xcassets */; };
 		F02DB412251C23440038FEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F02DB3E6251C23440038FEAE /* Assets.xcassets */; };
-		F03046FD251E36F300B438E7 /* TimerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03046FC251E36F300B438E7 /* TimerSession.swift */; };
-		F03046FE251E36F300B438E7 /* TimerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03046FC251E36F300B438E7 /* TimerSession.swift */; };
 		F0304708251E4CD100B438E7 /* TapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0304707251E4CD100B438E7 /* TapButton.swift */; };
 		F0304709251E4CD100B438E7 /* TapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0304707251E4CD100B438E7 /* TapButton.swift */; };
 		F030470F251E65F400B438E7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030470E251E65F300B438E7 /* Color.swift */; };
@@ -39,8 +43,6 @@
 		F04AD42F271D099900293641 /* ManageMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD42E271D099900293641 /* ManageMembership.swift */; };
 		F04AD430271D099900293641 /* ManageMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD42E271D099900293641 /* ManageMembership.swift */; };
 		F04AD436271D17B600293641 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = F04AD435271D17B600293641 /* Shiny */; };
-		F060BAC025213C2B009F9C81 /* StatsDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BABF25213C2B009F9C81 /* StatsDisplay.swift */; };
-		F060BAC125213C2B009F9C81 /* StatsDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BABF25213C2B009F9C81 /* StatsDisplay.swift */; };
 		F060BAC725214393009F9C81 /* HistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BAC625214393009F9C81 /* HistoryScreen.swift */; };
 		F060BAC825214393009F9C81 /* HistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BAC625214393009F9C81 /* HistoryScreen.swift */; };
 		F07564EC2530FA8200EC058A /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07564EB2530FA8200EC058A /* MailView.swift */; };
@@ -114,14 +116,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6CAEE284273239CA00184E39 /* CustomAssessOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssessOptions.swift; sourceTree = "<group>"; };
+		6CAEE28727323A4900184E39 /* HeartRateAssessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateAssessment.swift; sourceTree = "<group>"; };
+		6CAEE28927323A5D00184E39 /* TimedAssessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedAssessment.swift; sourceTree = "<group>"; };
+		6CAEE28B27323A7600184E39 /* CountingAssessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingAssessment.swift; sourceTree = "<group>"; };
+		6CAEE28E27323AA800184E39 /* Assessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assessment.swift; sourceTree = "<group>"; };
+		6CAEE29127323B0B00184E39 /* TimedAssessmentBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedAssessmentBase.swift; sourceTree = "<group>"; };
+		6CAEE29727323E2800184E39 /* CustomAssessTaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssessTaps.swift; sourceTree = "<group>"; };
+		6CAEE29927323E5600184E39 /* CustomAssessControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssessControls.swift; sourceTree = "<group>"; };
+		6CAEE29B27323E6300184E39 /* CustomAssessStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssessStats.swift; sourceTree = "<group>"; };
 		F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryScreen.swift; sourceTree = "<group>"; };
 		F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryGrid.swift; sourceTree = "<group>"; };
 		F0214EED26A31BF600003DDC /* AssessmentGalleryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryList.swift; sourceTree = "<group>"; };
-		F0214EF026A31F0D00003DDC /* AssessmentGalleryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryType.swift; sourceTree = "<group>"; };
 		F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryIcon.swift; sourceTree = "<group>"; };
 		F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMobileNavigation.swift; sourceTree = "<group>"; };
 		F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSidebarNavigation.swift; sourceTree = "<group>"; };
-		F0252887251CCC8600D2F5DF /* AssessmentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentPicker.swift; sourceTree = "<group>"; };
 		F02DB3E4251C23430038FEAE /* Diadochokinetic_AssessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diadochokinetic_AssessApp.swift; sourceTree = "<group>"; };
 		F02DB3E5251C23430038FEAE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F02DB3E6251C23440038FEAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,13 +145,11 @@
 		F02DB406251C23440038FEAE /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F02DB40A251C23440038FEAE /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		F02DB40C251C23440038FEAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F03046FC251E36F300B438E7 /* TimerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSession.swift; sourceTree = "<group>"; };
 		F0304707251E4CD100B438E7 /* TapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapButton.swift; sourceTree = "<group>"; };
 		F030470E251E65F300B438E7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F0340411252E1CAA00A005FA /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		F04AD42B271CCDB600293641 /* SettingsScreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenButton.swift; sourceTree = "<group>"; };
 		F04AD42E271D099900293641 /* ManageMembership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMembership.swift; sourceTree = "<group>"; };
-		F060BABF25213C2B009F9C81 /* StatsDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsDisplay.swift; sourceTree = "<group>"; };
 		F060BAC625214393009F9C81 /* HistoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScreen.swift; sourceTree = "<group>"; };
 		F07564EB2530FA8200EC058A /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		F07B3BCF261108E5004EB5AC /* Print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Print.swift; sourceTree = "<group>"; };
@@ -210,6 +217,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6CAEE28D27323A7F00184E39 /* Assessments */ = {
+			isa = PBXGroup;
+			children = (
+				6CAEE29027323AF400184E39 /* Inherited Models */,
+				6CAEE28927323A5D00184E39 /* TimedAssessment.swift */,
+				6CAEE28727323A4900184E39 /* HeartRateAssessment.swift */,
+				6CAEE28B27323A7600184E39 /* CountingAssessment.swift */,
+			);
+			path = Assessments;
+			sourceTree = "<group>";
+		};
+		6CAEE29027323AF400184E39 /* Inherited Models */ = {
+			isa = PBXGroup;
+			children = (
+				6CAEE28E27323AA800184E39 /* Assessment.swift */,
+				6CAEE29127323B0B00184E39 /* TimedAssessmentBase.swift */,
+			);
+			path = "Inherited Models";
+			sourceTree = "<group>";
+		};
+		6CAEE29327323B7300184E39 /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				F080D73126A4EDCE00A1F49D /* AssessmentOptions.swift */,
+				6CAEE284273239CA00184E39 /* CustomAssessOptions.swift */,
+			);
+			path = Options;
+			sourceTree = "<group>";
+		};
+		6CAEE29427323C7D00184E39 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				F0C7569E251C3A6E00D066A9 /* Products.storekit */,
+				F0D553A4251C24750084E0EB /* Store.swift */,
+				F0BC56D82710E2E400071A6E /* Products.plist */,
+				F0340411252E1CAA00A005FA /* StoreKitTestCertificate.cer */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		6CAEE29D27323FC600184E39 /* Custom Controls */ = {
+			isa = PBXGroup;
+			children = (
+				6CAEE29727323E2800184E39 /* CustomAssessTaps.swift */,
+				6CAEE29927323E5600184E39 /* CustomAssessControls.swift */,
+				6CAEE29B27323E6300184E39 /* CustomAssessStats.swift */,
+			);
+			path = "Custom Controls";
+			sourceTree = "<group>";
+		};
 		F0214EEF26A31BFE00003DDC /* Assess Gallery */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,9 +386,9 @@
 			isa = PBXGroup;
 			children = (
 				F080D72E26A4ED7F00A1F49D /* AssessmentTaker.swift */,
+				6CAEE29D27323FC600184E39 /* Custom Controls */,
 				F08D1BB3271A2135004FE52A /* RoundRectProgress.swift */,
 				F08D1BAF271A20A6004FE52A /* ButtonOptions.swift */,
-				F060BABF25213C2B009F9C81 /* StatsDisplay.swift */,
 				F0304707251E4CD100B438E7 /* TapButton.swift */,
 			);
 			path = Assess;
@@ -341,7 +398,6 @@
 			isa = PBXGroup;
 			children = (
 				F0E180A625236BA100E808AB /* SupportTheDev.swift */,
-				F0252887251CCC8600D2F5DF /* AssessmentPicker.swift */,
 				F07564EB2530FA8200EC058A /* MailView.swift */,
 			);
 			path = "Supporting Views";
@@ -350,21 +406,17 @@
 		F0C756A5251C3B2900D066A9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F0C7569E251C3A6E00D066A9 /* Products.storekit */,
-				F0340411252E1CAA00A005FA /* StoreKitTestCertificate.cer */,
-				F0D5539D251C24340084E0EB /* DDKModel.swift */,
+				6CAEE29427323C7D00184E39 /* Store */,
 				F07B3BCF261108E5004EB5AC /* Print.swift */,
-				F0D553A4251C24750084E0EB /* Store.swift */,
-				F0BC56D82710E2E400071A6E /* Products.plist */,
-				F03046FC251E36F300B438E7 /* TimerSession.swift */,
 				F0B423BA25A66D97002805C9 /* NavigationItem.swift */,
 				F0C756AF251C3DA500D066A9 /* States.swift */,
 				F080D73D26A8B6F400A1F49D /* StorageKeys.swift */,
-				F0214EF026A31F0D00003DDC /* AssessmentGalleryType.swift */,
 				F0DAFDA326B07DB400CDA62F /* Extension */,
 				F0CEA380251CC5C700818C6D /* CountingState.swift */,
 				F0C756B6251C3DC000D066A9 /* AssessmentRecord.swift */,
 				F080D72826A3B5C700A1F49D /* AssessmentType.swift */,
+				F0D5539D251C24340084E0EB /* DDKModel.swift */,
+				6CAEE28D27323A7F00184E39 /* Assessments */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -393,7 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				F08D1BB2271A20CE004FE52A /* Assess */,
-				F080D73126A4EDCE00A1F49D /* AssessmentOptions.swift */,
+				6CAEE29327323B7300184E39 /* Options */,
 				F0214EEF26A31BFE00003DDC /* Assess Gallery */,
 				F080D74026A8C2B000A1F49D /* History */,
 				F080D74126A8C2D600A1F49D /* Settings */,
@@ -596,26 +648,33 @@
 				F0D5539E251C24340084E0EB /* DDKModel.swift in Sources */,
 				F080D73B26A5E0F100A1F49D /* RecordHistoryRow.swift in Sources */,
 				F02DB40F251C23440038FEAE /* ContentView.swift in Sources */,
+				6CAEE29827323E2800184E39 /* CustomAssessTaps.swift in Sources */,
 				F0214EEA26A31B8100003DDC /* AssessmentGalleryScreen.swift in Sources */,
+				6CAEE28A27323A5D00184E39 /* TimedAssessment.swift in Sources */,
 				F0C756B7251C3DC000D066A9 /* AssessmentRecord.swift in Sources */,
 				F0E180B225236C3500E808AB /* SettingsScreen.swift in Sources */,
 				F02DB40D251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
 				F07564EC2530FA8200EC058A /* MailView.swift in Sources */,
+				6CAEE29227323B0B00184E39 /* TimedAssessmentBase.swift in Sources */,
+				6CAEE28827323A4900184E39 /* HeartRateAssessment.swift in Sources */,
 				F0AE5B9526A9F06400ADAD3D /* Array-Set.swift in Sources */,
 				F080D72926A3B5C700A1F49D /* AssessmentType.swift in Sources */,
 				F0B423BB25A66D97002805C9 /* NavigationItem.swift in Sources */,
-				F060BAC025213C2B009F9C81 /* StatsDisplay.swift in Sources */,
 				F08D1BAD27150E4E004FE52A /* RoundedCorner.swift in Sources */,
 				F080D73E26A8B6F400A1F49D /* StorageKeys.swift in Sources */,
 				F080D73526A5C77A00A1F49D /* EditRecordScreen.swift in Sources */,
 				F0AE5B9826AB151200ADAD3D /* AboutDDK.swift in Sources */,
 				F060BAC725214393009F9C81 /* HistoryScreen.swift in Sources */,
 				F022213126A325B900AA0340 /* AssessmentGalleryIcon.swift in Sources */,
+				6CAEE28C27323A7600184E39 /* CountingAssessment.swift in Sources */,
 				F030470F251E65F400B438E7 /* Color.swift in Sources */,
+				6CAEE285273239CA00184E39 /* CustomAssessOptions.swift in Sources */,
 				F0D553A5251C24750084E0EB /* Store.swift in Sources */,
+				6CAEE28F27323AA800184E39 /* Assessment.swift in Sources */,
 				F04AD42C271CCDB600293641 /* SettingsScreenButton.swift in Sources */,
-				F0214EF126A31F0D00003DDC /* AssessmentGalleryType.swift in Sources */,
 				F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */,
+				6CAEE29A27323E5600184E39 /* CustomAssessControls.swift in Sources */,
+				6CAEE29C27323E6300184E39 /* CustomAssessStats.swift in Sources */,
 				F04AD42F271D099900293641 /* ManageMembership.swift in Sources */,
 				F025287A251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */,
 				F0214EEC26A31BEA00003DDC /* AssessmentGalleryGrid.swift in Sources */,
@@ -630,9 +689,7 @@
 				F080D73826A5D44F00A1F49D /* RecordGeneralInfo.swift in Sources */,
 				F0E180A725236BA100E808AB /* SupportTheDev.swift in Sources */,
 				F0CEA381251CC5C700818C6D /* CountingState.swift in Sources */,
-				F03046FD251E36F300B438E7 /* TimerSession.swift in Sources */,
 				F08D1BB0271A20A6004FE52A /* ButtonOptions.swift in Sources */,
-				F0252888251CCC8600D2F5DF /* AssessmentPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,9 +709,7 @@
 				F0AE5B9926AB151200ADAD3D /* AboutDDK.swift in Sources */,
 				F0C756B8251C3DC000D066A9 /* AssessmentRecord.swift in Sources */,
 				F02DB40E251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
-				F022212F26A321E900AA0340 /* AssessmentGalleryType.swift in Sources */,
 				F0B423BC25A66D97002805C9 /* NavigationItem.swift in Sources */,
-				F060BAC125213C2B009F9C81 /* StatsDisplay.swift in Sources */,
 				F060BAC825214393009F9C81 /* HistoryScreen.swift in Sources */,
 				F07B3BD1261108E5004EB5AC /* Print.swift in Sources */,
 				F08D1BB5271A213B004FE52A /* RoundRectProgress.swift in Sources */,
@@ -667,10 +722,9 @@
 				F0C756B1251C3DA500D066A9 /* States.swift in Sources */,
 				F080D73326A4EDCE00A1F49D /* AssessmentOptions.swift in Sources */,
 				F0E180A825236BA100E808AB /* SupportTheDev.swift in Sources */,
+				6CAEE286273239D500184E39 /* CustomAssessOptions.swift in Sources */,
 				F080D72A26A3B5C700A1F49D /* AssessmentType.swift in Sources */,
 				F0CEA382251CC5C700818C6D /* CountingState.swift in Sources */,
-				F03046FE251E36F300B438E7 /* TimerSession.swift in Sources */,
-				F0252889251CCC8600D2F5DF /* AssessmentPicker.swift in Sources */,
 				F08D1BAE27150E53004FE52A /* RoundedCorner.swift in Sources */,
 				F080D73626A5C77A00A1F49D /* EditRecordScreen.swift in Sources */,
 			);

@@ -213,6 +213,13 @@ extension DDKModel {
 // MARK: - Record Handling
 
 extension DDKModel {
+    
+    func addRecord(_ record: AssessmentRecord) {
+        records.insert(record, at: 0)
+        totalAssessments += 1
+        DDKModel.triggerHapticFeedbackSuccess()
+    }
+    
     func updateRecord(_ record: AssessmentRecord) {
         if let index = records.firstIndex(where: { $0.id == record.id }) {
             print("Error: Couldn't find index")
@@ -225,12 +232,6 @@ extension DDKModel {
     
     func deleteRecord(_ record: AssessmentRecord) {
         records.removeAll(where: { $0.id == record.id })
-    }
-    
-    func addRecord(_ record: AssessmentRecord) {
-        records.insert(record, at: 0)
-        totalAssessments += 1
-        DDKModel.triggerHapticFeedbackSuccess()
     }
 }
 
