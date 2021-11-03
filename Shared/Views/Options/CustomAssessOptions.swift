@@ -17,7 +17,7 @@ extension AssessmentOptions {
         case .timed:
             Timed()
         case .count:
-            EmptyView()
+            Count()
         case .heartRate:
             HeartRate()
         }
@@ -39,6 +39,16 @@ extension AssessmentOptions {
         }
     }
 
+    struct Count : View {
+        @EnvironmentObject var model : CountingAssessment
+        
+        var body : some View {
+            Section {
+                Toggle("Show Decimal on Timer", isOn: $model.showDecimalOnTimer)
+            }
+        }
+    }
+    
     struct HeartRate : View {
         @EnvironmentObject var model : HeartRateAssessment
         

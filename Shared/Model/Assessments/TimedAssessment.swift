@@ -24,4 +24,36 @@ class TimedAssessment : TimedAssessmentBase, TimedAssessmentProtocol {
         super.resetTimer()
         taps = 0
     }
+    
+    // TODO: How can I move this higher in the inheritance stack.. I don't think I can since it references countdown and duration, which are stored in the actual top class.
+    func calculateTimeLeft() -> Double? {
+        
+        let state = countingState
+        
+        var start = startOfAssessment
+        let timeSpentPaused = timeSpentPaused
+        
+        start.addTimeInterval(timeSpentPaused)
+        
+        switch state {
+        case [.paused, .countdown]:
+            return start
+                .addingTimeInterval(TimeInterval(countdownLength))
+                .timeIntervalSince(timeOfLatestPause)
+        case [.countdown]:
+            return start
+                .addingTimeInterval(TimeInterval(countdownLength))
+                .timeIntervalSince(currentDateTime)
+        case [.paused, .counting]:
+            return start
+                .addingTimeInterval(TimeInterval(duration))
+                .timeIntervalSince(timeOfLatestPause)
+        case [.counting]:
+            return start
+                .addingTimeInterval(TimeInterval(duration))
+                .timeIntervalSince(currentDateTime)
+        default:
+            return nil
+        }
+    }
 }

@@ -9,45 +9,7 @@ import SwiftUI
 
 extension AssessmentTaker {
     struct BuildingBlocks { }
-    
-    @ViewBuilder
-    var statsDisplay : some View {
-        switch type {
-        case .timed:
-            EmptyView()
-        case .count:
-            EmptyView()
-        case .heartRate:
-            Stats.HeartRate()
-        }
-    }
-    
-    @ViewBuilder
-    var controlButtons : some View {
-        switch type {
-        case .timed:
-            EmptyView()
-        case .count:
-            EmptyView()
-        case .heartRate:
-            ControlButtons.HeartRate()
-        }
-    }
-    
-    @ViewBuilder
-    var tapButtons : some View {
-        switch type {
-        case .timed:
-            EmptyView()
-        case .count:
-            EmptyView()
-        case .heartRate:
-            TapButtons.HeartRate()
-        }
-    }
-    
 }
-
 
 struct AssessmentTaker: View {
     

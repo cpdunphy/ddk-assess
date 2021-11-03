@@ -8,9 +8,52 @@
 import Foundation
 import SwiftUI
 
+extension AssessmentTaker {
+    
+    @ViewBuilder
+    var tapButtons : some View {
+        switch type {
+        case .timed:
+            TapButtons.Timed()
+        case .count:
+            TapButtons.Count()
+        case .heartRate:
+            TapButtons.HeartRate()
+        }
+    }
+    
+}
+
 // MARK: Tap Buttons
 extension AssessmentTaker {
     struct TapButtons {
+        struct Timed : View {
+            @EnvironmentObject var model : TimedAssessment
+            
+            var body: some View {
+                TapButton(
+                    taps: $model.taps,
+                    countingState: model.countingState
+                )
+            }
+        }
+        
+        struct Count : View {
+            @EnvironmentObject var model : CountingAssessment
+            
+            var body: some View {
+                TapButton(
+                    taps: $model.taps,
+                    countingState: [.counting]
+                )
+                    .onChange(of: model.taps) { newValue in
+                        if newValue == 1 {
+                            model.startTimer()
+                        }
+                    }
+            }
+        }
+        
         struct HeartRate : View {
             
             @EnvironmentObject var model : HeartRateAssessment

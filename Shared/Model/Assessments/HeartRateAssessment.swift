@@ -13,7 +13,7 @@ class HeartRateAssessment : TimedAssessmentBase, TimedAssessmentProtocol {
     @AppStorage("heart_rate_unit") var heartRate : HeartRateDisplayUnit = Defaults.hrDisplayUnit
     @AppStorage(StorageKeys.Assessments.timerLength(.heartRate)) var duration : Int = Defaults.timerDuration
     @AppStorage(StorageKeys.Assessments.countdownLength(.heartRate)) var countdownLength : Int = Defaults.countdownDuration
-    @AppStorage(StorageKeys.Assessments.showDecimal(.heartRate)) var showDecimalOnTimer : Bool = true
+    @AppStorage(StorageKeys.Assessments.showDecimal(.heartRate)) var showDecimalOnTimer : Bool = Defaults.showDecimalOnTimer
     
     @Published var taps : Int = 0
 

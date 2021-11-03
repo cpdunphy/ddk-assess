@@ -51,6 +51,8 @@ struct Defaults {
     
     public static let timerRange : ClosedRange<Int> = 1...60
     public static let countdownRange : ClosedRange<Int> = 0...30
+    
+    public static let showDecimalOnTimer : Bool = true
 }
 
 protocol TimedAssessmentProtocol {

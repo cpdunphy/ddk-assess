@@ -22,10 +22,7 @@ class DDKModel : ObservableObject {
     // MARK: Records
     
     /// The patient assessment records, doesn't restore from any backup and is cleared upon app quit (can also be cleared via the settings screen)
-    @Published var records : [AssessmentRecord] = [
-        AssessmentRecord(date: .now, taps: 7, type: .timed, duration: 15),
-        AssessmentRecord(date: .now, taps: 14, type: .count, duration: 23.6)
-    ]
+    @Published var records : [AssessmentRecord] = []
     
     var allRecords: [AssessmentRecord] {
         return records + pinnedRecords
