@@ -30,9 +30,9 @@ class HeartRateAssessment : TimedAssessmentBase, TimedAssessmentProtocol {
         
         switch heartRate {
         case .bpm:
-            return Int(60.0 / (Double(duration) - (calculateTimeLeft() ?? 1)) * Double(taps))
+            return Int(60.0 / (Double(duration) - (calculateTimeLeft() ?? 0)) * Double(taps))
         case .bps:
-            return Int(Double(taps) / (Double(duration) - (calculateTimeLeft() ?? 1)))
+            return Int(Double(taps) / (Double(duration) - (calculateTimeLeft() ?? 0)))
         }
     }
     
