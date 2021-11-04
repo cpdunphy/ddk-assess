@@ -26,6 +26,16 @@ class HeartRateAssessment : TimedAssessmentBase, TimedAssessmentProtocol {
         taps = 0
     }
     
+    func calculateHeartRate() -> Int {
+        
+        switch heartRate {
+        case .bpm:
+            return Int(60.0 / (Double(duration) - (calculateTimeLeft() ?? 1)) * Double(taps))
+        case .bps:
+            return Int(Double(taps) / (Double(duration) - (calculateTimeLeft() ?? 1)))
+        }
+    }
+    
     // TODO: How can I move this higher in the inheritance stack.. I don't think I can since it references countdown and duration, which are stored in the actual top class.
     func calculateTimeLeft() -> Double? {
         

@@ -15,14 +15,13 @@ struct EditRecordScreen: View {
     
     var record: AssessmentRecord
     
-    @State private var draftRecord : AssessmentRecord
+    @State private var draftRecord : AssessmentRecord = AssessmentRecord(date: .now, taps: 0, type: .timed, duration: 0)
     @State private var imported : Bool = false
     
     @State private var deleteConfirmationIsPresented : Bool = false
     
     init(_ record: AssessmentRecord) {
         self.record = record
-        _draftRecord = .init(initialValue: record)
     }
     
     var body: some View {
@@ -158,6 +157,7 @@ struct EditRecordScreen: View {
             if !imported {
                 draftRecord = record
                 imported = true
+                print("Imported: \(record)")
             }
         }
         .onDisappear {

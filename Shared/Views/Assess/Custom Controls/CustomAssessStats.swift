@@ -157,8 +157,17 @@ extension AssessmentTaker {
                         
                         BuildingBlocks.Separator()
                         
-                        Text(BuildingBlocks.tapDescrition(model.taps))
-                            .modifier(BuildingBlocks.SubtitleFont())
+                        HStack {
+                            Text(BuildingBlocks.tapDescrition(model.taps))
+                                .modifier(BuildingBlocks.SubtitleFont())
+                            
+                            Image(systemName: "heart")
+                                .symbolVariant(.fill)
+                                .foregroundColor(.pink)
+                            
+                            Text("\(model.calculateHeartRate()) \(model.heartRate.rawValue.uppercased())")
+                                .modifier(BuildingBlocks.SubtitleFont())
+                        }
                         
                     }.position(x: geo.size.width / 2, y: geo.size.height / 2)
                 }
