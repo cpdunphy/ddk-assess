@@ -53,6 +53,11 @@ struct Defaults {
     public static let countdownRange : ClosedRange<Int> = 0...30
     
     public static let showDecimalOnTimer : Bool = true
+    
+    struct Count {
+        public static var goal : Int = 10
+        public static var goalIsEnabled : Bool = false
+    }
 }
 
 protocol TimedAssessmentProtocol {

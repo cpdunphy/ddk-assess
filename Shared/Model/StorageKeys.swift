@@ -33,6 +33,11 @@ struct StorageKeys {
         static func showDecimal(_ type: AssessmentType) -> String {
             return type.rawValue + "_show_decimal"
         }
+        
+        struct Count {
+            static var goalIsEnabled = AssessmentType.count.rawValue + "goal_is_enabled"
+            static var goal = AssessmentType.count.rawValue + "goal_value"
+        }
     }
     
     

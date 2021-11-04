@@ -78,7 +78,7 @@ extension AssessmentTaker {
                         date: .now,
                         taps: model.taps,
                         type: .count,
-                        duration: model.calculateTimeLeft() ?? 0
+                        duration: model.calculateTime() ?? 0
                     )
                     ddk.addRecord(record)
                     model.resetTimer()

@@ -44,13 +44,9 @@ extension AssessmentTaker {
             var body: some View {
                 TapButton(
                     taps: $model.taps,
-                    countingState: [.counting]
+                    countingState: model.countingState,
+                    enabledStates: [[.counting], [.ready]]
                 )
-                    .onChange(of: model.taps) { newValue in
-                        if newValue == 1 {
-                            model.startTimer()
-                        }
-                    }
             }
         }
         

@@ -15,14 +15,23 @@ struct TapButton: View {
 
     @Binding var taps: Int
     var countingState : Set<CountingState>?
+    var enabledStates : Array<Set<CountingState>>
     var style : AssessmentButtonStyle
     var enabledText : String = "Tap!"
     var disabledText : String = "Disabled"
     
-    init(taps: Binding<Int>, countingState: Set<CountingState>? = nil, style: AssessmentButtonStyle? = nil, enabledText: String = "Tap!", disabledText: String = "Disabled") {
+    init(
+        taps: Binding<Int>,
+        countingState: Set<CountingState>? = nil,
+        enabledStates: Array<Set<CountingState>> = [[.counting]],
+        style: AssessmentButtonStyle? = nil,
+        enabledText: String = "Tap!",
+        disabledText: String = "Disabled"
+    ) {
         self._taps = taps
         self.countingState = countingState
-        self.style = style ?? AssessmentButtonStyle(countingState: countingState)
+        self.enabledStates = enabledStates
+        self.style = style ?? AssessmentButtonStyle()
         self.enabledText = enabledText
         self.disabledText = disabledText
     }
@@ -34,13 +43,13 @@ struct TapButton: View {
     #endif
     
     /// Says if the button should be enabled or not given the current state
-    static func isDisabled(_ countingState: Set<CountingState>?) -> Bool {
-    
+    var isEnabled : Bool {
+        
         guard let countingState = countingState else {
             return true
         }
 
-        return countingState != [.counting]
+        return enabledStates.contains(countingState)
     }
     
     // MARK: - Body
@@ -49,9 +58,9 @@ struct TapButton: View {
             Text(displayText)
                 .font(.system(size: buttonLabelTextSize, weight: .semibold, design: .rounded))
         }
-            .buttonStyle(style)
-            .disabled(TapButton.isDisabled(countingState))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .buttonStyle(style)
+        .disabled(!isEnabled)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     /// Calls the handleTaps on model and sending the haptic feedback to the user. Called each time theres a tap and lets the DDKModel figure out what to do with it. 
@@ -66,13 +75,13 @@ struct TapButton: View {
     
     /// Gets the display label for the assess button.
     var displayText : String {
-        return TapButton.isDisabled(countingState) ? disabledText : enabledText
+        return isEnabled ? enabledText : disabledText
     }
     
     
     struct AssessmentButtonStyle: ButtonStyle {
-                
-        var countingState : Set<CountingState>?
+
+        @Environment(\.isEnabled) private var isEnabled: Bool
         
         var corners: UIRectCorner = .allCorners
         
@@ -84,8 +93,8 @@ struct TapButton: View {
         func makeBody(configuration: Configuration) -> some View {
             configuration.label
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .foregroundColor(isDisabled(countingState) ? disabledForegroundColor : enabledForegroundColor)
-                .background(isDisabled(countingState) ? disabledBackgroundColor : enabledBackgroundColor)
+                .foregroundColor(isEnabled ? enabledForegroundColor : disabledForegroundColor)
+                .background(isEnabled ? enabledBackgroundColor : disabledBackgroundColor)
                 .cornerRadius(15.0, corners: corners)
                 .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
                 .opacity(configuration.isPressed ? 0.7 : 1.0)

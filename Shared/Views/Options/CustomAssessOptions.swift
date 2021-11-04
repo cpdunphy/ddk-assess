@@ -25,13 +25,13 @@ extension AssessmentOptions {
     
     struct Timed : View {
         @EnvironmentObject var model : TimedAssessment
-        
+
         var body : some View {
             
             Section("Duration") {
-                BuildingBlocks.DurationPicker(duration: $model.duration)
+                BuildingBlocks.DurationPicker(value: $model.duration)
                 BuildingBlocks.CountdownStepper(countdown: $model.countdownLength)
-            }
+            }.disabled(isDisabled(model.countingState))
             
             Section {
                 Toggle("Show Decimal on Timer", isOn: $model.showDecimalOnTimer)
@@ -43,6 +43,25 @@ extension AssessmentOptions {
         @EnvironmentObject var model : CountingAssessment
         
         var body : some View {
+            
+            Section {
+                Toggle(
+                    "Rep Goal",
+                    isOn: $model.goalIsEnabled
+                )
+                
+                if model.goalIsEnabled {
+                    BuildingBlocks.DurationPicker(
+                        value: $model.countingGoal,
+                        range: 1...100,
+                        title: "Set your goal"
+                    )
+                }
+                
+            } footer: {
+                Text("Select the number of reps you want to reach and the timer will stop when you reach that goal.")
+            }.disabled(isDisabled(model.countingState))
+            
             Section {
                 Toggle("Show Decimal on Timer", isOn: $model.showDecimalOnTimer)
             }
@@ -51,13 +70,12 @@ extension AssessmentOptions {
     
     struct HeartRate : View {
         @EnvironmentObject var model : HeartRateAssessment
-        
+       
         var body : some View {
-            
             Section("Duration") {
-                BuildingBlocks.DurationPicker(duration: $model.duration)
+                BuildingBlocks.DurationPicker(value: $model.duration)
                 BuildingBlocks.CountdownStepper(countdown: $model.countdownLength)
-            }
+            }.disabled(isDisabled(model.countingState))
             
             Section {
                 Toggle("Show Decimal on Timer", isOn: $model.showDecimalOnTimer)
@@ -77,23 +95,31 @@ extension AssessmentOptions {
 // MARK: - Building Blocks
 extension AssessmentOptions {
     
+    static func isDisabled(_ state : Set<CountingState>) -> Bool {
+        return state.contains(.counting) || state.contains(.countdown)
+    }
+    
+    
     struct BuildingBlocks {
         
         struct DurationPicker : View {
             
-            @Binding var duration : Int
+            @Binding var value : Int
             var range : ClosedRange<Int>
+            var title: String
             
-            init (duration: Binding<Int>, range: ClosedRange<Int> = Defaults.timerRange) {
-                self._duration = duration
+            init(value: Binding<Int>, range: ClosedRange<Int> = Defaults.timerRange, title: String = "Set the Seconds") {
+                self._value = value
                 self.range = range
-                if !range.contains(self.duration) {
-                    self.duration = Defaults.timerDuration
+                self.title = title
+                
+                if !range.contains(self.value) {
+                    self.value = Defaults.timerDuration
                 }
             }
             
             var body: some View {
-                Picker("Set the Seconds", selection: $duration) {
+                Picker("Set the Seconds", selection: $value) {
                     ForEach(range, id: \.self) {
                         Text("\($0)").tag($0)
                     }

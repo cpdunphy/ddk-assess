@@ -108,37 +108,42 @@ extension AssessmentTaker {
                         
                         BuildingBlocks.Separator()
                         
-                        Text(BuildingBlocks.tapDescrition(model.taps))
-                            .modifier(BuildingBlocks.SubtitleFont())
+                        if model.goalIsEnabled {
+                            Text(
+                                BuildingBlocks.tapDescrition(model.taps)
+                                + " / \(model.countingGoal)"
+                            )
+                                .modifier(BuildingBlocks.SubtitleFont())
+                        } else {
+                            Text(BuildingBlocks.tapDescrition(model.taps))
+                                .modifier(BuildingBlocks.SubtitleFont())
+                        }
                         
+
                     }.position(x: geo.size.width / 2, y: geo.size.height / 2)
+                    
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(.secondarySystemGroupedBackground))
                 .cornerRadius(15.0)
-                .onChange(of: model.currentDateTime, perform: checkStatus)
+                .onChange(of: model.taps, perform: checkStatus)
                 
             }
             
             var timerDescription : String {
                 return BuildingBlocks.getStandardTimeDisplayString(
-                    model.calculateTimeLeft() ?? 0,
+                    model.calculateTime() ?? 0,
                     showDecimal: model.showDecimalOnTimer
                 )
             }
             
             // Check Status. TODO: Since this is tied to the view, it doesn't transition to the next state if the view is closed.
-            func checkStatus(_ newValue: Date) {
-                let state = model.countingState
+            func checkStatus(_ newValue: Int) {
                 
-                guard let timeLeft = model.calculateTimeLeft() else {
-                    return
-                }
-                
-                if timeLeft <= 0 {
-                    if state.contains(.counting) {
-                        model.startTimer()
-                    }
+                if newValue == 1 {
+                    model.startTimer()
+                } else if model.goalIsEnabled && newValue == model.countingGoal {
+                    model.freezeTimer()
                 }
             }
         }
