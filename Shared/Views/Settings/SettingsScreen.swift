@@ -21,9 +21,7 @@ struct SettingsScreen: View {
     @EnvironmentObject var store : Store
         
     @AppStorage("show_decimal_timer") var showDecimalOnTimer : Bool = true
-    
-    @State private var showResetConfirmationAlert : Bool = false
-    
+        
     #if os(iOS)
     @State private var mailResult:          Result<MFMailComposeResult, Error>? = nil
     @State private var showingMailView :    Bool = false
@@ -127,37 +125,56 @@ struct SettingsScreen: View {
                 
             }
             
-            // Reset Preferences
-            Section {
-                Button {
-                    showResetConfirmationAlert = true
-                } label: {
-                    Label("Reset Preferences", systemImage: "exclamationmark.arrow.circlepath")
-                }.foregroundColor(.red)
-            }
+            ResetAllPreferences()
             
         }
         
     }
 
+    struct ResetAllPreferences : View {
+        
+        @State private var showResetConfirmationAlert : Bool = false
+
+        var body: some View {
+            // Reset Preferences
+            Section {
+                Button {
+                    showResetConfirmationAlert = true
+                } label: {
+                    Label("Reset All Preferences", systemImage: "exclamationmark.arrow.circlepath")
+                }.foregroundColor(.red)
+            }
+            
+            // Reset Settings Confirmation
+                .alert(
+                    "Reset Preferences",
+                    isPresented: $showResetConfirmationAlert,
+                    actions: {
+                        Button("Cancel", role: .cancel) { }
+                        
+                        Button("Reset", role: .destructive, action: resetPreferences)
+                    },
+                    message: {
+                        Text("Are you sure you want to reset ALL preferences?")
+                    }
+                )
+        }
+        
+        @EnvironmentObject var timed : TimedAssessment
+        @EnvironmentObject var count : CountingAssessment
+        @EnvironmentObject var hr : HeartRateAssessment
+        
+        func resetPreferences() {
+            timed.resetPreferences()
+            count.resetPreferences()
+            hr.resetPreferences()
+        }
+    }
+    
     // MARK: - Body
     var body: some View {
         form
             .navigationTitle("Settings")
-        
-        // Reset Settings Confirmation
-            .alert(
-                "Reset Preferences",
-                isPresented: $showResetConfirmationAlert,
-                actions: {
-                    Button("Cancel", role: .cancel) { }
-                    
-                    Button("Reset", role: .destructive, action: resetPreferences)
-                },
-                message: {
-                    Text("Are you sure you want to reset all preferences?")
-                }
-            )
         
         // Mail Popover Sheet
             .sheet(isPresented: $showingMailView) {
