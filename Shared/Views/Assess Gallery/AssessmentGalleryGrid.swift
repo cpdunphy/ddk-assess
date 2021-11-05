@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AssessmentGalleryGrid: View {
     
-    @EnvironmentObject var model : DDKModel
+    @EnvironmentObject var ddk : DDKModel
     
     @Binding var assessmentSelection         : AssessmentType?
     @Binding var assessmentSettingsSelection : AssessmentType?
@@ -23,7 +23,7 @@ struct AssessmentGalleryGrid: View {
             VStack {
                 
                 // Favorited Assessments
-                if !model.isFavoriteAssessmentsEmpty {
+                if !ddk.isFavoriteAssessmentsEmpty {
                     VStack(alignment: .leading) {
                         Text("Favorites".uppercased())
                             .font(.caption)
@@ -36,7 +36,7 @@ struct AssessmentGalleryGrid: View {
                         ) {
                             ForEach(
                                 AssessmentType.allCases.filter {
-                                    model.favoriteAssessments.contains($0.id)
+                                    ddk.favoriteAssessments.contains($0.id)
                                 }
                             ) { type in
                                 button(type)
@@ -55,7 +55,7 @@ struct AssessmentGalleryGrid: View {
                 ) {
                     ForEach(
                         AssessmentType.allCases.filter {
-                            !model.favoriteAssessments.contains($0.id)
+                            !ddk.favoriteAssessments.contains($0.id)
                         }
                     ) { type in
                         button(type)
@@ -85,7 +85,7 @@ struct AssessmentGalleryGrid: View {
                     .font(.headline)
                     .lineLimit(1)
                 
-                Text("53 assessments")
+                Text(ddk.assessCountDescription(type))
                     .font(.caption)
             }
             .foregroundColor(.white)

@@ -139,7 +139,6 @@ struct SettingsScreen: View {
         }
         
     }
-    @State private var testing : Bool = false
 
     // MARK: - Body
     var body: some View {
@@ -171,6 +170,7 @@ struct SettingsScreen: View {
         model.currentlySelectedTimerLength = 10
         showDecimalOnTimer = true
         //TODO: Reset all models and their subsequent preferences.
+        
     }
     
 }

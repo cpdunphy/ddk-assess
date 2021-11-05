@@ -8,11 +8,11 @@
 import Foundation
 import SwiftUI
 
-class TimedAssessment : TimedAssessmentBase, TimedAssessmentProtocol {
+class TimedAssessment : TimedAssessmentBase, TimedAssessmentProtocol, AssessmentProtocol {
 
-    @AppStorage(StorageKeys.Assessments.showDecimal(.timed)) var showDecimalOnTimer : Bool = true
-    @AppStorage(StorageKeys.Assessments.timerLength(.timed)) var duration : Int = 10
-    @AppStorage(StorageKeys.Assessments.countdownLength(.timed)) var countdownLength : Int = 3
+    @AppStorage(StorageKeys.Assessments.timerLength(.timed)) var duration : Int = Defaults.timerDuration
+    @AppStorage(StorageKeys.Assessments.countdownLength(.timed)) var countdownLength : Int = Defaults.countdownDuration
+    @AppStorage(StorageKeys.Assessments.showDecimal(.timed)) var showDecimalOnTimer : Bool = Defaults.showDecimalOnTimer
 
     @Published var taps : Int = 0
     
@@ -55,5 +55,11 @@ class TimedAssessment : TimedAssessmentBase, TimedAssessmentProtocol {
         default:
             return nil
         }
+    }
+    
+    func resetPreferences() {
+        duration = Defaults.timerDuration
+        countdownLength = Defaults.countdownDuration
+        showDecimalOnTimer = Defaults.showDecimalOnTimer
     }
 }

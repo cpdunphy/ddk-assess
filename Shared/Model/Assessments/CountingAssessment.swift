@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class CountingAssessment : Assessment {
+class CountingAssessment : Assessment, AssessmentProtocol {
     
     @AppStorage(StorageKeys.Assessments.Count.goalIsEnabled) var goalIsEnabled : Bool = Defaults.Count.goalIsEnabled
     @AppStorage(StorageKeys.Assessments.Count.goal) var countingGoal : Int = Defaults.Count.goal
@@ -49,5 +49,11 @@ class CountingAssessment : Assessment {
         }
         
         return nil
+    }
+    
+    func resetPreferences() {
+        goalIsEnabled = Defaults.Count.goalIsEnabled
+        countingGoal = Defaults.Count.goal
+        showDecimalOnTimer = Defaults.showDecimalOnTimer
     }
 }

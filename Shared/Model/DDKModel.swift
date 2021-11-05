@@ -41,6 +41,7 @@ class DDKModel : ObservableObject {
     /// The total amount of assessments done by the user. Incremented each time an assessment completes via 'finishTimer' & 'logCount'
     @AppStorage("userLogCountTOTAL") var totalAssessments : Int = 0
     
+    @AppStorage("assessment_total_distribution") var assessTotals : Data = Data()
 
     // MARK: Time References
     /// The latest start of a timed assessment
@@ -65,40 +66,6 @@ class DDKModel : ObservableObject {
 
 }
 
-/*
-// MARK: - Handling Count
-extension DDKModel {
-    
-    func handleCountTaps() {
-        print("handleCountTaps()")
-        if currentCountTaps == 0 {
-            print("Starting initial taps")
-            syncTimeRef()
-            currentCountState = .counting
-        }
-        currentCountTaps += 1
-    }
-    
-    func resetCount() {
-        currentCountState = .ready
-        currentCountTaps = 0
-    }
-    
-    func logCount() {
-        currentCountState = .ready
-        var duration: Double = abs(latestCountDateRef.timeIntervalSince(Date()))
-        if currentCountTaps == 0 {
-            duration = 0.0
-        }
-        let record = AssessmentRecord(date: Date(), taps: currentCountTaps, type: .count, duration: duration)
-        currentCountTaps = 0
-        records.insert(record, at: 0)
-        totalAssessments += 1
-        DDKModel.triggerHapticFeedbackSuccess()
-    }
-}
-*/
-
 // MARK: - HapticFeedback
 extension DDKModel {
     static func triggerHapticFeedbackSuccess() {
@@ -117,6 +84,7 @@ extension DDKModel {
     func addRecord(_ record: AssessmentRecord) {
         records.insert(record, at: 0)
         totalAssessments += 1
+        incrementType(record.type)
         DDKModel.triggerHapticFeedbackSuccess()
     }
     
@@ -182,5 +150,39 @@ extension DDKModel {
             
             
         }
+    }
+}
+
+//MARK: - Assessment Totals
+extension DDKModel {
+    
+    func getTotal(_ type: AssessmentType) -> Int {
+        
+        let totals = retreiveTotals()
+        
+        return totals[type] ?? 0
+    }
+    
+    func incrementType(_ type: AssessmentType) {
+        
+        var totals = retreiveTotals()
+        let current = totals[type] ?? 0
+        
+        totals[type] = current + 1
+        
+        guard let newTotals = try? JSONEncoder().encode(totals) else { return }
+        
+        assessTotals = newTotals
+    }
+    
+    func assessCountDescription(_ type: AssessmentType) -> String {
+        let total = getTotal(type)
+        
+        return "\(total) \(total == 1 ? "assessment" : "assessments")"
+    }
+    
+    private func retreiveTotals() -> [AssessmentType : Int] {
+        guard let decodedTotals = try? JSONDecoder().decode([AssessmentType:Int].self, from: assessTotals) else { return [:] }
+        return decodedTotals
     }
 }

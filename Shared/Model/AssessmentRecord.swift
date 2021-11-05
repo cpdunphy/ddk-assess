@@ -13,6 +13,7 @@ struct AssessmentRecord : Identifiable, Codable, Hashable, Equatable {
     var taps: Int
     var type: AssessmentType
     var duration: Double
+    var goal: Int?
     
     var durationDescription: String {
     

@@ -102,6 +102,21 @@ struct RecordGeneralInfo: View {
                             Text("\(record.taps)")
                         }
                         .font(.callout)
+                        
+                        
+                        if let goal = record.goal {
+                            Divider()
+                            
+                            HStack {
+                                Text("Goal")
+                                    .foregroundColor(.secondary)
+
+                                Spacer()
+                                    
+                                Text("\(goal)")
+                            }
+                            .font(.callout)
+                        }
                     }
                     
                 }

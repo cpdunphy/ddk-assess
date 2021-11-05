@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class HeartRateAssessment : TimedAssessmentBase, TimedAssessmentProtocol {
+class HeartRateAssessment : TimedAssessmentBase, TimedAssessmentProtocol, AssessmentProtocol {
     
     @AppStorage("heart_rate_unit") var heartRate : HeartRateDisplayUnit = Defaults.hrDisplayUnit
     @AppStorage(StorageKeys.Assessments.timerLength(.heartRate)) var duration : Int = Defaults.timerDuration
@@ -66,5 +66,12 @@ class HeartRateAssessment : TimedAssessmentBase, TimedAssessmentProtocol {
         default:
             return nil
         }
+    }
+    
+    func resetPreferences() {
+        heartRate = Defaults.hrDisplayUnit
+        duration = Defaults.timerDuration
+        countdownLength = Defaults.countdownDuration
+        showDecimalOnTimer = Defaults.showDecimalOnTimer
     }
 }

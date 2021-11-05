@@ -73,15 +73,18 @@ extension AssessmentTaker {
                     model.resetTimer()
                 }
                 
-                ButtonOptions.log.button {
-                    let record = AssessmentRecord(
-                        date: .now,
-                        taps: model.taps,
-                        type: .count,
-                        duration: model.calculateTime() ?? 0
-                    )
-                    ddk.addRecord(record)
-                    model.resetTimer()
+                if model.countingState != [.paused] {
+                    ButtonOptions.log.button {
+                        let record = AssessmentRecord(
+                            date: .now,
+                            taps: model.taps,
+                            type: .count,
+                            duration: model.calculateTime() ?? 0,
+                            goal: model.goalIsEnabled ? model.countingGoal : nil
+                        )
+                        ddk.addRecord(record)
+                        model.resetTimer()
+                    }
                 }
             }
         }

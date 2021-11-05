@@ -14,6 +14,7 @@ extension AssessmentTaker {
 struct AssessmentTaker: View {
     
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var ddk : DDKModel
     
     @State var assessmentSettingsSelection : AssessmentType? = nil
     
@@ -95,7 +96,7 @@ extension AssessmentTaker {
                         .fontWeight(.bold)
                         .lineLimit(1)
                     
-                    Text("53 assessments")
+                    Text(ddk.assessCountDescription(type))
                         .foregroundColor(.secondary)
                         .font(.caption)
                         .lineLimit(1)

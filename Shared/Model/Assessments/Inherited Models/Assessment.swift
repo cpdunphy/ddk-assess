@@ -68,4 +68,9 @@ protocol TimedAssessmentProtocol {
     func resetTimer()
 }
 
-
+protocol AssessmentProtocol {
+    
+    var showDecimalOnTimer : Bool { get set }
+    
+    func resetPreferences()
+}

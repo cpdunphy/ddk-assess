@@ -144,6 +144,14 @@ extension AssessmentTaker {
                     model.startTimer()
                 } else if model.goalIsEnabled && newValue == model.countingGoal {
                     model.freezeTimer()
+                    let record = AssessmentRecord(
+                        date: .now,
+                        taps: model.taps,
+                        type: .count,
+                        duration: model.calculateTime() ?? 0,
+                        goal: model.goalIsEnabled ? model.countingGoal : nil
+                    )
+                    ddk.addRecord(record)
                 }
             }
         }

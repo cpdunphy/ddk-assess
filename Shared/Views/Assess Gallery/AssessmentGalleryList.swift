@@ -60,7 +60,7 @@ struct AssessmentGalleryList: View {
                         .foregroundColor(.primary)
                         .fontWeight(.medium)
                     
-                    Text("53 assessments")
+                    Text(model.assessCountDescription(type))
                         .foregroundColor(.secondary)
                         .font(.caption)
                 }

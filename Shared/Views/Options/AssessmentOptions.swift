@@ -39,6 +39,19 @@ struct AssessmentOptions: View {
         }
     }
     
+    var model2 : AssessmentProtocol {
+        switch type {
+        case .timed:
+            return timed
+        case .count:
+            return count
+        case .heartRate:
+            return hr
+        }
+    }
+    
+    @State private var showResetConfirmationAlert : Bool = false
+    
     // MARK: - Form
     var form: some View {
         Form {
@@ -47,6 +60,8 @@ struct AssessmentOptions: View {
             }
             
             options
+            
+            resetPreferencesButton
         }
     }
         
@@ -61,6 +76,29 @@ struct AssessmentOptions: View {
                     ddk.toggleFavoriteStatus(type)
                 }
             )
+        )
+    }
+    
+    var resetPreferencesButton : some View {
+        Section {
+            Button {
+                showResetConfirmationAlert = true
+            } label: {
+                Label("Reset Preferences", systemImage: "exclamationmark.arrow.circlepath")
+            }.foregroundColor(.red)
+        }
+        // Reset Settings Confirmation
+        .alert(
+            "Reset Preferences",
+            isPresented: $showResetConfirmationAlert,
+            actions: {
+                Button("Cancel", role: .cancel) { }
+                
+                Button("Reset", role: .destructive, action: model2.resetPreferences)
+            },
+            message: {
+                Text("Are you sure you want to reset all preferences?")
+            }
         )
     }
     
