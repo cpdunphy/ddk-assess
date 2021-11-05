@@ -25,7 +25,8 @@ class DDKModel : ObservableObject {
     @Published var records : [AssessmentRecord] = []
     
     var allRecords: [AssessmentRecord] {
-        return records + pinnedRecords
+        let combo = records + pinnedRecords
+        return combo.sorted { $0.date < $1.date }
     }
     
     

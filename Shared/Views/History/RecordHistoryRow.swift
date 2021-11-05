@@ -87,7 +87,7 @@ struct RecordHistoryRow: View {
                 .tint(.accentColor)
         }
         
-        .swipeActions(allowsFullSwipe: false) {
+        .swipeActions {
             editButton
                 .tint(.yellow)
             

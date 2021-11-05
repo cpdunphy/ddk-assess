@@ -42,71 +42,24 @@ struct EditRecordScreen: View {
                 )
                 
                 DisclosureGroup("Duration: \(draftRecord.durationDescription)") {
-                
-                    Stepper(
-                        "Minutes",
-                        onIncrement: {
-                           
-                            draftRecord.duration += 60
-                            
-                            if draftRecord.duration >= 3600 {
-                                draftRecord.duration = 3599.9
-                            }
-                        }, onDecrement: {
-                            
-                            draftRecord.duration -= 60
-                            
-                            if draftRecord.duration < 0 {
-                                draftRecord.duration = 0
-                            }
-                            
-                        }
-                    )
-                    
-                    
-                    Stepper(
-                        "Seconds",
-                        onIncrement: {
-                            draftRecord.duration += 1
-                            
-                            if draftRecord.duration >= 3600 {
-                                draftRecord.duration = 3599.9
-                            }
-                        }, onDecrement: {
-                            
-                            draftRecord.duration -= 1
-                            
-                            if draftRecord.duration < 0 {
-                                draftRecord.duration = 0
-                            }
-                            
-                        }
-                    )
-                    
-                    Stepper(
-                        "Deciseconds",
-                        onIncrement: {
-                            draftRecord.duration += 0.1
-                            
-                            if draftRecord.duration >= 3600 {
-                                draftRecord.duration = 3599.9
-                            }
-                        }, onDecrement: {
-                            
-                            draftRecord.duration -= 0.1
-                            
-                            if draftRecord.duration < 0 {
-                                draftRecord.duration = 0
-                            }
-                            
-                        }
-                    )
+                    durationEditor
                 }
             }
             
             Section {
-                Stepper("Taps: \(draftRecord.taps)", value: $draftRecord.taps)
+                Stepper(
+                    "Taps: \(draftRecord.taps)",
+                    value: $draftRecord.taps,
+                    in: 0...(draftRecord.type != .count ? .max : draftRecord.goal ?? Defaults.Count.goal)
+                )
                 
+                if draftRecord.type == .count {
+                    Stepper(
+                        "Goal: \(draftRecord.goal ?? Defaults.Count.goal)",
+                        value: $draftRecord.goal ?? Defaults.Count.goal,
+                        in: draftRecord.taps...(.max)
+                    )
+                }
             }
             
             Section {
@@ -163,6 +116,66 @@ struct EditRecordScreen: View {
         .onDisappear {
             print("On Disappear")
         }
+    }
+    
+    @ViewBuilder
+    var durationEditor : some View {
+        Stepper(
+            "Minutes",
+            onIncrement: {
+               
+                draftRecord.duration += 60
+                
+                if draftRecord.duration >= 3600 {
+                    draftRecord.duration = 3599.9
+                }
+            }, onDecrement: {
+                
+                draftRecord.duration -= 60
+                
+                if draftRecord.duration < 0 {
+                    draftRecord.duration = 0
+                }
+            }
+        )
+        
+        Stepper(
+            "Seconds",
+            onIncrement: {
+                draftRecord.duration += 1
+                
+                if draftRecord.duration >= 3600 {
+                    draftRecord.duration = 3599.9
+                }
+            }, onDecrement: {
+                
+                draftRecord.duration -= 1
+                
+                if draftRecord.duration < 0 {
+                    draftRecord.duration = 0
+                }
+                
+            }
+        )
+        
+        Stepper(
+            "Deciseconds",
+            onIncrement: {
+                draftRecord.duration += 0.1
+                
+                if draftRecord.duration >= 3600 {
+                    draftRecord.duration = 3599.9
+                }
+            }, onDecrement: {
+                
+                draftRecord.duration -= 0.1
+                
+                if draftRecord.duration < 0 {
+                    draftRecord.duration = 0
+                }
+                
+            }
+        )
     }
 }
 

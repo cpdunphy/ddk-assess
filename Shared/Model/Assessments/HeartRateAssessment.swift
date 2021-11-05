@@ -10,7 +10,7 @@ import SwiftUI
 
 class HeartRateAssessment : TimedAssessmentBase, TimedAssessmentProtocol, AssessmentProtocol {
     
-    @AppStorage("heart_rate_unit") var heartRate : HeartRateDisplayUnit = Defaults.hrDisplayUnit
+    @AppStorage(StorageKeys.Assessments.HeartRate.unit) var hrUnit : HeartRateDisplayUnit = Defaults.hrDisplayUnit
     @AppStorage(StorageKeys.Assessments.timerLength(.heartRate)) var duration : Int = Defaults.timerDuration
     @AppStorage(StorageKeys.Assessments.countdownLength(.heartRate)) var countdownLength : Int = Defaults.countdownDuration
     @AppStorage(StorageKeys.Assessments.showDecimal(.heartRate)) var showDecimalOnTimer : Bool = Defaults.showDecimalOnTimer
@@ -26,14 +26,23 @@ class HeartRateAssessment : TimedAssessmentBase, TimedAssessmentProtocol, Assess
         taps = 0
     }
     
-    func calculateHeartRate() -> Int {
+    static func calculateHeartRate(unit: HeartRateDisplayUnit, taps: Int, duration: Double) -> Int {
         
-        switch heartRate {
-        case .bpm:
-            return Int(60.0 / (Double(duration) - (calculateTimeLeft() ?? 0)) * Double(taps))
-        case .bps:
-            return Int(Double(taps) / (Double(duration) - (calculateTimeLeft() ?? 0)))
+        if duration == 0.0 {
+            return 0
         }
+        
+        switch unit {
+        case .bpm:
+            return Int(60.0 / duration * Double(taps))
+        case .bps:
+            return Int(Double(taps) / (duration))
+        }
+    }
+    
+    // Computed HR For the assessment (overall logic in the static method 'calculateHeartRate()'
+    var heartRate : Int {
+        HeartRateAssessment.calculateHeartRate(unit: hrUnit, taps: taps, duration: Double(duration) - (calculateTimeLeft() ?? 0))
     }
     
     // TODO: How can I move this higher in the inheritance stack.. I don't think I can since it references countdown and duration, which are stored in the actual top class.
@@ -69,7 +78,7 @@ class HeartRateAssessment : TimedAssessmentBase, TimedAssessmentProtocol, Assess
     }
     
     func resetPreferences() {
-        heartRate = Defaults.hrDisplayUnit
+        hrUnit = Defaults.hrDisplayUnit
         duration = Defaults.timerDuration
         countdownLength = Defaults.countdownDuration
         showDecimalOnTimer = Defaults.showDecimalOnTimer

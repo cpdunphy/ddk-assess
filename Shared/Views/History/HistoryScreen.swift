@@ -84,7 +84,7 @@ struct HistoryScreen: View {
                 sectionOfRecordHistory(nil, model.allRecords)
             }
             
-            Text("You have done \(totalAssessments) DDK \(totalAssessments == 1 ? "Assessment!" : "Assessments!")")
+            Text("You have done \(totalAssessments) \(totalAssessments == 1 ? "Assessment!" : "Assessments!")")
         }
     }
     

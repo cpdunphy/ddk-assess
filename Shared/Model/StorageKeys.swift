@@ -34,9 +34,13 @@ struct StorageKeys {
             return type.rawValue + "_show_decimal"
         }
         
+        struct HeartRate {
+            static var unit = AssessmentType.heartRate.rawValue + "_heart_rate_unit"
+        }
+        
         struct Count {
-            static var goalIsEnabled = AssessmentType.count.rawValue + "goal_is_enabled"
-            static var goal = AssessmentType.count.rawValue + "goal_value"
+            static var goalIsEnabled = AssessmentType.count.rawValue + "_goal_is_enabled"
+            static var goal = AssessmentType.count.rawValue + "_goal_value"
         }
     }
     

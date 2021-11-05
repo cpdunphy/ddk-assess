@@ -82,7 +82,7 @@ extension AssessmentOptions {
             }
             
             Section {
-                Picker("Display Unit", selection: $model.heartRate) {
+                Picker("Display Unit", selection: $model.hrUnit) {
                     ForEach(HeartRateDisplayUnit.allCases) {
                         Text($0.rawValue).tag($0)
                     }

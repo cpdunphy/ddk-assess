@@ -17,6 +17,8 @@
 		6CAEE29827323E2800184E39 /* CustomAssessTaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE29727323E2800184E39 /* CustomAssessTaps.swift */; };
 		6CAEE29A27323E5600184E39 /* CustomAssessControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE29927323E5600184E39 /* CustomAssessControls.swift */; };
 		6CAEE29C27323E6300184E39 /* CustomAssessStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE29B27323E6300184E39 /* CustomAssessStats.swift */; };
+		6CC156192735CC9300A7A344 /* FavoriteAssesmentsOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC156182735CC9300A7A344 /* FavoriteAssesmentsOverview.swift */; };
+		6CC1561B2735D52200A7A344 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1561A2735D52200A7A344 /* Binding.swift */; };
 		F0214EEA26A31B8100003DDC /* AssessmentGalleryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */; };
 		F0214EEC26A31BEA00003DDC /* AssessmentGalleryGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */; };
 		F0214EEE26A31BF600003DDC /* AssessmentGalleryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EED26A31BF600003DDC /* AssessmentGalleryList.swift */; };
@@ -125,6 +127,8 @@
 		6CAEE29727323E2800184E39 /* CustomAssessTaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssessTaps.swift; sourceTree = "<group>"; };
 		6CAEE29927323E5600184E39 /* CustomAssessControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssessControls.swift; sourceTree = "<group>"; };
 		6CAEE29B27323E6300184E39 /* CustomAssessStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssessStats.swift; sourceTree = "<group>"; };
+		6CC156182735CC9300A7A344 /* FavoriteAssesmentsOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAssesmentsOverview.swift; sourceTree = "<group>"; };
+		6CC1561A2735D52200A7A344 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryScreen.swift; sourceTree = "<group>"; };
 		F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryGrid.swift; sourceTree = "<group>"; };
 		F0214EED26A31BF600003DDC /* AssessmentGalleryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryList.swift; sourceTree = "<group>"; };
@@ -365,6 +369,7 @@
 		F080D74126A8C2D600A1F49D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				6CC156182735CC9300A7A344 /* FavoriteAssesmentsOverview.swift */,
 				F0E180B125236C3500E808AB /* SettingsScreen.swift */,
 				F04AD42B271CCDB600293641 /* SettingsScreenButton.swift */,
 				F04AD42E271D099900293641 /* ManageMembership.swift */,
@@ -435,6 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				F08D1BAC27150E4E004FE52A /* RoundedCorner.swift */,
+				6CC1561A2735D52200A7A344 /* Binding.swift */,
 				F030470E251E65F300B438E7 /* Color.swift */,
 				F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */,
 			);
@@ -645,6 +651,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CC156192735CC9300A7A344 /* FavoriteAssesmentsOverview.swift in Sources */,
 				F0D5539E251C24340084E0EB /* DDKModel.swift in Sources */,
 				F080D73B26A5E0F100A1F49D /* RecordHistoryRow.swift in Sources */,
 				F02DB40F251C23440038FEAE /* ContentView.swift in Sources */,
@@ -673,6 +680,7 @@
 				6CAEE28F27323AA800184E39 /* Assessment.swift in Sources */,
 				F04AD42C271CCDB600293641 /* SettingsScreenButton.swift in Sources */,
 				F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */,
+				6CC1561B2735D52200A7A344 /* Binding.swift in Sources */,
 				6CAEE29A27323E5600184E39 /* CustomAssessControls.swift in Sources */,
 				6CAEE29C27323E6300184E39 /* CustomAssessStats.swift in Sources */,
 				F04AD42F271D099900293641 /* ManageMembership.swift in Sources */,

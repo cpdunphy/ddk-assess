@@ -19,9 +19,7 @@ struct SettingsScreen: View {
     
     @EnvironmentObject var model : DDKModel
     @EnvironmentObject var store : Store
-        
-    @AppStorage("show_decimal_timer") var showDecimalOnTimer : Bool = true
-        
+                
     #if os(iOS)
     @State private var mailResult:          Result<MFMailComposeResult, Error>? = nil
     @State private var showingMailView :    Bool = false
@@ -32,29 +30,7 @@ struct SettingsScreen: View {
         List {
             
             Section("Getting Started") {
-                Button {
-                    
-                } label: {
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Image(systemName: "atom")
-                                .font(.largeTitle)
-
-                            Text("What's new in\nTritium 2")
-                                .font(.system(.title2, design: .rounded))
-                                .fontWeight(.bold)
-                                .fixedSize(horizontal: false, vertical: true)
-
-                        }
-                        .shiny(.init(colors: [.cyan, .teal]))
-                        .padding(.bottom, 8)
-                        
-                        Text("50+ new features. A total redesign. See what's new in the biggest update to Tritium yet.")
-                            .fixedSize(horizontal: false, vertical: true)
-                            .foregroundColor(.primary)
-                        
-                    }.padding(.vertical, 8)
-                }
+                whatsNew
             }
             
             // Manage Subscription
@@ -67,27 +43,6 @@ struct SettingsScreen: View {
                     ).symbolVariant(.fill)
                 }
             }
-            
-            
-            /*
-            // Support The Dev
-            #if os(iOS)
-            Section("Support") {
-                if !store.productOptions.isEmpty {
-                    ForEach(store.productOptions) { product in
-                        NavigationLink(
-                            destination: SupportTheDev(product: product)
-                        ) {
-                            Text("Buy the developer a \(product.displayName) \(store .emoji(for: product.id))")
-                        }
-                    }
-                } else {
-                    Text("No Support Options Currently Available")
-                        .font(.footnote)
-                }
-            }
-            #endif
-             */
              
             // App Information + More
             Section("Information") {
@@ -125,12 +80,61 @@ struct SettingsScreen: View {
                 
             }
             
-            ResetAllPreferences()
+            
+            Section {
+                NavigationLink(
+                    destination: FavoriteAssesmentsOverview(),
+                    label: {
+                        Label("Edit Favorites", systemImage: "star.fill")
+                            .accentColor(.yellow) // TODO: This will be deprecated
+                    }
+                )
+
+                ResetAllPreferences()
+            }
             
         }
         
     }
+    
+    var whatsNew : some View {
+        Button {
+            
+        } label: {
+            VStack(alignment: .leading) {
+                HStack {
+                    Image(systemName: "atom")
+                        .font(.largeTitle)
 
+                    Text("What's new in\nTritium 2")
+                        .font(.system(.title2, design: .rounded))
+                        .fontWeight(.bold)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                }
+                .shiny(.init(colors: [.cyan, .teal]))
+                .padding(.bottom, 8)
+                
+                Text("50+ new features. A total redesign. See what's new in the biggest update to Tritium yet.")
+                    .fixedSize(horizontal: false, vertical: true)
+                    .foregroundColor(.primary)
+                
+            }.padding(.vertical, 8)
+        }
+    }
+    
+    // MARK: - Body
+    var body: some View {
+        form
+            .navigationTitle("Settings")
+        
+        // Mail Popover Sheet
+            .sheet(isPresented: $showingMailView) {
+                MailView(result: $mailResult)
+            }
+    }
+    
+    // Button that resets the preferences across the whole app.
     struct ResetAllPreferences : View {
         
         @State private var showResetConfirmationAlert : Bool = false
@@ -170,26 +174,6 @@ struct SettingsScreen: View {
             hr.resetPreferences()
         }
     }
-    
-    // MARK: - Body
-    var body: some View {
-        form
-            .navigationTitle("Settings")
-        
-        // Mail Popover Sheet
-            .sheet(isPresented: $showingMailView) {
-                MailView(result: $mailResult)
-            }
-        
-    }
-    
-    func resetPreferences() {
-        model.currentlySelectedTimerLength = 10
-        showDecimalOnTimer = true
-        //TODO: Reset all models and their subsequent preferences.
-        
-    }
-    
 }
 
 struct Settings_Previews: PreviewProvider {

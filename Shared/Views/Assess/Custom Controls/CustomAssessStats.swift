@@ -178,7 +178,7 @@ extension AssessmentTaker {
                                 .symbolVariant(.fill)
                                 .foregroundColor(.pink)
                             
-                            Text("\(model.calculateHeartRate()) \(model.heartRate.rawValue.uppercased())")
+                            Text("\(model.heartRate) \(model.hrUnit.rawValue.uppercased())")
                                 .modifier(BuildingBlocks.SubtitleFont())
                         }
                         

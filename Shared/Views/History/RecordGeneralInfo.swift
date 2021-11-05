@@ -13,6 +13,8 @@ struct RecordGeneralInfo: View {
 
     @EnvironmentObject var model : DDKModel
     
+    @AppStorage(StorageKeys.Assessments.HeartRate.unit) var hrUnit : HeartRateDisplayUnit = Defaults.hrDisplayUnit
+    
     var record: AssessmentRecord
     
     init(_ record: AssessmentRecord) {
@@ -104,7 +106,7 @@ struct RecordGeneralInfo: View {
                         .font(.callout)
                         
                         
-                        if let goal = record.goal {
+                        if  record.type == .count {
                             Divider()
                             
                             HStack {
@@ -113,7 +115,21 @@ struct RecordGeneralInfo: View {
 
                                 Spacer()
                                     
-                                Text("\(goal)")
+                                Text("\(record.goal ?? Defaults.Count.goal)")
+                            }
+                            .font(.callout)
+                        }
+                        
+                        if record.type == .heartRate {
+                            Divider()
+                            
+                            HStack {
+                                Text("Heart Rate")
+                                    .foregroundColor(.secondary)
+
+                                Spacer()
+                                    
+                                Text("\(HeartRateAssessment.calculateHeartRate(unit: hrUnit, taps: record.taps, duration: record.duration)) \(hrUnit.rawValue.uppercased())")
                             }
                             .font(.callout)
                         }
@@ -123,6 +139,7 @@ struct RecordGeneralInfo: View {
             }.padding()
         }
     }
+    
 }
 
 struct RecordGeneralInfo_Previews: PreviewProvider {
