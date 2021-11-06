@@ -101,6 +101,7 @@ extension DDKModel {
     
     func deleteRecord(_ record: AssessmentRecord) {
         records.removeAll(where: { $0.id == record.id })
+        pinnedRecords.removeAll(where: { $0.id == record.id })
     }
 }
 

@@ -98,6 +98,7 @@ struct RecordHistoryRow: View {
         .confirmationDialog("Are you sure?", isPresented: $deleteConfirmationIsPresented) {
             Button(role: .destructive) {
                 model.deleteRecord(record)
+                print(record.id)
             } label: {
                 Text("Delete the assessment")
             }
