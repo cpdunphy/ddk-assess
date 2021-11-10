@@ -13,12 +13,16 @@ struct AssessmentGalleryIcon: View {
     
     var body: some View {
         Image(systemName: type.icon)
+            .font(.title3)
             .imageScale(.large)
             .foregroundColor(.white)
-            .font(.title3)
             .padding(10)
-            .background(type.color, in: RoundedRectangle(cornerRadius: 8))
+            .background(
+                type.color,
+                in: RoundedRectangle(cornerRadius: 8)
+            )
             .padding(2)
+            
 //            .overlay(
 //                RoundedRectangle(cornerRadius: 10)
 //                    .stroke(.ultraThickMaterial, lineWidth: 6)

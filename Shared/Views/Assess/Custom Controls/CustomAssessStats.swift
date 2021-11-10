@@ -19,6 +19,8 @@ extension AssessmentTaker {
             Stats.Count()
         case .heartRate:
             Stats.HeartRate()
+        default:
+            EmptyView()
         }
     }
     
@@ -178,7 +180,7 @@ extension AssessmentTaker {
                                 .symbolVariant(.fill)
                                 .foregroundColor(.pink)
                             
-                            Text("\(model.heartRate) \(model.hrUnit.rawValue.uppercased())")
+                            Text("\(Int(model.heartRate.rounded())) \(model.hrUnit.rawValue.uppercased())")
                                 .modifier(BuildingBlocks.SubtitleFont())
                         }
                         

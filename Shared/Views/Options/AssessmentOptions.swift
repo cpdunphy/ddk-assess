@@ -36,6 +36,8 @@ struct AssessmentOptions: View {
             return count
         case .heartRate:
             return hr
+        default:
+            return timed //TODO: This Cannot stay!!
         }
     }
     
@@ -47,6 +49,8 @@ struct AssessmentOptions: View {
             return count
         case .heartRate:
             return hr
+        default:
+            return timed //TODO: This Cannot stay!!
         }
     }
     

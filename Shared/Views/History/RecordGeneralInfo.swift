@@ -129,7 +129,7 @@ struct RecordGeneralInfo: View {
 
                                 Spacer()
                                     
-                                Text("\(HeartRateAssessment.calculateHeartRate(unit: hrUnit, taps: record.taps, duration: record.duration)) \(hrUnit.rawValue.uppercased())")
+                                Text("\(Int(HeartRateAssessment.calculateHeartRate(unit: hrUnit, taps: record.taps, duration: record.duration).rounded())) \(hrUnit.rawValue.uppercased())")
                             }
                             .font(.callout)
                         }

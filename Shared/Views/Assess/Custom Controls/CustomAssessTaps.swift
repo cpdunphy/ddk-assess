@@ -19,6 +19,8 @@ extension AssessmentTaker {
             TapButtons.Count()
         case .heartRate:
             TapButtons.HeartRate()
+        default:
+            EmptyView()
         }
     }
     

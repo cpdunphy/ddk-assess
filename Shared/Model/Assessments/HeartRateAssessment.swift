@@ -26,7 +26,7 @@ class HeartRateAssessment : TimedAssessmentBase, TimedAssessmentProtocol, Assess
         taps = 0
     }
     
-    static func calculateHeartRate(unit: HeartRateDisplayUnit, taps: Int, duration: Double) -> Int {
+    static func calculateHeartRate(unit: HeartRateDisplayUnit, taps: Int, duration: Double) -> Double {
         
         if duration == 0.0 {
             return 0
@@ -34,14 +34,14 @@ class HeartRateAssessment : TimedAssessmentBase, TimedAssessmentProtocol, Assess
         
         switch unit {
         case .bpm:
-            return Int(60.0 / duration * Double(taps))
+            return 60.0 / duration * Double(taps)
         case .bps:
-            return Int(Double(taps) / (duration))
+            return Double(taps) / (duration)
         }
     }
     
     // Computed HR For the assessment (overall logic in the static method 'calculateHeartRate()'
-    var heartRate : Int {
+    var heartRate : Double {
         HeartRateAssessment.calculateHeartRate(unit: hrUnit, taps: taps, duration: Double(duration) - (calculateTimeLeft() ?? 0))
     }
     

@@ -15,7 +15,7 @@ struct AssessmentGalleryGrid: View {
     @Binding var assessmentSettingsSelection : AssessmentType?
     
     var columns = [
-        GridItem(.adaptive(minimum: 170))
+        GridItem(.adaptive(minimum: 150))
     ]
     
     var body: some View {
@@ -59,6 +59,7 @@ struct AssessmentGalleryGrid: View {
                         }
                     ) { type in
                         button(type)
+//                        Rectangle()
                     }
                 }
             }.padding(.horizontal)
@@ -73,22 +74,24 @@ struct AssessmentGalleryGrid: View {
             
             VStack(alignment: .leading) {
                 
-                HStack {
-                    Image(systemName: type.icon)
-                        .font(.title)
-                        .padding(.bottom)
-                    
-                    Spacer()
-                }
+                Image(systemName: type.icon)
+                    .font(.title)
+                    .padding(.bottom, 6)
+
+                Spacer(minLength: 0)
                 
                 Text(type.title)
                     .font(.headline)
-                    .lineLimit(1)
+                    .lineSpacing(6)
+                    .lineLimit(2)
                 
                 Text(ddk.assessCountDescription(type))
                     .font(.caption)
+                    .truncationMode(.tail)
+                    .lineLimit(1)
             }
             .foregroundColor(.white)
+            .frame(maxWidth: .infinity, minHeight: 85, maxHeight: .infinity, alignment: .leading)
             .padding(10)
             .background(
                 //TODO: make this a gradient
