@@ -90,6 +90,16 @@ struct SettingsScreen: View {
                     }
                 )
 
+                NavigationLink(
+                    destination: Statistics(),
+                    label: {
+                        Label("Statistics", systemImage: "sum")
+                            .accentColor(.orange)
+                    }
+                )
+            }
+            
+            Section {
                 ResetAllPreferences()
             }
             
@@ -106,7 +116,7 @@ struct SettingsScreen: View {
                     Image(systemName: "atom")
                         .font(.largeTitle)
 
-                    Text("What's new in\nTritium 2")
+                    Text("What's new in\nDDK 2")
                         .font(.system(.title2, design: .rounded))
                         .fontWeight(.bold)
                         .fixedSize(horizontal: false, vertical: true)
@@ -115,7 +125,7 @@ struct SettingsScreen: View {
                 .shiny(.init(colors: [.cyan, .teal]))
                 .padding(.bottom, 8)
                 
-                Text("50+ new features. A total redesign. See what's new in the biggest update to Tritium yet.")
+                Text("50+ new features. A total redesign. See what's new in the biggest update to DDK yet.")
                     .fixedSize(horizontal: false, vertical: true)
                     .foregroundColor(.primary)
                 

@@ -54,6 +54,7 @@ struct AssessmentOptions: View {
         }
     }
     
+    @State private var showResetCountConf : Bool = false
     @State private var showResetConfirmationAlert : Bool = false
     
     // MARK: - Form
@@ -65,7 +66,10 @@ struct AssessmentOptions: View {
             
             options
             
-            resetPreferencesButton
+            Section {
+                resetLogsButton    
+                resetPreferencesButton
+            }
         }
     }
         
@@ -83,16 +87,37 @@ struct AssessmentOptions: View {
         )
     }
     
+    var resetLogsButton : some View {
+        Button(role: .destructive) {
+            showResetCountConf = true
+        } label: {
+            Label("Reset Logs", systemImage: "clock.arrow.circlepath")
+        }.foregroundColor(.red)
+        .confirmationDialog(
+            "Reset Logs",
+            isPresented: $showResetCountConf,
+            actions: {
+                Button("Cancel", role: .cancel, action: { })
+                
+                Button("Reset", role: .destructive, action: {
+                    ddk.resetTypeValue(for: type)
+                })
+                
+            },
+            message: {
+                Text("Reset the number of times you've done assessments of this type")
+            }
+        )
+    }
+    
     var resetPreferencesButton : some View {
-        Section {
-            Button {
-                showResetConfirmationAlert = true
-            } label: {
-                Label("Reset Preferences", systemImage: "exclamationmark.arrow.circlepath")
-            }.foregroundColor(.red)
-        }
+        Button {
+            showResetConfirmationAlert = true
+        } label: {
+            Label("Reset Preferences", systemImage: "exclamationmark.arrow.circlepath")
+        }.foregroundColor(.red)
         // Reset Settings Confirmation
-        .alert(
+        .confirmationDialog(
             "Reset Preferences",
             isPresented: $showResetConfirmationAlert,
             actions: {

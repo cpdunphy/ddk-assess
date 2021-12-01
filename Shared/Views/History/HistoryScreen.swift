@@ -11,7 +11,6 @@ struct HistoryScreen: View {
     
     @EnvironmentObject var model : DDKModel
     
-    @AppStorage(StorageKeys.User.totalAssessments) var totalAssessments :   Int = 0
     @AppStorage(StorageKeys.History.useGroups) var useGroups :              Bool = false
     @AppStorage(StorageKeys.History.sortBy) var sortBy :                    RecordSortTypes = .pinned
     
@@ -20,7 +19,13 @@ struct HistoryScreen: View {
         
     // MARK: - Grouped Records
     // Sorts and labels sections of records appropriately.
-    var groupedRecords : [RecordGroup] {
+    var groupedRecords : [RecordGroup]? {
+        
+        if model.allRecords.isEmpty {
+            // No records to display..
+            return nil
+        }
+        
         switch sortBy {
             
         case .pinned: // Group by Pinned
@@ -71,20 +76,25 @@ struct HistoryScreen: View {
     var listOfRecords: some View {
         List {
             if useGroups {
-                
-                // Iterate over the keys in the dictionary
-                ForEach(groupedRecords, id: \.title) { group in //TODO: Dict is inherently unordered. Find some way to keep this consistent.
-                    if !group.records.isEmpty {
-                        // Grouped Section with a Key and existent Records.
-                        sectionOfRecordHistory(group.title, group.records)
+                if let groupedRecords = groupedRecords {
+                    // Iterate over the keys in the dictionary
+                    ForEach(groupedRecords, id: \.title) { group in //TODO: Dict is inherently unordered. Find some way to keep this consistent.
+                        if !group.records.isEmpty {
+                            // Grouped Section with a Key and existent Records.
+                            sectionOfRecordHistory(group.title, group.records)
+                        }
                     }
+                } else {
+                    Text("Go do your first assessment!")
                 }
             } else {
                 // Show all records by time, regardless of "GroupBy"
-                sectionOfRecordHistory(nil, model.allRecords)
+                if !model.allRecords.isEmpty {
+                    sectionOfRecordHistory(nil, model.allRecords)
+                } else {
+                    Text("Go do your first assessment!")
+                }
             }
-            
-            Text("You have done \(totalAssessments) \(totalAssessments == 1 ? "Assessment!" : "Assessments!")")
         }
     }
     

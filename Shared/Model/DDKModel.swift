@@ -42,6 +42,8 @@ class DDKModel : ObservableObject {
     /// The total amount of assessments done by the user. Incremented each time an assessment completes via 'finishTimer' & 'logCount'
     @AppStorage("userLogCountTOTAL") var totalAssessments : Int = 0
     
+    @AppStorage("assessment_lifetime_total_distribution") var assessLifetimeTotals : Data = Data()
+
     @AppStorage("assessment_total_distribution") var assessTotals : Data = Data()
 
     // MARK: Time References
@@ -167,14 +169,37 @@ extension DDKModel {
     
     func incrementType(_ type: AssessmentType) {
         
-        var totals = retreiveTotals()
-        let current = totals[type] ?? 0
+        let totals = retreiveTotals()
+        let lifeTotals = retreiveLifetimeTotals()
+        let currentValue = totals[type] ?? 0
+        let currentLifetimeValue = lifeTotals[type] ?? 0
         
-        totals[type] = current + 1
+        setTypeValue(for: type, to: currentValue + 1)
+        setTypeLifetimeValue(for: type, to: currentLifetimeValue + 1)
+    }
+    
+    func setTypeValue(for type: AssessmentType, to value: Int) {
+        var totals = retreiveTotals()
+        
+        totals[type] = value
         
         guard let newTotals = try? JSONEncoder().encode(totals) else { return }
         
         assessTotals = newTotals
+    }
+    
+    func setTypeLifetimeValue(for type: AssessmentType, to value: Int) {
+        var totals = retreiveLifetimeTotals()
+        
+        totals[type] = value
+        
+        guard let newTotals = try? JSONEncoder().encode(totals) else { return }
+        
+        assessLifetimeTotals = newTotals
+    }
+    
+    func resetTypeValue(for type: AssessmentType) {
+        setTypeValue(for: type, to: 0)
     }
     
     func assessCountDescription(_ type: AssessmentType) -> String {
@@ -185,6 +210,11 @@ extension DDKModel {
     
     private func retreiveTotals() -> [AssessmentType : Int] {
         guard let decodedTotals = try? JSONDecoder().decode([AssessmentType:Int].self, from: assessTotals) else { return [:] }
+        return decodedTotals
+    }
+    
+    func retreiveLifetimeTotals() -> [AssessmentType : Int] {
+        guard let decodedTotals = try? JSONDecoder().decode([AssessmentType:Int].self, from: assessLifetimeTotals) else { return [:] }
         return decodedTotals
     }
 }
