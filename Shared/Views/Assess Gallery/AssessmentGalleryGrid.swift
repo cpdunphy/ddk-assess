@@ -76,6 +76,7 @@ struct AssessmentGalleryGrid: View {
                 
                 Image(systemName: type.icon)
                     .font(.title)
+                    .symbolVariant(.fill)
                     .padding(.bottom, 6)
 
                 Spacer(minLength: 0)

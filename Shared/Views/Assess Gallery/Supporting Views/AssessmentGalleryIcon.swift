@@ -10,11 +10,12 @@ import SwiftUI
 struct AssessmentGalleryIcon: View {
     
     var type : AssessmentType
-    
+
     var body: some View {
         Image(systemName: type.icon)
             .font(.title3)
             .imageScale(.large)
+            .symbolVariant(.fill)
             .foregroundColor(.white)
             .padding(10)
             .background(

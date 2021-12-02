@@ -45,6 +45,8 @@ struct AssessmentGalleryList: View {
         }
     }
     
+    @ScaledMetric var size: CGFloat = 1
+    
     // List Row
     func button(_ type: AssessmentType) -> some View {
         Button {
@@ -52,8 +54,13 @@ struct AssessmentGalleryList: View {
             triggerHapticFeedbackSuccess()
         } label: {
             HStack {
-                AssessmentGalleryIcon(type: type)
-                    .padding(.trailing, 4)
+                Image(systemName: type.icon)
+                    .font(.title2)
+                    .foregroundColor(.white)
+                    .symbolVariant(.fill)
+                    .frame(width: 45 * size, height: 45 * size)
+                    .background(type.color, in: RoundedRectangle(cornerRadius: 8))
+                    .padding(.trailing, 6)
                 
                 VStack(alignment: .leading) {
                     Text(type.title)
@@ -81,7 +88,7 @@ struct AssessmentGalleryList: View {
                         .frame(maxHeight: .infinity)
                 }
                 
-            }
+            }.padding(.vertical, 2)
         }
         
         // Context Menu
@@ -120,5 +127,39 @@ struct AssessmentGalleryList_Previews: PreviewProvider {
             assessmentSelection: .constant(nil),
             assessmentSettingsSelection: .constant(nil)
         )
+    }
+}
+
+
+struct CentreAlignedLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Label {
+            configuration.title
+                .alignmentGuide(.firstTextBaseline) {
+                    $0[VerticalAlignment.center]
+                }
+        } icon: {
+            configuration.icon
+                .alignmentGuide(.firstTextBaseline) {
+                    $0[VerticalAlignment.center]
+                }
+        }
+    }
+}
+
+struct ColorfulIconLabelStyle: LabelStyle {
+    var color: Color
+    @ScaledMetric var size: CGFloat = 1
+
+    func makeBody(configuration: Configuration) -> some View {
+        Label {
+            configuration.title
+                .foregroundColor(.primary)
+        } icon: {
+            configuration.icon
+                .font(.title2)
+                .symbolVariant(.fill)
+                .foregroundColor(color)
+        }
     }
 }

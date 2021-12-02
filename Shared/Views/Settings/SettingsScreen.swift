@@ -64,7 +64,8 @@ struct SettingsScreen: View {
                     SettingsScreenButton(
                         title: "Support / Feedback",
                         symbolSystemName: "questionmark.diamond.fill"
-                    ).symbolRenderingMode(.multicolor)
+                    )
+                    .symbolRenderingMode(.multicolor)
                 }.disabled(!MFMailComposeViewController.canSendMail())
                 #endif
                 
