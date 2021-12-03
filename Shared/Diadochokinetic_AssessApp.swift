@@ -30,6 +30,7 @@ struct Diadochokinetic_AssessApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+//            Onboarding()
                 .environmentObject(ddk)
                 .environmentObject(store)
                 .environmentObject(timed)

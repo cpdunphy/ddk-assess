@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ManageMembership: View {
+    
+    @State private var manageSubscription : Bool = false
+    
     var body: some View {
         VStack {
             VStack(alignment: .leading) {
@@ -29,7 +32,7 @@ struct ManageMembership: View {
                 
                 // Manage Subscription Link
                 Button("Manage Subscription") {
-                    
+                    manageSubscription = true
                 }
                 .buttonStyle(.borderedProminent)
                 .font(.title2)
@@ -44,6 +47,7 @@ struct ManageMembership: View {
         .scenePadding()
         .navigationTitle("Membership")
         .navigationBarTitleDisplayMode(.inline)
+        .manageSubscriptionsSheet(isPresented: $manageSubscription)
         .toolbar {
             restoreButton
         }
