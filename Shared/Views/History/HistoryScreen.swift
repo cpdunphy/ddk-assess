@@ -5,6 +5,7 @@
 //  Created by Collin Dunphy on 9/27/20.
 //
 
+import Algorithms
 import SwiftUI
 
 struct HistoryScreen: View {
@@ -16,7 +17,7 @@ struct HistoryScreen: View {
     
     @State private var recordEditSelection :        AssessmentRecord? = nil
     @State private var showTrashConfirmationAlert : Bool = false
-        
+    
     // MARK: - Grouped Records
     // Sorts and labels sections of records appropriately.
     var groupedRecords : [RecordGroup]? {
@@ -36,39 +37,47 @@ struct HistoryScreen: View {
             
         case .date: // Group by Date
             
-            // Use the standard library to group by date. (Alternative to using .filter)
-            let groupedByDate: [String: [AssessmentRecord]] = Dictionary(
-                grouping: model.allRecords,
-                by : {
+            let recordsByName = model.allRecords
+                .sorted(by: {
                     $0.date.formatted(
                         date: .numeric,
                         time: .omitted
+                    ) > $1.date.formatted(
+                        date: .numeric,
+                        time: .omitted
                     )
-                }
-            )
+                })
+                .chunked(by: {
+                    $0.date.formatted(
+                        date: .numeric,
+                        time: .omitted
+                    ) ==
+                    $1.date.formatted(
+                        date: .numeric,
+                        time: .omitted
+                    )
+                })
             
-            var groupedRecords: [RecordGroup] = []
-
-            for (date, group) in groupedByDate {
-                groupedRecords.append(
-                    RecordGroup(title: date, records: group)
+            return recordsByName.map { (records) in
+                RecordGroup(
+                    title: records.first?.date.formatted(
+                        date: .numeric,
+                        time: .omitted
+                    ),
+                    records: Array(records)
                 )
             }
             
-            return groupedRecords
-            
         case .kind: // Group by Kind
             
-            var groupedRecords: [RecordGroup] = []
+            let recordsByKind = model.allRecords.sorted(by: { $0.type.rawValue < $1.type.rawValue }).chunked(on: \.type)
             
-            // Iterate over possible Types and filter the records by the type
-            for type in AssessmentType.allCases {
-                let filteredRecordsByType: [AssessmentRecord] = model.allRecords.filter { $0.type == type }
-                
-                groupedRecords.append(RecordGroup(title: type.title, records: filteredRecordsByType))
+            return recordsByKind.map { (type, records) in
+                RecordGroup(
+                    title: type.title,
+                    records: Array(records)
+                )
             }
-            
-            return groupedRecords
         }
     }
     
@@ -163,7 +172,7 @@ struct HistoryScreen: View {
             }
         
         // Delete All Logs Confirmation Dialog
-            .alert(
+            .confirmationDialog(
                 "Delete Logs",
                 isPresented: $showTrashConfirmationAlert,
                 actions: {

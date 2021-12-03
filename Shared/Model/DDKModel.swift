@@ -5,6 +5,7 @@
 //  Created by Collin Dunphy on 9/23/20.
 //
 
+import Algorithms
 import Combine
 import CoreHaptics
 import Foundation
@@ -25,8 +26,9 @@ class DDKModel : ObservableObject {
     @Published var records : [AssessmentRecord] = []
     
     var allRecords: [AssessmentRecord] {
-        let combo = records + pinnedRecords
-        return combo.sorted { $0.date < $1.date }
+//        let combo = records + pinnedRecords
+//        return combo.sorted { $0.date < $1.date }
+        return chain(records, pinnedRecords).sorted(by: { $0.date > $1.date } )
     }
     
     

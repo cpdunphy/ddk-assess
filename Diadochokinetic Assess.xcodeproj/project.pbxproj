@@ -82,6 +82,7 @@
 		F0BC56D92710E2E400071A6E /* Products.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0BC56D82710E2E400071A6E /* Products.plist */; };
 		F0BC56DA2710E2E400071A6E /* Products.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0BC56D82710E2E400071A6E /* Products.plist */; };
 		F0C710362759B8A9004928B2 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C710352759B8A9004928B2 /* Onboarding.swift */; };
+		F0C71039275A6C19004928B2 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F0C71038275A6C19004928B2 /* Algorithms */; };
 		F0C75699251C3A4300D066A9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C75698251C3A4300D066A9 /* StoreKit.framework */; };
 		F0C7569F251C3A6E00D066A9 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* Products.storekit */; };
 		F0C756A0251C3A6E00D066A9 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* Products.storekit */; };
@@ -194,6 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0C71039275A6C19004928B2 /* Algorithms in Frameworks */,
 				F04AD436271D17B600293641 /* Shiny in Frameworks */,
 				F0DAFDA226B07A7E00CDA62F /* AuthenticationServices.framework in Frameworks */,
 				F0D553AD251C3A000084E0EB /* StoreKit.framework in Frameworks */,
@@ -485,6 +487,7 @@
 			name = "Diadochokinetic Assess (iOS)";
 			packageProductDependencies = (
 				F04AD435271D17B600293641 /* Shiny */,
+				F0C71038275A6C19004928B2 /* Algorithms */,
 			);
 			productName = "Diadochokinetic Assess (iOS)";
 			productReference = F02DB3EB251C23440038FEAE /* Diadochokinetic Assess.app */;
@@ -579,6 +582,7 @@
 			mainGroup = F02DB3DE251C23430038FEAE;
 			packageReferences = (
 				F04AD434271D17B600293641 /* XCRemoteSwiftPackageReference "shiny" */,
+				F0C71037275A6C19004928B2 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = F02DB3EC251C23440038FEAE /* Products */;
 			projectDirPath = "";
@@ -1142,6 +1146,14 @@
 				kind = branch;
 			};
 		};
+		F0C71037275A6C19004928B2 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1149,6 +1161,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F04AD434271D17B600293641 /* XCRemoteSwiftPackageReference "shiny" */;
 			productName = Shiny;
+		};
+		F0C71038275A6C19004928B2 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0C71037275A6C19004928B2 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
