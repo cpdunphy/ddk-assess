@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct Onboarding: View {
     var body: some View {
@@ -52,22 +53,29 @@ struct Onboarding: View {
                         .font(.headline)
                         .foregroundColor(.accentColor)
                     
-                    Button {
+                    VStack {
+                        Button {
+                            
+                        } label: {
+                            Text("Subscribe for $2.99 / year")
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .padding(4)
+                                .padding(.horizontal)
+                        }
+                        .buttonStyle(.borderedProminent)
                         
-                    } label: {
-                        Text("Subscribe for $2.99 / year")
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .padding(4)
-                            .padding(.horizontal)
+                        Text("(12 months at $0.25/mo. Save 75%)")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
                     }
-                    
-                    .buttonStyle(.borderedProminent)
                     
                     Text("[Terms of Service](https://ballygorey.com) and [Privacy Policy](https://ballygorey.com)")
                         .font(.subheadline)
                     
-                    Button("Redeem Code", action: {})
+                    Button("Redeem Code", action: {
+                        SKPaymentQueue.default().presentCodeRedemptionSheet()
+                    })
                         .padding(.vertical)
                     
                     Button("Restore Purchases", action: {})
