@@ -18,26 +18,12 @@ struct Onboarding: View {
                     .foregroundColor(.white)
                 
                 TabView {
-                    VStack {
-                        Text("Unlock All Access")
-                            .font(.system(.title3, design: .rounded))
-                            .fontWeight(.semibold)
-                        
-                        Text("Whether its for personal or professional use, DDK can provide support in numerous ways.")
-                            
-                        Spacer()
-                        
-                        Image(systemName: "hand.tap")
-                            .font(.system(size: 96))
-                            .symbolVariant(.fill)
-                            .padding()
-                            .background(.black.opacity(0.18), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
-                        
-                        Spacer()
-                    }
-                    .foregroundColor(.white)
-                    .scenePadding()
-                    .frame(width: geo.size.width)
+                    OnboardingPage(
+                        title: "Unlock All Access",
+                        subtitle: "Whether its for personal or professional use, DDK can provide support in numerous ways.",
+                        systemSymbol: "hand.tap",
+                        width: geo.size.width
+                    )
                     
                     Text("Beep")
                         .scenePadding()
@@ -86,8 +72,6 @@ struct Onboarding: View {
                 .background(.thinMaterial)
                 
             }
-//            .background(.ultraThinMaterial)
-            
             .background(
                 Image("Background-V1")
                     .resizable()
@@ -101,5 +85,36 @@ struct Onboarding: View {
 struct Onboarding_Previews: PreviewProvider {
     static var previews: some View {
         Onboarding()
+    }
+}
+
+struct OnboardingPage : View {
+ 
+    var title: String
+    var subtitle: String
+    var systemSymbol : String
+    var width : CGFloat
+    
+    var body : some View {
+        VStack {
+            Text(title)
+                .font(.system(.title3, design: .rounded))
+                .fontWeight(.semibold)
+            
+            Text(subtitle)
+                
+            Spacer()
+            
+            Image(systemName: systemSymbol)
+                .font(.system(size: 96))
+                .symbolVariant(.fill)
+                .padding()
+                .background(.black.opacity(0.18), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+            
+            Spacer()
+        }
+        .foregroundColor(.white)
+        .scenePadding()
+        .frame(width: width)
     }
 }
