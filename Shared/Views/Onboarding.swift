@@ -37,7 +37,6 @@ struct Onboarding: View {
                         .scenePadding()
                 }
                 .tabViewStyle(.page)
-                //                .frame(width: geo.size.width)
                 
                 if let product = longTermSubscription {
                     VStack(spacing: 16) {
@@ -58,13 +57,16 @@ struct Onboarding: View {
                                     .padding(.horizontal)
                             }
                             .buttonStyle(.borderedProminent)
-                            
-                            Text("(12 months at $0.25/mo. Save \(Int((savings * 100).rounded()))%)")
+                            Group {
+                                Text("(")
+                                + Text("12 months at $0.25/mo.")
+                                + Text(" Save ")
+                                + Text(((savings * 100).rounded()) / 100, format: .percent)
+                                + Text(")")
+                            }
                                 .font(.caption)
                                 .foregroundColor(.secondary)
-                            
-                            Text("\(longTermSubscription?.subscription?.subscriptionPeriod.value ?? 0)")
-                        }
+                            }
                         
                         
                         Text("[Terms of Service](https://ballygorey.com) and [Privacy Policy](https://ballygorey.com)")
@@ -101,27 +103,23 @@ struct Onboarding: View {
     
     var savings : Double {
         calculateSavings(
-            of: longTermSubscription?.price ?? 0,
-            over: longTermSubscription?.subscription?.subscriptionPeriod.value ?? 0,
-            comparedTo: shortTermSubscription?.price ?? 0,
-            over: shortTermSubscription?.subscription?.subscriptionPeriod.unit ?? .month
+            of: longTermSubscription,
+            comparedTo: shortTermSubscription
         )
     }
     
-    //    func calculateSavings(of longTermPrice : Int, over period : Product.SubscriptionPeriod, ) {
-    func calculateSavings(of longTermPrice : Decimal, over longTermPeriod : Int, comparedTo shortTermPrice : Decimal, over shortTermPeriod : Product.SubscriptionPeriod.Unit) -> Double {
-        // 1- ((2.99)/(0.99*12))
+    func calculateSavings(of longTermSubscription : Product?, comparedTo shortTermPrice : Product?) -> Double {
         
-        //        let longTermPrice = longTermSubscription?.price ?? 0
-        //        let shortTermPrice = shortTermSubscription?.price ?? 0
+        let longTermPrice = longTermSubscription?.price ?? 0
+        let shortTermPrice = shortTermSubscription?.price ?? 0
         
         // Long term period in short term units
-        //        let longTermPeriod = longTermSubscription?.subscription?.subscriptionPeriod.value ?? 0
-        //        let shortTermUnit = shortTermSubscription?.subscription?.subscriptionPeriod.unit
+        let longTermPeriod = longTermSubscription?.subscription?.subscriptionPeriod.value ?? 0
+        let shortTermUnit = shortTermSubscription?.subscription?.subscriptionPeriod.unit
         
         var longTermConversionFactor = 1
         
-        switch shortTermPeriod {
+        switch shortTermUnit {
         case .year:
             longTermConversionFactor = 1
         case .month:
@@ -129,7 +127,6 @@ struct Onboarding: View {
         default:
             print("This unit isn't supported")
         }
-        
 
         let savings : Decimal = Decimal(1) - ((longTermPrice) / (shortTermPrice * Decimal(longTermPeriod * longTermConversionFactor)))
         
