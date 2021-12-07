@@ -40,11 +40,15 @@ struct Onboarding: View {
                 
                 if let product = longTermSubscription {
                     VStack(spacing: 16) {
+                        
+                        // Promo offer details
                         Text("Start with a 1 month free trial.")
                             .font(.headline)
                             .foregroundColor(.accentColor)
                         
                         VStack {
+                            
+                            // Subscribe Button
                             Button {
                                 Task {
                                     await buy(product: product)
@@ -57,6 +61,8 @@ struct Onboarding: View {
                                     .padding(.horizontal)
                             }
                             .buttonStyle(.borderedProminent)
+                            
+                            // Savings Caption
                             Group {
                                 Text("(")
                                 + Text("12 months at $0.25/mo.")
@@ -64,22 +70,33 @@ struct Onboarding: View {
                                 + Text(((savings * 100).rounded()) / 100, format: .percent)
                                 + Text(")")
                             }
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                            }
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        }
                         
-                        
+                        // Terms of Serivce & Privacy Policy
                         Text("[Terms of Service](https://ballygorey.com) and [Privacy Policy](https://ballygorey.com)")
                             .font(.subheadline)
                         
+                        // Reedeem Promo Code Button
                         Button("Redeem Code", action: {
                             SKPaymentQueue.default().presentCodeRedemptionSheet()
                         })
                             .padding(.vertical)
                         
-                        Button("Restore Purchases", action: {
-                            print(store.purchasedIdentifiers)
-                        })
+                        
+                        // Restore Purchases Button
+                        Button(
+                            "Restore Purchases",
+                            action: {
+                                Task {
+                                    //This call displays a system prompt that asks users to authenticate with their App Store credentials.
+                                    //Call this function only in response to an explicit user action, such as tapping a button.
+                                    
+                                    try? await AppStore.sync()
+                                }
+                            }
+                        )
                         
                     }
                     .scenePadding()
@@ -96,9 +113,13 @@ struct Onboarding: View {
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
         )
-        .alert(isPresented: $isShowingError, content: {
-            Alert(title: Text(errorTitle), message: nil, dismissButton: .default(Text("Okay")))
-        })
+        
+        .alert(
+            isPresented: $isShowingError,
+            content: {
+                Alert(title: Text(errorTitle), message: nil, dismissButton: .default(Text("Okay")))
+            }
+        )
     }
     
     var savings : Double {
@@ -127,7 +148,7 @@ struct Onboarding: View {
         default:
             print("This unit isn't supported")
         }
-
+        
         let savings : Decimal = Decimal(1) - ((longTermPrice) / (shortTermPrice * Decimal(longTermPeriod * longTermConversionFactor)))
         
         return NSDecimalNumber(decimal: savings).doubleValue
