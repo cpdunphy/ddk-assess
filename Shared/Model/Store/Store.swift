@@ -7,6 +7,7 @@
 
 import Foundation
 import StoreKit
+import SwiftUI
 
 typealias Transaction = StoreKit.Transaction
 
@@ -14,14 +15,24 @@ public enum StoreError : Error {
     case failedVerification
 }
 
+public enum AuthState: String {
+    case undefined = "undefined"
+    case unsubscribed = "unsubscribed"
+    case subscribed = "subscribed"
+}
+
+
 // MARK: - Store
 
 class Store : ObservableObject {
     
     @Published var productOptions : [Product] = []
+    @Published private(set) var subscriptions: [Product]
+
+    @Published private(set) var purchasedIdentifiers = Set<String>() { didSet { updateSubscriptionStatus() } }
     
-    @Published private(set) var purchasedIdentifiers = Set<String>()
-    
+    @AppStorage("isUserAuthenticated") private(set) var userAuthenticationStatus: AuthState = .undefined
+
     var updateListenerTask: Task<Void, Error>? = nil
         
     private let productIdToEmoji : [String: String]
@@ -35,6 +46,7 @@ class Store : ObservableObject {
 
         // Init empty products then do a product request to fill them async
         productOptions = []
+        subscriptions = []
         
         // Start a transaction listener as close to app launch as possible so you don't miss any transactions.
         updateListenerTask = listenForTransactions()
@@ -42,13 +54,41 @@ class Store : ObservableObject {
         Task {
             // Init the store by starting a product request.
             await requestProducts()
+            await refreshPurchasedProducts()
+            updateSubscriptionStatus()
         }
     }
     
     deinit {
         updateListenerTask?.cancel()
     }
+    
+    func updateSubscriptionStatus() {
+        userAuthenticationStatus = purchasedIdentifiers.isEmpty ? .unsubscribed : .subscribed
+    }
 
+    @MainActor
+    fileprivate func refreshPurchasedProducts() async {
+        var purchasedSubscriptions: [Product] = []
+
+        //Iterate through all of the user's purchased products.
+        for await result in Transaction.currentEntitlements {
+            //Don't operate on this transaction if it's not verified.
+            if case .verified(let transaction) = result {
+                //Check the `productType` of the transaction and get the corresponding product from the store.
+                switch transaction.productType {
+                case .autoRenewable:
+                    if let subscription = subscriptions.first(where: { $0.id == transaction.productID }) {
+                        purchasedSubscriptions.append(subscription)
+                    }
+                    await updatePurchasedIdentifiers(transaction)
+                default:
+                    //This type of product isn't displayed in this view.
+                    break
+                }
+            }
+        }
+    }
     
     @MainActor
     func requestProducts() async {
@@ -57,12 +97,15 @@ class Store : ObservableObject {
             let storeProducts = try await Product.products(for: productIdToEmoji.keys)
             
             var newSupportOptions: [Product] = []
+            var newSubscriptions: [Product] = []
             
             // Filter the products into different categories based on their type.
             for product in storeProducts {
                 switch product.type {
                 case .consumable:
                     newSupportOptions.append(product)
+                case .autoRenewable:
+                    newSubscriptions.append(product)
                 default:
                     // Ignore this product.
                     print("Unknown product type")
@@ -70,6 +113,7 @@ class Store : ObservableObject {
             }
             
             productOptions = sortByPrice(newSupportOptions)
+            subscriptions = sortByPrice(newSubscriptions)
             
         } catch {
             print("Failed product request: \(error)")
