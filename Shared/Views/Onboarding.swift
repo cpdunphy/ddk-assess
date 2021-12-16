@@ -120,6 +120,7 @@ struct Onboarding: View {
                 Alert(title: Text(errorTitle), message: nil, dismissButton: .default(Text("Okay")))
             }
         )
+        
     }
     
     var savings : Double {

@@ -18,6 +18,7 @@ enum AssessmentType : String, Codable, CaseIterable, Identifiable {
     case fluency
     case disfluency
     case walk
+    case physicalTherapy
     
     var title : String {
         switch self {
@@ -28,6 +29,7 @@ enum AssessmentType : String, Codable, CaseIterable, Identifiable {
         case .fluency:      return "Fluency Tracker"
         case .disfluency:   return "Disfluency"
         case .walk:         return "Walking Test"
+        case .physicalTherapy: return "Physical Therapy"
         }
     }
     
@@ -41,18 +43,20 @@ enum AssessmentType : String, Codable, CaseIterable, Identifiable {
         case .fluency:      return .teal
         case .disfluency:   return .purple
         case .walk:         return .green
+        case .physicalTherapy: return .indigo
         }
     }
     
     var icon: String {
         switch self {
-        case .timed:        return "waveform"
-        case .count:        return "number"
-        case .heartRate:    return "heart"
-        case .swallow:      return "mouth"
-        case .fluency:      return "star"
-        case .disfluency:   return "star"
-        case .walk:         return "figure.walk"
+        case .timed:            return "waveform"
+        case .count:            return "number"
+        case .heartRate:        return "heart"
+        case .swallow:          return "mouth"
+        case .fluency:          return "star"
+        case .disfluency:       return "star"
+        case .walk:             return "figure.walk"
+        case .physicalTherapy:  return "bolt.fill"
         }
     }
     

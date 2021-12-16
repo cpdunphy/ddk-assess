@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import StoreKit
 
 @main
 struct Diadochokinetic_AssessApp: App {
@@ -27,9 +26,7 @@ struct Diadochokinetic_AssessApp: App {
     
     /// Initial declaration and initiation of 'Store'
     @StateObject private var store : Store = Store()
-    
-    @State var subscriptions: [Product] = []
-    
+        
     @ViewBuilder
     var contents : some View {
         if store.userAuthenticationStatus == .subscribed {
