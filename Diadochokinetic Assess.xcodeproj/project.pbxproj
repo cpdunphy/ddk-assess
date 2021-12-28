@@ -21,7 +21,6 @@
 		6CC1561B2735D52200A7A344 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1561A2735D52200A7A344 /* Binding.swift */; };
 		F0214EEA26A31B8100003DDC /* AssessmentGalleryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */; };
 		F0214EEC26A31BEA00003DDC /* AssessmentGalleryGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */; };
-		F0214EEE26A31BF600003DDC /* AssessmentGalleryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EED26A31BF600003DDC /* AssessmentGalleryList.swift */; };
 		F022213126A325B900AA0340 /* AssessmentGalleryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */; };
 		F025287A251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */; };
 		F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */; };
@@ -73,6 +72,7 @@
 		F08D1BB1271A20AC004FE52A /* ButtonOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08D1BAF271A20A6004FE52A /* ButtonOptions.swift */; };
 		F08D1BB4271A2135004FE52A /* RoundRectProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08D1BB3271A2135004FE52A /* RoundRectProgress.swift */; };
 		F08D1BB5271A213B004FE52A /* RoundRectProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08D1BB3271A2135004FE52A /* RoundRectProgress.swift */; };
+		F09ED61F2778EAB90096E4A4 /* AssessmentListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09ED61E2778EAB90096E4A4 /* AssessmentListRow.swift */; };
 		F0AE5B9526A9F06400ADAD3D /* Array-Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */; };
 		F0AE5B9626A9F06400ADAD3D /* Array-Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */; };
 		F0AE5B9826AB151200ADAD3D /* AboutDDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9726AB151200ADAD3D /* AboutDDK.swift */; };
@@ -134,7 +134,6 @@
 		6CC1561A2735D52200A7A344 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryScreen.swift; sourceTree = "<group>"; };
 		F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryGrid.swift; sourceTree = "<group>"; };
-		F0214EED26A31BF600003DDC /* AssessmentGalleryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryList.swift; sourceTree = "<group>"; };
 		F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryIcon.swift; sourceTree = "<group>"; };
 		F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMobileNavigation.swift; sourceTree = "<group>"; };
 		F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSidebarNavigation.swift; sourceTree = "<group>"; };
@@ -172,6 +171,7 @@
 		F08D1BAC27150E4E004FE52A /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		F08D1BAF271A20A6004FE52A /* ButtonOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonOptions.swift; sourceTree = "<group>"; };
 		F08D1BB3271A2135004FE52A /* RoundRectProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundRectProgress.swift; sourceTree = "<group>"; };
+		F09ED61E2778EAB90096E4A4 /* AssessmentListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentListRow.swift; sourceTree = "<group>"; };
 		F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-Set.swift"; sourceTree = "<group>"; };
 		F0AE5B9726AB151200ADAD3D /* AboutDDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDDK.swift; sourceTree = "<group>"; };
 		F0B423BA25A66D97002805C9 /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
@@ -282,7 +282,6 @@
 			children = (
 				F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */,
 				F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */,
-				F0214EED26A31BF600003DDC /* AssessmentGalleryList.swift */,
 				F080D74226A8C2E700A1F49D /* Supporting Views */,
 			);
 			path = "Assess Gallery";
@@ -388,6 +387,7 @@
 		F080D74226A8C2E700A1F49D /* Supporting Views */ = {
 			isa = PBXGroup;
 			children = (
+				F09ED61E2778EAB90096E4A4 /* AssessmentListRow.swift */,
 				F080D72B26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift */,
 				F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */,
 			);
@@ -697,7 +697,6 @@
 				F04AD42F271D099900293641 /* ManageMembership.swift in Sources */,
 				F025287A251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */,
 				F0214EEC26A31BEA00003DDC /* AssessmentGalleryGrid.swift in Sources */,
-				F0214EEE26A31BF600003DDC /* AssessmentGalleryList.swift in Sources */,
 				F080D72C26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift in Sources */,
 				F0304708251E4CD100B438E7 /* TapButton.swift in Sources */,
 				F08D1BB4271A2135004FE52A /* RoundRectProgress.swift in Sources */,
@@ -705,6 +704,7 @@
 				F0C756B0251C3DA500D066A9 /* States.swift in Sources */,
 				F080D73226A4EDCE00A1F49D /* AssessmentOptions.swift in Sources */,
 				F07B3BD0261108E5004EB5AC /* Print.swift in Sources */,
+				F09ED61F2778EAB90096E4A4 /* AssessmentListRow.swift in Sources */,
 				F080D73826A5D44F00A1F49D /* RecordGeneralInfo.swift in Sources */,
 				F0C710362759B8A9004928B2 /* Onboarding.swift in Sources */,
 				F0E180A725236BA100E808AB /* SupportTheDev.swift in Sources */,

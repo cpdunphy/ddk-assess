@@ -14,22 +14,20 @@ enum AssessmentType : String, Codable, CaseIterable, Identifiable {
     case timed
     case count
     case heartRate
-    case swallow
     case fluency
-    case disfluency
+    case physiopedia
     case walk
-    case physicalTherapy
+    case exercise
     
     var title : String {
         switch self {
         case .timed:        return "DDK"
         case .count:        return "Count"
         case .heartRate:    return "Heart Rate"
-        case .swallow:      return "Swallow Test"
         case .fluency:      return "Fluency Tracker"
-        case .disfluency:   return "Disfluency"
-        case .walk:         return "Walking Test"
-        case .physicalTherapy: return "Physical Therapy"
+        case .walk:         return "Walking Timer"
+        case .exercise:     return "Exercise Timer"
+        case .physiopedia:  return "Sit to Stand"
         }
     }
     
@@ -39,24 +37,22 @@ enum AssessmentType : String, Codable, CaseIterable, Identifiable {
         case .timed:        return .blue     //#bae1ff
         case .count:        return .orange   //#ffdfba
         case .heartRate:    return .pink     //#ffb3ba
-        case .swallow:      return .red
-        case .fluency:      return .teal
-        case .disfluency:   return .purple
+        case .fluency:      return .red
         case .walk:         return .green
-        case .physicalTherapy: return .indigo
+        case .physiopedia:  return .teal
+        case .exercise:     return .indigo
         }
     }
     
     var icon: String {
         switch self {
-        case .timed:            return "waveform"
-        case .count:            return "number"
-        case .heartRate:        return "heart"
-        case .swallow:          return "mouth"
-        case .fluency:          return "star"
-        case .disfluency:       return "star"
-        case .walk:             return "figure.walk"
-        case .physicalTherapy:  return "bolt.fill"
+        case .timed:        return "waveform"
+        case .count:        return "number"
+        case .heartRate:    return "heart"
+        case .fluency:      return "mouth"
+        case .physiopedia:  return "figure.stand"
+        case .walk:         return "figure.walk"
+        case .exercise:     return "bolt.fill"
         }
     }
     

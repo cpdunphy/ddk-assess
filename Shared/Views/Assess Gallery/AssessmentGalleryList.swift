@@ -43,6 +43,7 @@ struct AssessmentGalleryList: View {
                 }
             }
         }
+        .listStyle(.automatic)
     }
     
     @ScaledMetric var size: CGFloat = 1
@@ -53,42 +54,7 @@ struct AssessmentGalleryList: View {
             assessmentSelection = type
             triggerHapticFeedbackSuccess()
         } label: {
-            HStack {
-                Image(systemName: type.icon)
-                    .font(.title2)
-                    .foregroundColor(.white)
-                    .symbolVariant(.fill)
-                    .frame(width: 45 * size, height: 45 * size)
-                    .background(type.color, in: RoundedRectangle(cornerRadius: 8))
-                    .padding(.trailing, 6)
-                
-                VStack(alignment: .leading) {
-                    Text(type.title)
-                        .foregroundColor(.primary)
-                        .fontWeight(.medium)
-                    
-                    Text(model.assessCountDescription(type))
-                        .foregroundColor(.secondary)
-                        .font(.caption)
-                }
-                
-                Spacer()
-                
-                // Context Menu Items
-                Menu {
-                    AssessmentGalleryContextMenuItems(
-                        type: type,
-                        assessmentSettingsSelection: $assessmentSettingsSelection
-                    )
-                } label: {
-                    Image(systemName: "ellipsis")
-                        .foregroundColor(.primary)
-                    // Extends the Hit-box
-                        .padding([.leading])
-                        .frame(maxHeight: .infinity)
-                }
-                
-            }.padding(.vertical, 2)
+            AssessmentListRow(type: type, assessmentSettingsSelection: $assessmentSettingsSelection)
         }
         
         // Context Menu
@@ -146,6 +112,8 @@ struct CentreAlignedLabelStyle: LabelStyle {
         }
     }
 }
+
+
 
 struct ColorfulIconLabelStyle: LabelStyle {
     var color: Color

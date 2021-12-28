@@ -14,7 +14,10 @@ struct StorageKeys {
     }
     
     struct AssessGallery {
+        @available(*, deprecated, message: "List view has been integrated into search")
         public static let galleryType :         String = "assessment_gallery_type"
+        
+        
         public static let favoriteAssessments : String = "favorite_assessment_types"
         public static let sortBy :              String = "sort_by_assessment_gallery"
     }

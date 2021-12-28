@@ -59,7 +59,6 @@ struct AssessmentGalleryGrid: View {
                         }
                     ) { type in
                         button(type)
-//                        Rectangle()
                     }
                 }
             }.padding(.horizontal)

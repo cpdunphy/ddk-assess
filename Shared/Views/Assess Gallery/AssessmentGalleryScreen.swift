@@ -8,9 +8,9 @@
 import SwiftUI
 
 extension AssessmentGalleryScreen {
-
+    
     enum AssessmentGalleryType: String, Identifiable, CaseIterable {
-
+        
         case grid, list
         
         var label: some View {
@@ -26,71 +26,74 @@ extension AssessmentGalleryScreen {
             return self.rawValue
         }
     }
-
+    
 }
 
 struct AssessmentGalleryScreen: View {
     
+    @Environment(\.dismissSearch) var dismissSearch
+    
     @EnvironmentObject var model : DDKModel
     
-    @AppStorage(StorageKeys.AssessGallery.galleryType) private var galleryType :    AssessmentGalleryType = .grid
-    @AppStorage(StorageKeys.AssessGallery.sortBy) var sortBy :                      String = ""
+    @AppStorage(StorageKeys.AssessGallery.galleryType) private var galleryType : AssessmentGalleryType = .grid
+    @AppStorage(StorageKeys.AssessGallery.sortBy) var sortBy : String = "kind"
     
-    @State var assessmentSettingsSelection  : AssessmentType? = nil
-    @State var assessmentSelection          : AssessmentType? = nil
-    
-    // MARK: - Assessment Switch
-    @ViewBuilder
-    var assessSwitch : some View {
-        switch galleryType {
-            
-            // Gallery Grid
-        case .grid:
-            AssessmentGalleryGrid(
-                assessmentSelection: $assessmentSelection,
-                assessmentSettingsSelection: $assessmentSettingsSelection
-            )
-            
-            // Gallery List
-        case .list:
-            AssessmentGalleryList(
-                assessmentSelection: $assessmentSelection,
-                assessmentSettingsSelection: $assessmentSettingsSelection
-            )
-        }
-    }
+    @State private var assessmentSettingsSelection  : AssessmentType? = nil
+    @State private var assessmentSelection          : AssessmentType? = nil
+    @State private var searchText: String = ""
+
     
     //MARK: - Body
     var body : some View {
-        assessSwitch
+        AssessmentGalleryGrid(
+            assessmentSelection: $assessmentSelection,
+            assessmentSettingsSelection: $assessmentSettingsSelection
+        )
+        
             .navigationTitle(NavigationItem.assess.title)
         
-        // Toolbar Controls
+            .searchable(
+                text: $searchText,
+                placement: .sidebar,
+                suggestions: {
+                    ForEach(
+                        !searchText.isEmpty ?
+                        AssessmentType.allCases.filter { $0.title.lowercased().contains(searchText.lowercased()) }
+                        : AssessmentType.allCases,
+                        id: \.self
+                    ) { type in
+                        Button {
+                            assessmentSelection = type
+                            triggerHapticFeedbackSuccess()
+                            dismissSearch()
+                        } label: {
+                            AssessmentListRow(
+                                type: type,
+                                searchQuery: $searchText,
+                                assessmentSettingsSelection: $assessmentSettingsSelection
+                            )
+                        }
+                    }
+                }
+            )
+        
+        // TODO: Sort Controls
             .toolbar {
                 Menu {
-                    // Gallery Controls
-                    Section {
-                        Picker("Gallery Type", selection: $galleryType) {
-                            ForEach(AssessmentGalleryType.allCases) {
-                                $0.label.tag($0)
-                            }
-                        }
+                    Button("Assending") {
+                        
                     }
                     
-                    // TODO: Sort Controls
-                    Section {
-                        Menu("Sort By") {
-                            Picker("Sort By", selection: $sortBy) {
-                                ForEach(["Kind", "Date"], id: \.self) {
-                                    Text($0).tag($0)
-                                }
-                            }
+                    Picker("Sort By", selection: $sortBy) {
+                        ForEach(["Kind", "Date"], id: \.self) {
+                            Text($0).tag($0)
                         }
                     }
-                } label: {
-                    galleryType.label
-                }
 
+                } label: {
+                    Label("Sort By", systemImage: "arrow.up.arrow.down")
+                }
+                
             }
         
         // Assessment Taker
@@ -104,6 +107,13 @@ struct AssessmentGalleryScreen: View {
                     AssessmentOptions(type: type)
                 }
             }
+    }
+    
+    func triggerHapticFeedbackSuccess() {
+#if os(iOS)
+        let hapticFeedback = UINotificationFeedbackGenerator()
+        hapticFeedback.notificationOccurred(.success)
+#endif
     }
 }
 
