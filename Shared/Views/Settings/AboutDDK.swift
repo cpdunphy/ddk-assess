@@ -12,14 +12,55 @@ struct AboutDDK: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text("DDK")
-                    .font(.system(size: 100, weight: .regular, design: .rounded))
-                Text("Version \(getAppCurrentVersionNumber())".capitalized)
-                    .font(.system(.body, design: .rounded))
-                    .foregroundColor(.secondary)
-            }.padding(.bottom, 32)
-            
-            Text("Made with ❤️.")
+                
+                // App Information
+                VStack {
+                    Text("DDK")
+                        .font(.system(size: 100, weight: .regular, design: .rounded))
+                    Text("Version \(getAppCurrentVersionNumber())".capitalized)
+                        .font(.system(.callout, design: .rounded))
+                        .foregroundColor(.secondary)
+                }//.padding(.bottom, 32)
+                
+                // Description
+                VStack {
+                    Text("Made with love. ❤️")
+                        .font(.headline)
+                        .padding(.bottom, 4)
+                    
+                    Text("DDK, an assessment utility tool, orignally was intended for Speech Language Pathologists, but has grown to serve a bigger purpose.")
+                }
+                .padding(.vertical)
+                
+                // Contact + People Ackknolegments
+                VStack {
+                    Divider()
+                    
+                    HStack {
+                        Text("Collin Dunphy")
+                        Spacer()
+                        
+                        // TODO: Contact Logos + Links
+                        Image(systemName: "applelogo")
+                            .font(.largeTitle)
+                    }
+                    
+                    Divider()
+                    
+                    HStack {
+                        Text("Made in partnership with\n")
+                            .foregroundColor(.secondary)
+                        + Text("Kelly Lundis M.S. CCC-SLP")
+                        
+                    }.padding(.top)
+                }.padding(.vertical)
+                
+                // TODO: 3rd Party Packages
+                
+                
+            }
+            .multilineTextAlignment(.center)
+            .scenePadding()
         }
         .navigationTitle("About")
         .navigationBarTitleDisplayMode(.inline)
