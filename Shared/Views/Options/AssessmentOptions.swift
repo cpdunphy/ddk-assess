@@ -27,8 +27,8 @@ struct AssessmentOptions: View {
     @EnvironmentObject var hr : HeartRateAssessment
     
     var type : AssessmentType
-    
-    var model : Assessment {
+
+    var model : AssessmentProtocol? {
         switch type {
         case .timed:
             return timed
@@ -37,20 +37,7 @@ struct AssessmentOptions: View {
         case .heartRate:
             return hr
         default:
-            return timed //TODO: This Cannot stay!!
-        }
-    }
-    
-    var model2 : AssessmentProtocol {
-        switch type {
-        case .timed:
-            return timed
-        case .count:
-            return count
-        case .heartRate:
-            return hr
-        default:
-            return timed //TODO: This Cannot stay!!
+            return nil //TODO: This Cannot stay!!
         }
     }
     
@@ -123,7 +110,7 @@ struct AssessmentOptions: View {
             actions: {
                 Button("Cancel", role: .cancel) { }
                 
-                Button("Reset", role: .destructive, action: model2.resetPreferences)
+                Button("Reset", role: .destructive, action: model?.resetPreferences ?? emptyFunction)
             },
             message: {
                 Text("Are you sure you want to reset all preferences?")
@@ -131,10 +118,14 @@ struct AssessmentOptions: View {
         )
     }
     
+    func emptyFunction() {
+        
+    }
+    
     // MARK: - Body
     var body: some View {
         form
-            .navigationTitle(model.title)
+            .navigationTitle(model?.title ?? "Untitled")
             .navigationBarTitleDisplayMode(.inline)
         
         // Toolbar

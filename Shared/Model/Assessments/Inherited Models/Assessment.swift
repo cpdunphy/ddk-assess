@@ -42,35 +42,3 @@ class Assessment : ObservableObject {
     }
     
 }
-
-struct Defaults {
-    public static let hrDisplayUnit : HeartRateDisplayUnit = .bpm
-    
-    public static let countdownDuration : Int = 3
-    public static let timerDuration : Int = 10
-    
-    public static let timerRange : ClosedRange<Int> = 1...60
-    public static let countdownRange : ClosedRange<Int> = 0...30
-    
-    public static let showDecimalOnTimer : Bool = true
-    
-    struct Count {
-        public static var goal : Int = 10
-        public static var goalIsEnabled : Bool = false
-    }
-}
-
-protocol TimedAssessmentProtocol {
-    var showDecimalOnTimer : Bool { get set }
-    var duration : Int { get set }
-    var countdownLength : Int { get set }
-    
-    func resetTimer()
-}
-
-protocol AssessmentProtocol {
-    
-    var showDecimalOnTimer : Bool { get set }
-    
-    func resetPreferences()
-}

@@ -7,36 +7,14 @@
 
 import SwiftUI
 
-extension AssessmentGalleryScreen {
-    
-    enum AssessmentGalleryType: String, Identifiable, CaseIterable {
-        
-        case grid, list
-        
-        var label: some View {
-            switch self {
-            case .grid:
-                return Label("Icons", systemImage: "square.grid.2x2")
-            case .list:
-                return Label("List", systemImage: "list.bullet")
-            }
-        }
-        
-        var id: String {
-            return self.rawValue
-        }
-    }
-    
-}
-
 struct AssessmentGalleryScreen: View {
     
     @Environment(\.dismissSearch) var dismissSearch
     
     @EnvironmentObject var model : DDKModel
     
-    @AppStorage(StorageKeys.AssessGallery.galleryType) private var galleryType : AssessmentGalleryType = .grid
-    @AppStorage(StorageKeys.AssessGallery.sortBy) var sortBy : String = "kind"
+    @AppStorage(StorageKeys.AssessGallery.sortBy) var sortBy : AssessmentSortTypes = Defaults.sortBy
+    @AppStorage(StorageKeys.AssessGallery.sortAscending) var sortAscending : Bool = Defaults.sortAscending
     
     @State private var assessmentSettingsSelection  : AssessmentType? = nil
     @State private var assessmentSelection          : AssessmentType? = nil
@@ -80,13 +58,11 @@ struct AssessmentGalleryScreen: View {
         // TODO: Sort Controls
             .toolbar {
                 Menu {
-                    Button("Assending") {
-                        
-                    }
+                    Toggle("Ascending", isOn: $sortAscending)
                     
                     Picker("Sort By", selection: $sortBy) {
-                        ForEach(["Kind", "Date"], id: \.self) {
-                            Text($0).tag($0)
+                        ForEach(AssessmentSortTypes.allCases, id: \.self) {
+                            Text($0.title).tag($0)
                         }
                     }
 
