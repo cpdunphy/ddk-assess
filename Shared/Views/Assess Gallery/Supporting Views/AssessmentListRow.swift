@@ -17,18 +17,46 @@ struct AssessmentListRow : View {
     @Binding var assessmentSettingsSelection : AssessmentType?
     
     
-    func highlightedText(in str : String) -> AttributedString? {
-        var attributedString : AttributedString = AttributedString(str.lowercased())
-        print(attributedString)
-        if let range = attributedString.range(of: searchQuery.lowercased()) {
+    var highlightedText : AttributedString? {
+        
+        let str = type.title
+        let range = str.lowercased().range(of: searchQuery.lowercased())
+        guard let range = range else { return nil }
+        let lowerString = str[str.startIndex..<range.lowerBound]
+        let middleString = str[range]
+        let upperString = str[range.upperBound..<str.endIndex]
+        
+        var combo : String = ""
+        
+        // Append First Piece
+        combo.append(contentsOf: lowerString)
+        
+        // Append Middle Pieces
+        let middleStringComponents = middleString.components(separatedBy: " ")
+        
+        for i in 0..<middleStringComponents.count {
+            let txt = middleStringComponents[i]
             
-            attributedString[range].foregroundColor = .accentColor
+            if !txt.isEmpty {
+                combo.append(contentsOf: "**" + txt + "**")
+            }
             
-            return attributedString
-        } else {
-            return nil
+            if i != middleStringComponents.count - 1 {
+                combo.append(contentsOf: " ")
+            }
         }
+        
+        // Append Last Piece
+        combo.append(contentsOf: upperString)
+        
+        do {
+            return try AttributedString(markdown: combo)
+        } catch {
+            print("Failed to create the attributed text")
+        }
+        return nil
     }
+    
     
     var body : some View {
         HStack {
@@ -45,7 +73,7 @@ struct AssessmentListRow : View {
                 Text(type.title)
                     .foregroundColor(.primary)
             } else {
-                Text(highlightedText(in: type.title) ?? "nil")
+                Text(highlightedText ?? "Error")
                     .foregroundColor(.primary)
             }
 

@@ -110,16 +110,12 @@ struct AssessmentOptions: View {
             actions: {
                 Button("Cancel", role: .cancel) { }
                 
-                Button("Reset", role: .destructive, action: model?.resetPreferences ?? emptyFunction)
+                Button("Reset", role: .destructive, action: model?.resetPreferences ?? {})
             },
             message: {
                 Text("Are you sure you want to reset all preferences?")
             }
         )
-    }
-    
-    func emptyFunction() {
-        
     }
     
     // MARK: - Body

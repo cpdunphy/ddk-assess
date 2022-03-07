@@ -94,17 +94,31 @@ struct HistoryScreen: View {
                         }
                     }
                 } else {
-                    Text("Go do your first assessment!")
+                    emptyHistory
                 }
             } else {
                 // Show all records by time, regardless of "GroupBy"
                 if !model.allRecords.isEmpty {
                     sectionOfRecordHistory(nil, model.allRecords)
                 } else {
-                    Text("Go do your first assessment!")
+                    emptyHistory
                 }
             }
         }
+    }
+    
+    //MARK: - Empty History
+    var emptyHistory : some View {
+        VStack {
+            Image(systemName: "heart.text.square")
+                .font(.system(size: 66))
+                .imageScale(.large)
+                .padding(.bottom, 8)
+            
+            Text("No Assessmenets")
+                .font(.title3)
+        }
+        .foregroundColor(.secondary)
     }
     
     // MARK: - sectionOfRecordHistory
@@ -154,9 +168,13 @@ struct HistoryScreen: View {
     
     // MARK: - Body
     var body: some View {
-        
-        listOfRecords
-            .navigationTitle("History")
+        Group {
+            if !model.allRecords.isEmpty {
+                listOfRecords
+            } else {
+                emptyHistory
+            }
+        }.navigationTitle("History")
         
         // Optional List Style Modifier (Done b/c sidebar style takes over on iPadOS)
 #if os(iOS)

@@ -79,9 +79,12 @@ struct Onboarding: View {
                             .font(.subheadline)
                         
                         // Reedeem Promo Code Button
-                        Button("Redeem Code", action: {
-                            SKPaymentQueue.default().presentCodeRedemptionSheet()
-                        })
+                        Button(
+                            "Redeem Code",
+                            action: {
+                                SKPaymentQueue.default().presentCodeRedemptionSheet()
+                            }
+                        )
                             .padding(.vertical)
                         
                         

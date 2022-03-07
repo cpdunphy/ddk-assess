@@ -9,6 +9,12 @@ import SwiftUI
 import StoreKit
 
 struct AboutDDK: View {
+    
+    @Environment(\.colorScheme) var colorScheme
+    
+    @ScaledMetric(wrappedValue: 35, relativeTo: .title3) var imageIconSize : CGFloat
+
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -20,7 +26,7 @@ struct AboutDDK: View {
                     Text("Version \(getAppCurrentVersionNumber())".capitalized)
                         .font(.system(.callout, design: .rounded))
                         .foregroundColor(.secondary)
-                }//.padding(.bottom, 32)
+                }
                 
                 // Description
                 VStack {
@@ -40,9 +46,26 @@ struct AboutDDK: View {
                         Text("Collin Dunphy")
                         Spacer()
                         
-                        // TODO: Contact Logos + Links
-                        Image(systemName: "applelogo")
-                            .font(.largeTitle)
+                        // Contact Logos + Links
+                        HStack {
+                            Link(destination: URL(string: "https://www.instagram.com/collindunphy/")!) {
+                                Image("instagram_logo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: imageIconSize)
+                            }
+                            .padding(.trailing, 8)
+                            
+                            Link(destination: URL(string: "https://www.github.com/cpdunphy")!) {
+                                Image("github_logo")
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .foregroundColor(colorScheme == .light ? .black : .white)
+                                    .scaledToFit()
+                                    .frame(width: imageIconSize)
+                            }
+                            
+                        }
                     }
                     
                     Divider()
