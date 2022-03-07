@@ -7,9 +7,26 @@
 
 import SwiftUI
 
+
+enum AssessmentSortTypes : String, CaseIterable {
+    case kind = "kind"
+    case date = "date"
+    
+    var title : String {
+        switch self {
+        case .kind:     return "Kind"
+        case .date:     return "Date"
+        }
+    }
+}
+
 struct AssessmentGalleryGrid: View {
     
     @EnvironmentObject var ddk : DDKModel
+    
+    @AppStorage(StorageKeys.AssessGallery.sortBy) var sortBy : AssessmentSortTypes = Defaults.sortBy
+    @AppStorage(StorageKeys.AssessGallery.sortAscending) var sortAscending : Bool = Defaults.sortAscending
+
     
     @Binding var assessmentSelection         : AssessmentType?
     @Binding var assessmentSettingsSelection : AssessmentType?
@@ -17,6 +34,49 @@ struct AssessmentGalleryGrid: View {
     var columns = [
         GridItem(.adaptive(minimum: 150))
     ]
+    
+    @EnvironmentObject var timed : TimedAssessment
+    @EnvironmentObject var count : CountingAssessment
+    @EnvironmentObject var hr : HeartRateAssessment
+    
+    func model(_ type: AssessmentType) -> AssessmentProtocol? {
+        switch type {
+        case .timed:        return timed
+        case .count:        return count
+        case .heartRate:    return hr
+        default:            return nil //TODO: This Cannot stay!!
+        }
+    }
+    
+    
+    var sortedTypes : [AssessmentType] {
+        var types : [AssessmentType] {
+            switch sortBy {
+            case .date:
+                return dateModels
+            case .kind:
+                return AssessmentType.allCases
+            }
+        }
+        
+        return sortAscending ? types : types.reversed()
+    }
+    
+    
+    var dateModels : [AssessmentType] {
+        let optionsWithModels = AssessmentType.allCases
+            .compactMap { model($0) }
+            .sorted { $0.dateLastUsed > $1.dateLastUsed }
+            .map { $0.type }
+        
+        print(optionsWithModels)
+        
+        let others = AssessmentType.allCases.filter {
+            !optionsWithModels.contains($0)
+        }
+
+        return optionsWithModels + others
+    }
     
     var body: some View {
         ScrollView {
@@ -35,9 +95,12 @@ struct AssessmentGalleryGrid: View {
                             spacing: 12
                         ) {
                             ForEach(
-                                AssessmentType.allCases.filter {
-                                    ddk.favoriteAssessments.contains($0.id)
+                                sortedTypes.filter {
+                                    ddk.assessmentTypeIsFavorite($0)
                                 }
+//                                AssessmentType.allCases.filter {
+//                                    ddk.favoriteAssessments.contains($0.id)
+//                                }
                             ) { type in
                                 button(type)
                             }
@@ -54,9 +117,12 @@ struct AssessmentGalleryGrid: View {
                     spacing: 12
                 ) {
                     ForEach(
-                        AssessmentType.allCases.filter {
-                            !ddk.favoriteAssessments.contains($0.id)
+                        sortedTypes.filter {
+                            !ddk.assessmentTypeIsFavorite($0)
                         }
+//                        AssessmentType.allCases.filter {
+//                            !ddk.favoriteAssessments.contains($0.id)
+//                        }.sorted(by: {})
                     ) { type in
                         button(type)
                     }

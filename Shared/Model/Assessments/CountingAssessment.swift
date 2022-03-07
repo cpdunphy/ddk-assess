@@ -10,6 +10,7 @@ import SwiftUI
 
 class CountingAssessment : Assessment, AssessmentProtocol {
     
+    @AppStorage(StorageKeys.Assessments.lastUsed(.count)) var dateLastUsed : Date = Defaults.lastUsed
     @AppStorage(StorageKeys.Assessments.Count.goalIsEnabled) var goalIsEnabled : Bool = Defaults.Count.goalIsEnabled
     @AppStorage(StorageKeys.Assessments.Count.goal) var countingGoal : Int = Defaults.Count.goal
     @AppStorage(StorageKeys.Assessments.showDecimal(.timed)) var showDecimalOnTimer : Bool = Defaults.showDecimalOnTimer
@@ -26,6 +27,7 @@ class CountingAssessment : Assessment, AssessmentProtocol {
     func startTimer() {
         countingState = [.counting]
         startOfAssessment = Date.now
+        dateLastUsed = Date.now
     }
     
     func freezeTimer() {

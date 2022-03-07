@@ -9,7 +9,9 @@ import Foundation
 import SwiftUI
 
 class TimedAssessment : TimedAssessmentBase, TimedAssessmentProtocol, AssessmentProtocol {
-
+    
+    @AppStorage(StorageKeys.Assessments.lastUsed(.timed)) var dateLastUsed : Date = Defaults.lastUsed
+    
     @AppStorage(StorageKeys.Assessments.timerLength(.timed)) var duration : Int = Defaults.timerDuration
     @AppStorage(StorageKeys.Assessments.countdownLength(.timed)) var countdownLength : Int = Defaults.countdownDuration
     @AppStorage(StorageKeys.Assessments.showDecimal(.timed)) var showDecimalOnTimer : Bool = Defaults.showDecimalOnTimer
@@ -19,6 +21,12 @@ class TimedAssessment : TimedAssessmentBase, TimedAssessmentProtocol, Assessment
     init() {
         super.init(.timed)
     }
+    
+    override func startTimer() {
+        super.startTimer()
+        dateLastUsed = Date()
+    }
+    
     
     override func resetTimer() {
         super.resetTimer()

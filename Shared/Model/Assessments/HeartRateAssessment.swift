@@ -10,6 +10,7 @@ import SwiftUI
 
 class HeartRateAssessment : TimedAssessmentBase, TimedAssessmentProtocol, AssessmentProtocol {
     
+    @AppStorage(StorageKeys.Assessments.lastUsed(.heartRate)) var dateLastUsed : Date = Defaults.lastUsed
     @AppStorage(StorageKeys.Assessments.HeartRate.unit) var hrUnit : HeartRateDisplayUnit = Defaults.hrDisplayUnit
     @AppStorage(StorageKeys.Assessments.timerLength(.heartRate)) var duration : Int = Defaults.timerDuration
     @AppStorage(StorageKeys.Assessments.countdownLength(.heartRate)) var countdownLength : Int = Defaults.countdownDuration
@@ -19,6 +20,11 @@ class HeartRateAssessment : TimedAssessmentBase, TimedAssessmentProtocol, Assess
 
     init() {
         super.init(.heartRate)
+    }
+    
+    override func startTimer() {
+        super.startTimer()
+        dateLastUsed = Date.now
     }
     
     override func resetTimer() {
@@ -82,5 +88,19 @@ class HeartRateAssessment : TimedAssessmentBase, TimedAssessmentProtocol, Assess
         duration = Defaults.timerDuration
         countdownLength = Defaults.countdownDuration
         showDecimalOnTimer = Defaults.showDecimalOnTimer
+    }
+}
+
+extension HeartRateAssessment {
+    
+    typealias Model = HeartRateAssessment
+    
+    struct Configuration : View {
+        
+        @EnvironmentObject var model : Model
+        
+        var body: some View {
+            Text("heart Rate view")
+        }
     }
 }

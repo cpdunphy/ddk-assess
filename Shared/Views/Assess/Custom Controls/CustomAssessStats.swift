@@ -145,6 +145,8 @@ extension AssessmentTaker {
                 if newValue == 1 {
                     model.startTimer()
                 } else if model.goalIsEnabled && newValue == model.countingGoal {
+                    
+                    // Goal has been met, save it.
                     model.freezeTimer()
                     let record = AssessmentRecord(
                         date: .now,
@@ -154,6 +156,8 @@ extension AssessmentTaker {
                         goal: model.goalIsEnabled ? model.countingGoal : nil
                     )
                     ddk.addRecord(record)
+                } else {
+                    // Do nothing..
                 }
             }
         }

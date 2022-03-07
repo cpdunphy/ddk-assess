@@ -15,7 +15,7 @@ class Assessment : ObservableObject {
     
     private var timer : AnyCancellable?
     @Published var currentDateTime : Date = .now
-    
+
     init(_ type: AssessmentType) {
         self.type = type
         self.timer = Timer.publish(every: 0.1, on: .main, in: .default)
@@ -40,10 +40,11 @@ class Assessment : ObservableObject {
     var id: String {
         return title
     }
-    
 }
 
 struct Defaults {
+    
+    public static let lastUsed : Date = .distantPast
     public static let hrDisplayUnit : HeartRateDisplayUnit = .bpm
     
     public static let countdownDuration : Int = 3
@@ -54,23 +55,14 @@ struct Defaults {
     
     public static let showDecimalOnTimer : Bool = true
     
+    public static let sortBy : AssessmentSortTypes = .kind
+    public static let sortAscending : Bool = true
+    
+    
     struct Count {
         public static var goal : Int = 10
         public static var goalIsEnabled : Bool = false
     }
 }
 
-protocol TimedAssessmentProtocol {
-    var showDecimalOnTimer : Bool { get set }
-    var duration : Int { get set }
-    var countdownLength : Int { get set }
-    
-    func resetTimer()
-}
 
-protocol AssessmentProtocol {
-    
-    var showDecimalOnTimer : Bool { get set }
-    
-    func resetPreferences()
-}
