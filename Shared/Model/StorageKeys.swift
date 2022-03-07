@@ -19,11 +19,16 @@ struct StorageKeys {
         
         
         public static let favoriteAssessments : String = "favorite_assessment_types"
-        public static let sortBy :              String = "sort_by_assessment_gallery"
+        public static let sortBy :              String = "assessment_gallery_sort_by"
+        public static let sortAscending :       String = "assessment_gallery_sort_sort_ascending"
     }
     
     
     struct Assessments {
+        
+        static func lastUsed(_ type: AssessmentType) -> String {
+            return type.rawValue + "_last_used"
+        }
         
         static func timerLength(_ type: AssessmentType) -> String {
             return type.rawValue + "_timer_length"

@@ -28,20 +28,7 @@ struct AssessmentOptions: View {
     
     var type : AssessmentType
     
-    var model : Assessment {
-        switch type {
-        case .timed:
-            return timed
-        case .count:
-            return count
-        case .heartRate:
-            return hr
-        default:
-            return timed //TODO: This Cannot stay!!
-        }
-    }
-    
-    var model2 : AssessmentProtocol {
+    var model : AssessmentProtocol {
         switch type {
         case .timed:
             return timed
@@ -62,6 +49,7 @@ struct AssessmentOptions: View {
         Form {
             Section {
                 favoriteToggle
+                Text(model.dateLastUsed.debugDescription)
             }
             
             options
@@ -123,7 +111,7 @@ struct AssessmentOptions: View {
             actions: {
                 Button("Cancel", role: .cancel) { }
                 
-                Button("Reset", role: .destructive, action: model2.resetPreferences)
+                Button("Reset", role: .destructive, action: model.resetPreferences)
             },
             message: {
                 Text("Are you sure you want to reset all preferences?")

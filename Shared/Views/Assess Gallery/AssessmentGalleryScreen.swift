@@ -35,8 +35,8 @@ struct AssessmentGalleryScreen: View {
     
     @EnvironmentObject var model : DDKModel
     
-    @AppStorage(StorageKeys.AssessGallery.galleryType) private var galleryType : AssessmentGalleryType = .grid
-    @AppStorage(StorageKeys.AssessGallery.sortBy) var sortBy : String = "kind"
+    @AppStorage(StorageKeys.AssessGallery.sortBy) var sortBy : AssessmentSortTypes = Defaults.sortBy
+    @AppStorage(StorageKeys.AssessGallery.sortAscending) var sortAscending : Bool = Defaults.sortAscending
     
     @State private var assessmentSettingsSelection  : AssessmentType? = nil
     @State private var assessmentSelection          : AssessmentType? = nil
@@ -80,13 +80,11 @@ struct AssessmentGalleryScreen: View {
         // TODO: Sort Controls
             .toolbar {
                 Menu {
-                    Button("Assending") {
-                        
-                    }
+                    Toggle("Ascending", isOn: $sortAscending)
                     
                     Picker("Sort By", selection: $sortBy) {
-                        ForEach(["Kind", "Date"], id: \.self) {
-                            Text($0).tag($0)
+                        ForEach(AssessmentSortTypes.allCases, id: \.self) {
+                            Text($0.title).tag($0)
                         }
                     }
 
