@@ -27,6 +27,8 @@ struct AssessmentGalleryGrid: View {
     @EnvironmentObject var count : CountingAssessment
     @EnvironmentObject var hr : HeartRateAssessment
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @AppStorage(StorageKeys.AssessGallery.sortBy) var sortBy : AssessmentSortTypes = Defaults.sortBy
    @AppStorage(StorageKeys.AssessGallery.sortAscending) var sortAscending : Bool = Defaults.sortAscending
     
@@ -153,11 +155,16 @@ struct AssessmentGalleryGrid: View {
             .frame(maxWidth: .infinity, minHeight: 85, maxHeight: .infinity, alignment: .leading)
             .padding(10)
             .background(
-                //TODO: make this a gradient
-                type.color,
+                LinearGradient(
+                    colors: [
+                        type.color,
+                        type.color.adjust(by: colorScheme == .light ? 7.0 : -7.0) ?? .white
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                ),
                 in: RoundedRectangle(cornerRadius: 10)
             )
-            
         }
         .buttonStyle(.plain)
         .contextMenu {
@@ -175,6 +182,7 @@ struct AssessmentGalleryGrid: View {
 #endif
     }
 }
+
 
 struct AssessmentGalleryGrid_Previews: PreviewProvider {
     static var previews: some View {
