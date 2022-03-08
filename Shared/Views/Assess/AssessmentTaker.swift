@@ -119,6 +119,7 @@ extension AssessmentTaker {
                             .symbolRenderingMode(.hierarchical)
                             .foregroundColor(.gray)
                     }
+                    
                 }
                 .labelStyle(.iconOnly)
                 .imageScale(.large)

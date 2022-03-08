@@ -119,6 +119,7 @@ struct HistoryScreen: View {
             
             Text("No Assessmenets")
                 .font(.title3)
+                .multilineTextAlignment(.center)
         }
         .foregroundColor(.secondary)
     }

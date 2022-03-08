@@ -56,7 +56,7 @@ struct AssessmentGalleryScreen: View {
                 }
             )
                 
-        // TODO: Sort Controls
+        // Sort Controls
             .toolbar {
                 Menu {
                     Toggle("Ascending", isOn: $sortAscending)

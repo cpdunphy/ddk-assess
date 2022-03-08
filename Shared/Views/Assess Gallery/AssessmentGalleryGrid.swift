@@ -29,6 +29,8 @@ struct AssessmentGalleryGrid: View {
     
     @Environment(\.colorScheme) var colorScheme
     
+    @Namespace var namespace
+    
     @AppStorage(StorageKeys.AssessGallery.sortBy) var sortBy : AssessmentSortTypes = Defaults.sortBy
    @AppStorage(StorageKeys.AssessGallery.sortAscending) var sortAscending : Bool = Defaults.sortAscending
     
@@ -46,7 +48,7 @@ struct AssessmentGalleryGrid: View {
         case .timed:        return timed
         case .count:        return count
         case .heartRate:    return hr
-        default:            return nil //TODO: This Cannot stay!!
+        default:            return nil
         }
     }
     
@@ -97,10 +99,11 @@ struct AssessmentGalleryGrid: View {
                         ) {
                             ForEach(
                                 sortedTypes.filter {
-                                    ddk.favoriteAssessments.contains($0.id)
+                                    ddk.assessmentTypeIsFavorite($0)
                                 }
                             ) { type in
                                 button(type)
+                                    .matchedGeometryEffect(id: type.rawValue, in: namespace)
                             }
                         }
                         
@@ -109,6 +112,8 @@ struct AssessmentGalleryGrid: View {
                     }
                 }
                 
+                
+                
                 // Not Favorited Assessments
                 LazyVGrid(
                     columns: columns,
@@ -116,10 +121,11 @@ struct AssessmentGalleryGrid: View {
                 ) {
                     ForEach(
                         sortedTypes.filter {
-                            !ddk.favoriteAssessments.contains($0.id)
+                            !ddk.assessmentTypeIsFavorite($0)
                         }
                     ) { type in
                         button(type)
+                            .matchedGeometryEffect(id: type.rawValue, in: namespace)
                     }
                 }
             }.padding(.horizontal)
