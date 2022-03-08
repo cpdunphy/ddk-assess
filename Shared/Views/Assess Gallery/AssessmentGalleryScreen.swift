@@ -18,7 +18,7 @@ struct AssessmentGalleryScreen: View {
     
     @State private var assessmentSettingsSelection  : AssessmentType? = nil
     @State private var assessmentSelection          : AssessmentType? = nil
-    @State private var searchText: String = ""
+    @State private var searchQuery: String = ""
 
     
     //MARK: - Body
@@ -31,13 +31,14 @@ struct AssessmentGalleryScreen: View {
             .navigationTitle(NavigationItem.assess.title)
         
             .searchable(
-                text: $searchText,
+                text: $searchQuery,
                 placement: .sidebar,
                 suggestions: {
                     ForEach(
-                        !searchText.isEmpty ?
-                        AssessmentType.allCases.filter { $0.title.lowercased().contains(searchText.lowercased()) }
-                        : AssessmentType.allCases,
+                        !searchQuery.isEmpty ?
+                        AssessmentType.allCases.filter {
+                            $0.title.lowercased().contains(searchQuery.lowercased())
+                        } : AssessmentType.allCases,
                         id: \.self
                     ) { type in
                         Button {
@@ -47,14 +48,14 @@ struct AssessmentGalleryScreen: View {
                         } label: {
                             AssessmentListRow(
                                 type: type,
-                                searchQuery: $searchText,
-                                assessmentSettingsSelection: $assessmentSettingsSelection
+                                searchQuery: $searchQuery,
+                                assessmentConfigureSelection: $assessmentSettingsSelection
                             )
                         }
                     }
                 }
             )
-        
+                
         // TODO: Sort Controls
             .toolbar {
                 Menu {

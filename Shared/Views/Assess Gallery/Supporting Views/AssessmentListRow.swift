@@ -14,7 +14,7 @@ struct AssessmentListRow : View {
 
     var type : AssessmentType
     @Binding var searchQuery : String
-    @Binding var assessmentSettingsSelection : AssessmentType?
+    @Binding var assessmentConfigureSelection : AssessmentType?
     
     
     var highlightedText : AttributedString? {
@@ -77,14 +77,13 @@ struct AssessmentListRow : View {
                     .foregroundColor(.primary)
             }
 
-            Spacer()
-            
-        }//.padding(.vertical, 2)
+            Spacer()   
+        }
     }
 }
 
 struct AssessmentListRow_Previews: PreviewProvider {
     static var previews: some View {
-        AssessmentListRow(type: .timed, searchQuery: .constant(""), assessmentSettingsSelection: .constant(nil))
+        AssessmentListRow(type: .timed, searchQuery: .constant(""), assessmentConfigureSelection: .constant(nil))
     }
 }

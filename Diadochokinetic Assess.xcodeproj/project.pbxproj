@@ -51,6 +51,7 @@
 		F062A80527D65CAD0096A29A /* TimedAssessmentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062A80427D65CAD0096A29A /* TimedAssessmentProtocol.swift */; };
 		F062A80727D65CEE0096A29A /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062A80627D65CEE0096A29A /* Defaults.swift */; };
 		F062A80927D65D5C0096A29A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062A80827D65D5C0096A29A /* Date.swift */; };
+		F062A80B27D6C60A0096A29A /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062A80A27D6C60A0096A29A /* Double.swift */; };
 		F07564EC2530FA8200EC058A /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07564EB2530FA8200EC058A /* MailView.swift */; };
 		F07B3BD0261108E5004EB5AC /* Print.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07B3BCF261108E5004EB5AC /* Print.swift */; };
 		F07B3BD1261108E5004EB5AC /* Print.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07B3BCF261108E5004EB5AC /* Print.swift */; };
@@ -166,6 +167,7 @@
 		F062A80427D65CAD0096A29A /* TimedAssessmentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedAssessmentProtocol.swift; sourceTree = "<group>"; };
 		F062A80627D65CEE0096A29A /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		F062A80827D65D5C0096A29A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		F062A80A27D6C60A0096A29A /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		F07564EB2530FA8200EC058A /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		F07B3BCF261108E5004EB5AC /* Print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Print.swift; sourceTree = "<group>"; };
 		F080D72826A3B5C700A1F49D /* AssessmentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentType.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 		F0DAFDA326B07DB400CDA62F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				F062A80A27D6C60A0096A29A /* Double.swift */,
 				F062A80827D65D5C0096A29A /* Date.swift */,
 				F08D1BAC27150E4E004FE52A /* RoundedCorner.swift */,
 				6CC1561A2735D52200A7A344 /* Binding.swift */,
@@ -707,6 +710,7 @@
 				6CAEE28F27323AA800184E39 /* Assessment.swift in Sources */,
 				F04AD42C271CCDB600293641 /* SettingsScreenButton.swift in Sources */,
 				F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */,
+				F062A80B27D6C60A0096A29A /* Double.swift in Sources */,
 				6CC1561B2735D52200A7A344 /* Binding.swift in Sources */,
 				6CAEE29A27323E5600184E39 /* CustomAssessControls.swift in Sources */,
 				6CAEE29C27323E6300184E39 /* CustomAssessStats.swift in Sources */,

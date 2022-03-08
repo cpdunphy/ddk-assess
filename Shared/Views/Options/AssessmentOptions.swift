@@ -37,7 +37,7 @@ struct AssessmentOptions: View {
         case .heartRate:
             return hr
         default:
-            return nil //TODO: This Cannot stay!!
+            return nil
         }
     }
     
@@ -59,7 +59,8 @@ struct AssessmentOptions: View {
             }
         }
     }
-        
+    
+    // Favorite Toggle
     var favoriteToggle : some View {
         Toggle(
             "\(Image(systemName: "star.fill")) Favorite",
@@ -74,6 +75,7 @@ struct AssessmentOptions: View {
         )
     }
     
+    // Reset Temp Logs Button
     var resetLogsButton : some View {
         Button(role: .destructive) {
             showResetCountConf = true
@@ -97,6 +99,7 @@ struct AssessmentOptions: View {
         )
     }
     
+    // Reset Preferences Button
     var resetPreferencesButton : some View {
         Button {
             showResetConfirmationAlert = true
@@ -140,21 +143,5 @@ struct AssessmentOptions: View {
 struct AssessmentOptions_Previews: PreviewProvider {
     static var previews: some View {
         AssessmentOptions(type: .timed)
-    }
-}
-
-
-struct AssessmentOptionsForm<Content:View> : View {
-    
-    var content: Content
-    
-    init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-    }
-    
-    var body: some View {
-        Form {
-            content
-        }
     }
 }

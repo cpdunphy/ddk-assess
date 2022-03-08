@@ -21,23 +21,21 @@ struct RecordGeneralInfo: View {
         self.record = record
     }
     
+    // MARK: - Body
     var body: some View {
-//        NavigationView {
-            main
-                .navigationTitle("Info")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Text("Done")
-                    }
+        main
+            .navigationTitle("Info")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                Button {
+                    dismiss()
+                } label: {
+                    Text("Done")
                 }
-//        }
+            }
     }
 
-
-
+    // MARK: - Main
     var main: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
@@ -52,7 +50,7 @@ struct RecordGeneralInfo: View {
                         
                         if model.recordIsPinned(record.id) {
                             Image(systemName: "pin.circle.fill")
-                                .accentColor(.secondary)
+                                .foregroundColor(.secondary)
                                 .symbolRenderingMode(.hierarchical)
                         }
                     }
@@ -145,13 +143,5 @@ struct RecordGeneralInfo: View {
 struct RecordGeneralInfo_Previews: PreviewProvider {
     static var previews: some View {
         RecordGeneralInfo(AssessmentRecord(date: Date(), taps: 7, type: .timed, duration: 15))
-    }
-}
-
-extension Double {
-    var clean: String {
-        return self.truncatingRemainder(dividingBy: 1) == 0 ?
-        String(format: "%.0f", self) :
-        String(format: "%.1f", self)
     }
 }

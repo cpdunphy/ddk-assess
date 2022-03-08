@@ -32,7 +32,7 @@ struct HistoryScreen: View {
         case .pinned: // Group by Pinned
             return [
                 RecordGroup(title: "Pinned", records: model.pinnedRecords),
-                RecordGroup(title: "Unpinned", records: model.records)
+                RecordGroup(records: model.records)
             ]
             
         case .date: // Group by Date
@@ -70,8 +70,10 @@ struct HistoryScreen: View {
             
         case .kind: // Group by Kind
             
-            let recordsByKind = model.allRecords.sorted(by: { $0.type.rawValue < $1.type.rawValue }).chunked(on: \.type)
-            
+            let recordsByKind = model.allRecords
+                .sorted(by: { $0.type.rawValue < $1.type.rawValue })
+                .chunked(on: \.type)
+                        
             return recordsByKind.map { (type, records) in
                 RecordGroup(
                     title: type.title,
