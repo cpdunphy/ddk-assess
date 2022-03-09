@@ -36,7 +36,7 @@ struct SettingsScreenButton: View {
     var image : some View {
         if let symbol = symbolSystemName {
             Image(systemName: symbol)
-                .foregroundColor(symbolColor ?? .primary)
+                .foregroundStyle(symbolColor ?? .primary, .primary)
                 .font(.title3)
         }
         else if let image = imageName {

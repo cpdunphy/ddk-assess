@@ -23,12 +23,6 @@ struct AssessmentGalleryIcon: View {
                 in: RoundedRectangle(cornerRadius: 8)
             )
             .padding(2)
-            
-//            .overlay(
-//                RoundedRectangle(cornerRadius: 10)
-//                    .stroke(.ultraThickMaterial, lineWidth: 6)
-//                    .cornerRadius(8)
-//            )
     }
 }
 

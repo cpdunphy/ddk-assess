@@ -52,9 +52,10 @@ struct SettingsScreen: View {
                 ) {
                     SettingsScreenButton(
                         title: "About",
-                        symbolSystemName: "info.circle",
-                        symbolColor: .accentColor
+                        symbolSystemName: "info.circle.fill",
+                        symbolColor: .white
                     )
+                    .symbolRenderingMode(.palette)
                 }
                 
                 #if os(iOS)
@@ -69,8 +70,17 @@ struct SettingsScreen: View {
                 }.disabled(!MFMailComposeViewController.canSendMail())
                 #endif
                 
-                Link(
-                    destination: URL(string: "itms-apps://itunes.apple.com/app/id\(1489873060)?action=write-review&mt=8")!
+                Button(
+                    action: {
+                        if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                            SKStoreReviewController.requestReview(in: scene)
+                        } else {
+                            if let url = URL(string: "itms-apps://itunes.apple.com/app/id\(1489873060)?action=write-review&mt=8") {
+                               UIApplication.shared.open(url)
+                            }
+                        }
+
+                    }
                 ) {
                     SettingsScreenButton(
                         title: "Do you love DDK?",

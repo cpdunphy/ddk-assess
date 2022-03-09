@@ -159,11 +159,7 @@ struct Onboarding: View {
     }
     
     var longTermSubscription : Product? {
-        store.subscriptions.first(
-            where: {
-                $0.id == "com.ballygorey.ddk.yearly"
-            }
-        )
+        return store.subscriptions.sorted(by: { $0.price > $1.price }).first
     }
     
     var shortTermSubscription : Product? {
