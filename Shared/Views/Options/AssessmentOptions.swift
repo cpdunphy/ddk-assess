@@ -125,17 +125,19 @@ struct AssessmentOptions: View {
     var body: some View {
         form
             .navigationTitle(model?.title ?? "Untitled")
+        #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+        #endif
         
         // Toolbar
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+//                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(
                         "Done",
                         role: .destructive,
                         action: { dismiss() }
                     )
-                }
+//                }
             }
     }
 }

@@ -86,7 +86,9 @@ struct AboutDDK: View {
             .scenePadding()
         }
         .navigationTitle("About")
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
     
     func getAppCurrentVersionNumber() -> String {

@@ -1,5 +1,5 @@
 //
-//  Onboarding.swift
+//  OnboardingMobile.swift
 //  Diadochokinetic Assess (iOS)
 //
 //  Created by Collin Dunphy on 12/2/21.
@@ -8,7 +8,7 @@
 import SwiftUI
 import StoreKit
 
-struct Onboarding: View {
+struct OnboardingMobile: View {
     @EnvironmentObject var store: Store
     
     @State var errorTitle = ""
@@ -182,9 +182,9 @@ struct Onboarding: View {
     }
 }
 
-struct Onboarding_Previews: PreviewProvider {
+struct OnboardingMobile_Previews: PreviewProvider {
     static var previews: some View {
-        Onboarding()
+        OnboardingMobile()
     }
 }
 

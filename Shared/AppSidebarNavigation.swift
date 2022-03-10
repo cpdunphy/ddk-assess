@@ -77,7 +77,9 @@ struct AppSidebarNavigation: View {
                 SettingsScreen()
                     .environmentObject(model)
                     .environmentObject(store)
+                #if os(iOS)
                     .navigationBarTitleDisplayMode(.inline)
+                #endif
                     .toolbar {
                         Button("Done", action: { dismiss() } )
                     }

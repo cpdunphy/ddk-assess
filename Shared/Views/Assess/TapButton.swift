@@ -83,7 +83,7 @@ struct TapButton: View {
 
         @Environment(\.isEnabled) private var isEnabled: Bool
         
-        var corners: UIRectCorner = .allCorners
+        var corners: RectCorner = .allCorners
         
         var enabledForegroundColor : Color = .white
         var disabledForegroundColor : Color = Color.gray.opacity(0.75)
@@ -107,8 +107,3 @@ struct TapButton_Previews: PreviewProvider {
         TapButton(taps: .constant(7))
     }
 }
-
-
-
-
-

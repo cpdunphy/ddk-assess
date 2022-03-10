@@ -73,10 +73,12 @@ struct AssessmentGalleryScreen: View {
                 
             }
         
+        #if !os(macOS)
         // Assessment Taker
             .fullScreenCover(item: $assessmentSelection) { type in
                 AssessmentTaker(type: type)
             }
+        #endif
         
         // Configure Assessment Options
             .sheet(item: $assessmentSettingsSelection) { type in

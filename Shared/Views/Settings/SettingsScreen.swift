@@ -60,7 +60,14 @@ struct SettingsScreen: View {
                 
                 #if os(iOS)
                 Button {
+                    #if os(iOS)
                     showingMailView.toggle()
+                    #else
+                    if let url = U {
+                        UIApplication.shared.open(url)
+                    }
+                    
+                    #endif
                 } label: {
                     SettingsScreenButton(
                         title: "Support / Feedback",
@@ -68,8 +75,20 @@ struct SettingsScreen: View {
                     )
                     .symbolRenderingMode(.multicolor)
                 }.disabled(!MFMailComposeViewController.canSendMail())
+                #else
+                Link(
+                    destination: URL(string: "mailto:apps@ballygorey.com?subject=Subject&body=Test")!,
+                    label: {
+                        SettingsScreenButton(
+                            title: "Support / Feedback",
+                            symbolSystemName: "questionmark.diamond.fill"
+                        )
+                        .symbolRenderingMode(.multicolor)
+                    }
+                )
                 #endif
                 
+                #if os(iOS)
                 Button(
                     action: {
                         if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
@@ -88,7 +107,18 @@ struct SettingsScreen: View {
                         symbolColor: .pink
                     )
                 }
-                
+                #else
+                Link(
+                    destination: URL(string: "itms-apps://itunes.apple.com/app/id\(1489873060)?action=write-review&mt=8")!,
+                    label: {
+                        SettingsScreenButton(
+                            title: "Do you love DDK?",
+                            symbolSystemName: "suit.heart.fill",
+                            symbolColor: .pink
+                        )
+                    }
+                )
+                #endif
             }
             
             
@@ -150,9 +180,11 @@ struct SettingsScreen: View {
             .navigationTitle("Settings")
         
         // Mail Popover Sheet
+        #if os(iOS)
             .sheet(isPresented: $showingMailView) {
                 MailView(result: $mailResult)
             }
+        #endif
     }
     
     // Button that resets the preferences across the whole app.

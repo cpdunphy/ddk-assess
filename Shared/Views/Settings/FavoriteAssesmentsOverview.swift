@@ -18,7 +18,9 @@ struct FavoriteAssesmentsOverview : View {
             }
         }
         .navigationTitle("Edit Favorites")
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
     
     func favoriteToggle(_ type: AssessmentType) -> some View {

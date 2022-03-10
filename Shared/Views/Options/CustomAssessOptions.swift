@@ -125,7 +125,10 @@ extension AssessmentOptions {
                     ForEach(range, id: \.self) {
                         Text("\($0)").tag($0)
                     }
-                }.pickerStyle(.wheel)
+                }
+                #if os(iOS)
+                .pickerStyle(.wheel)
+                #endif
             }
         }
         

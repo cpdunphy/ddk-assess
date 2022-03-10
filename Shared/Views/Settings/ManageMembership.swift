@@ -46,8 +46,10 @@ struct ManageMembership: View {
         }
         .scenePadding()
         .navigationTitle("Membership")
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         .manageSubscriptionsSheet(isPresented: $manageSubscription)
+        #endif
         .toolbar {
             restoreButton
         }

@@ -35,9 +35,22 @@ struct SupportTheDev: View {
                 }
             }.padding(.bottom, 30)
         }
-        .background(Color(.systemGroupedBackground).edgesIgnoringSafeArea(.all)) //TODO: Add Mac Compatability
+        
+        #if os(macOS)
+        .background(
+            Color(NSColor.windowBackgroundColor).edgesIgnoringSafeArea(.all)
+        )
+        #else
+        .background(
+            Color(.systemGroupedBackground).edgesIgnoringSafeArea(.all)
+        )
+        #endif
+        
         .navigationTitle("Donation")
+        
+        #if !os(macOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
     
     func buy() async {
@@ -95,11 +108,19 @@ struct NeonButtonStyle: ViewModifier {
     
     func body(content: Content) -> some View {
         content
+        #if os(macOS)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(Color(.systemGroupedBackground)) //TODO: Add Mac Compatability
+                    .foregroundColor(Color(NSColor.windowBackgroundColor))
                     .shadow(radius: 8, x: 4, y: 4)
             )
+        #else
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(Color(.systemGroupedBackground))
+                    .shadow(radius: 8, x: 4, y: 4)
+            )
+        #endif
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(colorScheme == .light ? Color.clear : Color.accentColor, lineWidth: 2)

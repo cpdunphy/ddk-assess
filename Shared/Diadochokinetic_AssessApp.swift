@@ -32,7 +32,11 @@ struct Diadochokinetic_AssessApp: App {
         if store.userAuthenticationStatus == .subscribed {
             ContentView()
         } else {
+            #if os(macOS)
+                Text("Hello World!")
+            #else
             Onboarding()
+            #endif
         }
     }
     

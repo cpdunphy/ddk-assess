@@ -25,7 +25,9 @@ struct RecordGeneralInfo: View {
     var body: some View {
         main
             .navigationTitle("Info")
+        #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+        #endif
             .toolbar {
                 Button {
                     dismiss()

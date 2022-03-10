@@ -53,7 +53,11 @@ extension AssessmentTaker {
                     }.position(x: geo.size.width / 2, y: geo.size.height / 2)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                #if os(macOS)
+                .background(Color(NSColor.windowBackgroundColor))
+                #else
                 .background(Color(.secondarySystemGroupedBackground))
+                #endif
                 .cornerRadius(15.0)
                 .onChange(of: model.currentDateTime, perform: checkStatus)
                 
@@ -126,7 +130,11 @@ extension AssessmentTaker {
                     
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                #if os(iOS)
                 .background(Color(.secondarySystemGroupedBackground))
+                #else
+                .background(Color(NSColor.windowBackgroundColor))
+                #endif
                 .cornerRadius(15.0)
                 .onChange(of: model.taps, perform: checkStatus)
                 
@@ -191,7 +199,11 @@ extension AssessmentTaker {
                     }.position(x: geo.size.width / 2, y: geo.size.height / 2)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                #if os(macOS)
+                .background(Color(NSColor.windowBackgroundColor))
+                #else
                 .background(Color(.secondarySystemGroupedBackground))
+                #endif
                 .cornerRadius(15.0)
                 .onChange(of: model.currentDateTime, perform: checkStatus)
                 

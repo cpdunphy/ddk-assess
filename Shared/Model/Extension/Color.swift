@@ -48,14 +48,40 @@ extension Color {
     
     func adjust(by percentage: CGFloat = 30.0) -> Color? {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+        #if os(macOS)
+        let color : NSColor = NSColor(self)
+        #else
         let color : UIColor = UIColor(self)
+        #endif
+        
+        #if os(macOS)
+        color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        let newRed = min(red + percentage/100, 1.0)
+        let newGreen = min(green + percentage/100, 1.0)
+        let newBlue = min(blue + percentage/100, 1.0)
+        
+        return Color(NSColor(
+            red: newRed,
+            green: newRed,
+            blue: newRed,
+            alpha: alpha
+        ))
+        #else
         if color.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
-            return Color(UIColor(red: min(red + percentage/100, 1.0),
-                           green: min(green + percentage/100, 1.0),
-                           blue: min(blue + percentage/100, 1.0),
-                           alpha: alpha))
-        } else {
-            return nil
+            
+            let newRed = min(red + percentage/100, 1.0)
+            let newGreen = min(green + percentage/100, 1.0)
+            let newBlue = min(blue + percentage/100, 1.0)
+            
+            return Color(UIColor(
+                red: newRed,
+                green: newGreen,
+                blue: newBlue,
+                alpha: alpha
+            ))
         }
+        #endif
+        
+        return nil
     }
 }
