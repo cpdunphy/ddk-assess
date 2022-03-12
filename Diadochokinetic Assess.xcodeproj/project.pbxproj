@@ -131,6 +131,11 @@
 		F0E180B225236C3500E808AB /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180B125236C3500E808AB /* SettingsScreen.swift */; };
 		F0FAC2FE27D9D7BB008685AC /* OnboardingMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FAC2FD27D9D7BB008685AC /* OnboardingMac.swift */; };
 		F0FAC30027D9D7F3008685AC /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FAC2FF27D9D7F3008685AC /* Onboarding.swift */; };
+		F0FAC30127D9F3DE008685AC /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FAC2FF27D9D7F3008685AC /* Onboarding.swift */; };
+		F0FAC30327DA1695008685AC /* ProductOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FAC30227DA1695008685AC /* ProductOption.swift */; };
+		F0FAC30427DA1695008685AC /* ProductOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FAC30227DA1695008685AC /* ProductOption.swift */; };
+		F0FAC30627DB1787008685AC /* OnboardingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FAC30527DB1787008685AC /* OnboardingOptions.swift */; };
+		F0FAC30727DB1787008685AC /* OnboardingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FAC30527DB1787008685AC /* OnboardingOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,6 +230,8 @@
 		F0E180B125236C3500E808AB /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		F0FAC2FD27D9D7BB008685AC /* OnboardingMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingMac.swift; sourceTree = "<group>"; };
 		F0FAC2FF27D9D7F3008685AC /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		F0FAC30227DA1695008685AC /* ProductOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOption.swift; sourceTree = "<group>"; };
+		F0FAC30527DB1787008685AC /* OnboardingOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingOptions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,10 +351,12 @@
 		F02DB3E3251C23430038FEAE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				F0FAC30527DB1787008685AC /* OnboardingOptions.swift */,
 				F02DB3E4251C23430038FEAE /* Diadochokinetic_AssessApp.swift */,
 				F02DB3E5251C23430038FEAE /* ContentView.swift */,
 				F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */,
 				F0FAC2FF27D9D7F3008685AC /* Onboarding.swift */,
+				F0FAC30227DA1695008685AC /* ProductOption.swift */,
 				F0C756A5251C3B2900D066A9 /* Model */,
 				F0DC244B2524FB96000CBCA8 /* Views */,
 				F02DB3E6251C23440038FEAE /* Assets.xcassets */,
@@ -757,10 +766,12 @@
 				F062A80327D65C930096A29A /* AssessmentProtocol.swift in Sources */,
 				F022213126A325B900AA0340 /* AssessmentGalleryIcon.swift in Sources */,
 				F05F75DA2757BD4200CDD65C /* Statistics.swift in Sources */,
+				F0FAC30127D9F3DE008685AC /* Onboarding.swift in Sources */,
 				6CAEE28C27323A7600184E39 /* CountingAssessment.swift in Sources */,
 				F030470F251E65F400B438E7 /* Color.swift in Sources */,
 				6CAEE285273239CA00184E39 /* CustomAssessOptions.swift in Sources */,
 				F062A80527D65CAD0096A29A /* TimedAssessmentProtocol.swift in Sources */,
+				F0FAC30327DA1695008685AC /* ProductOption.swift in Sources */,
 				F0D553A5251C24750084E0EB /* Store.swift in Sources */,
 				6CAEE28F27323AA800184E39 /* Assessment.swift in Sources */,
 				F04AD42C271CCDB600293641 /* SettingsScreenButton.swift in Sources */,
@@ -775,6 +786,7 @@
 				F080D72C26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift in Sources */,
 				F0304708251E4CD100B438E7 /* TapButton.swift in Sources */,
 				F08D1BB4271A2135004FE52A /* RoundRectProgress.swift in Sources */,
+				F0FAC30627DB1787008685AC /* OnboardingOptions.swift in Sources */,
 				F080D72F26A4ED7F00A1F49D /* AssessmentTaker.swift in Sources */,
 				F0C756B0251C3DA500D066A9 /* States.swift in Sources */,
 				F080D73226A4EDCE00A1F49D /* AssessmentOptions.swift in Sources */,
@@ -803,6 +815,7 @@
 				F00DE6CC27D7BD12000AD591 /* TimedAssessmentBase.swift in Sources */,
 				F00DE6CA27D7BD12000AD591 /* Assessment.swift in Sources */,
 				F080D73C26A5E0F100A1F49D /* RecordHistoryRow.swift in Sources */,
+				F0FAC30427DA1695008685AC /* ProductOption.swift in Sources */,
 				F00DE6C627D7BCF1000AD591 /* Statistics.swift in Sources */,
 				F00DE6D627D7BD2E000AD591 /* RoundedCorner.swift in Sources */,
 				F00DE6D927D952F4000AD591 /* CustomAssessTaps.swift in Sources */,
@@ -814,6 +827,7 @@
 				F0C756B8251C3DC000D066A9 /* AssessmentRecord.swift in Sources */,
 				F02DB40E251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
 				F0B423BC25A66D97002805C9 /* NavigationItem.swift in Sources */,
+				F0FAC30727DB1787008685AC /* OnboardingOptions.swift in Sources */,
 				F00DE6D527D7BD2E000AD591 /* Date.swift in Sources */,
 				F00DE6C927D7BD0F000AD591 /* TimedAssessment.swift in Sources */,
 				F00DE6CB27D7BD12000AD591 /* TimedAssessmentProtocol.swift in Sources */,
