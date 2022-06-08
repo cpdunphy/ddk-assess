@@ -8,10 +8,6 @@
 import SwiftUI
 import StoreKit
 
-/*
- 
- */
-
 struct OnboardingMobile: View {
     @EnvironmentObject var store: Store
     
@@ -100,9 +96,8 @@ struct OnboardingMobile: View {
 //        )
         
         .alert(errorTitle, isPresented: $isShowingError, actions: {
-            
+            //TODO: Actions??
         })
-        
         .sheet(isPresented: $isOptionsModalOpen) {
             OnboardingOptions(errorTitle: $errorTitle, isShowingError: $isShowingError)
         }

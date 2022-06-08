@@ -351,12 +351,8 @@
 		F02DB3E3251C23430038FEAE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				F0FAC30527DB1787008685AC /* OnboardingOptions.swift */,
 				F02DB3E4251C23430038FEAE /* Diadochokinetic_AssessApp.swift */,
 				F02DB3E5251C23430038FEAE /* ContentView.swift */,
-				F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */,
-				F0FAC2FF27D9D7F3008685AC /* Onboarding.swift */,
-				F0FAC30227DA1695008685AC /* ProductOption.swift */,
 				F0C756A5251C3B2900D066A9 /* Model */,
 				F0DC244B2524FB96000CBCA8 /* Views */,
 				F02DB3E6251C23440038FEAE /* Assets.xcassets */,
@@ -412,6 +408,17 @@
 				F02DB40C251C23440038FEAE /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		F0469FED27F90D8200E401EE /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F0FAC2FF27D9D7F3008685AC /* Onboarding.swift */,
+				F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */,
+				F0FAC30227DA1695008685AC /* ProductOption.swift */,
+				F0FAC30527DB1787008685AC /* OnboardingOptions.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		F080D74026A8C2B000A1F49D /* History */ = {
@@ -513,6 +520,7 @@
 		F0DC244B2524FB96000CBCA8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F0469FED27F90D8200E401EE /* Onboarding */,
 				F08D1BB2271A20CE004FE52A /* Assess */,
 				6CAEE29327323B7300184E39 /* Options */,
 				F0214EEF26A31BFE00003DDC /* Assess Gallery */,

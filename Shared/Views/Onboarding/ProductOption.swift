@@ -17,7 +17,7 @@ struct ProductOption : View {
         VStack(alignment: .leading) {
             
             HStack {
-                Text("Monthly")
+                Text(recurrenceDiscription)
                     .kerning(3)
                     .foregroundColor(.secondary)
                     .textCase(.uppercase)
@@ -47,21 +47,45 @@ struct ProductOption : View {
             }
             
             
-            Text("\(option.displayPrice)/month")
+            Text("\(option.displayPrice)/\(recurrence)")
                 .font(.title3)
                 .fontWeight(.medium)
             
-            Text("1 Week Free Trial")
-                .foregroundColor(.green)
-                .font(.subheadline)
-                .fontWeight(.semibold)
-                .padding(5)
-                .background(Color.green.opacity(0.15))
-                .cornerRadius(4)
+            if let offer = option.subscription?.introductoryOffer {
+                    
+                //TODO: Make this more robust
+                Text("\(offer.periodCount) \(offer.period.unit.debugDescription) \(offer.price.isZero ? "Free" : offer.displayPrice) Trial")
+                        .foregroundColor(.green)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .padding(5)
+                        .background(Color.green.opacity(0.15))
+                        .cornerRadius(4)
+            }
             
-            Text("then \(option.displayPrice) per month. Cancel anytime.")
+            Text("then \(option.displayPrice) per \(recurrence). Cancel anytime.")
                 .foregroundColor(.secondary)
         }
+    }
+    
+    var recurrenceDiscription : String {
+        switch option.subscription?.subscriptionPeriod.unit {
+        case .year:
+            return "Anually"
+        case .month:
+            return "Monthly"
+        case .week:
+            return "Weekly"
+        case .day:
+            return "Daily"
+        default:
+            return "Recurring"
+        }
+    }
+    
+    var recurrence : String {
+        let unit : String = (option.subscription?.subscriptionPeriod.value ?? -1) == 1 ? "" : "\(option.subscription?.subscriptionPeriod.value ?? -1)"
+        return (unit) + (option.subscription?.subscriptionPeriod.unit.debugDescription ?? "Unknown").lowercased()
     }
 }
 
