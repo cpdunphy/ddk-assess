@@ -20,8 +20,8 @@
       "color" : {
         "color-space" : "extended-gray",
         "components" : {
-          "alpha" : "0.100",
-          "white" : "0.000"
+          "alpha" : "0.500",
+          "white" : "0.250"
         }
       },
       "idiom" : "universal"
