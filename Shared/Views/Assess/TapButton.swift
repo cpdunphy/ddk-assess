@@ -26,7 +26,7 @@ struct TapButton: View {
         enabledStates: Array<Set<CountingState>> = [[.counting]],
         style: AssessmentButtonStyle? = nil,
         enabledText: String = "Tap!",
-        disabledText: String = "Disabled"
+        disabledText: String = "Tap!"
     ) {
         self._taps = taps
         self.countingState = countingState

@@ -47,9 +47,9 @@ struct AssessmentOptions: View {
     // MARK: - Form
     var form: some View {
         Form {
-            Section {
-                favoriteToggle
-            }
+//            Section {
+//                favoriteToggle
+//            }
             
             options
             

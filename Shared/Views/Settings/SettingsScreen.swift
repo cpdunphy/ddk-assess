@@ -29,20 +29,9 @@ struct SettingsScreen: View {
     var form: some View {
         List {
             
-            Section("Getting Started") {
-                whatsNew
-            }
-            
-            // Manage Subscription
-            Section("Membership") {
-                NavigationLink(destination: ManageMembership()) {
-                    SettingsScreenButton(
-                        title: "Manage your Membership",
-                        symbolSystemName: "staroflife",
-                        symbolColor: .accentColor
-                    ).symbolVariant(.fill)
-                }
-            }
+//            Section("Getting Started") {
+//                whatsNew
+//            }
              
             // App Information + More
             Section("Information") {
@@ -123,13 +112,6 @@ struct SettingsScreen: View {
             
             
             Section {
-                NavigationLink(
-                    destination: FavoriteAssesmentsOverview(),
-                    label: {
-                        Label("Edit Favorites", systemImage: "star.fill")
-                            .accentColor(.yellow) // TODO: This will be deprecated
-                    }
-                )
 
                 NavigationLink(
                     destination: Statistics(),
@@ -166,7 +148,7 @@ struct SettingsScreen: View {
                 .shiny(.init(colors: [.cyan, .teal]))
                 .padding(.bottom, 8)
                 
-                Text("50+ new features. A total redesign. See what's new in the biggest update to DDK yet.")
+                Text("50+ new features. A total redesign. See what's new.")
                     .fixedSize(horizontal: false, vertical: true)
                     .foregroundColor(.primary)
                 

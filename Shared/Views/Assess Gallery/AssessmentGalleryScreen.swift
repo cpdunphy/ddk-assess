@@ -27,51 +27,7 @@ struct AssessmentGalleryScreen: View {
             assessmentSelection: $assessmentSelection,
             assessmentSettingsSelection: $assessmentSettingsSelection
         )
-        
             .navigationTitle(NavigationItem.assess.title)
-        
-            .searchable(
-                text: $searchQuery,
-                placement: .sidebar,
-                suggestions: {
-                    ForEach(
-                        !searchQuery.isEmpty ?
-                        AssessmentType.allCases.filter {
-                            $0.title.lowercased().contains(searchQuery.lowercased())
-                        } : AssessmentType.allCases,
-                        id: \.self
-                    ) { type in
-                        Button {
-                            assessmentSelection = type
-                            triggerHapticFeedbackSuccess()
-                            dismissSearch()
-                        } label: {
-                            AssessmentListRow(
-                                type: type,
-                                searchQuery: $searchQuery,
-                                assessmentConfigureSelection: $assessmentSettingsSelection
-                            )
-                        }
-                    }
-                }
-            )
-                
-        // Sort Controls
-            .toolbar {
-                Menu {
-                    Toggle("Ascending", isOn: $sortAscending)
-                    
-                    Picker("Sort By", selection: $sortBy) {
-                        ForEach(AssessmentSortTypes.allCases, id: \.self) {
-                            Text($0.title).tag($0)
-                        }
-                    }
-
-                } label: {
-                    Label("Sort By", systemImage: "arrow.up.arrow.down")
-                }
-                
-            }
         
         #if !os(macOS)
         // Assessment Taker

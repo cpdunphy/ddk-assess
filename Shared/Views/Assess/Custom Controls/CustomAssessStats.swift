@@ -44,10 +44,12 @@ extension AssessmentTaker {
                         
                         Text(timerDescription)
                             .modifier(BuildingBlocks.TitleFont())
+                            .padding(.bottom, 4)
                         
-                        BuildingBlocks.Separator()
+//                        BuildingBlocks.Separator()
                         
                         Text(BuildingBlocks.tapDescrition(model.taps))
+                            .foregroundColor(.secondary)
                             .modifier(BuildingBlocks.SubtitleFont())
                         
                     }.position(x: geo.size.width / 2, y: geo.size.height / 2)
@@ -112,7 +114,7 @@ extension AssessmentTaker {
                         Text(timerDescription)
                             .modifier(BuildingBlocks.TitleFont())
                         
-                        BuildingBlocks.Separator()
+//                        BuildingBlocks.Separator()
                         
                         if model.goalIsEnabled {
                             Text(
@@ -182,7 +184,7 @@ extension AssessmentTaker {
                         Text(timerDescription)
                             .modifier(BuildingBlocks.TitleFont())
                         
-                        BuildingBlocks.Separator()
+//                        BuildingBlocks.Separator()
                         
                         HStack {
                             Text(BuildingBlocks.tapDescrition(model.taps))

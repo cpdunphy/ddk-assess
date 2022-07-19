@@ -85,32 +85,32 @@ struct AssessmentGalleryGrid: View {
         ScrollView {
             VStack {
                 
-                // Favorited Assessments
-                if !ddk.isFavoriteAssessmentsEmpty {
-                    VStack(alignment: .leading) {
-                        Text("Favorites".uppercased())
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                            .padding(.leading)
-                        
-                        LazyVGrid(
-                            columns: columns,
-                            spacing: 12
-                        ) {
-                            ForEach(
-                                sortedTypes.filter {
-                                    ddk.assessmentTypeIsFavorite($0)
-                                }
-                            ) { type in
-                                button(type)
-                                    .matchedGeometryEffect(id: type.rawValue, in: namespace)
-                            }
-                        }
-                        
-                        Divider()
-                            .padding(.vertical, 6)
-                    }
-                }
+//                // Favorited Assessments
+//                if !ddk.isFavoriteAssessmentsEmpty {
+//                    VStack(alignment: .leading) {
+//                        Text("Favorites".uppercased())
+//                            .font(.caption)
+//                            .foregroundColor(.secondary)
+//                            .padding(.leading)
+//
+//                        LazyVGrid(
+//                            columns: columns,
+//                            spacing: 12
+//                        ) {
+//                            ForEach(
+//                                sortedTypes.filter {
+//                                    ddk.assessmentTypeIsFavorite($0)
+//                                }
+//                            ) { type in
+//                                button(type)
+//                                    .matchedGeometryEffect(id: type.rawValue, in: namespace)
+//                            }
+//                        }
+//
+//                        Divider()
+//                            .padding(.vertical, 6)
+//                    }
+//                }
                 
                 
                 
