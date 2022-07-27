@@ -10,12 +10,12 @@ import Combine
 
 struct AppMobileNavigation: View {
         
-    @State private var mobiletabSelection : NavigationItem = .assess
+    @State private var tabSelection : NavigationItem = .assess
     
     var body: some View {
-        TabView(selection: $mobiletabSelection) {
+        TabView(selection: $tabSelection) {
             NavigationView {
-                AssessScreen()
+                AssessmentGalleryScreen()
             }
             .tabItem { NavigationItem.assess.label }
             .tag(NavigationItem.assess)

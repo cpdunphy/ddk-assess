@@ -12,7 +12,7 @@ struct SupportTheDev: View {
     
     @EnvironmentObject var store : Store
         
-    var product : SKProduct
+    var product : Product
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -22,9 +22,9 @@ struct SupportTheDev: View {
             }
             
             HStack(spacing: 20) {
-                if !store.supportProductOptions.isEmpty {
+                if !store.productOptions.isEmpty {
                     Button {
-                        store.purchaseProduct(product)
+                        Task { await buy() }
                     } label: {
                         ProductButton(product)
                     }.buttonStyle(PlainButtonStyle())
@@ -35,44 +35,64 @@ struct SupportTheDev: View {
                 }
             }.padding(.bottom, 30)
         }
-        .background(Color(.systemGroupedBackground).edgesIgnoringSafeArea(.all)) //TODO: Add Mac Compatability
+        
+        #if os(macOS)
+        .background(
+            Color(NSColor.windowBackgroundColor).edgesIgnoringSafeArea(.all)
+        )
+        #else
+        .background(
+            Color(.systemGroupedBackground).edgesIgnoringSafeArea(.all)
+        )
+        #endif
+        
         .navigationTitle("Donation")
+        
+        #if !os(macOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
+    }
+    
+    func buy() async {
+        do {
+            if try await store.purchase(product) != nil {
+                withAnimation {
+                    //TODO: Do stuff here
+                }
+            }
+        } catch StoreError.failedVerification {
+            //TODO: Pop Error Here
+        } catch {
+            print("Failed purchase for \(product.id): \(error)")
+        }
     }
 }
-
-struct SuppportTheDev_Previews: PreviewProvider {
-    static var previews: some View {
-        SupportTheDev(product: SKProduct())
-    }
-}
-
 
 struct ProductButton : View {
     
-//    @EnvironmentObject var store : Store
+    @EnvironmentObject var store : Store
     @Environment(\.colorScheme) var colorScheme
     
-    var product: SKProduct
+    var product: Product
     
-    init(_ product: SKProduct) {
+    init(_ product: Product) {
         self.product = product
     }
     
     var body: some View {
         HStack {
-            Text(Store.getEmoji(id: product.productIdentifier))
+            Text(store.emoji(for: product.id))
                 .font(.largeTitle)
 //                .padding(.bottom, 3)
                 .padding(.trailing, 4)
             
             VStack(alignment: .leading) {
-                Text(product.localizedTitle)
+                Text(product.displayName)
                     .foregroundColor(.accentColor)
                     .font(.headline)
                     .fontWeight(.medium)
 
-                Text("$\(product.price)")
+                Text(product.displayPrice)
                     .font(.footnote)
                     .foregroundColor(.secondary)
             }
@@ -88,11 +108,19 @@ struct NeonButtonStyle: ViewModifier {
     
     func body(content: Content) -> some View {
         content
+        #if os(macOS)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(Color(.systemGroupedBackground)) //TODO: Add Mac Compatability
+                    .foregroundColor(Color(NSColor.windowBackgroundColor))
                     .shadow(radius: 8, x: 4, y: 4)
             )
+        #else
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(Color(.systemGroupedBackground))
+                    .shadow(radius: 8, x: 4, y: 4)
+            )
+        #endif
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(colorScheme == .light ? Color.clear : Color.accentColor, lineWidth: 2)

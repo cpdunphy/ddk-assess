@@ -16,13 +16,13 @@ extension NavigationItem {
     var label: some View {
         switch self {
         case .assess:
-            return Label("Assess", systemImage: "hand.tap.fill")
+            return Label("Assess", systemImage: "hand.tap")
         case .history:
-            return Label("History", systemImage: "tray.full.fill")
+            return Label("History", systemImage: "tray.full")
         case .support:
-            return Label("Support", systemImage: "heart.fill")
+            return Label("Support", systemImage: "heart")
         case .settings:
-            return Label("Settings", systemImage: "gearshape.fill")
+            return Label("Settings", systemImage: "gearshape")
         }
     }
 }

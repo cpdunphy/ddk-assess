@@ -157,3 +157,4 @@ fastlane/test_output
 
 iOSInjectionProject/
 *.xcuserstate
+*.pbxproj
