@@ -1,4 +1,4 @@
-# DDK-Assess
+# DDK: Diadochokinetic Assess
 
 ## Overview
 A simple, intuitive diagnostic tool that’s designed by and built for Speech Language Pathologists (SLPs).
