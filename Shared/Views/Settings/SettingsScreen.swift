@@ -112,14 +112,30 @@ struct SettingsScreen: View {
             
             
             Section {
-
-                NavigationLink(
-                    destination: Statistics(),
-                    label: {
-                        Label("Statistics", systemImage: "sum")
-                            .accentColor(.orange)
+                rateApp
+                callSupport
+                privacyPolicy
+                termsOfService
+            }
+            
+            if !store.supportProductOptions.isEmpty {
+                Section {
+                    NavigationLink(destination: SupportDevelopment()) {
+                        Label(
+                            title: {
+                                Text("Support the Developer")
+                                    .foregroundColor(.primary)
+                            },
+                            icon: {
+                                Image(systemName: "takeoutbag.and.cup.and.straw.fill")
+                                    .font(.title3)
+                                    .symbolRenderingMode(.palette)
+                                    .foregroundStyle(.yellow, .red)
+                            }
+                        )
+                        
                     }
-                )
+                }
             }
             
             Section {
@@ -166,6 +182,104 @@ struct SettingsScreen: View {
             .sheet(isPresented: $showingMailView) {
                 MailView(result: $mailResult)
             }
+        #endif
+    }
+    
+    var callSupport : some View {
+        #if os(iOS)
+        Button {
+            #if os(iOS)
+            showingMailView.toggle()
+            #else
+            if let url = U {
+                UIApplication.shared.open(url)
+            }
+            
+            #endif
+        } label: {
+            SettingsScreenButton(
+                title: "Feedback / Support",
+                symbolSystemName: "questionmark.diamond.fill"
+            )
+            .symbolRenderingMode(.multicolor)
+        }.disabled(!MFMailComposeViewController.canSendMail())
+        #else
+        Link(
+            destination: URL(string: "mailto:apps@ballygorey.com?subject=Subject&body=Test")!,
+            label: {
+                SettingsScreenButton(
+                    title: "Support / Feedback",
+                    symbolSystemName: "questionmark.diamond.fill"
+                )
+                .symbolRenderingMode(.multicolor)
+            }
+        )
+        #endif
+    }
+    
+    var termsOfService : some View {
+        
+        Link(
+            destination: URL(string: "https://ballygorey.com/legal/terms-of-service") ?? URL(string: "https://ballygorey.com")!
+        ) {
+            SettingsScreenButton(
+                title: "Terms of Service",
+                symbolSystemName: "doc.append.fill",
+                symbolColor: .teal
+            )
+        }
+    }
+    
+    var privacyPolicy : some View {
+        Link(
+            destination: URL(string: "https://ballygorey.com/legal/privacy-policy") ?? URL(string: "https://ballygorey.com")!
+        ) {
+            Label(
+                title: {
+                    Text("Privacy Policy")
+                        .foregroundColor(.primary)
+                },
+                icon: {
+                    Image(systemName: "lock.shield.fill")
+                        .font(.title3)
+                        .symbolRenderingMode(.palette)
+                        .foregroundStyle(.yellow, .cyan)
+                }
+            )
+        }
+    }
+
+    var rateApp : some View {
+        #if os(iOS)
+        Button(
+            action: {
+                if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                    SKStoreReviewController.requestReview(in: scene)
+                } else {
+                    if let url = URL(string: "itms-apps://itunes.apple.com/app/id\(1489873060)?action=write-review&mt=8") {
+                       UIApplication.shared.open(url)
+                    }
+                }
+
+            }
+        ) {
+            SettingsScreenButton(
+                title: "Do you love DDK?",
+                symbolSystemName: "suit.heart.fill",
+                symbolColor: .pink
+            )
+        }
+        #else
+        Link(
+            destination: URL(string: "itms-apps://itunes.apple.com/app/id\(1489873060)?action=write-review&mt=8")!,
+            label: {
+                SettingsScreenButton(
+                    title: "Do you love DDK?",
+                    symbolSystemName: "suit.heart.fill",
+                    symbolColor: .pink
+                )
+            }
+        )
         #endif
     }
     
