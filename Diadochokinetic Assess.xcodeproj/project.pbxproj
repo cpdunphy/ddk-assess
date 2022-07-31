@@ -65,6 +65,7 @@
 		F030470F251E65F400B438E7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030470E251E65F300B438E7 /* Color.swift */; };
 		F0340412252E1CAA00A005FA /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = F0340411252E1CAA00A005FA /* StoreKitTestCertificate.cer */; };
 		F0340413252E1CAA00A005FA /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = F0340411252E1CAA00A005FA /* StoreKitTestCertificate.cer */; };
+		F0457FBE2897477100A64DB3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F0457FBD2897477100A64DB3 /* README.md */; };
 		F04AD42C271CCDB600293641 /* SettingsScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD42B271CCDB600293641 /* SettingsScreenButton.swift */; };
 		F04AD42D271CCDB600293641 /* SettingsScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD42B271CCDB600293641 /* SettingsScreenButton.swift */; };
 		F04AD436271D17B600293641 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = F04AD435271D17B600293641 /* Shiny */; };
@@ -178,6 +179,7 @@
 		F0304707251E4CD100B438E7 /* TapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapButton.swift; sourceTree = "<group>"; };
 		F030470E251E65F300B438E7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F0340411252E1CAA00A005FA /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
+		F0457FBD2897477100A64DB3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F04AD42B271CCDB600293641 /* SettingsScreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenButton.swift; sourceTree = "<group>"; };
 		F05F75D92757BD4200CDD65C /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		F060BAC625214393009F9C81 /* HistoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScreen.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 		F02DB3DE251C23430038FEAE = {
 			isa = PBXGroup;
 			children = (
+				F0457FBD2897477100A64DB3 /* README.md */,
 				F02DB3E3251C23430038FEAE /* Shared */,
 				F02DB3ED251C23440038FEAE /* iOS */,
 				F02DB3F4251C23440038FEAE /* macOS */,
@@ -640,6 +643,7 @@
 			files = (
 				F02DB411251C23440038FEAE /* Assets.xcassets in Resources */,
 				F0C7569F251C3A6E00D066A9 /* Products.storekit in Resources */,
+				F0457FBE2897477100A64DB3 /* README.md in Resources */,
 				F0BC56D92710E2E400071A6E /* Products.plist in Resources */,
 				F0340412252E1CAA00A005FA /* StoreKitTestCertificate.cer in Resources */,
 			);
