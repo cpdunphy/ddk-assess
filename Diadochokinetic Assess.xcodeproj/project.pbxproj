@@ -17,12 +17,12 @@
 		6CAEE29827323E2800184E39 /* CustomAssessTaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE29727323E2800184E39 /* CustomAssessTaps.swift */; };
 		6CAEE29A27323E5600184E39 /* CustomAssessControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE29927323E5600184E39 /* CustomAssessControls.swift */; };
 		6CAEE29C27323E6300184E39 /* CustomAssessStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE29B27323E6300184E39 /* CustomAssessStats.swift */; };
-		6CC156192735CC9300A7A344 /* FavoriteAssesmentsOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC156182735CC9300A7A344 /* FavoriteAssesmentsOverview.swift */; };
 		6CC1561B2735D52200A7A344 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1561A2735D52200A7A344 /* Binding.swift */; };
+		F00CE950288EDD09005D36A9 /* SupportDevelopment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00CE94F288EDD09005D36A9 /* SupportDevelopment.swift */; };
+		F00CE951288EDD14005D36A9 /* SupportDevelopment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00CE94F288EDD09005D36A9 /* SupportDevelopment.swift */; };
 		F00DE6BE27D7BC8E000AD591 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F00DE6BD27D7BC8E000AD591 /* Algorithms */; };
 		F00DE6C027D7BC93000AD591 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = F00DE6BF27D7BC93000AD591 /* Shiny */; };
 		F00DE6C427D7BCE9000AD591 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180B125236C3500E808AB /* SettingsScreen.swift */; };
-		F00DE6C527D7BCF1000AD591 /* FavoriteAssesmentsOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC156182735CC9300A7A344 /* FavoriteAssesmentsOverview.swift */; };
 		F00DE6C627D7BCF1000AD591 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05F75D92757BD4200CDD65C /* Statistics.swift */; };
 		F00DE6C727D7BD0F000AD591 /* HeartRateAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE28727323A4900184E39 /* HeartRateAssessment.swift */; };
 		F00DE6C827D7BD0F000AD591 /* CountingAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE28B27323A7600184E39 /* CountingAssessment.swift */; };
@@ -67,8 +67,6 @@
 		F0340413252E1CAA00A005FA /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = F0340411252E1CAA00A005FA /* StoreKitTestCertificate.cer */; };
 		F04AD42C271CCDB600293641 /* SettingsScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD42B271CCDB600293641 /* SettingsScreenButton.swift */; };
 		F04AD42D271CCDB600293641 /* SettingsScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD42B271CCDB600293641 /* SettingsScreenButton.swift */; };
-		F04AD42F271D099900293641 /* ManageMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD42E271D099900293641 /* ManageMembership.swift */; };
-		F04AD430271D099900293641 /* ManageMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD42E271D099900293641 /* ManageMembership.swift */; };
 		F04AD436271D17B600293641 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = F04AD435271D17B600293641 /* Shiny */; };
 		F05F75DA2757BD4200CDD65C /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05F75D92757BD4200CDD65C /* Statistics.swift */; };
 		F060BAC725214393009F9C81 /* HistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BAC625214393009F9C81 /* HistoryScreen.swift */; };
@@ -109,7 +107,6 @@
 		F0B423BC25A66D97002805C9 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423BA25A66D97002805C9 /* NavigationItem.swift */; };
 		F0BC56D92710E2E400071A6E /* Products.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0BC56D82710E2E400071A6E /* Products.plist */; };
 		F0BC56DA2710E2E400071A6E /* Products.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0BC56D82710E2E400071A6E /* Products.plist */; };
-		F0C710362759B8A9004928B2 /* OnboardingMobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C710352759B8A9004928B2 /* OnboardingMobile.swift */; };
 		F0C71039275A6C19004928B2 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F0C71038275A6C19004928B2 /* Algorithms */; };
 		F0C75699251C3A4300D066A9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C75698251C3A4300D066A9 /* StoreKit.framework */; };
 		F0C7569F251C3A6E00D066A9 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = F0C7569E251C3A6E00D066A9 /* Products.storekit */; };
@@ -126,16 +123,8 @@
 		F0D553A6251C24750084E0EB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D553A4251C24750084E0EB /* Store.swift */; };
 		F0D553AD251C3A000084E0EB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0D553AC251C3A000084E0EB /* StoreKit.framework */; };
 		F0DAFDA226B07A7E00CDA62F /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0DAFDA126B07A7E00CDA62F /* AuthenticationServices.framework */; };
-		F0E180A725236BA100E808AB /* SupportTheDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180A625236BA100E808AB /* SupportTheDev.swift */; };
-		F0E180A825236BA100E808AB /* SupportTheDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180A625236BA100E808AB /* SupportTheDev.swift */; };
 		F0E180B225236C3500E808AB /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180B125236C3500E808AB /* SettingsScreen.swift */; };
 		F0FAC2FE27D9D7BB008685AC /* OnboardingMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FAC2FD27D9D7BB008685AC /* OnboardingMac.swift */; };
-		F0FAC30027D9D7F3008685AC /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FAC2FF27D9D7F3008685AC /* Onboarding.swift */; };
-		F0FAC30127D9F3DE008685AC /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FAC2FF27D9D7F3008685AC /* Onboarding.swift */; };
-		F0FAC30327DA1695008685AC /* ProductOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FAC30227DA1695008685AC /* ProductOption.swift */; };
-		F0FAC30427DA1695008685AC /* ProductOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FAC30227DA1695008685AC /* ProductOption.swift */; };
-		F0FAC30627DB1787008685AC /* OnboardingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FAC30527DB1787008685AC /* OnboardingOptions.swift */; };
-		F0FAC30727DB1787008685AC /* OnboardingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0FAC30527DB1787008685AC /* OnboardingOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,8 +154,8 @@
 		6CAEE29727323E2800184E39 /* CustomAssessTaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssessTaps.swift; sourceTree = "<group>"; };
 		6CAEE29927323E5600184E39 /* CustomAssessControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssessControls.swift; sourceTree = "<group>"; };
 		6CAEE29B27323E6300184E39 /* CustomAssessStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssessStats.swift; sourceTree = "<group>"; };
-		6CC156182735CC9300A7A344 /* FavoriteAssesmentsOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAssesmentsOverview.swift; sourceTree = "<group>"; };
 		6CC1561A2735D52200A7A344 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
+		F00CE94F288EDD09005D36A9 /* SupportDevelopment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportDevelopment.swift; sourceTree = "<group>"; };
 		F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryScreen.swift; sourceTree = "<group>"; };
 		F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryGrid.swift; sourceTree = "<group>"; };
 		F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryIcon.swift; sourceTree = "<group>"; };
@@ -190,7 +179,6 @@
 		F030470E251E65F300B438E7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F0340411252E1CAA00A005FA /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		F04AD42B271CCDB600293641 /* SettingsScreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenButton.swift; sourceTree = "<group>"; };
-		F04AD42E271D099900293641 /* ManageMembership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMembership.swift; sourceTree = "<group>"; };
 		F05F75D92757BD4200CDD65C /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		F060BAC625214393009F9C81 /* HistoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScreen.swift; sourceTree = "<group>"; };
 		F062A80227D65C930096A29A /* AssessmentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentProtocol.swift; sourceTree = "<group>"; };
@@ -216,7 +204,6 @@
 		F0AE5B9726AB151200ADAD3D /* AboutDDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDDK.swift; sourceTree = "<group>"; };
 		F0B423BA25A66D97002805C9 /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
 		F0BC56D82710E2E400071A6E /* Products.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Products.plist; sourceTree = "<group>"; };
-		F0C710352759B8A9004928B2 /* OnboardingMobile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingMobile.swift; sourceTree = "<group>"; };
 		F0C75698251C3A4300D066A9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F0C7569E251C3A6E00D066A9 /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		F0C756AF251C3DA500D066A9 /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
@@ -226,12 +213,8 @@
 		F0D553A4251C24750084E0EB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		F0D553AC251C3A000084E0EB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		F0DAFDA126B07A7E00CDA62F /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/AuthenticationServices.framework; sourceTree = DEVELOPER_DIR; };
-		F0E180A625236BA100E808AB /* SupportTheDev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportTheDev.swift; sourceTree = "<group>"; };
 		F0E180B125236C3500E808AB /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		F0FAC2FD27D9D7BB008685AC /* OnboardingMac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingMac.swift; sourceTree = "<group>"; };
-		F0FAC2FF27D9D7F3008685AC /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
-		F0FAC30227DA1695008685AC /* ProductOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOption.swift; sourceTree = "<group>"; };
-		F0FAC30527DB1787008685AC /* OnboardingOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingOptions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,7 +357,6 @@
 		F02DB3ED251C23440038FEAE /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				F0C710352759B8A9004928B2 /* OnboardingMobile.swift */,
 				F07564EB2530FA8200EC058A /* MailView.swift */,
 				F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */,
 				F02DB3EE251C23440038FEAE /* Info.plist */,
@@ -410,17 +392,6 @@
 			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
-		F0469FED27F90D8200E401EE /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				F0FAC2FF27D9D7F3008685AC /* Onboarding.swift */,
-				F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */,
-				F0FAC30227DA1695008685AC /* ProductOption.swift */,
-				F0FAC30527DB1787008685AC /* OnboardingOptions.swift */,
-			);
-			path = Onboarding;
-			sourceTree = "<group>";
-		};
 		F080D74026A8C2B000A1F49D /* History */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,10 +407,8 @@
 			isa = PBXGroup;
 			children = (
 				F05F75D92757BD4200CDD65C /* Statistics.swift */,
-				6CC156182735CC9300A7A344 /* FavoriteAssesmentsOverview.swift */,
 				F0E180B125236C3500E808AB /* SettingsScreen.swift */,
 				F04AD42B271CCDB600293641 /* SettingsScreenButton.swift */,
-				F04AD42E271D099900293641 /* ManageMembership.swift */,
 				F0AE5B9726AB151200ADAD3D /* AboutDDK.swift */,
 			);
 			path = Settings;
@@ -470,7 +439,7 @@
 		F0B423E525A67711002805C9 /* Supporting Views */ = {
 			isa = PBXGroup;
 			children = (
-				F0E180A625236BA100E808AB /* SupportTheDev.swift */,
+				F00CE94F288EDD09005D36A9 /* SupportDevelopment.swift */,
 			);
 			path = "Supporting Views";
 			sourceTree = "<group>";
@@ -520,7 +489,7 @@
 		F0DC244B2524FB96000CBCA8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F0469FED27F90D8200E401EE /* Onboarding */,
+				F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */,
 				F08D1BB2271A20CE004FE52A /* Assess */,
 				6CAEE29327323B7300184E39 /* Options */,
 				F0214EEF26A31BFE00003DDC /* Assess Gallery */,
@@ -747,7 +716,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CC156192735CC9300A7A344 /* FavoriteAssesmentsOverview.swift in Sources */,
 				F062A80727D65CEE0096A29A /* Defaults.swift in Sources */,
 				F0D5539E251C24340084E0EB /* DDKModel.swift in Sources */,
 				F080D73B26A5E0F100A1F49D /* RecordHistoryRow.swift in Sources */,
@@ -774,34 +742,29 @@
 				F062A80327D65C930096A29A /* AssessmentProtocol.swift in Sources */,
 				F022213126A325B900AA0340 /* AssessmentGalleryIcon.swift in Sources */,
 				F05F75DA2757BD4200CDD65C /* Statistics.swift in Sources */,
-				F0FAC30127D9F3DE008685AC /* Onboarding.swift in Sources */,
 				6CAEE28C27323A7600184E39 /* CountingAssessment.swift in Sources */,
 				F030470F251E65F400B438E7 /* Color.swift in Sources */,
 				6CAEE285273239CA00184E39 /* CustomAssessOptions.swift in Sources */,
 				F062A80527D65CAD0096A29A /* TimedAssessmentProtocol.swift in Sources */,
-				F0FAC30327DA1695008685AC /* ProductOption.swift in Sources */,
 				F0D553A5251C24750084E0EB /* Store.swift in Sources */,
 				6CAEE28F27323AA800184E39 /* Assessment.swift in Sources */,
 				F04AD42C271CCDB600293641 /* SettingsScreenButton.swift in Sources */,
 				F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */,
+				F00CE950288EDD09005D36A9 /* SupportDevelopment.swift in Sources */,
 				F062A80B27D6C60A0096A29A /* Double.swift in Sources */,
 				6CC1561B2735D52200A7A344 /* Binding.swift in Sources */,
 				6CAEE29A27323E5600184E39 /* CustomAssessControls.swift in Sources */,
 				6CAEE29C27323E6300184E39 /* CustomAssessStats.swift in Sources */,
-				F04AD42F271D099900293641 /* ManageMembership.swift in Sources */,
 				F025287A251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */,
 				F0214EEC26A31BEA00003DDC /* AssessmentGalleryGrid.swift in Sources */,
 				F080D72C26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift in Sources */,
 				F0304708251E4CD100B438E7 /* TapButton.swift in Sources */,
 				F08D1BB4271A2135004FE52A /* RoundRectProgress.swift in Sources */,
-				F0FAC30627DB1787008685AC /* OnboardingOptions.swift in Sources */,
 				F080D72F26A4ED7F00A1F49D /* AssessmentTaker.swift in Sources */,
 				F0C756B0251C3DA500D066A9 /* States.swift in Sources */,
 				F080D73226A4EDCE00A1F49D /* AssessmentOptions.swift in Sources */,
 				F07B3BD0261108E5004EB5AC /* Print.swift in Sources */,
 				F080D73826A5D44F00A1F49D /* RecordGeneralInfo.swift in Sources */,
-				F0C710362759B8A9004928B2 /* OnboardingMobile.swift in Sources */,
-				F0E180A725236BA100E808AB /* SupportTheDev.swift in Sources */,
 				F0CEA381251CC5C700818C6D /* CountingState.swift in Sources */,
 				F08D1BB0271A20A6004FE52A /* ButtonOptions.swift in Sources */,
 			);
@@ -823,19 +786,17 @@
 				F00DE6CC27D7BD12000AD591 /* TimedAssessmentBase.swift in Sources */,
 				F00DE6CA27D7BD12000AD591 /* Assessment.swift in Sources */,
 				F080D73C26A5E0F100A1F49D /* RecordHistoryRow.swift in Sources */,
-				F0FAC30427DA1695008685AC /* ProductOption.swift in Sources */,
 				F00DE6C627D7BCF1000AD591 /* Statistics.swift in Sources */,
 				F00DE6D627D7BD2E000AD591 /* RoundedCorner.swift in Sources */,
 				F00DE6D927D952F4000AD591 /* CustomAssessTaps.swift in Sources */,
-				F00DE6C527D7BCF1000AD591 /* FavoriteAssesmentsOverview.swift in Sources */,
 				F00DE6D127D7BD2E000AD591 /* Color.swift in Sources */,
+				F00CE951288EDD14005D36A9 /* SupportDevelopment.swift in Sources */,
 				F080D73926A5D44F00A1F49D /* RecordGeneralInfo.swift in Sources */,
 				F00DE6D827D7BE0B000AD591 /* AssessmentGalleryGrid.swift in Sources */,
 				F0AE5B9926AB151200ADAD3D /* AboutDDK.swift in Sources */,
 				F0C756B8251C3DC000D066A9 /* AssessmentRecord.swift in Sources */,
 				F02DB40E251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
 				F0B423BC25A66D97002805C9 /* NavigationItem.swift in Sources */,
-				F0FAC30727DB1787008685AC /* OnboardingOptions.swift in Sources */,
 				F00DE6D527D7BD2E000AD591 /* Date.swift in Sources */,
 				F00DE6C927D7BD0F000AD591 /* TimedAssessment.swift in Sources */,
 				F00DE6CB27D7BD12000AD591 /* TimedAssessmentProtocol.swift in Sources */,
@@ -847,7 +808,6 @@
 				F00DE6C827D7BD0F000AD591 /* CountingAssessment.swift in Sources */,
 				F00DE6D427D7BD2E000AD591 /* Array-Set.swift in Sources */,
 				F0D553A6251C24750084E0EB /* Store.swift in Sources */,
-				F04AD430271D099900293641 /* ManageMembership.swift in Sources */,
 				F0252882251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */,
 				F080D72D26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift in Sources */,
 				F00DE6DB27D95749000AD591 /* AssessmentGalleryScreen.swift in Sources */,
@@ -857,13 +817,11 @@
 				F00DE6D327D7BD2E000AD591 /* Double.swift in Sources */,
 				F00DE6DE27D957F5000AD591 /* CustomAssessControls.swift in Sources */,
 				F080D73326A4EDCE00A1F49D /* AssessmentOptions.swift in Sources */,
-				F0E180A825236BA100E808AB /* SupportTheDev.swift in Sources */,
 				F00DE6C427D7BCE9000AD591 /* SettingsScreen.swift in Sources */,
 				F00DE6DC27D95755000AD591 /* AssessmentListRow.swift in Sources */,
 				6CAEE286273239D500184E39 /* CustomAssessOptions.swift in Sources */,
 				F080D72A26A3B5C700A1F49D /* AssessmentType.swift in Sources */,
 				F0CEA382251CC5C700818C6D /* CountingState.swift in Sources */,
-				F0FAC30027D9D7F3008685AC /* Onboarding.swift in Sources */,
 				F00DE6DA27D9532D000AD591 /* CustomAssessStats.swift in Sources */,
 				F080D73626A5C77A00A1F49D /* EditRecordScreen.swift in Sources */,
 			);
@@ -1019,7 +977,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Diadochokinetic Assess (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1800;
 				DEVELOPMENT_TEAM = 896Q68CL7P;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
@@ -1044,7 +1001,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Diadochokinetic Assess (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1800;
 				DEVELOPMENT_TEAM = 896Q68CL7P;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
