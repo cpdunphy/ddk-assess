@@ -25,26 +25,18 @@ struct Diadochokinetic_AssessApp: App {
     
     
     /// Initial declaration and initiation of 'Store'
-//    @StateObject private var store : Store = Store()
+    @StateObject private var store : Store = Store()
         
     @ViewBuilder
     var contents : some View {
-//        if store.userAuthenticationStatus == .subscribed {
-            ContentView()
-//        } else {
-//            #if os(macOS)
-//                Text("Hello World!")
-//            #else
-//            Onboarding()
-//            #endif
-//        }
+        ContentView()
     }
     
     var body: some Scene {
         WindowGroup {
             contents
                 .environmentObject(ddk)
-//                .environmentObject(store)
+                .environmentObject(store)
                 .environmentObject(timed)
                 .environmentObject(count)
                 .environmentObject(heartRate)
