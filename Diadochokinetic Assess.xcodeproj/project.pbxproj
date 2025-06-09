@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,7 +21,6 @@
 		F00CE950288EDD09005D36A9 /* SupportDevelopment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00CE94F288EDD09005D36A9 /* SupportDevelopment.swift */; };
 		F00CE951288EDD14005D36A9 /* SupportDevelopment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00CE94F288EDD09005D36A9 /* SupportDevelopment.swift */; };
 		F00DE6BE27D7BC8E000AD591 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F00DE6BD27D7BC8E000AD591 /* Algorithms */; };
-		F00DE6C027D7BC93000AD591 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = F00DE6BF27D7BC93000AD591 /* Shiny */; };
 		F00DE6C427D7BCE9000AD591 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180B125236C3500E808AB /* SettingsScreen.swift */; };
 		F00DE6C627D7BCF1000AD591 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05F75D92757BD4200CDD65C /* Statistics.swift */; };
 		F00DE6C727D7BD0F000AD591 /* HeartRateAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE28727323A4900184E39 /* HeartRateAssessment.swift */; };
@@ -68,7 +67,6 @@
 		F0457FBE2897477100A64DB3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F0457FBD2897477100A64DB3 /* README.md */; };
 		F04AD42C271CCDB600293641 /* SettingsScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD42B271CCDB600293641 /* SettingsScreenButton.swift */; };
 		F04AD42D271CCDB600293641 /* SettingsScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD42B271CCDB600293641 /* SettingsScreenButton.swift */; };
-		F04AD436271D17B600293641 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = F04AD435271D17B600293641 /* Shiny */; };
 		F05F75DA2757BD4200CDD65C /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05F75D92757BD4200CDD65C /* Statistics.swift */; };
 		F060BAC725214393009F9C81 /* HistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BAC625214393009F9C81 /* HistoryScreen.swift */; };
 		F060BAC825214393009F9C81 /* HistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060BAC625214393009F9C81 /* HistoryScreen.swift */; };
@@ -225,7 +223,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0C71039275A6C19004928B2 /* Algorithms in Frameworks */,
-				F04AD436271D17B600293641 /* Shiny in Frameworks */,
 				F0DAFDA226B07A7E00CDA62F /* AuthenticationServices.framework in Frameworks */,
 				F0D553AD251C3A000084E0EB /* StoreKit.framework in Frameworks */,
 			);
@@ -235,7 +232,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F00DE6C027D7BC93000AD591 /* Shiny in Frameworks */,
 				F00DE6BE27D7BC8E000AD591 /* Algorithms in Frameworks */,
 				F0C75699251C3A4300D066A9 /* StoreKit.framework in Frameworks */,
 			);
@@ -521,7 +517,6 @@
 			);
 			name = "Diadochokinetic Assess (iOS)";
 			packageProductDependencies = (
-				F04AD435271D17B600293641 /* Shiny */,
 				F0C71038275A6C19004928B2 /* Algorithms */,
 			);
 			productName = "Diadochokinetic Assess (iOS)";
@@ -544,7 +539,6 @@
 			name = "Diadochokinetic Assess (macOS)";
 			packageProductDependencies = (
 				F00DE6BD27D7BC8E000AD591 /* Algorithms */,
-				F00DE6BF27D7BC93000AD591 /* Shiny */,
 			);
 			productName = "Diadochokinetic Assess (macOS)";
 			productReference = F02DB3F3251C23440038FEAE /* Diadochokinetic Assess.app */;
@@ -621,7 +615,6 @@
 			);
 			mainGroup = F02DB3DE251C23430038FEAE;
 			packageReferences = (
-				F04AD434271D17B600293641 /* XCRemoteSwiftPackageReference "shiny" */,
 				F0C71037275A6C19004928B2 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = F02DB3EC251C23440038FEAE /* Products */;
@@ -1215,14 +1208,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F04AD434271D17B600293641 /* XCRemoteSwiftPackageReference "shiny" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/maustinstar/shiny.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		F0C71037275A6C19004928B2 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-algorithms.git";
@@ -1238,16 +1223,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0C71037275A6C19004928B2 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
 			productName = Algorithms;
-		};
-		F00DE6BF27D7BC93000AD591 /* Shiny */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F04AD434271D17B600293641 /* XCRemoteSwiftPackageReference "shiny" */;
-			productName = Shiny;
-		};
-		F04AD435271D17B600293641 /* Shiny */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F04AD434271D17B600293641 /* XCRemoteSwiftPackageReference "shiny" */;
-			productName = Shiny;
 		};
 		F0C71038275A6C19004928B2 /* Algorithms */ = {
 			isa = XCSwiftPackageProductDependency;
