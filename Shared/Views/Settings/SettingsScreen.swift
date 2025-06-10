@@ -43,35 +43,15 @@ struct SettingsScreen: View {
                     .symbolRenderingMode(.palette)
                 }
                 
-                #if os(iOS)
-                Button {
-                    #if os(iOS)
-                    showingMailView.toggle()
-                    #else
-                    if let url = U {
-                        UIApplication.shared.open(url)
-                    }
-                    
-                    #endif
-                } label: {
+                NavigationLink(
+                    destination: Statistics()
+                ) {
                     SettingsScreenButton(
-                        title: "Support / Feedback",
-                        symbolSystemName: "questionmark.diamond.fill"
+                        title: "Statistics",
+                        symbolSystemName: "sum",
+                        symbolColor: .orange
                     )
-                    .symbolRenderingMode(.multicolor)
-                }.disabled(!MFMailComposeViewController.canSendMail())
-                #else
-                Link(
-                    destination: URL(string: "mailto:apps@ballygorey.com?subject=Subject&body=Test")!,
-                    label: {
-                        SettingsScreenButton(
-                            title: "Support / Feedback",
-                            symbolSystemName: "questionmark.diamond.fill"
-                        )
-                        .symbolRenderingMode(.multicolor)
-                    }
-                )
-                #endif
+                }
             }
             
             
