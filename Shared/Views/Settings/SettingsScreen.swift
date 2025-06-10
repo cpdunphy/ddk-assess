@@ -28,10 +28,6 @@ struct SettingsScreen: View {
     // MARK: - Form
     var form: some View {
         List {
-            
-//            Section("Getting Started") {
-//                whatsNew
-//            }
              
             // App Information + More
             Section("Information") {
@@ -47,67 +43,15 @@ struct SettingsScreen: View {
                     .symbolRenderingMode(.palette)
                 }
                 
-                #if os(iOS)
-                Button {
-                    #if os(iOS)
-                    showingMailView.toggle()
-                    #else
-                    if let url = U {
-                        UIApplication.shared.open(url)
-                    }
-                    
-                    #endif
-                } label: {
-                    SettingsScreenButton(
-                        title: "Support / Feedback",
-                        symbolSystemName: "questionmark.diamond.fill"
-                    )
-                    .symbolRenderingMode(.multicolor)
-                }.disabled(!MFMailComposeViewController.canSendMail())
-                #else
-                Link(
-                    destination: URL(string: "mailto:apps@ballygorey.com?subject=Subject&body=Test")!,
-                    label: {
-                        SettingsScreenButton(
-                            title: "Support / Feedback",
-                            symbolSystemName: "questionmark.diamond.fill"
-                        )
-                        .symbolRenderingMode(.multicolor)
-                    }
-                )
-                #endif
-                
-                #if os(iOS)
-                Button(
-                    action: {
-                        if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
-                            SKStoreReviewController.requestReview(in: scene)
-                        } else {
-                            if let url = URL(string: "itms-apps://itunes.apple.com/app/id\(1489873060)?action=write-review&mt=8") {
-                               UIApplication.shared.open(url)
-                            }
-                        }
-
-                    }
+                NavigationLink(
+                    destination: Statistics()
                 ) {
                     SettingsScreenButton(
-                        title: "Do you love DDK?",
-                        symbolSystemName: "suit.heart.fill",
-                        symbolColor: .pink
+                        title: "Statistics",
+                        symbolSystemName: "sum",
+                        symbolColor: .orange
                     )
                 }
-                #else
-                Link(
-                    destination: URL(string: "itms-apps://itunes.apple.com/app/id\(1489873060)?action=write-review&mt=8")!,
-                    label: {
-                        SettingsScreenButton(
-                            title: "Do you love DDK?",
-                            symbolSystemName: "suit.heart.fill",
-                            symbolColor: .pink
-                        )
-                    }
-                )
-                #endif
             }
             
             
@@ -141,35 +85,8 @@ struct SettingsScreen: View {
             Section {
                 ResetAllPreferences()
             }
-            
         }
         
-    }
-    
-    var whatsNew : some View {
-        Button {
-            
-        } label: {
-            VStack(alignment: .leading) {
-                HStack {
-                    Image(systemName: "atom")
-                        .font(.largeTitle)
-
-                    Text("What's new in\nDDK 2")
-                        .font(.system(.title2, design: .rounded))
-                        .fontWeight(.bold)
-                        .fixedSize(horizontal: false, vertical: true)
-
-                }
-                .shiny(.init(colors: [.cyan, .teal]))
-                .padding(.bottom, 8)
-                
-                Text("50+ new features. A total redesign. See what's new.")
-                    .fixedSize(horizontal: false, vertical: true)
-                    .foregroundColor(.primary)
-                
-            }.padding(.vertical, 8)
-        }
     }
     
     // MARK: - Body
@@ -282,6 +199,8 @@ struct SettingsScreen: View {
         )
         #endif
     }
+    
+    
     
     // Button that resets the preferences across the whole app.
     struct ResetAllPreferences : View {
