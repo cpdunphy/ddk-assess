@@ -13,8 +13,6 @@ import StoreKit
 import MessageUI
 #endif
 
-import Shiny
-
 struct SettingsScreen: View {
     
     @EnvironmentObject var model : DDKModel
