@@ -72,6 +72,8 @@ struct EditRecordScreen: View {
                 .confirmationDialog("Are you sure?", isPresented: $deleteConfirmationIsPresented) {
                     Button(role: .destructive) {
                         model.deleteRecord(record)
+                        dismiss()
+                        
                     } label: {
                         Text("Delete the assessment")
                     }
@@ -181,8 +183,8 @@ struct EditRecordScreen: View {
     }
 }
 
-struct EditRecordScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        EditRecordScreen(AssessmentRecord(date: Date(), taps: 7, type: .timed, duration: 15))
-    }
-}
+//struct EditRecordScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditRecordScreen(AssessmentRecord(date: Date(), taps: 7, type: .timed, duration: 15), .constant(<#T##value: AssessmentRecord##AssessmentRecord#>))
+//    }
+//}
