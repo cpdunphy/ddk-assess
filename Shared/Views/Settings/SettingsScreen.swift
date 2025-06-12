@@ -133,9 +133,8 @@ struct SettingsScreen: View {
     }
     
     var termsOfService : some View {
-        
         Link(
-            destination: URL(string: "https://ballygorey.com/legal/terms-of-service") ?? URL(string: "https://ballygorey.com")!
+            destination: URL(string: "https://ddk.ballygorey.com/legal/terms")!
         ) {
             SettingsScreenButton(
                 title: "Terms of Service",
@@ -147,7 +146,7 @@ struct SettingsScreen: View {
     
     var privacyPolicy : some View {
         Link(
-            destination: URL(string: "https://ballygorey.com/legal/privacy-policy") ?? URL(string: "https://ballygorey.com")!
+            destination: URL(string: "https://ddk.ballygorey.com/legal/privacy")!
         ) {
             Label(
                 title: {
