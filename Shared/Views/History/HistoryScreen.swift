@@ -43,15 +43,6 @@ struct HistoryScreen: View {
         case .date: // Group by Date
             
             let recordsByName = model.allRecords
-                .sorted(by: {
-                    $0.date.formatted(
-                        date: .numeric,
-                        time: .omitted
-                    ) > $1.date.formatted(
-                        date: .numeric,
-                        time: .omitted
-                    )
-                })
                 .chunked(by: {
                     $0.date.formatted(
                         date: .numeric,
