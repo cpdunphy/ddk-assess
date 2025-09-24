@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "lineLength": 140,
+  "indentation": {
+    "spaces": 4
+  },
+  "lineBreakBeforeEachArgument": false,
+  "lineBreakBeforeClosingParenthesis": true,
+  "lineBreakBeforeEachParameter": false,
+  "lineBreakBeforeEachGenericRequirement": false,
+  "lineBreakAfterMultilineIfElse": true,
+  "lineBreakAroundMultilineExpressionChainComponents": true,
+  "multiElementCollectionTrailingCommas": false,
+  "respectsExistingLineBreaks": true
+}

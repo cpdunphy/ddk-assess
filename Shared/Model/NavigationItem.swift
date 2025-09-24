@@ -28,7 +28,7 @@ extension NavigationItem {
 }
 
 extension NavigationItem {
-    var title : String {
+    var title: String {
         switch self {
         case .assess:
             return "Assess"

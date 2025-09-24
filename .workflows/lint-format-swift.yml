@@ -1,0 +1,33 @@
+name: Lint + Format
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  swift-style:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # swift-format is bundled with Xcode 16 on macOS runners
+      - name: swift-format (format)
+        run: |
+          xcrun --find swift-format
+          CONFIG=""
+          [[ -f .swift-format.json ]] && CONFIG="--configuration .swift-format.json"
+          [[ -f .swift-format ]] && CONFIG="--configuration .swift-format"
+          xcrun swift-format format --in-place --recursive $CONFIG .
+      # Install & run SwiftLint
+      - name: Install SwiftLint
+        run: |
+          brew update
+          brew install swiftlint
+      - name: SwiftLint
+        run: |
+          if swiftlint --reporter github-actions-logging >/dev/null 2>&1; then
+            swiftlint --strict --reporter github-actions-logging
+          else
+            swiftlint --strict --reporter xcode
+          fi

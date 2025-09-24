@@ -5,13 +5,13 @@
 //  Created by Collin Dunphy on 9/24/20.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 struct AppMobileNavigation: View {
-        
-    @State private var tabSelection : NavigationItem = .assess
-    
+
+    @State private var tabSelection: NavigationItem = .assess
+
     var body: some View {
         TabView(selection: $tabSelection) {
             NavigationView {
@@ -19,7 +19,7 @@ struct AppMobileNavigation: View {
             }
             .tabItem { NavigationItem.assess.label }
             .tag(NavigationItem.assess)
-            
+
             NavigationView {
                 HistoryScreen()
             }

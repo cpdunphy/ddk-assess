@@ -16,7 +16,7 @@ struct SettingsScreen: View {
     @EnvironmentObject var store: Store
 
     #if os(iOS)
-        @State private var mailResult: Result<MFMailComposeResult, Error>? = nil
+        @State private var mailResult: Result<MFMailComposeResult, Error>?
         @State private var showingMailView: Bool = false
     #endif
 
@@ -108,7 +108,8 @@ struct SettingsScreen: View {
                     symbolSystemName: "questionmark.diamond.fill"
                 )
                 .symbolRenderingMode(.multicolor)
-            }.disabled(!MFMailComposeViewController.canSendMail())
+            }
+            .disabled(!MFMailComposeViewController.canSendMail())
         #else
             Link(
                 destination: URL(string: "mailto:apps@ballygorey.com?subject=Subject&body=Test")!,
@@ -154,10 +155,8 @@ struct SettingsScreen: View {
         #if os(iOS)
             Button(
                 action: {
-                    if let scene = UIApplication.shared.connectedScenes.first(
-                        where: { $0.activationState == .foregroundActive })
-                        as? UIWindowScene
-                    {
+                    let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive })
+                    if let scene = scene as? UIWindowScene {
                         SKStoreReviewController.requestReview(in: scene)
                     } else {
                         if let url = URL(
@@ -206,7 +205,8 @@ struct SettingsScreen: View {
                         "Reset All Preferences",
                         systemImage: "exclamationmark.arrow.circlepath"
                     )
-                }.foregroundColor(.red)
+                }
+                .foregroundColor(.red)
             }
 
             // Reset Settings Confirmation

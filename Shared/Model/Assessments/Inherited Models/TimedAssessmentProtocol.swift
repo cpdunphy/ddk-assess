@@ -8,9 +8,9 @@
 import Foundation
 
 protocol TimedAssessmentProtocol {
-    var showDecimalOnTimer : Bool { get set }
-    var duration : Int { get set }
-    var countdownLength : Int { get set }
-    
+    var showDecimalOnTimer: Bool { get set }
+    var duration: Int { get set }
+    var countdownLength: Int { get set }
+
     func resetTimer()
 }

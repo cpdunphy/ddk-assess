@@ -8,28 +8,28 @@
 import SwiftUI
 
 struct AssessmentGalleryContextMenuItems: View {
-    
-    @EnvironmentObject var model : DDKModel
-    
+
+    @EnvironmentObject var model: DDKModel
+
     var type: AssessmentType
-    
-    @Binding var assessmentSettingsSelection : AssessmentType?
-    
+
+    @Binding var assessmentSettingsSelection: AssessmentType?
+
     var body: some View {
         Group {
-//            Button {
-//                withAnimation(.easeInOut(duration: 0.25)) {
-//                    model.toggleFavoriteStatus(type)
-//                }
-//            } label: {
-//                if model.assessmentTypeIsFavorite(type) {
-//                    Label("Unfavorite", systemImage: "star.slash")
-//                } else {
-//                    Label("Favorite", systemImage: "star")
-//                }
-//                
-//            }
-            
+            //            Button {
+            //                withAnimation(.easeInOut(duration: 0.25)) {
+            //                    model.toggleFavoriteStatus(type)
+            //                }
+            //            } label: {
+            //                if model.assessmentTypeIsFavorite(type) {
+            //                    Label("Unfavorite", systemImage: "star.slash")
+            //                } else {
+            //                    Label("Favorite", systemImage: "star")
+            //                }
+            //
+            //            }
+
             Button {
                 assessmentSettingsSelection = type
             } label: {

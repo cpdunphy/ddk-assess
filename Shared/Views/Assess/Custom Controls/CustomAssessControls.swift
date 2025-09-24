@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 
 extension AssessmentTaker {
-    
+
     @ViewBuilder
-    var controlButtons : some View {
+    var controlButtons: some View {
         switch type {
         case .timed:
             ControlButtons.Timed()
@@ -28,18 +28,18 @@ extension AssessmentTaker {
 // MARK: Controls
 extension AssessmentTaker {
     struct ControlButtons {
-        
-        struct Timed : View {
-            @EnvironmentObject var model : TimedAssessment
-            
+
+        struct Timed: View {
+            @EnvironmentObject var model: TimedAssessment
+
             var body: some View {
                 leftButton
-                
+
                 rightButton
             }
-            
+
             @ViewBuilder
-            var rightButton : some View {
+            var rightButton: some View {
                 switch model.countingState {
                 case [CountingState.ready]:
                     ButtonOptions.start.button(action: model.startTimer)
@@ -51,9 +51,9 @@ extension AssessmentTaker {
                     ButtonOptions.reset.button(action: model.resetTimer)
                 }
             }
-            
+
             @ViewBuilder
-            var leftButton : some View {
+            var leftButton: some View {
                 switch model.countingState {
                 case [CountingState.ready]:
                     ButtonOptions.reset.button(action: model.resetTimer)
@@ -64,17 +64,17 @@ extension AssessmentTaker {
                 }
             }
         }
-        
-        struct Count : View {
-            
-            @EnvironmentObject var ddk : DDKModel
-            @EnvironmentObject var model : CountingAssessment
-            
+
+        struct Count: View {
+
+            @EnvironmentObject var ddk: DDKModel
+            @EnvironmentObject var model: CountingAssessment
+
             var body: some View {
                 ButtonOptions.reset.button {
                     model.resetTimer()
                 }
-                
+
                 if model.countingState != [.paused] {
                     ButtonOptions.log.button {
                         let record = AssessmentRecord(
@@ -90,20 +90,18 @@ extension AssessmentTaker {
                 }
             }
         }
-        
 
-        
-        struct HeartRate : View {
-            @EnvironmentObject var model : HeartRateAssessment
-            
+        struct HeartRate: View {
+            @EnvironmentObject var model: HeartRateAssessment
+
             var body: some View {
                 leftButton
-                
+
                 rightButton
             }
-            
+
             @ViewBuilder
-            var rightButton : some View {
+            var rightButton: some View {
                 switch model.countingState {
                 case [CountingState.ready]:
                     ButtonOptions.start.button(action: model.startTimer)
@@ -115,9 +113,9 @@ extension AssessmentTaker {
                     ButtonOptions.reset.button(action: model.resetTimer)
                 }
             }
-            
+
             @ViewBuilder
-            var leftButton : some View {
+            var leftButton: some View {
                 switch model.countingState {
                 case [CountingState.ready]:
                     ButtonOptions.reset.button(action: model.resetTimer)
@@ -128,19 +126,19 @@ extension AssessmentTaker {
                 }
             }
         }
-        
+
     }
 }
 
 // Building Blocks
 extension AssessmentTaker.BuildingBlocks {
-    struct ControlButton : View {
+    struct ControlButton: View {
         var title: String
         var systemImage: String
         var color: Color
-        
-        var action : () -> Void
-        
+
+        var action: () -> Void
+
         var body: some View {
             Button(action: action) {
                 Label(title, systemImage: systemImage)
@@ -152,5 +150,5 @@ extension AssessmentTaker.BuildingBlocks {
             .font(.title2)
         }
     }
-    
+
 }

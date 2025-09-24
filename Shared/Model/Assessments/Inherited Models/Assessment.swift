@@ -9,13 +9,13 @@ import Combine
 import Foundation
 import SwiftUI
 
-class Assessment : ObservableObject {
-    
-    var type : AssessmentType
-    
-    private var timer : AnyCancellable?
-    @Published var currentDateTime : Date = .now
-    
+class Assessment: ObservableObject {
+
+    var type: AssessmentType
+
+    private var timer: AnyCancellable?
+    @Published var currentDateTime: Date = .now
+
     init(_ type: AssessmentType) {
         self.type = type
         self.timer = Timer.publish(every: 0.1, on: .main, in: .default)
@@ -24,21 +24,21 @@ class Assessment : ObservableObject {
                 self.currentDateTime = time
             })
     }
-    
+
     var title: String {
         type.title
     }
-    
+
     var color: Color {
         type.color
     }
-    
+
     var symbol: String {
         type.icon
     }
-    
+
     var id: String {
         return title
     }
-    
+
 }

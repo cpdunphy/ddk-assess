@@ -9,29 +9,27 @@ import SwiftUI
 
 @main
 struct Diadochokinetic_AssessApp: App {
-    
+
     /// Initial declaration and initiation of 'DDKModel'
-    @StateObject private var ddk : DDKModel = DDKModel()
-    
-    
+    @StateObject private var ddk: DDKModel = DDKModel()
+
     /// Initial declaration and initiation of 'HeartRateAssessment'
-    @StateObject private var timed : TimedAssessment = TimedAssessment()
-    
+    @StateObject private var timed: TimedAssessment = TimedAssessment()
+
     /// Initial declaration and initiation of 'HeartRateAssessment'
-    @StateObject private var count : CountingAssessment = CountingAssessment()
-    
+    @StateObject private var count: CountingAssessment = CountingAssessment()
+
     /// Initial declaration and initiation of 'HeartRateAssessment'
-    @StateObject private var heartRate : HeartRateAssessment = HeartRateAssessment()
-    
-    
+    @StateObject private var heartRate: HeartRateAssessment = HeartRateAssessment()
+
     /// Initial declaration and initiation of 'Store'
-    @StateObject private var store : Store = Store()
-        
+    @StateObject private var store: Store = Store()
+
     @ViewBuilder
-    var contents : some View {
+    var contents: some View {
         ContentView()
     }
-    
+
     var body: some Scene {
         WindowGroup {
             contents

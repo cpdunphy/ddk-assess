@@ -11,7 +11,7 @@ import SwiftUI
 
 typealias Transaction = StoreKit.Transaction
 
-public enum StoreError : Error {
+public enum StoreError: Error {
     case failedVerification
 }
 
@@ -20,7 +20,6 @@ public enum AuthState: String {
     case unsubscribed = "unsubscribed"
     case subscribed = "subscribed"
 }
-
 
 // MARK: - Store
 
@@ -31,27 +30,23 @@ public enum AuthState: String {
 //  Created by Collin Dunphy on 9/23/20.
 //
 
-import Foundation
-import StoreKit
-
 typealias FetchCompletionHandler = (([SKProduct]) -> Void)
 typealias PurchaseCompletionHandler = ((SKPaymentTransaction?) -> Void)
 
-
 // MARK: - Store
 
-class Store : NSObject, ObservableObject {
-    
-    @Published var supportProductOptions : [SKProduct] = []
-    
+class Store: NSObject, ObservableObject {
+
+    @Published var supportProductOptions: [SKProduct] = []
+
     private let allProductIdentifiers = Set([Store.donateDonutIdentifier, donateSmoothieIdentifier, donateLunchIdentifier])
-    
+
     private var completedPurchases = [String]()
     private var fetchedProducts = [SKProduct]()
     private var productsRequest: SKProductsRequest?
     private var fetchCompletionHandler: FetchCompletionHandler?
     private var purchaseCompletionHandler: PurchaseCompletionHandler?
-    
+
     override init() {
         super.init()
         startObservingPaymentQueue()
@@ -60,7 +55,7 @@ class Store : NSObject, ObservableObject {
             guard let self = self else { return }
             self.supportProductOptions = products
             print("\(products)")
-//            self.unlockAllRecipesProduct = products.first(where: { $0.productIdentifier == Store.unlockAllRecipesIdentifier })
+            //            self.unlockAllRecipesProduct = products.first(where: { $0.productIdentifier == Store.unlockAllRecipesIdentifier })
         }
     }
 }
@@ -72,7 +67,6 @@ extension Store {
     static let donateLunchIdentifier = "com.Ballygorey.Diadochokinetic_Assess.SupportTheDev3"
     static let donateSmoothieIdentifier = "com.Ballygorey.Diadochokinetic_Assess.SupportTheDev2"
 
-    
     static func getEmoji(id: String) -> String {
         switch id {
         case Store.donateDonutIdentifier:
@@ -85,7 +79,7 @@ extension Store {
             return ""
         }
     }
-    
+
     func product(for identifier: String) -> SKProduct? {
         return fetchedProducts.first(where: { $0.productIdentifier == identifier })
     }
@@ -94,16 +88,17 @@ extension Store {
         startObservingPaymentQueue()
         buy(product) { [weak self] transaction in
             guard let self = self,
-                  let transaction = transaction else {
+                let transaction = transaction
+            else {
                 return
             }
 
             // If the purchase was successful and it was for the premium recipes identifiers
             // then publish the unlock change
-//            if transaction.payment.productIdentifier == Store.unlockAllRecipesIdentifier,
-//               transaction.transactionState == .purchased {
-//                self.unlockedAllRecipes = true
-//            }
+            //            if transaction.payment.productIdentifier == Store.unlockAllRecipesIdentifier,
+            //               transaction.transactionState == .purchased {
+            //                self.unlockedAllRecipes = true
+            //            }
         }
     }
 }
@@ -114,30 +109,29 @@ extension Store {
     private func buy(_ product: SKProduct, completion: @escaping PurchaseCompletionHandler) {
         // Save our completion handler for later
         purchaseCompletionHandler = completion
-        
+
         // Create the payment and add it to the queue
         let payment = SKPayment(product: product)
         SKPaymentQueue.default().add(payment)
     }
-    
+
     private func hasPurchasedIAP(_ identifier: String) -> Bool {
         completedPurchases.contains(identifier)
     }
-    
+
     private func fetchProducts(_ completion: @escaping FetchCompletionHandler) {
         guard self.productsRequest == nil else {
             return
         }
         // Store our completion handler for later
         fetchCompletionHandler = completion
-        
+
         // Create and start this product request
         productsRequest = SKProductsRequest(productIdentifiers: allProductIdentifiers)
         productsRequest?.delegate = self
         productsRequest?.start()
     }
-    
-    
+
     private func startObservingPaymentQueue() {
         SKPaymentQueue.default().add(self)
     }
@@ -169,17 +163,16 @@ extension Store: SKPaymentTransactionObserver {
             }
         }
     }
-    
+
     func paymentQueue(_ queue: SKPaymentQueue, didRevokeEntitlementsForProductIdentifiers productIdentifiers: [String]) {
         completedPurchases.removeAll(where: { productIdentifiers.contains($0) })
         DispatchQueue.main.async {
-//            if productIdentifiers.contains(Store.unlockAllRecipesIdentifier) {
-//                self.unlockedAllRecipes = false
-//            }
+            //            if productIdentifiers.contains(Store.unlockAllRecipesIdentifier) {
+            //                self.unlockedAllRecipes = false
+            //            }
         }
     }
 }
-
 
 // MARK: - SKProductsRequestDelegate
 
@@ -187,7 +180,7 @@ extension Store: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         let loadedProducts = response.products
         let invalidProducts = response.invalidProductIdentifiers
-        
+
         guard !loadedProducts.isEmpty else {
             var errorMessage = "Could not find any products."
             if !invalidProducts.isEmpty {
@@ -197,14 +190,14 @@ extension Store: SKProductsRequestDelegate {
             productsRequest = nil
             return
         }
-        
+
         // Cache these for later use
         fetchedProducts = loadedProducts
-    
+
         // Notify anyone waiting on the product load
         DispatchQueue.main.async {
             self.fetchCompletionHandler?(loadedProducts)
-            
+
             // Clean up
             self.fetchCompletionHandler = nil
             self.productsRequest = nil
