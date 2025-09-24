@@ -41,7 +41,7 @@ struct RecordHistoryRow: View {
                 }
                 .foregroundColor(.secondary)
                 .font(.caption)
-                
+
             }
 
             Spacer()

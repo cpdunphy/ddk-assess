@@ -1,0 +1,39 @@
+# .swiftlint.yml
+included:
+  - Roux
+  - RouxTests
+
+excluded:
+  - Config/Secrets
+  - DerivedData
+  - Carthage
+  - Pods
+  - .build
+  - Packages
+
+# Keep CI signal clean (we'll use --fix locally for formatting)
+disabled_rules:
+  - line_length
+  - cyclomatic_complexity
+  - function_body_length
+  - type_body_length
+  - file_length
+  - comma
+
+# Turn on a few practical (often-correctable) opt-in rules
+opt_in_rules:
+  - unused_import
+  - redundant_type_annotation
+  - implicit_optional_initialization
+  - redundant_void_return
+  - operator_usage_whitespace
+
+# Reasonable thresholds (tweak later)
+identifier_name:
+  min_length: 2
+type_name:
+  min_length: 2
+
+line_length: 140
+
+reporter: "xcode"

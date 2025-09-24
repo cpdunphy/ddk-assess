@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 extension Binding where Value == Int {
-    
-    static func ??(lhs: Binding<Optional<Value>>, rhs: Value) -> Binding<Value> {
+
+    static func ?? (lhs: Binding<Value?>, rhs: Value) -> Binding<Value> {
         return Binding {
             return lhs.wrappedValue ?? rhs
         } set: { (val) in
@@ -20,8 +20,8 @@ extension Binding where Value == Int {
 }
 
 extension Binding where Value == String {
-    
-    static func ??(lhs: Binding<Optional<Value>>, rhs: Value) -> Binding<Value> {
+
+    static func ?? (lhs: Binding<Value?>, rhs: Value) -> Binding<Value> {
         return Binding {
             return lhs.wrappedValue ?? rhs
         } set: { (val) in
@@ -31,8 +31,8 @@ extension Binding where Value == String {
 }
 
 extension Binding where Value == Bool {
-    
-    static func ??(lhs: Binding<Optional<Value>>, rhs: Value) -> Binding<Value> {
+
+    static func ?? (lhs: Binding<Value?>, rhs: Value) -> Binding<Value> {
         return Binding {
             return lhs.wrappedValue ?? rhs
         } set: { (val) in
@@ -42,8 +42,8 @@ extension Binding where Value == Bool {
 }
 
 extension Binding {
-    
-    static func ??(lhs: Binding<Optional<Value>>, rhs: Value) -> Binding<Value> {
+
+    static func ?? (lhs: Binding<Value?>, rhs: Value) -> Binding<Value> {
         return Binding {
             return lhs.wrappedValue ?? rhs
         } set: { (val) in
@@ -51,7 +51,6 @@ extension Binding {
             lhs.wrappedValue = val
         }
     }
-    
 
 }
 
@@ -88,7 +87,7 @@ extension Optional where Wrapped == Int {
             return _bound ?? 0
         }
         set {
-//            _bound = newValue == 0 ? nil : newValue
+            //            _bound = newValue == 0 ? nil : newValue
             _bound = newValue
         }
     }
@@ -109,11 +108,11 @@ extension Optional where Wrapped == Bool {
         }
         set {
             _bound = newValue
-//            if let newValue = newValue {
-//                _bound = newValue
-//            } else {
-//                _bound = nil
-//            }
+            //            if let newValue = newValue {
+            //                _bound = newValue
+            //            } else {
+            //                _bound = nil
+            //            }
         }
     }
 }
@@ -132,7 +131,7 @@ extension Optional where Wrapped == Date {
             return _bound ?? Date()
         }
         set {
-            _bound = newValue// ? nil : newValue
+            _bound = newValue  // ? nil : newValue
         }
     }
 }

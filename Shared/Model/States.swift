@@ -15,7 +15,7 @@ enum ActiveAlert {
     case review
 }
 
-enum TimeUnits : String {
+enum TimeUnits: String {
     case seconds = "sec"
     case minutes = "min"
     case hours = "hour"

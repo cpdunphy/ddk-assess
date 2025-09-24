@@ -7,23 +7,22 @@
 
 import Foundation
 
-class TimedAssessmentBase : Assessment {
-    
+class TimedAssessmentBase: Assessment {
+
     /// Monitors the state of the current state of the timed mode. This is a set due to the variety of possibilities the timed state can be in
-    @Published var countingState : Set<CountingState> = [.ready]
-    @Published var startOfAssessment : Date = Date.now
-    
+    @Published var countingState: Set<CountingState> = [.ready]
+    @Published var startOfAssessment: Date = Date.now
+
     /// Time spent paused on timed mode
-    @Published var timeSpentPaused : Double = 0.0
-    
+    @Published var timeSpentPaused: Double = 0.0
+
     /// Lastest time a timed assessment was started
-    @Published var timeOfLatestPause : Date = Date()
-    
+    @Published var timeOfLatestPause: Date = Date()
+
     override init(_ type: AssessmentType) {
         super.init(type)
     }
-    
-    
+
     // MARK: - Button Controls
 
     func startTimer() {
@@ -31,28 +30,28 @@ class TimedAssessmentBase : Assessment {
         countingState = [.countdown]
         startOfAssessment = Date.now
     }
-    
+
     func pauseTimer() {
         countingState.insert(.paused)
         timeOfLatestPause = Date.now
     }
-    
+
     func resumeTimer() {
         countingState.remove(.paused)
         let duration = Date.now.timeIntervalSince(timeOfLatestPause)
         timeOfLatestPause += duration
     }
-    
+
     func resetTimer() {
         countingState = [.ready]
     }
-    
+
     func transitionToCounting() {
         countingState = [.counting]
         timeSpentPaused = 0
         startOfAssessment = .now
     }
-    
+
     func transitionToFinished() {
         if countingState != [.ready] {
             countingState = [.ready]

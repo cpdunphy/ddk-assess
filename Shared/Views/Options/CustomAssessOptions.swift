@@ -10,9 +10,9 @@ import SwiftUI
 
 // MARK: - Custom Options Editors
 extension AssessmentOptions {
-    
+
     @ViewBuilder
-    var options : some View {
+    var options: some View {
         switch type {
         case .timed:
             Timed()
@@ -24,34 +24,35 @@ extension AssessmentOptions {
             EmptyView()
         }
     }
-    
-    struct Timed : View {
-        @EnvironmentObject var model : TimedAssessment
 
-        var body : some View {
-            
+    struct Timed: View {
+        @EnvironmentObject var model: TimedAssessment
+
+        var body: some View {
+
             Section("Duration") {
                 BuildingBlocks.DurationPicker(value: $model.duration)
                 BuildingBlocks.CountdownStepper(countdown: $model.countdownLength)
-            }.disabled(isDisabled(model.countingState))
-            
+            }
+            .disabled(isDisabled(model.countingState))
+
             Section {
                 Toggle("Show Decimal on Timer", isOn: $model.showDecimalOnTimer)
             }
         }
     }
 
-    struct Count : View {
-        @EnvironmentObject var model : CountingAssessment
-        
-        var body : some View {
-            
+    struct Count: View {
+        @EnvironmentObject var model: CountingAssessment
+
+        var body: some View {
+
             Section {
                 Toggle(
                     "Rep Goal",
                     isOn: $model.goalIsEnabled
                 )
-                
+
                 if model.goalIsEnabled {
                     BuildingBlocks.DurationPicker(
                         value: $model.countingGoal,
@@ -59,30 +60,32 @@ extension AssessmentOptions {
                         title: "Set your goal"
                     )
                 }
-                
+
             } footer: {
                 Text("Select the number of reps you want to reach and the timer will stop when you reach that goal.")
-            }.disabled(isDisabled(model.countingState))
-            
+            }
+            .disabled(isDisabled(model.countingState))
+
             Section {
                 Toggle("Show Decimal on Timer", isOn: $model.showDecimalOnTimer)
             }
         }
     }
-    
-    struct HeartRate : View {
-        @EnvironmentObject var model : HeartRateAssessment
-       
-        var body : some View {
+
+    struct HeartRate: View {
+        @EnvironmentObject var model: HeartRateAssessment
+
+        var body: some View {
             Section("Duration") {
                 BuildingBlocks.DurationPicker(value: $model.duration)
                 BuildingBlocks.CountdownStepper(countdown: $model.countdownLength)
-            }.disabled(isDisabled(model.countingState))
-            
+            }
+            .disabled(isDisabled(model.countingState))
+
             Section {
                 Toggle("Show Decimal on Timer", isOn: $model.showDecimalOnTimer)
             }
-            
+
             Section {
                 Picker("Display Unit", selection: $model.hrUnit) {
                     ForEach(HeartRateDisplayUnit.allCases) {
@@ -96,30 +99,29 @@ extension AssessmentOptions {
 
 // MARK: - Building Blocks
 extension AssessmentOptions {
-    
-    static func isDisabled(_ state : Set<CountingState>) -> Bool {
+
+    static func isDisabled(_ state: Set<CountingState>) -> Bool {
         return state.contains(.counting) || state.contains(.countdown)
     }
-    
-    
+
     struct BuildingBlocks {
-        
-        struct DurationPicker : View {
-            
-            @Binding var value : Int
-            var range : ClosedRange<Int>
+
+        struct DurationPicker: View {
+
+            @Binding var value: Int
+            var range: ClosedRange<Int>
             var title: String
-            
+
             init(value: Binding<Int>, range: ClosedRange<Int> = Defaults.timerRange, title: String = "Set the Seconds") {
                 self._value = value
                 self.range = range
                 self.title = title
-                
+
                 if !range.contains(self.value) {
                     self.value = Defaults.timerDuration
                 }
             }
-            
+
             var body: some View {
                 Picker("Set the Seconds", selection: $value) {
                     ForEach(range, id: \.self) {
@@ -127,17 +129,17 @@ extension AssessmentOptions {
                     }
                 }
                 #if os(iOS)
-                .pickerStyle(.wheel)
+                    .pickerStyle(.wheel)
                 #endif
             }
         }
-        
-        struct CountdownStepper : View {
-            
-            @Binding var countdown : Int
+
+        struct CountdownStepper: View {
+
+            @Binding var countdown: Int
             var range: ClosedRange<Int>
-            
-            init (countdown: Binding<Int>, range: ClosedRange<Int> = Defaults.countdownRange) {
+
+            init(countdown: Binding<Int>, range: ClosedRange<Int> = Defaults.countdownRange) {
                 self._countdown = countdown
                 self.range = range
                 if !range.contains(self.countdown) {
@@ -149,6 +151,5 @@ extension AssessmentOptions {
             }
         }
     }
-    
-}
 
+}

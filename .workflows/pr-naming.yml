@@ -1,0 +1,30 @@
+name: Naming Checks (PR title & branch)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  naming-checks:
+    runs-on: ubuntu-latest
+    steps:
+      # Require titles like: "[#123] Add context menu"
+      - name: Check PR title prefix "[#123]"
+        uses: Slashgear/action-check-pr-title@v4.3.0
+        with:
+          # ^ start, optional spaces, [#<digits>], then at least one space
+          regexp: '^\s*\[#\d+\]\s+'
+          flags: ""
+
+      # Branch names cannot contain "[" or "]" (Git ref restriction),
+      # so we enforce a plain "#123" anywhere in the name.
+      - name: Validate branch name contains "#<number>"
+        env:
+          BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          echo "Branch: $BRANCH"
+          RE='#[0-9]+'
+          if [[ ! "$BRANCH" =~ $RE ]]; then
+            echo "::error title=Bad branch name::'$BRANCH' must include #<number> (e.g., #42/foo)."
+            exit 1
+          fi

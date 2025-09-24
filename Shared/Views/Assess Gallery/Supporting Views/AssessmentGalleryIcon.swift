@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct AssessmentGalleryIcon: View {
-    
-    var type : AssessmentType
+
+    var type: AssessmentType
 
     var body: some View {
         Image(systemName: type.icon)

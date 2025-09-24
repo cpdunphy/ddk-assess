@@ -17,7 +17,7 @@ extension AssessmentTaker {
         case stop
         case reset
         case log
-        
+
         func button(action: @escaping () -> Void) -> some View {
             AssessmentTaker.BuildingBlocks.ControlButton(
                 title: self.title,
@@ -26,8 +26,8 @@ extension AssessmentTaker {
                 action: action
             )
         }
-        
-        var systemSymbol : String {
+
+        var systemSymbol: String {
             switch self {
             case .start: return "stopwatch"
             case .resume: return "play.fill"
@@ -37,8 +37,8 @@ extension AssessmentTaker {
             case .log: return "square.and.pencil"
             }
         }
-        
-        var title : String {
+
+        var title: String {
             switch self {
             case .start: return "Start"
             case .resume: return "Resume"
@@ -48,19 +48,19 @@ extension AssessmentTaker {
             case .log: return "Log"
             }
         }
-        
-        var color : Color {
+
+        var color: Color {
             switch self {
             case .start: return Color.green
             case .resume: return Color.green
             case .pause: return Color.orange
             case .stop, .reset:
                 #if os(iOS)
-                return Color.gray
+                    return Color.gray
                 #elseif os(macOS)
-                return Color.white
+                    return Color.white
                 #else
-                return Color.gray
+                    return Color.gray
                 #endif
             case .log: return Color.orange
             }

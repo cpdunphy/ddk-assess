@@ -8,39 +8,38 @@
 import SwiftUI
 
 struct Statistics: View {
-    
-    @EnvironmentObject var ddk : DDKModel
-    
+
+    @EnvironmentObject var ddk: DDKModel
+
     var body: some View {
         List {
             Section {
-            ForEach(AssessmentType.allCases, id: \.self) { type in
-                HStack {
-                    Label(
-                        title: {
-                            Text(type.title)
-                        },
-                        icon: {
-                            Image(systemName: type.icon)
-                                .symbolVariant(.fill)
-                                .foregroundColor(type.color)
-                        }
-                    )
-                    
-                    Spacer()
-                    Text("\(ddk.retreiveLifetimeTotals()[type] ?? 0)")
+                ForEach(AssessmentType.allCases, id: \.self) { type in
+                    HStack {
+                        Label(
+                            title: {
+                                Text(type.title)
+                            },
+                            icon: {
+                                Image(systemName: type.icon)
+                                    .symbolVariant(.fill)
+                                    .foregroundColor(type.color)
+                            }
+                        )
+
+                        Spacer()
+                        Text("\(ddk.retreiveLifetimeTotals()[type] ?? 0)")
+                    }
                 }
-            }
-                
+
             } footer: {
                 Text("These are the statistics over your entire use of this app, reseting the counter will have no effect on these values.")
             }
-            
-            
+
         }
         .navigationTitle("Statistics")
         #if os(iOS)
-        .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.inline)
         #endif
     }
 }

@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 
 extension AssessmentTaker {
-    
+
     @ViewBuilder
-    var tapButtons : some View {
+    var tapButtons: some View {
         switch type {
         case .timed:
             TapButtons.Timed()
@@ -23,15 +23,15 @@ extension AssessmentTaker {
             EmptyView()
         }
     }
-    
+
 }
 
 // MARK: Tap Buttons
 extension AssessmentTaker {
     struct TapButtons {
-        struct Timed : View {
-            @EnvironmentObject var model : TimedAssessment
-            
+        struct Timed: View {
+            @EnvironmentObject var model: TimedAssessment
+
             var body: some View {
                 TapButton(
                     taps: $model.taps,
@@ -39,10 +39,10 @@ extension AssessmentTaker {
                 )
             }
         }
-        
-        struct Count : View {
-            @EnvironmentObject var model : CountingAssessment
-            
+
+        struct Count: View {
+            @EnvironmentObject var model: CountingAssessment
+
             var body: some View {
                 TapButton(
                     taps: $model.taps,
@@ -51,11 +51,11 @@ extension AssessmentTaker {
                 )
             }
         }
-        
-        struct HeartRate : View {
-            
-            @EnvironmentObject var model : HeartRateAssessment
-            
+
+        struct HeartRate: View {
+
+            @EnvironmentObject var model: HeartRateAssessment
+
             var body: some View {
                 TapButton(
                     taps: $model.taps,

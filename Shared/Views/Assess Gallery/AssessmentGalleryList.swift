@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct AssessmentGalleryList: View {
-    
-    @EnvironmentObject var model : DDKModel
-    
-    @Binding var assessmentSelection         : AssessmentType?
-    @Binding var assessmentSettingsSelection : AssessmentType?
-    
+
+    @EnvironmentObject var model: DDKModel
+
+    @Binding var assessmentSelection: AssessmentType?
+    @Binding var assessmentSettingsSelection: AssessmentType?
+
     // MARK: - Body
     var body: some View {
         List {
-            
+
             // Favorited Assessments
             if !model.isFavoriteAssessmentsEmpty {
                 Section("Favorites") {
@@ -28,10 +28,10 @@ struct AssessmentGalleryList: View {
                     ) { type in
                         button(type)
                     }
-                } 
-                
+                }
+
             }
-            
+
             // Not Favorited Assessments
             Section {
                 ForEach(
@@ -45,9 +45,9 @@ struct AssessmentGalleryList: View {
         }
         .listStyle(.automatic)
     }
-    
+
     @ScaledMetric var size: CGFloat = 1
-    
+
     // List Row
     func button(_ type: AssessmentType) -> some View {
         Button {
@@ -56,7 +56,7 @@ struct AssessmentGalleryList: View {
         } label: {
             AssessmentListRow(type: type, assessmentSettingsSelection: $assessmentSettingsSelection)
         }
-        
+
         // Context Menu
         .contextMenu {
             AssessmentGalleryContextMenuItems(
@@ -64,7 +64,7 @@ struct AssessmentGalleryList: View {
                 assessmentSettingsSelection: $assessmentSettingsSelection
             )
         }
-        
+
         // Swipe to Favorite
         .swipeActions(edge: .leading) {
             Button {
@@ -75,15 +75,16 @@ struct AssessmentGalleryList: View {
                 } else {
                     Label("Favorite", systemImage: "star")
                 }
-            }.tint(.yellow)
+            }
+            .tint(.yellow)
         }
     }
-    
+
     func triggerHapticFeedbackSuccess() {
-#if os(iOS)
-        let hapticFeedback = UINotificationFeedbackGenerator()
-        hapticFeedback.notificationOccurred(.success)
-#endif
+        #if os(iOS)
+            let hapticFeedback = UINotificationFeedbackGenerator()
+            hapticFeedback.notificationOccurred(.success)
+        #endif
     }
 }
 
@@ -95,7 +96,6 @@ struct AssessmentGalleryList_Previews: PreviewProvider {
         )
     }
 }
-
 
 struct CentreAlignedLabelStyle: LabelStyle {
     func makeBody(configuration: Configuration) -> some View {
@@ -112,8 +112,6 @@ struct CentreAlignedLabelStyle: LabelStyle {
         }
     }
 }
-
-
 
 struct ColorfulIconLabelStyle: LabelStyle {
     var color: Color

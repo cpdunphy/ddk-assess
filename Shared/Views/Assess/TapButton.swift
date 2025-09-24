@@ -6,24 +6,25 @@
 //
 
 import SwiftUI
+
 #if !os(macOS)
-import UIKit
+    import UIKit
 #endif
 
 struct TapButton: View {
-    @EnvironmentObject var model : DDKModel
+    @EnvironmentObject var model: DDKModel
 
     @Binding var taps: Int
-    var countingState : Set<CountingState>?
-    var enabledStates : Array<Set<CountingState>>
-    var style : AssessmentButtonStyle
-    var enabledText : String = "Tap!"
-    var disabledText : String = "Disabled"
-    
+    var countingState: Set<CountingState>?
+    var enabledStates: [Set<CountingState>]
+    var style: AssessmentButtonStyle
+    var enabledText: String = "Tap!"
+    var disabledText: String = "Disabled"
+
     init(
         taps: Binding<Int>,
         countingState: Set<CountingState>? = nil,
-        enabledStates: Array<Set<CountingState>> = [[.counting]],
+        enabledStates: [Set<CountingState>] = [[.counting]],
         style: AssessmentButtonStyle? = nil,
         enabledText: String = "Tap!",
         disabledText: String = "Tap!"
@@ -35,25 +36,25 @@ struct TapButton: View {
         self.enabledText = enabledText
         self.disabledText = disabledText
     }
-    
+
     @ScaledMetric(relativeTo: .largeTitle) var buttonLabelTextSize: CGFloat = 50
-    
+
     #if os(iOS)
-    let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     #endif
-    
+
     /// Says if the button should be enabled or not given the current state
-    var isEnabled : Bool {
-        
+    var isEnabled: Bool {
+
         guard let countingState = countingState else {
             return true
         }
 
         return enabledStates.contains(countingState)
     }
-    
+
     // MARK: - Body
-    var body : some View {
+    var body: some View {
         Button(action: handleTaps) {
             Text(displayText)
                 .font(.system(size: buttonLabelTextSize, weight: .semibold, design: .rounded))
@@ -62,34 +63,33 @@ struct TapButton: View {
         .disabled(!isEnabled)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-    
-    /// Calls the handleTaps on model and sending the haptic feedback to the user. Called each time theres a tap and lets the DDKModel figure out what to do with it. 
+
+    /// Calls the handleTaps on model and sending the haptic feedback to the user. Called each time theres a tap and lets the DDKModel figure out what to do with it.
     func handleTaps() {
         taps += 1
-        
+
         #if os(iOS)
-        self.impactFeedbackGenerator.prepare()
-        self.impactFeedbackGenerator.impactOccurred()
+            self.impactFeedbackGenerator.prepare()
+            self.impactFeedbackGenerator.impactOccurred()
         #endif
     }
-    
+
     /// Gets the display label for the assess button.
-    var displayText : String {
+    var displayText: String {
         return isEnabled ? enabledText : disabledText
     }
-    
-    
+
     struct AssessmentButtonStyle: ButtonStyle {
 
         @Environment(\.isEnabled) private var isEnabled: Bool
-        
+
         var corners: RectCorner = .allCorners
-        
-        var enabledForegroundColor : Color = .white
-        var disabledForegroundColor : Color = Color.gray.opacity(0.75)
-        var enabledBackgroundColor : Color = .tappingEnabled
-        var disabledBackgroundColor : Color = .tappingDisabled
-        
+
+        var enabledForegroundColor: Color = .white
+        var disabledForegroundColor: Color = Color.gray.opacity(0.75)
+        var enabledBackgroundColor: Color = .tappingEnabled
+        var disabledBackgroundColor: Color = .tappingDisabled
+
         func makeBody(configuration: Configuration) -> some View {
             configuration.label
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

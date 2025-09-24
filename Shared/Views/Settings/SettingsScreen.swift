@@ -108,7 +108,8 @@ struct SettingsScreen: View {
                     symbolSystemName: "questionmark.diamond.fill"
                 )
                 .symbolRenderingMode(.multicolor)
-            }.disabled(!MFMailComposeViewController.canSendMail())
+            }
+            .disabled(!MFMailComposeViewController.canSendMail())
         #else
             Link(
                 destination: URL(string: "mailto:apps@ballygorey.com?subject=Subject&body=Test")!,
@@ -206,7 +207,8 @@ struct SettingsScreen: View {
                         "Reset All Preferences",
                         systemImage: "exclamationmark.arrow.circlepath"
                     )
-                }.foregroundColor(.red)
+                }
+                .foregroundColor(.red)
             }
 
             // Reset Settings Confirmation
