@@ -22,9 +22,6 @@ struct Diadochokinetic_AssessApp: App {
     /// Initial declaration and initiation of 'HeartRateAssessment'
     @StateObject private var heartRate: HeartRateAssessment = HeartRateAssessment()
 
-    /// Initial declaration and initiation of 'Store'
-    @StateObject private var store: Store = Store()
-
     @ViewBuilder
     var contents: some View {
         ContentView()
@@ -34,7 +31,6 @@ struct Diadochokinetic_AssessApp: App {
         WindowGroup {
             contents
                 .environmentObject(ddk)
-                .environmentObject(store)
                 .environmentObject(timed)
                 .environmentObject(count)
                 .environmentObject(heartRate)

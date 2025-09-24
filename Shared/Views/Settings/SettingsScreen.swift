@@ -13,7 +13,6 @@ import SwiftUI
 #endif
 
 struct SettingsScreen: View {
-    @EnvironmentObject var store: Store
 
     #if os(iOS)
         @State private var mailResult: Result<MFMailComposeResult, Error>?
@@ -50,26 +49,6 @@ struct SettingsScreen: View {
                 callSupport
                 privacyPolicy
                 termsOfService
-            }
-
-            if !store.supportProductOptions.isEmpty {
-                Section {
-                    NavigationLink(destination: SupportDevelopment()) {
-                        Label(
-                            title: {
-                                Text("Support the Developer")
-                                    .foregroundColor(.primary)
-                            },
-                            icon: {
-                                Image(systemName: "takeoutbag.and.cup.and.straw.fill")
-                                    .font(.title3)
-                                    .symbolRenderingMode(.palette)
-                                    .foregroundStyle(.yellow, .red)
-                            }
-                        )
-
-                    }
-                }
             }
 
             Section {
