@@ -27,7 +27,7 @@ jobs:
       - name: SwiftLint
         run: |
           if swiftlint --reporter github-actions-logging >/dev/null 2>&1; then
-            swiftlint --reporter github-actions-logging
+            swiftlint --strict --reporter github-actions-logging
           else
-            swiftlint --reporter xcode
+            swiftlint --strict --reporter xcode
           fi
