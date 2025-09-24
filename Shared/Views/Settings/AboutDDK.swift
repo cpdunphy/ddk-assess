@@ -5,7 +5,6 @@
 //  Created by Collin Dunphy on 7/23/21.
 //
 
-import StoreKit
 import SwiftUI
 
 struct AboutDDK: View {

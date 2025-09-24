@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 enum NavigationItem {
-    case assess, history, support, settings
+    case assess, history, settings
 }
 
 extension NavigationItem {
@@ -19,8 +19,6 @@ extension NavigationItem {
             return Label("Assess", systemImage: "hand.tap")
         case .history:
             return Label("History", systemImage: "tray.full")
-        case .support:
-            return Label("Support", systemImage: "heart")
         case .settings:
             return Label("Settings", systemImage: "gearshape")
         }
@@ -34,8 +32,6 @@ extension NavigationItem {
             return "Assess"
         case .history:
             return "History"
-        case .support:
-            return "Support"
         case .settings:
             return "Settings"
         }

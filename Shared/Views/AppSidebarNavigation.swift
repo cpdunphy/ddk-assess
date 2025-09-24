@@ -65,7 +65,6 @@ struct AppSidebarNavigation: View {
 
     struct SettingsModal: View {
         @EnvironmentObject var model: DDKModel
-        @EnvironmentObject var store: Store
 
         @Environment(\.dismiss) var dismiss
 
@@ -73,7 +72,6 @@ struct AppSidebarNavigation: View {
             NavigationView {
                 SettingsScreen()
                     .environmentObject(model)
-                    .environmentObject(store)
                     #if os(iOS)
                         .navigationBarTitleDisplayMode(.inline)
                     #endif
