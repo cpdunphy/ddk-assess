@@ -73,11 +73,11 @@ struct SupportDevelopment: View {
         do {
             if try await store.purchaseProduct(product) != nil {
                 withAnimation {
-                    //TODO: Do stuff here
+                    // TODO: Do stuff here
                 }
             }
         } catch StoreError.failedVerification {
-            //TODO: Pop Error Here
+            // TODO: Pop Error Here
         } catch {
             print("Failed purchase for \(product.productIdentifier): \(error)")
         }

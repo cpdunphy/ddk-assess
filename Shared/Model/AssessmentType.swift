@@ -32,11 +32,11 @@ enum AssessmentType: String, Codable, CaseIterable, Identifiable {
     }
 
     var color: Color {
-        //TODO: Add these
+        // TODO: Add these
         switch self {
-        case .timed: return .blue  //#bae1ff
-        case .count: return .orange  //#ffdfba
-        case .heartRate: return .pink  //#ffb3ba
+        case .timed: return .blue  // #bae1ff
+        case .count: return .orange  // #ffdfba
+        case .heartRate: return .pink  // #ffb3ba
         //        case .fluency:      return .red
         //        case .walk:         return .green
         //        case .physiopedia:  return .teal
@@ -57,7 +57,7 @@ enum AssessmentType: String, Codable, CaseIterable, Identifiable {
     }
 
     var description: String {
-        //TODO: Add these
+        // TODO: Add these
         return ""
     }
 

@@ -12,12 +12,12 @@ public func print(_ object: String, filename: String = #file, line: Int = #line,
 
         let index = filename.lastIndex(of: "/")
 
-        var file: String? = nil
+        var file: String?
         if let index = index {
             file = String(filename.suffix(from: index))
         }
 
-        var newFile: String? = nil
+        var newFile: String?
         if let file = file {
             let newIndex = file.firstIndex { $0 != "/" }
 

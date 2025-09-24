@@ -90,7 +90,7 @@ extension AssessmentTaker {
                         model.transitionToCounting()
                     } else if state.contains(.counting) {
                         model.transitionToFinished()
-                        //TODO: Send finished model to DDKModel
+                        // TODO: Send finished model to DDKModel
                         let record = AssessmentRecord(
                             date: .now,
                             taps: model.taps,
@@ -238,7 +238,7 @@ extension AssessmentTaker {
                         model.transitionToCounting()
                     } else if state.contains(.counting) {
                         model.transitionToFinished()
-                        //TODO: Send finished model to DDKModel
+                        // TODO: Send finished model to DDKModel
                         let record = AssessmentRecord(
                             date: .now,
                             taps: model.taps,
@@ -258,13 +258,13 @@ extension AssessmentTaker.BuildingBlocks {
 
     // Format Time(s) to m/s/ds
     static func getStandardTimeDisplayString(_ time: Double, showDecimal: Bool) -> String {
-        //https://stackoverflow.com/questions/35215694/format-timer-label-to-hoursminutesseconds-in-swift/35215847
-        //https://stackoverflow.com/questions/52332747/what-are-the-supported-swift-string-format-specifiers/52332748
+        // https://stackoverflow.com/questions/35215694/format-timer-label-to-hoursminutesseconds-in-swift/35215847
+        // https://stackoverflow.com/questions/52332747/what-are-the-supported-swift-string-format-specifiers/52332748
 
         let minutes = Int(time) / 60 % 60
         let seconds = Int(time) % 60
         let deciseconds = time - Double(Int(time))
-        var decisecondsFullStr = "\(Double(round(10*deciseconds)/10))"
+        var decisecondsFullStr = "\(Double(round(10 * deciseconds) / 10))"
         decisecondsFullStr.remove(at: decisecondsFullStr.startIndex)
         if !showDecimal {
             return String(format: "%02i:%02i", minutes, seconds)

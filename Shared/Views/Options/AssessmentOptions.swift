@@ -68,7 +68,7 @@ struct AssessmentOptions: View {
                 get: {
                     ddk.assessmentTypeIsFavorite(type)
                 },
-                set: { newValue in
+                set: { _ in
                     ddk.toggleFavoriteStatus(type)
                 }
             )

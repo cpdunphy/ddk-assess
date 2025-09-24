@@ -15,9 +15,9 @@ struct HistoryScreen: View {
     @AppStorage(StorageKeys.History.useGroups) var useGroups: Bool = false
     @AppStorage(StorageKeys.History.sortBy) var sortBy: RecordSortTypes = .pinned
 
-    @State private var recordEditSelection: AssessmentRecord? = nil
+    @State private var recordEditSelection: AssessmentRecord?
 
-    @State private var recordDeleteSelection: AssessmentRecord? = nil
+    @State private var recordDeleteSelection: AssessmentRecord?
     @State private var showDeleteItemConfirmationAlert: Bool = false
 
     @State private var showDeleteAllConfirmationAlert: Bool = false
@@ -85,7 +85,7 @@ struct HistoryScreen: View {
             if useGroups {
                 if let groupedRecords = groupedRecords {
                     // Iterate over the keys in the dictionary
-                    ForEach(groupedRecords, id: \.title) { group in  //TODO: Dict is inherently unordered. Find some way to keep this consistent.
+                    ForEach(groupedRecords, id: \.title) { group in  // TODO: Dict is inherently unordered. Find some way to keep this consistent.
                         if !group.records.isEmpty {
                             // Grouped Section with a Key and existent Records.
                             sectionOfRecordHistory(group.title, group.records)
@@ -105,7 +105,7 @@ struct HistoryScreen: View {
         }
     }
 
-    //MARK: - Empty History
+    // MARK: - Empty History
     var emptyHistory: some View {
         VStack {
             Image(systemName: "heart.text.square")

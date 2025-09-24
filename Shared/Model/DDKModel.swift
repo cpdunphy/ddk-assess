@@ -130,7 +130,7 @@ extension DDKModel {
 
 }
 
-//MARK: - Pinned Records
+// MARK: - Pinned Records
 
 extension DDKModel {
 
@@ -155,7 +155,7 @@ extension DDKModel {
     }
 }
 
-//MARK: - Assessment Totals
+// MARK: - Assessment Totals
 extension DDKModel {
 
     func getTotal(_ type: AssessmentType) -> Int {

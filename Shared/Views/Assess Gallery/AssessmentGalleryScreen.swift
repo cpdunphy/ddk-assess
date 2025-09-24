@@ -16,11 +16,11 @@ struct AssessmentGalleryScreen: View {
     @AppStorage(StorageKeys.AssessGallery.sortBy) var sortBy: AssessmentSortTypes = Defaults.sortBy
     @AppStorage(StorageKeys.AssessGallery.sortAscending) var sortAscending: Bool = Defaults.sortAscending
 
-    @State private var assessmentSettingsSelection: AssessmentType? = nil
-    @State private var assessmentSelection: AssessmentType? = nil
+    @State private var assessmentSettingsSelection: AssessmentType?
+    @State private var assessmentSelection: AssessmentType?
     @State private var searchQuery: String = ""
 
-    //MARK: - Body
+    // MARK: - Body
     var body: some View {
         AssessmentGalleryGrid(
             assessmentSelection: $assessmentSelection,

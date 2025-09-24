@@ -1,7 +1,7 @@
 # .swiftlint.yml
 included:
-  - Roux
-  - RouxTests
+  - Shared
+  - iOS
 
 excluded:
   - Config/Secrets
@@ -23,7 +23,6 @@ disabled_rules:
 # Turn on a few practical (often-correctable) opt-in rules
 opt_in_rules:
   - unused_import
-  - redundant_type_annotation
   - implicit_optional_initialization
   - redundant_void_return
   - operator_usage_whitespace

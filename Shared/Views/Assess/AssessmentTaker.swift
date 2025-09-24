@@ -16,7 +16,7 @@ struct AssessmentTaker: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var ddk: DDKModel
 
-    @State var assessmentSettingsSelection: AssessmentType? = nil
+    @State var assessmentSettingsSelection: AssessmentType?
 
     var type: AssessmentType
 
