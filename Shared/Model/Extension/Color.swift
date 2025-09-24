@@ -24,17 +24,6 @@ extension Color {
 
 }
 
-extension Color {
-
-    static public var tappingEnabled: Color {
-        Color("tappingEnabled")
-    }
-
-    static public var tappingDisabled: Color {
-        Color("tappingDisabled")
-    }
-}
-
 // MARK: - Adjust
 extension Color {
 
