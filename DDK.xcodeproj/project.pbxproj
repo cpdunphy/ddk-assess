@@ -52,14 +52,12 @@
 		F08D1BB4271A2135004FE52A /* RoundRectProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08D1BB3271A2135004FE52A /* RoundRectProgress.swift */; };
 		F0AE5B9526A9F06400ADAD3D /* Array-Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */; };
 		F0AE5B9826AB151200ADAD3D /* AboutDDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9726AB151200ADAD3D /* AboutDDK.swift */; };
+		F0B3FECC2E84B317003079CF /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F0B3FECB2E84B317003079CF /* Algorithms */; };
 		F0B423BB25A66D97002805C9 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423BA25A66D97002805C9 /* NavigationItem.swift */; };
-		F0C71039275A6C19004928B2 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F0C71038275A6C19004928B2 /* Algorithms */; };
 		F0C756B0251C3DA500D066A9 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756AF251C3DA500D066A9 /* States.swift */; };
 		F0C756B7251C3DC000D066A9 /* AssessmentRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756B6251C3DC000D066A9 /* AssessmentRecord.swift */; };
 		F0CEA381251CC5C700818C6D /* CountingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CEA380251CC5C700818C6D /* CountingState.swift */; };
 		F0D5539E251C24340084E0EB /* DDKModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5539D251C24340084E0EB /* DDKModel.swift */; };
-		F0D553AD251C3A000084E0EB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0D553AC251C3A000084E0EB /* StoreKit.framework */; };
-		F0DAFDA226B07A7E00CDA62F /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0DAFDA126B07A7E00CDA62F /* AuthenticationServices.framework */; };
 		F0E180B225236C3500E808AB /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180B125236C3500E808AB /* SettingsScreen.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +80,6 @@
 		F02DB3E4251C23430038FEAE /* Diadochokinetic_AssessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diadochokinetic_AssessApp.swift; sourceTree = "<group>"; };
 		F02DB3E5251C23430038FEAE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F02DB3E6251C23440038FEAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F02DB3EB251C23440038FEAE /* DDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F02DB3EE251C23440038FEAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0304707251E4CD100B438E7 /* TapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapButton.swift; sourceTree = "<group>"; };
 		F030470E251E65F300B438E7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -111,14 +108,12 @@
 		F09ED61E2778EAB90096E4A4 /* AssessmentListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentListRow.swift; sourceTree = "<group>"; };
 		F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-Set.swift"; sourceTree = "<group>"; };
 		F0AE5B9726AB151200ADAD3D /* AboutDDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDDK.swift; sourceTree = "<group>"; };
+		F0B3FEC92E84B18F003079CF /* DDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B423BA25A66D97002805C9 /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
-		F0C75698251C3A4300D066A9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F0C756AF251C3DA500D066A9 /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		F0C756B6251C3DC000D066A9 /* AssessmentRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentRecord.swift; sourceTree = "<group>"; };
 		F0CEA380251CC5C700818C6D /* CountingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingState.swift; sourceTree = "<group>"; };
 		F0D5539D251C24340084E0EB /* DDKModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDKModel.swift; sourceTree = "<group>"; };
-		F0D553AC251C3A000084E0EB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
-		F0DAFDA126B07A7E00CDA62F /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/AuthenticationServices.framework; sourceTree = DEVELOPER_DIR; };
 		F0E180B125236C3500E808AB /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,9 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0C71039275A6C19004928B2 /* Algorithms in Frameworks */,
-				F0DAFDA226B07A7E00CDA62F /* AuthenticationServices.framework in Frameworks */,
-				F0D553AD251C3A000084E0EB /* StoreKit.framework in Frameworks */,
+				F0B3FECC2E84B317003079CF /* Algorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,8 +186,7 @@
 				F0457FBD2897477100A64DB3 /* README.md */,
 				F02DB3E3251C23430038FEAE /* Shared */,
 				F02DB3ED251C23440038FEAE /* iOS */,
-				F02DB3EC251C23440038FEAE /* Products */,
-				F0D553AB251C3A000084E0EB /* Frameworks */,
+				F0B3FEC92E84B18F003079CF /* DDK.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -208,14 +200,6 @@
 				F02DB3E6251C23440038FEAE /* Assets.xcassets */,
 			);
 			path = Shared;
-			sourceTree = "<group>";
-		};
-		F02DB3EC251C23440038FEAE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F02DB3EB251C23440038FEAE /* DDK.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		F02DB3ED251C23440038FEAE /* iOS */ = {
@@ -290,16 +274,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		F0D553AB251C3A000084E0EB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F0DAFDA126B07A7E00CDA62F /* AuthenticationServices.framework */,
-				F0C75698251C3A4300D066A9 /* StoreKit.framework */,
-				F0D553AC251C3A000084E0EB /* StoreKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		F0DAFDA326B07DB400CDA62F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,10 +317,10 @@
 			);
 			name = DDK;
 			packageProductDependencies = (
-				F0C71038275A6C19004928B2 /* Algorithms */,
+				F0B3FECB2E84B317003079CF /* Algorithms */,
 			);
 			productName = "Diadochokinetic Assess (iOS)";
-			productReference = F02DB3EB251C23440038FEAE /* DDK.app */;
+			productReference = F0B3FEC92E84B18F003079CF /* DDK.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -374,9 +348,9 @@
 			);
 			mainGroup = F02DB3DE251C23430038FEAE;
 			packageReferences = (
-				F0C71037275A6C19004928B2 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				F0B3FECA2E84B317003079CF /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
-			productRefGroup = F02DB3EC251C23440038FEAE /* Products */;
+			productRefGroup = F02DB3DE251C23430038FEAE;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -655,20 +629,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F0C71037275A6C19004928B2 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+		F0B3FECA2E84B317003079CF /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-algorithms.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.2.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F0C71038275A6C19004928B2 /* Algorithms */ = {
+		F0B3FECB2E84B317003079CF /* Algorithms */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F0C71037275A6C19004928B2 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			package = F0B3FECA2E84B317003079CF /* XCRemoteSwiftPackageReference "swift-algorithms" */;
 			productName = Algorithms;
 		};
 /* End XCSwiftPackageProductDependency section */
