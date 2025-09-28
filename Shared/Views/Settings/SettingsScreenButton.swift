@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SettingsScreenButton: View {
 
-    var title: String?
-    var symbolSystemName: String?
+    var title: String
+    var symbolSystemName: String
     var imageName: String?
     var symbolColor: Color?
 
@@ -19,35 +19,22 @@ struct SettingsScreenButton: View {
     var body: some View {
         Label(
             title: {
-                if let title = title {
-                    Text(title)
-                        .foregroundColor(.primary)
-                }
+                Text(title)
+                    .foregroundColor(.primary)
             },
             icon: {
-                image
+                Image(systemName: symbolSystemName)
+                    .foregroundStyle(symbolColor ?? .primary, .primary)
+                    .font(.title3)
             }
         )
     }
 
     @ScaledMetric(wrappedValue: 35, relativeTo: .title3) var imageIconSize: CGFloat
-
-    @ViewBuilder
-    var image: some View {
-        if let symbol = symbolSystemName {
-            Image(systemName: symbol)
-                .foregroundStyle(symbolColor ?? .primary, .primary)
-                .font(.title3)
-        } else if let image = imageName {
-            Image(image)
-                .resizable()
-                .frame(width: imageIconSize, height: imageIconSize)
-        }
-    }
 }
 
 struct SettingsScreenButton_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsScreenButton()
+        SettingsScreenButton(title: "Test", symbolSystemName: "heart.fill")
     }
 }

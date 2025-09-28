@@ -24,15 +24,10 @@ struct SettingsScreen: View {
         List {
 
             // App Information + More
-            Section("Information") {
+            Section {
 
                 NavigationLink(destination: AboutDDK()) {
-                    SettingsScreenButton(
-                        title: "About",
-                        symbolSystemName: "info.circle.fill",
-                        symbolColor: .white
-                    )
-                    .symbolRenderingMode(.palette)
+                    Label("About", systemImage: "info.circle.fill")
                 }
 
                 NavigationLink(destination: Statistics()) {
