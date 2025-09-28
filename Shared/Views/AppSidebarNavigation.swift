@@ -29,7 +29,15 @@ struct AppSidebarNavigation: View {
                 #endif
                 #if !os(macOS)
                     .sheet(isPresented: $showSettingsModal) {
-                        SettingsModal()
+                        if #available(iOS 18.0, *) {
+                            NavigationStack {
+                                SettingsModal()
+                            }
+                        } else {
+                            NavigationView {
+                                SettingsModal()
+                            }
+                        }
                     }
                 #endif
 
@@ -69,7 +77,6 @@ struct AppSidebarNavigation: View {
         @Environment(\.dismiss) var dismiss
 
         var body: some View {
-            NavigationView {
                 SettingsScreen()
                     .environmentObject(model)
                     #if os(iOS)
@@ -78,7 +85,6 @@ struct AppSidebarNavigation: View {
                     .toolbar {
                         Button("Done", action: { dismiss() })
                     }
-            }
         }
     }
 }
