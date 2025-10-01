@@ -19,8 +19,6 @@ extension AssessmentTaker {
             Stats.Count()
         case .heartRate:
             Stats.HeartRate()
-        default:
-            EmptyView()
         }
     }
 
@@ -61,7 +59,9 @@ extension AssessmentTaker {
                     .background(Color(.secondarySystemGroupedBackground))
                 #endif
                 .cornerRadius(15.0)
-                .onChange(of: model.currentDateTime, perform: checkStatus)
+                .onChange(of: model.currentDateTime) { _, newValue in
+                    checkStatus(newValue)
+                }
 
             }
 
@@ -139,7 +139,9 @@ extension AssessmentTaker {
                     .background(Color(NSColor.windowBackgroundColor))
                 #endif
                 .cornerRadius(15.0)
-                .onChange(of: model.taps, perform: checkStatus)
+                .onChange(of: model.taps) { _, newValue in
+                    checkStatus(newValue)
+                }
 
             }
 
@@ -203,13 +205,11 @@ extension AssessmentTaker {
                     .position(x: geo.size.width / 2, y: geo.size.height / 2)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                #if os(macOS)
-                    .background(Color(NSColor.windowBackgroundColor))
-                #else
-                    .background(Color(.secondarySystemGroupedBackground))
-                #endif
+                .background(Color(.secondarySystemGroupedBackground))
                 .cornerRadius(15.0)
-                .onChange(of: model.currentDateTime, perform: checkStatus)
+                .onChange(of: model.currentDateTime) { _, newValue in
+                    checkStatus(newValue)
+                }
 
             }
 
@@ -307,3 +307,4 @@ extension AssessmentTaker.BuildingBlocks {
         }
     }
 }
+

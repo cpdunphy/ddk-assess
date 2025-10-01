@@ -20,8 +20,6 @@ extension AssessmentOptions {
             Count()
         case .heartRate:
             HeartRate()
-        default:
-            EmptyView()
         }
     }
 

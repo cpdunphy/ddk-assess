@@ -131,7 +131,7 @@ struct SettingsScreen: View {
                 action: {
                     let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive })
                     if let scene = scene as? UIWindowScene {
-                        SKStoreReviewController.requestReview(in: scene)
+                        AppStore.requestReview(in: scene)
                     } else {
                         if let url = URL(
                             string: "itms-apps://itunes.apple.com/app/id\(1_489_873_060)?action=write-review&mt=8"

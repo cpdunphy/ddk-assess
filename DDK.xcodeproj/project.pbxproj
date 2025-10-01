@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,8 +20,9 @@
 		F00DE6DD27D95755000AD591 /* AssessmentListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09ED61E2778EAB90096E4A4 /* AssessmentListRow.swift */; };
 		F0214EEA26A31B8100003DDC /* AssessmentGalleryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */; };
 		F0214EEC26A31BEA00003DDC /* AssessmentGalleryGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */; };
+		F021FE582E8CADD10052875B /* AppMobileNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021FE572E8CADD10052875B /* AppMobileNavigation.swift */; };
+		F021FE5A2E8CADD80052875B /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021FE592E8CADD80052875B /* MailView.swift */; };
 		F022213126A325B900AA0340 /* AssessmentGalleryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */; };
-		F025287A251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */; };
 		F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */; };
 		F02DB40D251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02DB3E4251C23430038FEAE /* Diadochokinetic_AssessApp.swift */; };
 		F02DB40F251C23440038FEAE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02DB3E5251C23430038FEAE /* ContentView.swift */; };
@@ -37,7 +38,6 @@
 		F062A80727D65CEE0096A29A /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062A80627D65CEE0096A29A /* Defaults.swift */; };
 		F062A80927D65D5C0096A29A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062A80827D65D5C0096A29A /* Date.swift */; };
 		F062A80B27D6C60A0096A29A /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = F062A80A27D6C60A0096A29A /* Double.swift */; };
-		F07564EC2530FA8200EC058A /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07564EB2530FA8200EC058A /* MailView.swift */; };
 		F07B3BD0261108E5004EB5AC /* Print.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07B3BCF261108E5004EB5AC /* Print.swift */; };
 		F080D72926A3B5C700A1F49D /* AssessmentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D72826A3B5C700A1F49D /* AssessmentType.swift */; };
 		F080D72C26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D72B26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift */; };
@@ -75,13 +75,13 @@
 		6CC1561A2735D52200A7A344 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryScreen.swift; sourceTree = "<group>"; };
 		F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryGrid.swift; sourceTree = "<group>"; };
+		F021FE572E8CADD10052875B /* AppMobileNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMobileNavigation.swift; sourceTree = "<group>"; };
+		F021FE592E8CADD80052875B /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryIcon.swift; sourceTree = "<group>"; };
-		F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMobileNavigation.swift; sourceTree = "<group>"; };
 		F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSidebarNavigation.swift; sourceTree = "<group>"; };
 		F02DB3E4251C23430038FEAE /* Diadochokinetic_AssessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diadochokinetic_AssessApp.swift; sourceTree = "<group>"; };
 		F02DB3E5251C23430038FEAE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F02DB3E6251C23440038FEAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F02DB3EE251C23440038FEAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0304707251E4CD100B438E7 /* TapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapButton.swift; sourceTree = "<group>"; };
 		F030470E251E65F300B438E7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F0457FBD2897477100A64DB3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -93,7 +93,6 @@
 		F062A80627D65CEE0096A29A /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		F062A80827D65D5C0096A29A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		F062A80A27D6C60A0096A29A /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
-		F07564EB2530FA8200EC058A /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		F07B3BCF261108E5004EB5AC /* Print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Print.swift; sourceTree = "<group>"; };
 		F080D72826A3B5C700A1F49D /* AssessmentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentType.swift; sourceTree = "<group>"; };
 		F080D72B26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryContextMenuItems.swift; sourceTree = "<group>"; };
@@ -122,11 +121,9 @@
 /* Begin PBXFrameworksBuildPhase section */
 		F02DB3E8251C23440038FEAE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				F0B3FECC2E84B317003079CF /* Algorithms in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -187,7 +184,6 @@
 			children = (
 				F0457FBD2897477100A64DB3 /* README.md */,
 				F02DB3E3251C23430038FEAE /* Shared */,
-				F02DB3ED251C23440038FEAE /* iOS */,
 				F0B3FEC92E84B18F003079CF /* DDK.app */,
 				F0B3FECD2E84C8F9003079CF /* DDK_AppIcon.icon */,
 			);
@@ -205,16 +201,6 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		F02DB3ED251C23440038FEAE /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				F07564EB2530FA8200EC058A /* MailView.swift */,
-				F0252879251CCC3800D2F5DF /* AppMobileNavigation.swift */,
-				F02DB3EE251C23440038FEAE /* Info.plist */,
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
 		F080D74026A8C2B000A1F49D /* History */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +215,7 @@
 		F080D74126A8C2D600A1F49D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				F021FE592E8CADD80052875B /* MailView.swift */,
 				F05F75D92757BD4200CDD65C /* Statistics.swift */,
 				F0E180B125236C3500E808AB /* SettingsScreen.swift */,
 				F04AD42B271CCDB600293641 /* SettingsScreenButton.swift */,
@@ -294,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */,
+				F021FE572E8CADD10052875B /* AppMobileNavigation.swift */,
 				F08D1BB2271A20CE004FE52A /* Assess */,
 				6CAEE29327323B7300184E39 /* Options */,
 				F0214EEF26A31BFE00003DDC /* Assess Gallery */,
@@ -315,8 +303,6 @@
 				F02DB3E9251C23440038FEAE /* Resources */,
 			);
 			buildRules = (
-			);
-			dependencies = (
 			);
 			name = DDK;
 			packageProductDependencies = (
@@ -342,7 +328,6 @@
 				};
 			};
 			buildConfigurationList = F02DB3E2251C23430038FEAE /* Build configuration list for PBXProject "DDK" */;
-			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -353,6 +338,7 @@
 			packageReferences = (
 				F0B3FECA2E84B317003079CF /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
+			preferredProjectObjectVersion = 90;
 			productRefGroup = F02DB3DE251C23430038FEAE;
 			projectDirPath = "";
 			projectRoot = "";
@@ -365,35 +351,33 @@
 /* Begin PBXResourcesBuildPhase section */
 		F02DB3E9251C23440038FEAE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				F02DB411251C23440038FEAE /* Assets.xcassets in Resources */,
 				F0457FBE2897477100A64DB3 /* README.md in Resources */,
 				F0B3FECE2E84C8F9003079CF /* DDK_AppIcon.icon in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F02DB3E7251C23440038FEAE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				F062A80727D65CEE0096A29A /* Defaults.swift in Sources */,
 				F0D5539E251C24340084E0EB /* DDKModel.swift in Sources */,
 				F080D73B26A5E0F100A1F49D /* RecordHistoryRow.swift in Sources */,
 				F02DB40F251C23440038FEAE /* ContentView.swift in Sources */,
 				6CAEE29827323E2800184E39 /* CustomAssessTaps.swift in Sources */,
+				F021FE5A2E8CADD80052875B /* MailView.swift in Sources */,
 				F0214EEA26A31B8100003DDC /* AssessmentGalleryScreen.swift in Sources */,
 				6CAEE28A27323A5D00184E39 /* TimedAssessment.swift in Sources */,
 				F00DE6DD27D95755000AD591 /* AssessmentListRow.swift in Sources */,
 				F0C756B7251C3DC000D066A9 /* AssessmentRecord.swift in Sources */,
 				F0E180B225236C3500E808AB /* SettingsScreen.swift in Sources */,
 				F02DB40D251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
-				F07564EC2530FA8200EC058A /* MailView.swift in Sources */,
 				6CAEE29227323B0B00184E39 /* TimedAssessmentBase.swift in Sources */,
 				6CAEE28827323A4900184E39 /* HeartRateAssessment.swift in Sources */,
+				F021FE582E8CADD10052875B /* AppMobileNavigation.swift in Sources */,
 				F0AE5B9526A9F06400ADAD3D /* Array-Set.swift in Sources */,
 				F080D72926A3B5C700A1F49D /* AssessmentType.swift in Sources */,
 				F0B423BB25A66D97002805C9 /* NavigationItem.swift in Sources */,
@@ -417,7 +401,6 @@
 				6CC1561B2735D52200A7A344 /* Binding.swift in Sources */,
 				6CAEE29A27323E5600184E39 /* CustomAssessControls.swift in Sources */,
 				6CAEE29C27323E6300184E39 /* CustomAssessStats.swift in Sources */,
-				F025287A251CCC3800D2F5DF /* AppMobileNavigation.swift in Sources */,
 				F0214EEC26A31BEA00003DDC /* AssessmentGalleryGrid.swift in Sources */,
 				F080D72C26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift in Sources */,
 				F0304708251E4CD100B438E7 /* TapButton.swift in Sources */,
@@ -430,12 +413,11 @@
 				F0CEA381251CC5C700818C6D /* CountingState.swift in Sources */,
 				F08D1BB0271A20A6004FE52A /* ButtonOptions.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		F02DB413251C23440038FEAE /* Debug */ = {
+		F02DB413251C23440038FEAE /* Debug configuration for PBXProject "DDK" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -490,6 +472,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -499,7 +482,7 @@
 			};
 			name = Debug;
 		};
-		F02DB414251C23440038FEAE /* Release */ = {
+		F02DB414251C23440038FEAE /* Release configuration for PBXProject "DDK" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -548,6 +531,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -556,7 +540,7 @@
 			};
 			name = Release;
 		};
-		F02DB416251C23440038FEAE /* Debug */ = {
+		F02DB416251C23440038FEAE /* Debug configuration for PBXNativeTarget "DDK" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = DDK_AppIcon;
@@ -564,17 +548,19 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Diadochokinetic Assess (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = iOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DDK;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Diadochokinetic-Assess";
 				PRODUCT_NAME = DDK;
 				SDKROOT = iphoneos;
@@ -583,7 +569,7 @@
 			};
 			name = Debug;
 		};
-		F02DB417251C23440038FEAE /* Release */ = {
+		F02DB417251C23440038FEAE /* Release configuration for PBXNativeTarget "DDK" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = DDK_AppIcon;
@@ -591,17 +577,19 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Diadochokinetic Assess (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = iOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DDK;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Ballygorey.Diadochokinetic-Assess";
 				PRODUCT_NAME = DDK;
 				SDKROOT = iphoneos;
@@ -617,19 +605,17 @@
 		F02DB3E2251C23430038FEAE /* Build configuration list for PBXProject "DDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F02DB413251C23440038FEAE /* Debug */,
-				F02DB414251C23440038FEAE /* Release */,
+				F02DB413251C23440038FEAE /* Debug configuration for PBXProject "DDK" */,
+				F02DB414251C23440038FEAE /* Release configuration for PBXProject "DDK" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		F02DB415251C23440038FEAE /* Build configuration list for PBXNativeTarget "DDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F02DB416251C23440038FEAE /* Debug */,
-				F02DB417251C23440038FEAE /* Release */,
+				F02DB416251C23440038FEAE /* Debug configuration for PBXNativeTarget "DDK" */,
+				F02DB417251C23440038FEAE /* Release configuration for PBXNativeTarget "DDK" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */

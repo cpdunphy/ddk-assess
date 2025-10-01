@@ -29,14 +29,8 @@ struct AppSidebarNavigation: View {
                 #endif
                 #if !os(macOS)
                     .sheet(isPresented: $showSettingsModal) {
-                        if #available(iOS 18.0, *) {
-                            NavigationStack {
-                                SettingsModal()
-                            }
-                        } else {
-                            NavigationView {
-                                SettingsModal()
-                            }
+                        NavigationStack {
+                            SettingsModal()
                         }
                     }
                 #endif
