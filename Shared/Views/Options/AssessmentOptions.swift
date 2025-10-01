@@ -36,8 +36,6 @@ struct AssessmentOptions: View {
             return count
         case .heartRate:
             return hr
-        default:
-            return nil
         }
     }
 

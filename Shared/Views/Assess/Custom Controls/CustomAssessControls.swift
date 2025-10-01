@@ -19,8 +19,6 @@ extension AssessmentTaker {
             ControlButtons.Count()
         case .heartRate:
             ControlButtons.HeartRate()
-        default:
-            EmptyView()
         }
     }
 }

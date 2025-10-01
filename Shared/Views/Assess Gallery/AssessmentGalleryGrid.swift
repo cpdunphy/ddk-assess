@@ -46,7 +46,6 @@ struct AssessmentGalleryGrid: View {
         case .timed: return timed
         case .count: return count
         case .heartRate: return hr
-        default: return nil
         }
     }
 

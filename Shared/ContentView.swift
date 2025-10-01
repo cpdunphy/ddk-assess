@@ -9,21 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
 
-    #if os(iOS)
-        @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    #endif
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     var body: some View {
-        #if os(iOS)
-            if horizontalSizeClass == .compact {
-                AppMobileNavigation()
-            } else {
-                AppSidebarNavigation()
-            }
-
-        #else
+        if horizontalSizeClass == .compact {
+            AppMobileNavigation()
+        } else {
             AppSidebarNavigation()
-        #endif
+        }
     }
 }
 
