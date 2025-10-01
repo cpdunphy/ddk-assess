@@ -19,13 +19,13 @@ struct AppMobileNavigation: View {
                     AssessmentGalleryScreen()
                 }
             }
-            
+
             Tab("History", systemImage: "tray.full", value: NavigationItem.history) {
                 NavigationStack {
                     HistoryScreen()
                 }
             }
-            
+
             Tab("Assess", systemImage: "gearshape", value: NavigationItem.settings) {
                 NavigationStack {
                     SettingsScreen()

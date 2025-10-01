@@ -71,14 +71,14 @@ struct AppSidebarNavigation: View {
         @Environment(\.dismiss) var dismiss
 
         var body: some View {
-                SettingsScreen()
-                    .environmentObject(model)
-                    #if os(iOS)
-                        .navigationBarTitleDisplayMode(.inline)
-                    #endif
-                    .toolbar {
-                        Button("Done", action: { dismiss() })
-                    }
+            SettingsScreen()
+                .environmentObject(model)
+                #if os(iOS)
+                    .navigationBarTitleDisplayMode(.inline)
+                #endif
+                .toolbar {
+                    Button("Done", action: { dismiss() })
+                }
         }
     }
 }

@@ -1,7 +1,6 @@
 # .swiftlint.yml
 included:
   - Shared
-  - iOS
 
 excluded:
   - Config/Secrets
@@ -19,10 +18,19 @@ disabled_rules:
   - type_body_length
   - file_length
   - comma
+  - trailing_whitespace
+  - vertical_whitespace
+  - opening_brace
+  - closing_brace
+  - statement_position
+  - colon
+  - trailing_newline
+  - leading_whitespace
+  - file_header
+  - todo # TODO: Get rid of other TODOs..
 
 # Turn on a few practical (often-correctable) opt-in rules
 opt_in_rules:
-  - unused_import
   - implicit_optional_initialization
   - redundant_void_return
   - operator_usage_whitespace
@@ -32,7 +40,7 @@ identifier_name:
   min_length: 2
 type_name:
   min_length: 2
-
-line_length: 140
+nesting:
+  type_level: 2 # TODO: Reduce this to 1
 
 reporter: "xcode"

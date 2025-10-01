@@ -21,7 +21,7 @@ struct AboutDDK: View {
                 VStack {
                     Text("DDK")
                         .font(.system(size: 100, weight: .regular, design: .rounded))
-                    Text("Version \(getAppCurrentVersionNumber())".capitalized)
+                    Text("Version \(Bundle.appVersionWithBuild)".capitalized)
                         .font(.system(.callout, design: .rounded))
                         .foregroundColor(.secondary)
                 }
@@ -88,22 +88,7 @@ struct AboutDDK: View {
             .scenePadding()
         }
         .navigationTitle("About")
-        #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-        #endif
-    }
-
-    func getAppCurrentVersionNumber() -> String {
-        let dictionary = Bundle.main.infoDictionary!
-        let version: AnyObject? = dictionary["CFBundleShortVersionString"] as AnyObject?
-        let build: AnyObject? = dictionary["CFBundleVersion"] as AnyObject?
-        let versionStr = version as! String
-        let buildStr = build as! String
-        return "\(versionStr) (\(buildStr))"
-    }
-
-    func versionDescription() -> String {
-        return "\(getAppCurrentVersionNumber())"
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

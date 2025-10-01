@@ -189,10 +189,13 @@ struct HistoryScreen: View {
         // Record Editor
         .sheet(
             item: $recordEditSelection,
-            onDismiss: { recordEditSelection = nil }
-        ) { record in
-            NavigationView { EditRecordScreen(record) }
-        }
+            onDismiss: { recordEditSelection = nil },
+            content: { record in
+                NavigationStack {
+                    EditRecordScreen(record)
+                }
+            }
+        )
 
         // Delete All Logs Confirmation Dialog
         .confirmationDialog(
@@ -251,7 +254,7 @@ struct HistoryScreen: View {
                     }
                 }
             } label: {
-                Label("More", systemImage: "ellipsis.circle")
+                Label("More", systemImage: "ellipsis")
             }
         }
     }
@@ -270,9 +273,7 @@ extension HistoryScreen {
 
     // MARK: - SortTypes
     enum RecordSortTypes: String, CaseIterable {
-        case kind = "kind"
-        case date = "date"
-        case pinned = "pinned"
+        case kind, date, pinned
 
         var title: String {
             switch self {

@@ -23,6 +23,8 @@ struct EditRecordScreen: View {
         self.record = record
     }
 
+    @State private var goal: Int = 0
+
     var body: some View {
         Form {
             Section {
@@ -54,8 +56,8 @@ struct EditRecordScreen: View {
 
                 if draftRecord.type == .count {
                     Stepper(
-                        "Goal: \(draftRecord.goal ?? Defaults.Count.goal)",
-                        value: $draftRecord.goal ?? Defaults.Count.goal,
+                        "Goal: \(goal)",
+                        value: $goal,
                         in: draftRecord.taps...(.max)
                     )
                 }
@@ -100,6 +102,7 @@ struct EditRecordScreen: View {
             // Save Button
             ToolbarItem(placement: .automatic) {
                 Button {
+                    draftRecord.goal = goal
                     model.updateRecord(draftRecord)
                     dismiss()
                 } label: {
@@ -112,6 +115,7 @@ struct EditRecordScreen: View {
             print("On Appear")
             if !imported {
                 draftRecord = record
+                goal = draftRecord.goal ?? Defaults.Count.goal
                 imported = true
                 print("Imported: \(record)")
             }
