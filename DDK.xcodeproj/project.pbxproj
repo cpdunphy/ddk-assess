@@ -16,19 +16,18 @@
 		6CAEE29827323E2800184E39 /* CustomAssessTaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE29727323E2800184E39 /* CustomAssessTaps.swift */; };
 		6CAEE29A27323E5600184E39 /* CustomAssessControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE29927323E5600184E39 /* CustomAssessControls.swift */; };
 		6CAEE29C27323E6300184E39 /* CustomAssessStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE29B27323E6300184E39 /* CustomAssessStats.swift */; };
-		6CC1561B2735D52200A7A344 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1561A2735D52200A7A344 /* Binding.swift */; };
-		F00DE6DD27D95755000AD591 /* AssessmentListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09ED61E2778EAB90096E4A4 /* AssessmentListRow.swift */; };
 		F0214EEA26A31B8100003DDC /* AssessmentGalleryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */; };
 		F0214EEC26A31BEA00003DDC /* AssessmentGalleryGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */; };
 		F021FE582E8CADD10052875B /* AppMobileNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021FE572E8CADD10052875B /* AppMobileNavigation.swift */; };
 		F021FE5A2E8CADD80052875B /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F021FE592E8CADD80052875B /* MailView.swift */; };
 		F022213126A325B900AA0340 /* AssessmentGalleryIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */; };
 		F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */; };
-		F02DB40D251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02DB3E4251C23430038FEAE /* Diadochokinetic_AssessApp.swift */; };
+		F02DB40D251C23440038FEAE /* DDKApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02DB3E4251C23430038FEAE /* DDKApp.swift */; };
 		F02DB40F251C23440038FEAE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02DB3E5251C23430038FEAE /* ContentView.swift */; };
 		F02DB411251C23440038FEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F02DB3E6251C23440038FEAE /* Assets.xcassets */; };
 		F0304708251E4CD100B438E7 /* TapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0304707251E4CD100B438E7 /* TapButton.swift */; };
 		F030470F251E65F400B438E7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030470E251E65F300B438E7 /* Color.swift */; };
+		F0445FB42E8DC70900541B2F /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0445FB32E8DC70600541B2F /* Bundle.swift */; };
 		F0457FBE2897477100A64DB3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F0457FBD2897477100A64DB3 /* README.md */; };
 		F04AD42C271CCDB600293641 /* SettingsScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD42B271CCDB600293641 /* SettingsScreenButton.swift */; };
 		F05F75DA2757BD4200CDD65C /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05F75D92757BD4200CDD65C /* Statistics.swift */; };
@@ -72,18 +71,18 @@
 		6CAEE29727323E2800184E39 /* CustomAssessTaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssessTaps.swift; sourceTree = "<group>"; };
 		6CAEE29927323E5600184E39 /* CustomAssessControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssessControls.swift; sourceTree = "<group>"; };
 		6CAEE29B27323E6300184E39 /* CustomAssessStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAssessStats.swift; sourceTree = "<group>"; };
-		6CC1561A2735D52200A7A344 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryScreen.swift; sourceTree = "<group>"; };
 		F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryGrid.swift; sourceTree = "<group>"; };
 		F021FE572E8CADD10052875B /* AppMobileNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMobileNavigation.swift; sourceTree = "<group>"; };
 		F021FE592E8CADD80052875B /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentGalleryIcon.swift; sourceTree = "<group>"; };
 		F0252880251CCC4400D2F5DF /* AppSidebarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSidebarNavigation.swift; sourceTree = "<group>"; };
-		F02DB3E4251C23430038FEAE /* Diadochokinetic_AssessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diadochokinetic_AssessApp.swift; sourceTree = "<group>"; };
+		F02DB3E4251C23430038FEAE /* DDKApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDKApp.swift; sourceTree = "<group>"; };
 		F02DB3E5251C23430038FEAE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F02DB3E6251C23440038FEAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0304707251E4CD100B438E7 /* TapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapButton.swift; sourceTree = "<group>"; };
 		F030470E251E65F300B438E7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		F0445FB32E8DC70600541B2F /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		F0457FBD2897477100A64DB3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F04AD42B271CCDB600293641 /* SettingsScreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenButton.swift; sourceTree = "<group>"; };
 		F05F75D92757BD4200CDD65C /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
@@ -105,7 +104,6 @@
 		F08D1BAC27150E4E004FE52A /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		F08D1BAF271A20A6004FE52A /* ButtonOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonOptions.swift; sourceTree = "<group>"; };
 		F08D1BB3271A2135004FE52A /* RoundRectProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundRectProgress.swift; sourceTree = "<group>"; };
-		F09ED61E2778EAB90096E4A4 /* AssessmentListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentListRow.swift; sourceTree = "<group>"; };
 		F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-Set.swift"; sourceTree = "<group>"; };
 		F0AE5B9726AB151200ADAD3D /* AboutDDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDDK.swift; sourceTree = "<group>"; };
 		F0B3FEC92E84B18F003079CF /* DDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,7 +190,7 @@
 		F02DB3E3251C23430038FEAE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				F02DB3E4251C23430038FEAE /* Diadochokinetic_AssessApp.swift */,
+				F02DB3E4251C23430038FEAE /* DDKApp.swift */,
 				F02DB3E5251C23430038FEAE /* ContentView.swift */,
 				F0C756A5251C3B2900D066A9 /* Model */,
 				F0DC244B2524FB96000CBCA8 /* Views */,
@@ -227,7 +225,6 @@
 		F080D74226A8C2E700A1F49D /* Supporting Views */ = {
 			isa = PBXGroup;
 			children = (
-				F09ED61E2778EAB90096E4A4 /* AssessmentListRow.swift */,
 				F080D72B26A3B68100A1F49D /* AssessmentGalleryContextMenuItems.swift */,
 				F022213026A325B900AA0340 /* AssessmentGalleryIcon.swift */,
 			);
@@ -267,10 +264,10 @@
 		F0DAFDA326B07DB400CDA62F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				F0445FB32E8DC70600541B2F /* Bundle.swift */,
 				F062A80A27D6C60A0096A29A /* Double.swift */,
 				F062A80827D65D5C0096A29A /* Date.swift */,
 				F08D1BAC27150E4E004FE52A /* RoundedCorner.swift */,
-				6CC1561A2735D52200A7A344 /* Binding.swift */,
 				F030470E251E65F300B438E7 /* Color.swift */,
 				F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */,
 			);
@@ -364,6 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			files = (
 				F062A80727D65CEE0096A29A /* Defaults.swift in Sources */,
+				F0445FB42E8DC70900541B2F /* Bundle.swift in Sources */,
 				F0D5539E251C24340084E0EB /* DDKModel.swift in Sources */,
 				F080D73B26A5E0F100A1F49D /* RecordHistoryRow.swift in Sources */,
 				F02DB40F251C23440038FEAE /* ContentView.swift in Sources */,
@@ -371,10 +369,9 @@
 				F021FE5A2E8CADD80052875B /* MailView.swift in Sources */,
 				F0214EEA26A31B8100003DDC /* AssessmentGalleryScreen.swift in Sources */,
 				6CAEE28A27323A5D00184E39 /* TimedAssessment.swift in Sources */,
-				F00DE6DD27D95755000AD591 /* AssessmentListRow.swift in Sources */,
 				F0C756B7251C3DC000D066A9 /* AssessmentRecord.swift in Sources */,
 				F0E180B225236C3500E808AB /* SettingsScreen.swift in Sources */,
-				F02DB40D251C23440038FEAE /* Diadochokinetic_AssessApp.swift in Sources */,
+				F02DB40D251C23440038FEAE /* DDKApp.swift in Sources */,
 				6CAEE29227323B0B00184E39 /* TimedAssessmentBase.swift in Sources */,
 				6CAEE28827323A4900184E39 /* HeartRateAssessment.swift in Sources */,
 				F021FE582E8CADD10052875B /* AppMobileNavigation.swift in Sources */,
@@ -398,7 +395,6 @@
 				F04AD42C271CCDB600293641 /* SettingsScreenButton.swift in Sources */,
 				F0252881251CCC4400D2F5DF /* AppSidebarNavigation.swift in Sources */,
 				F062A80B27D6C60A0096A29A /* Double.swift in Sources */,
-				6CC1561B2735D52200A7A344 /* Binding.swift in Sources */,
 				6CAEE29A27323E5600184E39 /* CustomAssessControls.swift in Sources */,
 				6CAEE29C27323E6300184E39 /* CustomAssessStats.swift in Sources */,
 				F0214EEC26A31BEA00003DDC /* AssessmentGalleryGrid.swift in Sources */,

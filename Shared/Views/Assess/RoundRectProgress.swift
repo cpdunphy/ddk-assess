@@ -40,27 +40,27 @@ struct RoundedRectProgress: InsettableShape {
             x: bottomLeftCornerWithInset.x + cornerRadius, y: bottomLeftCornerWithInset.y - cornerRadius)
         let topLeftArcCenter: CGPoint = CGPoint(x: topLeftCornerWithInset.x + cornerRadius, y: topLeftCornerWithInset.y + cornerRadius)
 
-        var p = Path()
+        var path = Path()
 
-        p.move(to: startingPointWithOffset)
-        p.addLine(to: topRightCornerLineStart)
-        p.addArc(
+        path.move(to: startingPointWithOffset)
+        path.addLine(to: topRightCornerLineStart)
+        path.addArc(
             center: topRightArcCenter, radius: cornerRadius, startAngle: .degrees(-90), endAngle: .degrees(0), clockwise: clockwise,
             transform: .identity)
-        p.addLine(to: bottomRightCornerLineStart)
-        p.addArc(
+        path.addLine(to: bottomRightCornerLineStart)
+        path.addArc(
             center: bottomRightArcCenter, radius: cornerRadius, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: clockwise,
             transform: .identity)
-        p.addLine(to: bottomLeftCornerLineStart)
-        p.addArc(
+        path.addLine(to: bottomLeftCornerLineStart)
+        path.addArc(
             center: bottomLeftArcCenter, radius: cornerRadius, startAngle: .degrees(90), endAngle: .degrees(180), clockwise: clockwise,
             transform: .identity)
-        p.addLine(to: topLeftCornerLineStart)
-        p.addArc(
+        path.addLine(to: topLeftCornerLineStart)
+        path.addArc(
             center: topLeftArcCenter, radius: cornerRadius, startAngle: .degrees(180), endAngle: .degrees(270), clockwise: clockwise,
             transform: .identity)
-        p.addLine(to: startingPointWithOffset)
-        return p
+        path.addLine(to: startingPointWithOffset)
+        return path
     }
 
     func inset(by amount: CGFloat) -> some InsettableShape {

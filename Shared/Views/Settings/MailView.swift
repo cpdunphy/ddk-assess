@@ -45,15 +45,6 @@ struct MailView: UIViewControllerRepresentable {
         }
     }
 
-    func getAppCurrentVersionNumber() -> String {
-        let dictionary = Bundle.main.infoDictionary!
-        let version: AnyObject? = dictionary["CFBundleShortVersionString"] as AnyObject?
-        let build: AnyObject? = dictionary["CFBundleVersion"] as AnyObject?
-        let versionStr = version as! String
-        let buildStr = build as! String
-        return "\(versionStr) (\(buildStr))"
-    }
-
     func makeCoordinator() -> Coordinator {
         return Coordinator(
             presentation: presentation,
@@ -65,7 +56,7 @@ struct MailView: UIViewControllerRepresentable {
         vc.setToRecipients(["apps@ballygorey.com"])
         vc.setSubject("DDK Feedback")  // #\(UUID())")
         vc.mailComposeDelegate = context.coordinator
-        vc.setMessageBody("Dear DDK Developer,\n[\(getAppCurrentVersionNumber())]", isHTML: false)
+        vc.setMessageBody("Dear DDK Developer,\n[\(Bundle.appVersionWithBuild)]", isHTML: false)
         return vc
     }
 

@@ -8,8 +8,8 @@
 import SwiftUI
 
 enum AssessmentSortTypes: String, CaseIterable {
-    case kind = "kind"
-    case date = "date"
+    case kind
+    case date
 
     var title: String {
         switch self {

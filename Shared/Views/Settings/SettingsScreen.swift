@@ -126,42 +126,24 @@ struct SettingsScreen: View {
     }
 
     var rateApp: some View {
-        #if os(iOS)
-            Button(
-                action: {
-                    let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive })
-                    if let scene = scene as? UIWindowScene {
-                        AppStore.requestReview(in: scene)
-                    } else {
-                        if let url = URL(
-                            string: "itms-apps://itunes.apple.com/app/id\(1_489_873_060)?action=write-review&mt=8"
-                        ) {
-                            UIApplication.shared.open(url)
-                        }
-                    }
-
-                }
-            ) {
-                SettingsScreenButton(
-                    title: "Do you love DDK?",
-                    symbolSystemName: "suit.heart.fill",
-                    symbolColor: .pink
-                )
-            }
-        #else
-            Link(
-                destination: URL(
+        Button {
+            let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive })
+            if let scene = scene as? UIWindowScene {
+                AppStore.requestReview(in: scene)
+            } else {
+                if let url = URL(
                     string: "itms-apps://itunes.apple.com/app/id\(1_489_873_060)?action=write-review&mt=8"
-                )!,
-                label: {
-                    SettingsScreenButton(
-                        title: "Do you love DDK?",
-                        symbolSystemName: "suit.heart.fill",
-                        symbolColor: .pink
-                    )
+                ) {
+                    UIApplication.shared.open(url)
                 }
+            }
+        } label: {
+            SettingsScreenButton(
+                title: "Do you love DDK?",
+                symbolSystemName: "suit.heart.fill",
+                symbolColor: .pink
             )
-        #endif
+        }
     }
 
     // Button that resets the preferences across the whole app.
