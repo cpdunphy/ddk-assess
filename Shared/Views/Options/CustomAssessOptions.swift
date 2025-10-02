@@ -126,9 +126,7 @@ extension AssessmentOptions {
                         Text("\($0)").tag($0)
                     }
                 }
-                #if os(iOS)
-                    .pickerStyle(.wheel)
-                #endif
+                .pickerStyle(.wheel)
             }
         }
 

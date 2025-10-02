@@ -14,7 +14,6 @@ struct StorageKeys {
     }
 
     struct AssessGallery {
-        public static let favoriteAssessments: String = "favorite_assessment_types"
         public static let sortBy: String = "assessment_gallery_sort_by"
         public static let sortAscending: String = "assessment_gallery_sort_sort_ascending"
     }

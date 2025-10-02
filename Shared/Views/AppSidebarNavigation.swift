@@ -19,51 +19,25 @@ struct AppSidebarNavigation: View {
 
             /// Brings support to macOS, setting a limit on the extent to which it can expand/contract. Also adds a 'toggle to open/close the sidebar.
             HistoryScreen()
-                #if os(macOS)
-                    .frame(minWidth: 100, idealWidth: 150, maxHeight: .infinity)
-                    .toolbar {
-                        ToolbarItem(placement: .navigation) {
-                            sidebarToggleButton
-                        }
+                .sheet(isPresented: $showSettingsModal) {
+                    NavigationStack {
+                        SettingsModal()
                     }
-                #endif
-                #if !os(macOS)
-                    .sheet(isPresented: $showSettingsModal) {
-                        NavigationStack {
-                            SettingsModal()
-                        }
-                    }
-                #endif
+                }
 
             /// Applies a conditional modifier to devices not on macOS, setting the NavBar Display Mode to '.inline'
             AssessmentGalleryScreen()
-                #if !os(macOS)
-                    .toolbar {
-                        ToolbarItemGroup(placement: ToolbarItemPlacement.navigationBarLeading) {
-                            Button {
-                                showSettingsModal = true
-                            } label: {
-                                Image(systemName: "gearshape")
-                            }
+                .toolbar {
+                    ToolbarItemGroup(placement: ToolbarItemPlacement.navigationBarLeading) {
+                        Button {
+                            showSettingsModal = true
+                        } label: {
+                            Image(systemName: "gearshape")
                         }
                     }
-                #endif
+                }
         }
     }
-
-    /// macOS Sidebar Toggle
-    #if os(macOS)
-        var sidebarToggleButton: some View {
-            Button(action: toggleSidebar) {
-                Image(systemName: "sidebar.left")
-                    .font(.title)
-            }
-        }
-
-        private func toggleSidebar() {
-            NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
-        }
-    #endif
 
     struct SettingsModal: View {
         @EnvironmentObject var model: DDKModel
@@ -73,9 +47,7 @@ struct AppSidebarNavigation: View {
         var body: some View {
             SettingsScreen()
                 .environmentObject(model)
-                #if os(iOS)
-                    .navigationBarTitleDisplayMode(.inline)
-                #endif
+                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     Button("Done", action: { dismiss() })
                 }

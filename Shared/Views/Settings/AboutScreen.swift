@@ -1,13 +1,13 @@
 //
-//  AboutDDK.swift
-//  AboutDDK
+//  AboutScreen.swift
+//  AboutScreen
 //
 //  Created by Collin Dunphy on 7/23/21.
 //
 
 import SwiftUI
 
-struct AboutDDK: View {
+struct AboutScreen: View {
 
     @Environment(\.colorScheme) var colorScheme
 
@@ -92,8 +92,8 @@ struct AboutDDK: View {
     }
 }
 
-struct AboutDDK_Previews: PreviewProvider {
+struct AboutScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AboutDDK()
+        AboutScreen()
     }
 }

@@ -54,14 +54,7 @@ extension AssessmentTaker {
             case .start: return Color.green
             case .resume: return Color.green
             case .pause: return Color.orange
-            case .stop, .reset:
-                #if os(iOS)
-                    return Color.gray
-                #elseif os(macOS)
-                    return Color.white
-                #else
-                    return Color.gray
-                #endif
+            case .stop, .reset: return Color.gray
             case .log: return Color.orange
             }
         }

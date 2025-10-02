@@ -17,17 +17,11 @@ struct RecordGeneralInfo: View {
 
     var record: AssessmentRecord
 
-    init(_ record: AssessmentRecord) {
-        self.record = record
-    }
-
     // MARK: - Body
     var body: some View {
         main
             .navigationTitle("Info")
-            #if os(iOS)
-                .navigationBarTitleDisplayMode(.inline)
-            #endif
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 Button {
                     dismiss()
@@ -147,6 +141,6 @@ struct RecordGeneralInfo: View {
 
 struct RecordGeneralInfo_Previews: PreviewProvider {
     static var previews: some View {
-        RecordGeneralInfo(AssessmentRecord(date: Date(), taps: 7, type: .timed, duration: 15))
+        RecordGeneralInfo(record: AssessmentRecord(date: Date(), taps: 7, type: .timed, duration: 15))
     }
 }
