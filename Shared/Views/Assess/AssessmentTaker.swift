@@ -64,11 +64,7 @@ struct AssessmentTaker: View {
             navigationBar
                 .background(.bar)
         }
-        #if os(macOS)
-            .foregroundColor(Color(NSColor.windowBackgroundColor))
-        #else
-            .background(Color(.systemGroupedBackground))
-        #endif
+        .background(Color(.systemGroupedBackground))
         .sheet(item: $assessmentSettingsSelection) { type in
             NavigationView {
                 AssessmentOptions(type: type)

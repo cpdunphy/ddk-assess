@@ -26,7 +26,7 @@ struct AppMobileNavigation: View {
                 }
             }
 
-            Tab("Assess", systemImage: "gearshape", value: NavigationItem.settings) {
+            Tab("Settings", systemImage: "gearshape", value: NavigationItem.settings) {
                 NavigationStack {
                     SettingsScreen()
                 }

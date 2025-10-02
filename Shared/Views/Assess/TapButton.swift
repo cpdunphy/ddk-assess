@@ -6,10 +6,7 @@
 //
 
 import SwiftUI
-
-#if !os(macOS)
-    import UIKit
-#endif
+import UIKit
 
 struct TapButton: View {
     @EnvironmentObject var model: DDKModel

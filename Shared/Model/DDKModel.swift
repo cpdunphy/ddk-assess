@@ -15,8 +15,6 @@ import SwiftUI
 
 class DDKModel: ObservableObject {
 
-    @AppStorage(StorageKeys.AssessGallery.favoriteAssessments) var favoriteAssessments: Set<String> = []
-
     @AppStorage(StorageKeys.History.pinnedRecords) var pinnedRecords: [AssessmentRecord] = []
 
     // MARK: Records
@@ -104,34 +102,7 @@ extension DDKModel {
     }
 }
 
-// MARK: - Favorite Assessments
-extension DDKModel {
-
-    func assessmentTypeIsFavorite(_ type: AssessmentType) -> Bool {
-        return favoriteAssessments.contains(type.id)
-    }
-
-    func toggleFavoriteStatus(_ type: AssessmentType) {
-
-        let (inserted, _) = favoriteAssessments.insert(type.id)
-
-        if !inserted {
-            favoriteAssessments.remove(type.id)
-        }
-    }
-
-    var isFavoriteAssessmentsEmpty: Bool {
-        return AssessmentType.allCases
-            .filter {
-                favoriteAssessments.contains($0.id)
-            }
-            .isEmpty
-    }
-
-}
-
 // MARK: - Pinned Records
-
 extension DDKModel {
 
     func recordIsPinned(_ id: UUID) -> Bool {

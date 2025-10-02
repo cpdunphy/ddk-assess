@@ -5,43 +5,33 @@
 //  Created by Collin Dunphy on 9/29/20.
 //
 
+import MessageUI
 import StoreKit
 import SwiftUI
 
-#if os(iOS)
-    import MessageUI
-#endif
-
 struct SettingsScreen: View {
 
-    #if os(iOS)
-        @State private var mailResult: Result<MFMailComposeResult, Error>?
-        @State private var showingMailView: Bool = false
-    #endif
+    @State private var mailResult: Result<MFMailComposeResult, Error>?
+    @State private var showingMailView: Bool = false
 
-    // MARK: - Form
-    var form: some View {
+    var body: some View {
         List {
-
             // App Information + More
             Section {
-
-                NavigationLink(destination: AboutDDK()) {
+                NavigationLink(destination: AboutScreen()) {
                     Label("About", systemImage: "info.circle.fill")
                 }
 
                 NavigationLink(destination: Statistics()) {
-                    SettingsScreenButton(
-                        title: "Statistics",
-                        symbolSystemName: "sum",
-                        symbolColor: .orange
-                    )
+                    Label("Statistics", systemImage: "sum")
+                        .labelStyle(.iconTint(.orange))
                 }
+                .buttonStyle(.plain)
             }
 
             Section {
                 rateApp
-                callSupport
+                support
                 privacyPolicy
                 termsOfService
             }
@@ -50,62 +40,41 @@ struct SettingsScreen: View {
                 ResetAllPreferences()
             }
         }
+        .navigationTitle("Settings")
 
+        // Mail Popover Sheet
+        .sheet(isPresented: $showingMailView) {
+            MailView(result: $mailResult)
+        }
     }
 
-    // MARK: - Body
-    var body: some View {
-        form
-            .navigationTitle("Settings")
+    var support: some View {
+        let label = Label("Feedback / Support", systemImage: "questionmark.diamond.fill")
+            .symbolRenderingMode(.multicolor)
 
-            // Mail Popover Sheet
-            #if os(iOS)
-                .sheet(isPresented: $showingMailView) {
-                    MailView(result: $mailResult)
-                }
-            #endif
-    }
-
-    var callSupport: some View {
-        #if os(iOS)
-            Button {
-                #if os(iOS)
+        return Group {
+            if MFMailComposeViewController.canSendMail() {
+                Button {
                     showingMailView.toggle()
-                #else
-                    if let url = U {
-                        UIApplication.shared.open(url)
-                    }
-                #endif
-            } label: {
-                SettingsScreenButton(
-                    title: "Feedback / Support",
-                    symbolSystemName: "questionmark.diamond.fill"
-                )
-                .symbolRenderingMode(.multicolor)
-            }
-            .disabled(!MFMailComposeViewController.canSendMail())
-        #else
-            Link(
-                destination: URL(string: "mailto:apps@ballygorey.com?subject=Subject&body=Test")!,
-                label: {
-                    SettingsScreenButton(
-                        title: "Support / Feedback",
-                        symbolSystemName: "questionmark.diamond.fill"
-                    )
-                    .symbolRenderingMode(.multicolor)
+                } label: {
+                    label
                 }
-            )
-        #endif
+                .buttonStyle(.plain)
+            } else {
+                Link(destination: URL(string: "mailto:apps@ballygorey.com?subject=Feedback%20for%20DDK")!) {
+                    label
+                }
+                .buttonStyle(.plain)
+            }
+        }
     }
 
     var termsOfService: some View {
         Link(destination: URL(string: "https://ddk.ballygorey.com/legal/terms")!) {
-            SettingsScreenButton(
-                title: "Terms of Service",
-                symbolSystemName: "doc.append.fill",
-                symbolColor: .teal
-            )
+            Label("Terms of Service", systemImage: "doc.append.fill")
+                .labelStyle(.iconTint(.teal))
         }
+        .buttonStyle(.plain)
     }
 
     var privacyPolicy: some View {
@@ -123,6 +92,7 @@ struct SettingsScreen: View {
                 }
             )
         }
+        .buttonStyle(.plain)
     }
 
     var rateApp: some View {
@@ -138,23 +108,25 @@ struct SettingsScreen: View {
                 }
             }
         } label: {
-            SettingsScreenButton(
-                title: "Do you love DDK?",
-                symbolSystemName: "suit.heart.fill",
-                symbolColor: .pink
-            )
+            Label("Do you love DDK?", systemImage: "suit.heart.fill")
+                .labelStyle(.iconTint(.pink))
         }
+        .buttonStyle(.plain)
     }
 
     // Button that resets the preferences across the whole app.
     struct ResetAllPreferences: View {
+
+        @EnvironmentObject var timed: TimedAssessment
+        @EnvironmentObject var count: CountingAssessment
+        @EnvironmentObject var hr: HeartRateAssessment
 
         @State private var showResetConfirmationAlert: Bool = false
 
         var body: some View {
             // Reset Preferences
             Section {
-                Button {
+                Button(role: .destructive) {
                     showResetConfirmationAlert = true
                 } label: {
                     Label(
@@ -183,10 +155,6 @@ struct SettingsScreen: View {
                 }
             )
         }
-
-        @EnvironmentObject var timed: TimedAssessment
-        @EnvironmentObject var count: CountingAssessment
-        @EnvironmentObject var hr: HeartRateAssessment
 
         func resetPreferences() {
             timed.resetPreferences()

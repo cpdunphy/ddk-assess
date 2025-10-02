@@ -40,41 +40,22 @@ extension Color {
         var green: CGFloat = 0
         var blue: CGFloat = 0
         var alpha: CGFloat = 0
-        #if os(macOS)
-            let color: NSColor = NSColor(self)
-        #else
-            let color: UIColor = UIColor(self)
-        #endif
+        let color: UIColor = UIColor(self)
 
-        #if os(macOS)
-            color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        if color.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
+
             let newRed = min(red + percentage / 100, 1.0)
             let newGreen = min(green + percentage / 100, 1.0)
             let newBlue = min(blue + percentage / 100, 1.0)
 
             return Color(
-                NSColor(
+                UIColor(
                     red: newRed,
-                    green: newRed,
-                    blue: newRed,
+                    green: newGreen,
+                    blue: newBlue,
                     alpha: alpha
                 ))
-        #else
-            if color.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
-
-                let newRed = min(red + percentage / 100, 1.0)
-                let newGreen = min(green + percentage / 100, 1.0)
-                let newBlue = min(blue + percentage / 100, 1.0)
-
-                return Color(
-                    UIColor(
-                        red: newRed,
-                        green: newGreen,
-                        blue: newBlue,
-                        alpha: alpha
-                    ))
-            }
-        #endif
+        }
 
         return nil
     }

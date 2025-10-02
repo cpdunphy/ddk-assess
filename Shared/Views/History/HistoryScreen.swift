@@ -182,9 +182,7 @@ struct HistoryScreen: View {
         .navigationTitle("History")
 
         // Optional List Style Modifier (Done b/c sidebar style takes over on iPadOS)
-        #if os(iOS)
-            .listStyle(.insetGrouped)
-        #endif
+        .listStyle(.insetGrouped)
 
         // Record Editor
         .sheet(

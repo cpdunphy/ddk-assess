@@ -80,43 +80,12 @@ struct AssessmentGalleryGrid: View {
     var body: some View {
         ScrollView {
             VStack {
-
-                //                // Favorited Assessments
-                //                if !ddk.isFavoriteAssessmentsEmpty {
-                //                    VStack(alignment: .leading) {
-                //                        Text("Favorites".uppercased())
-                //                            .font(.caption)
-                //                            .foregroundColor(.secondary)
-                //                            .padding(.leading)
-                //
-                //                        LazyVGrid(
-                //                            columns: columns,
-                //                            spacing: 12
-                //                        ) {
-                //                            ForEach(
-                //                                sortedTypes.filter {
-                //                                    ddk.assessmentTypeIsFavorite($0)
-                //                                }
-                //                            ) { type in
-                //                                button(type)
-                //                                    .matchedGeometryEffect(id: type.rawValue, in: namespace)
-                //                            }
-                //                        }
-                //
-                //                        Divider()
-                //                            .padding(.vertical, 6)
-                //                    }
-                //                }
-
-                // Not Favorited Assessments
                 LazyVGrid(
                     columns: columns,
                     spacing: 12
                 ) {
                     ForEach(
-                        sortedTypes.filter {
-                            !ddk.assessmentTypeIsFavorite($0)
-                        }
+                        sortedTypes
                     ) { type in
                         button(type)
                             .matchedGeometryEffect(id: type.rawValue, in: namespace)
@@ -168,11 +137,12 @@ struct AssessmentGalleryGrid: View {
             )
         }
         .buttonStyle(.plain)
-        .contextMenu {
-            AssessmentGalleryContextMenuItems(
-                type: type,
-                assessmentSettingsSelection: $assessmentSettingsSelection
-            )
+        .contextMenu {            
+            Button {
+                assessmentSettingsSelection = type
+            } label: {
+                Label("Options", systemImage: "ellipsis.circle")
+            }
         }
     }
 

@@ -77,7 +77,7 @@ struct RecordHistoryRow: View {
 
             // Information on a Record
             .popover(isPresented: $recordGetInfoPopover, arrowEdge: .trailing) {
-                RecordGeneralInfo(record)
+                RecordGeneralInfo(record: record)
             }
 
             // Swipe Action Shortcuts

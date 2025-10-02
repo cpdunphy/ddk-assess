@@ -84,9 +84,7 @@ struct EditRecordScreen: View {
 
         }
         .navigationTitle("Edit Record")
-        #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-        #endif
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
 
             // Cancel Button

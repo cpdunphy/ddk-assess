@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-enum HeartRateDisplayUnit: String, Codable, CaseIterable, Identifiable {
-    case bpm = "BPM"
-    case bps = "BPS"
-
-    var id: String {
-        self.rawValue
-    }
-}
-
 struct AssessmentOptions: View {
 
     @Environment(\.dismiss) var dismiss
@@ -42,13 +33,8 @@ struct AssessmentOptions: View {
     @State private var showResetCountConf: Bool = false
     @State private var showResetConfirmationAlert: Bool = false
 
-    // MARK: - Form
-    var form: some View {
+    var body: some View {
         Form {
-            //            Section {
-            //                favoriteToggle
-            //            }
-
             options
 
             Section {
@@ -56,21 +42,15 @@ struct AssessmentOptions: View {
                 resetPreferencesButton
             }
         }
-    }
-
-    // Favorite Toggle
-    var favoriteToggle: some View {
-        Toggle(
-            "\(Image(systemName: "star.fill")) Favorite",
-            isOn: Binding<Bool>(
-                get: {
-                    ddk.assessmentTypeIsFavorite(type)
-                },
-                set: { _ in
-                    ddk.toggleFavoriteStatus(type)
-                }
+        .navigationTitle(model?.title ?? "Untitled")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            Button(
+                "Done",
+                role: .destructive,
+                action: { dismiss() }
             )
-        )
+        }
     }
 
     // Reset Temp Logs Button
@@ -108,6 +88,7 @@ struct AssessmentOptions: View {
             Label("Reset Preferences", systemImage: "exclamationmark.arrow.circlepath")
         }
         .foregroundColor(.red)
+
         // Reset Settings Confirmation
         .confirmationDialog(
             "Reset Preferences",
@@ -122,25 +103,14 @@ struct AssessmentOptions: View {
             }
         )
     }
+}
 
-    // MARK: - Body
-    var body: some View {
-        form
-            .navigationTitle(model?.title ?? "Untitled")
-            #if os(iOS)
-                .navigationBarTitleDisplayMode(.inline)
-            #endif
+enum HeartRateDisplayUnit: String, Codable, CaseIterable, Identifiable {
+    case bpm = "BPM"
+    case bps = "BPS"
 
-            // Toolbar
-            .toolbar {
-                //                ToolbarItem(placement: .navigationBarTrailing) {
-                Button(
-                    "Done",
-                    role: .destructive,
-                    action: { dismiss() }
-                )
-                //                }
-            }
+    var id: String {
+        self.rawValue
     }
 }
 
