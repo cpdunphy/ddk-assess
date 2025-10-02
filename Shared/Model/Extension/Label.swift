@@ -9,17 +9,17 @@ import Foundation
 import SwiftUI
 
 struct IconTintLabelStyle: LabelStyle {
+
     let color: Color
-    let secondary: Color?
 
     init(_ color: Color) {
         self.color = color
-        self.secondary = nil
     }
 
     func makeBody(configuration: Configuration) -> some View {
         Label {
             configuration.title  // The text part of the label
+                .foregroundColor(.primary)
         } icon: {
             configuration.icon
                 .foregroundStyle(color)
