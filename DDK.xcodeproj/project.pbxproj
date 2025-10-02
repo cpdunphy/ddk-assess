@@ -47,13 +47,11 @@
 		F080D73E26A8B6F400A1F49D /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F080D73D26A8B6F400A1F49D /* StorageKeys.swift */; };
 		F08D1BAD27150E4E004FE52A /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08D1BAC27150E4E004FE52A /* RoundedCorner.swift */; };
 		F08D1BB0271A20A6004FE52A /* ButtonOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08D1BAF271A20A6004FE52A /* ButtonOptions.swift */; };
-		F08D1BB4271A2135004FE52A /* RoundRectProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08D1BB3271A2135004FE52A /* RoundRectProgress.swift */; };
 		F0AE5B9526A9F06400ADAD3D /* Array-Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */; };
 		F0AE5B9826AB151200ADAD3D /* AboutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE5B9726AB151200ADAD3D /* AboutScreen.swift */; };
 		F0B3FECC2E84B317003079CF /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F0B3FECB2E84B317003079CF /* Algorithms */; };
 		F0B3FECE2E84C8F9003079CF /* DDK_AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = F0B3FECD2E84C8F9003079CF /* DDK_AppIcon.icon */; };
 		F0B423BB25A66D97002805C9 /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B423BA25A66D97002805C9 /* NavigationItem.swift */; };
-		F0C756B0251C3DA500D066A9 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756AF251C3DA500D066A9 /* States.swift */; };
 		F0C756B7251C3DC000D066A9 /* AssessmentRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C756B6251C3DC000D066A9 /* AssessmentRecord.swift */; };
 		F0CEA381251CC5C700818C6D /* CountingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CEA380251CC5C700818C6D /* CountingState.swift */; };
 		F0D5539E251C24340084E0EB /* DDKModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5539D251C24340084E0EB /* DDKModel.swift */; };
@@ -101,13 +99,11 @@
 		F080D73D26A8B6F400A1F49D /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		F08D1BAC27150E4E004FE52A /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		F08D1BAF271A20A6004FE52A /* ButtonOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonOptions.swift; sourceTree = "<group>"; };
-		F08D1BB3271A2135004FE52A /* RoundRectProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundRectProgress.swift; sourceTree = "<group>"; };
 		F0AE5B9426A9F06400ADAD3D /* Array-Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-Set.swift"; sourceTree = "<group>"; };
 		F0AE5B9726AB151200ADAD3D /* AboutScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScreen.swift; sourceTree = "<group>"; };
 		F0B3FEC92E84B18F003079CF /* DDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B3FECD2E84C8F9003079CF /* DDK_AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = DDK_AppIcon.icon; sourceTree = "<group>"; };
 		F0B423BA25A66D97002805C9 /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
-		F0C756AF251C3DA500D066A9 /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		F0C756B6251C3DC000D066A9 /* AssessmentRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentRecord.swift; sourceTree = "<group>"; };
 		F0CEA380251CC5C700818C6D /* CountingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingState.swift; sourceTree = "<group>"; };
 		F0D5539D251C24340084E0EB /* DDKModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDKModel.swift; sourceTree = "<group>"; };
@@ -232,7 +228,6 @@
 			children = (
 				F080D72E26A4ED7F00A1F49D /* AssessmentTaker.swift */,
 				6CAEE29D27323FC600184E39 /* Custom Controls */,
-				F08D1BB3271A2135004FE52A /* RoundRectProgress.swift */,
 				F08D1BAF271A20A6004FE52A /* ButtonOptions.swift */,
 				F0304707251E4CD100B438E7 /* TapButton.swift */,
 			);
@@ -245,7 +240,6 @@
 				F062A80627D65CEE0096A29A /* Defaults.swift */,
 				F07B3BCF261108E5004EB5AC /* Print.swift */,
 				F0B423BA25A66D97002805C9 /* NavigationItem.swift */,
-				F0C756AF251C3DA500D066A9 /* States.swift */,
 				F080D73D26A8B6F400A1F49D /* StorageKeys.swift */,
 				F0DAFDA326B07DB400CDA62F /* Extension */,
 				F0CEA380251CC5C700818C6D /* CountingState.swift */,
@@ -396,9 +390,7 @@
 				6CAEE29C27323E6300184E39 /* CustomAssessStats.swift in Sources */,
 				F0214EEC26A31BEA00003DDC /* AssessmentGalleryGrid.swift in Sources */,
 				F0304708251E4CD100B438E7 /* TapButton.swift in Sources */,
-				F08D1BB4271A2135004FE52A /* RoundRectProgress.swift in Sources */,
 				F080D72F26A4ED7F00A1F49D /* AssessmentTaker.swift in Sources */,
-				F0C756B0251C3DA500D066A9 /* States.swift in Sources */,
 				F080D73226A4EDCE00A1F49D /* AssessmentOptions.swift in Sources */,
 				F07B3BD0261108E5004EB5AC /* Print.swift in Sources */,
 				F080D73826A5D44F00A1F49D /* RecordGeneralInfo.swift in Sources */,

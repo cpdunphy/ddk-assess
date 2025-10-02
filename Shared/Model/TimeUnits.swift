@@ -8,13 +8,6 @@
 
 import Foundation
 
-enum ActiveAlert {
-    case none
-    case buying
-    case email
-    case review
-}
-
 enum TimeUnits: String {
     case seconds = "sec"
     case minutes = "min"

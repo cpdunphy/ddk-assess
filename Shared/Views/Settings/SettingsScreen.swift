@@ -26,7 +26,6 @@ struct SettingsScreen: View {
                     Label("Statistics", systemImage: "sum")
                         .labelStyle(.iconTint(.orange))
                 }
-                .buttonStyle(.plain)
             }
 
             Section {
@@ -49,8 +48,16 @@ struct SettingsScreen: View {
     }
 
     var support: some View {
-        let label = Label("Feedback / Support", systemImage: "questionmark.diamond.fill")
-            .symbolRenderingMode(.multicolor)
+        let label = Label(
+            title: {
+                Text("Feedback / Support")
+                    .foregroundColor(.primary)
+            },
+            icon: {
+                Image(systemName: "questionmark.diamond.fill")
+                    .symbolRenderingMode(.multicolor)
+            }
+        )
 
         return Group {
             if MFMailComposeViewController.canSendMail() {
@@ -59,12 +66,10 @@ struct SettingsScreen: View {
                 } label: {
                     label
                 }
-                .buttonStyle(.plain)
             } else {
                 Link(destination: URL(string: "mailto:apps@ballygorey.com?subject=Feedback%20for%20DDK")!) {
                     label
                 }
-                .buttonStyle(.plain)
             }
         }
     }
@@ -74,7 +79,6 @@ struct SettingsScreen: View {
             Label("Terms of Service", systemImage: "doc.append.fill")
                 .labelStyle(.iconTint(.teal))
         }
-        .buttonStyle(.plain)
     }
 
     var privacyPolicy: some View {
@@ -92,7 +96,6 @@ struct SettingsScreen: View {
                 }
             )
         }
-        .buttonStyle(.plain)
     }
 
     var rateApp: some View {
@@ -111,7 +114,6 @@ struct SettingsScreen: View {
             Label("Do you love DDK?", systemImage: "suit.heart.fill")
                 .labelStyle(.iconTint(.pink))
         }
-        .buttonStyle(.plain)
     }
 
     // Button that resets the preferences across the whole app.

@@ -137,7 +137,7 @@ struct AssessmentGalleryGrid: View {
             )
         }
         .buttonStyle(.plain)
-        .contextMenu {            
+        .contextMenu {
             Button {
                 assessmentSettingsSelection = type
             } label: {

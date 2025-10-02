@@ -11,12 +11,7 @@ import SwiftUI
 extension AssessmentTaker {
 
     enum ButtonOptions {
-        case start
-        case resume
-        case pause
-        case stop
-        case reset
-        case log
+        case start, resume, pause, stop, reset, log
 
         func button(action: @escaping () -> Void) -> some View {
             AssessmentTaker.BuildingBlocks.ControlButton(
@@ -51,11 +46,11 @@ extension AssessmentTaker {
 
         var color: Color {
             switch self {
-            case .start: return Color.green
-            case .resume: return Color.green
-            case .pause: return Color.orange
-            case .stop, .reset: return Color.gray
-            case .log: return Color.orange
+            case .start: return .green
+            case .resume: return .green
+            case .pause: return .orange
+            case .stop, .reset: return .gray
+            case .log: return .orange
             }
         }
     }
