@@ -13,24 +13,24 @@ struct AppMobileNavigation: View {
     @State private var tabSelection: NavigationItem = .assess
 
     var body: some View {
-        TabView(selection: $tabSelection) {
-            Tab("Assess", systemImage: "hand.tap", value: NavigationItem.assess) {
+//        TabView(selection: $tabSelection) {
+//            Tab("Assess", systemImage: "hand.tap", value: NavigationItem.assess) {
                 NavigationStack {
                     AssessmentGalleryScreen()
                 }
-            }
-
-            Tab("History", systemImage: "tray.full", value: NavigationItem.history) {
-                NavigationStack {
-                    HistoryScreen()
-                }
-            }
-
-            Tab("Settings", systemImage: "gearshape", value: NavigationItem.settings) {
-                NavigationStack {
-                    SettingsScreen()
-                }
-            }
-        }
+//            }
+//
+//            Tab("History", systemImage: "tray.full", value: NavigationItem.history) {
+//                NavigationStack {
+//                    HistoryScreen()
+//                }
+//            }
+//
+//            Tab("Settings", systemImage: "gearshape", value: NavigationItem.settings) {
+//                NavigationStack {
+//                    SettingsScreen()
+//                }
+//            }
+//        }
     }
 }

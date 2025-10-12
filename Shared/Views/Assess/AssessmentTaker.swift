@@ -60,11 +60,11 @@ struct AssessmentTaker: View {
         }
 
         // Navigation Bar
-        .safeAreaInset(edge: .top, spacing: 0) {
-            navigationBar
-                .background(.bar)
-        }
-        .background(Color(.systemGroupedBackground))
+//        .safeAreaInset(edge: .top, spacing: 0) {
+//            navigationBar
+//                .background(.bar)
+//        }
+//        .background(Color(.systemGroupedBackground))
         .sheet(item: $assessmentSettingsSelection) { type in
             NavigationView {
                 AssessmentOptions(type: type)

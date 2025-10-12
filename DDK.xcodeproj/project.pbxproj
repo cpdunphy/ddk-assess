@@ -56,6 +56,7 @@
 		F0CEA381251CC5C700818C6D /* CountingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CEA380251CC5C700818C6D /* CountingState.swift */; };
 		F0D5539E251C24340084E0EB /* DDKModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D5539D251C24340084E0EB /* DDKModel.swift */; };
 		F0E180B225236C3500E808AB /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E180B125236C3500E808AB /* SettingsScreen.swift */; };
+		F0E9C1562E91AD27002E7611 /* AssessmentPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E9C1552E91AD27002E7611 /* AssessmentPageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,7 @@
 		F0CEA380251CC5C700818C6D /* CountingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingState.swift; sourceTree = "<group>"; };
 		F0D5539D251C24340084E0EB /* DDKModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDKModel.swift; sourceTree = "<group>"; };
 		F0E180B125236C3500E808AB /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		F0E9C1552E91AD27002E7611 /* AssessmentPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 		F0214EEF26A31BFE00003DDC /* Assess Gallery */ = {
 			isa = PBXGroup;
 			children = (
+				F0E9C1552E91AD27002E7611 /* AssessmentPageView.swift */,
 				F0214EE926A31B8100003DDC /* AssessmentGalleryScreen.swift */,
 				F0214EEB26A31BEA00003DDC /* AssessmentGalleryGrid.swift */,
 				F080D74226A8C2E700A1F49D /* Supporting Views */,
@@ -390,6 +393,7 @@
 				6CAEE29C27323E6300184E39 /* CustomAssessStats.swift in Sources */,
 				F0214EEC26A31BEA00003DDC /* AssessmentGalleryGrid.swift in Sources */,
 				F0304708251E4CD100B438E7 /* TapButton.swift in Sources */,
+				F0E9C1562E91AD27002E7611 /* AssessmentPageView.swift in Sources */,
 				F080D72F26A4ED7F00A1F49D /* AssessmentTaker.swift in Sources */,
 				F080D73226A4EDCE00A1F49D /* AssessmentOptions.swift in Sources */,
 				F07B3BD0261108E5004EB5AC /* Print.swift in Sources */,

@@ -138,14 +138,18 @@ extension AssessmentTaker.BuildingBlocks {
         var action: () -> Void
 
         var body: some View {
-            Button(action: action) {
-                Label(title, systemImage: systemImage)
-                    .lineLimit(2)
-                    .frame(maxWidth: .infinity)
+            if #available(iOS 26.0, *) {
+                Button(action: action) {
+                    Label(title, systemImage: systemImage)
+                        .lineLimit(2)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.glassProminent)
+                .tint(color)
+                .font(.title2)
+            } else {
+                // Fallback on earlier versions
             }
-            .buttonStyle(.bordered)
-            .tint(color)
-            .font(.title2)
         }
     }
 

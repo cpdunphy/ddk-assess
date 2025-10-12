@@ -52,13 +52,20 @@ struct TapButton: View {
 
     // MARK: - Body
     var body: some View {
-        Button(action: handleTaps) {
-            Text(displayText)
-                .font(.system(size: buttonLabelTextSize, weight: .semibold, design: .rounded))
+        if #available(iOS 26.0, *) {
+            Button(action: handleTaps) {
+                Text(displayText)
+                    .font(.system(size: buttonLabelTextSize, weight: .semibold, design: .rounded))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            //        .buttonStyle(style)
+            .buttonRepeatBehavior(.enabled)
+//            .buttonSizing(.flexible)
+            .buttonStyle(.glassProminent)
+            .disabled(!isEnabled)
+        } else {
+            // Fallback on earlier versions
         }
-        .buttonStyle(style)
-        .disabled(!isEnabled)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     /// Calls the handleTaps on model and sending the haptic feedback to the user. Called each time theres a tap and lets the DDKModel figure out what to do with it.

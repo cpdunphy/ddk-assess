@@ -29,14 +29,15 @@ struct AssessmentGalleryGrid: View {
 
     @Environment(\.colorScheme) var colorScheme
 
-    @Namespace var namespace
+    @Namespace private var namespace
 
     @AppStorage(StorageKeys.AssessGallery.sortBy) var sortBy: AssessmentSortTypes = Defaults.sortBy
     @AppStorage(StorageKeys.AssessGallery.sortAscending) var sortAscending: Bool = Defaults.sortAscending
 
     @Binding var assessmentSelection: AssessmentType?
     @Binding var assessmentSettingsSelection: AssessmentType?
-
+    @Binding var showAssessmentTaker: Bool
+    
     var columns = [
         GridItem(.adaptive(minimum: 150))
     ]
@@ -80,8 +81,8 @@ struct AssessmentGalleryGrid: View {
     var body: some View {
         ScrollView {
             VStack {
-                LazyVGrid(
-                    columns: columns,
+                LazyVStack(
+//                    columns: columns,
                     spacing: 12
                 ) {
                     ForEach(
@@ -93,13 +94,25 @@ struct AssessmentGalleryGrid: View {
                 }
             }
             .padding(.horizontal)
+            .navigationDestination(item: $assessmentSelection) { type in
+//            .navigationDestination(for: AssessmentType.self) { type in
+                AssessmentPageView(
+                    tabSelection: Binding(
+                        get: { assessmentSelection ?? .timed },
+                        set: { assessmentSelection = $0 }
+                    )
+                )
+                .navigationTransition(.zoom(sourceID: type.rawValue, in: namespace))
+            }
         }
     }
 
     func button(_ type: AssessmentType) -> some View {
+//        NavigationLink(value: type) {
         Button {
             triggerHapticFeedbackSuccess()
             assessmentSelection = type
+            showAssessmentTaker = true
         } label: {
 
             VStack(alignment: .leading) {
@@ -158,7 +171,8 @@ struct AssessmentGalleryGrid_Previews: PreviewProvider {
     static var previews: some View {
         AssessmentGalleryGrid(
             assessmentSelection: .constant(nil),
-            assessmentSettingsSelection: .constant(nil)
+            assessmentSettingsSelection: .constant(nil),
+            showAssessmentTaker: .constant(false)
         )
     }
 }

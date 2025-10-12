@@ -42,7 +42,7 @@ struct AssessmentOptions: View {
                 resetPreferencesButton
             }
         }
-        .navigationTitle(model?.title ?? "Untitled")
+        .navigationTitle("\(model?.title ?? "Untitled") Options")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             Button(
